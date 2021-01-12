@@ -1,0 +1,16 @@
+ALTER TABLE `roteirizador`.`motoristas` 
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `tipo_contrato`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+ALTER TABLE `roteirizador`.`motoristas` 
+CHANGE COLUMN `cpf` `cpf` NVARCHAR(15) NOT NULL ;
+
+ALTER TABLE `roteirizador`.`motoristas` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `roteirizador`.`veiculos` 
+CHANGE COLUMN `ano` `ano` INT(10) NULL DEFAULT NULL ;
+
+
+UPDATE `roteirizador`.`motoristas` SET `PESSOAS_id` = '1' WHERE (`id` = '1');
+UPDATE `roteirizador`.`motoristas` SET `PESSOAS_id` = '1' WHERE (`id` = '2');
