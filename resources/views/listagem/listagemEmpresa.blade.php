@@ -9,7 +9,6 @@
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>NOME EMPRESA</th>
             <th> EDITAR </th>
             <th> DELETAR </th>
@@ -19,7 +18,6 @@
 
           @foreach($empresas as $empresa)
             <tr>
-              <td>{{$empresa->id}}</td>
               <td>{{$empresa->nome_empresa}}</td>
               <td>
                 <a class="btn deep-orange" href="{{route('layout.editarEmpresa', $empresa->id)}}">Editar</a>

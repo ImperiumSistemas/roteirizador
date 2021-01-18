@@ -33,7 +33,11 @@
             <li><a href="{{route('listagem.praca')}}">PRAÇA</a></li>
             <li><a href="{{route('listagem.rota')}}">ROTA</a></li>
             <li><a href="{{route('listagem.regiao')}}">REGIÃO</a></li>
-            <li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
+            <!--<li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
+            <li><a href="{{route('listagem.pais')}}">PAIS</a></li>
+            <li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li> -->
+            <li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li>
+            <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
           </ul>
           </div>
     </nav>

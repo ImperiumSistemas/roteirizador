@@ -1,3 +1,8 @@
 ALTER TABLE `roteirizador`.`filiais_motoristas` 
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `MOTORISTA_id`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+
+ALTER TABLE `roteirizador`.`filiais_motoristas` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+

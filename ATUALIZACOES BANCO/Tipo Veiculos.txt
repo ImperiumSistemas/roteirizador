@@ -1,3 +1,7 @@
 INSERT INTO `roteirizador`.`tipo_veiculos` (`id`, `descricao`) VALUES ('1', 'Grande');
 INSERT INTO `roteirizador`.`tipo_veiculos` (`id`, `descricao`) VALUES ('2', 'Medio');
 INSERT INTO `roteirizador`.`tipo_veiculos` (`id`, `descricao`) VALUES ('3', 'Pequeno');
+
+ALTER TABLE `roteirizador`.`tipo_veiculos` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `descricao`;
+

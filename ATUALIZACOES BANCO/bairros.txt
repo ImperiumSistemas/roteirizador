@@ -1,0 +1,40 @@
+ALTER TABLE `roteirizador`.`bairros` 
+CHANGE COLUMN `cod_bairro` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `roteirizador`.`bairros` 
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `nomeBairro`,
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP FOREIGN KEY `fk_ENDERECO_BAIRRO1`;
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP COLUMN `BAIRRO_nomeBairro`,
+DROP INDEX `fk_ENDERECO_BAIRRO1_idx` ,
+ADD INDEX `fk_ENDERECO_BAIRRO1_idx` (`BAIRRO_cod_bairro` ASC);
+;
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD CONSTRAINT `fk_ENDERECO_BAIRRO1`
+  FOREIGN KEY (`BAIRRO_cod_bairro`)
+  REFERENCES `roteirizador`.`bairros` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP FOREIGN KEY `fk_ENDERECO_PAIS1`;
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP COLUMN `PAIS_pais`,
+DROP INDEX `fk_ENDERECO_PAIS1_idx` ,
+ADD INDEX `fk_ENDERECO_PAIS1_idx` (`PAIS_id` ASC);
+;
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD CONSTRAINT `fk_ENDERECO_PAIS1`
+  FOREIGN KEY (`PAIS_id`)
+  REFERENCES `roteirizador`.`pais` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `roteirizador`.`bairros` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `updated_at`;
+

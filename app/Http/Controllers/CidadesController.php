@@ -30,6 +30,7 @@ class CidadesController extends Controller
       return redirect()->route('listagem.cidade');
     }
 
+
     public function editar($id){
 
       $cidade = cidades::find($id);

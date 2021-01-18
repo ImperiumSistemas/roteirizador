@@ -1,3 +1,21 @@
 INSERT INTO `roteirizador`.`pessoas` (`id`, `nome`, `numero_telefone`) VALUES ('1', 'Anderson', '5588711');
 INSERT INTO `roteirizador`.`pessoas` (`id`, `nome`, `numero_telefone`) VALUES ('2', 'Henrique', '55447711');
 INSERT INTO `roteirizador`.`pessoas` (`id`, `nome`, `numero_telefone`) VALUES ('3', 'Lucas', '55447781');
+
+
+alter table pessoas 
+add column idFisica int;
+
+alter table pessoas 
+
+add foreign key(idFisica) references fisicas(id);
+
+
+alter table pessoas 
+add column idJuridica int;
+
+alter table pessoas
+add foreign key(idJuridica) references juridicas(id);
+
+ALTER TABLE `roteirizador`.`pessoas` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `idJuridica`;

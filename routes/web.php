@@ -73,3 +73,30 @@ Route::post('/layout/salvarCidade', ['as' => 'layout.salvarCidade', 'uses' => 'C
 Route::get('layout/editarCidade/{id}', ['as' => 'layout.editarCidade', 'uses' => 'CidadesController@editar']);
 Route::put('layout/atualizarCidade/{id}', ['as' => 'layout.atualizarCidade', 'uses' => 'CidadesController@atualizar']);
 Route::get('layout/excluirCidade/{id}', ['as' => 'layout.excluirCidade', 'uses' => 'CidadesController@excluir']);
+
+
+Route::get('listagemPais', ['as' => 'listagem.pais', 'uses' => 'PaisController@listaPais']);
+Route::get('/layout/adicionarPais', ['as' => 'layout.adicionarPais', 'uses' => 'PaisController@adicionar']);
+Route::post('/layout/salvarPais', ['as' => 'layout.salvarPais', 'uses' => 'PaisController@salvar']);
+Route::get('/layout/editarPais/{id}', ['as' => 'layout.editarPais', 'uses' => 'PaisController@editar']);
+Route::put('/layout/atualizarPais/{id}', ['as' => 'layout.atualizarPais', 'uses' => 'PaisController@atualizar']);
+Route::get('layout/excluirPais/{id}', ['as' => 'layout.excluirPais', 'uses' => 'PaisController@excluir']);
+
+
+Route::get('listagemBairros', ['as' => 'listagem.bairros', 'uses' => 'BairroController@listaBairro']);
+Route::get('/layout/adicionarBairro', ['as' => 'layout.adicionarBairro', 'uses' => 'BairroController@adicionar']);
+Route::post('/layout/salvarBairro', ['as' => 'layout.salvarBairro', 'uses' => 'BairroController@salvar']);
+Route::get('/layout/editarBairro/{id}', ['as' => 'layout.editarBairro', 'uses' => 'BairroController@editar']);
+Route::put('/layout/atualizarBairro/{id}', ['as' => 'layout.atualizarBairro', 'uses' => 'BairroController@atualizar']);
+Route::get('layout/excluirBairro/{id}', ['as' => 'layout.excluirBairro', 'uses' => 'BairroController@excluir']);
+
+
+Route::get('listagemEndereco', ['as' => 'listagem.endereco', 'uses' => 'EnderecoController@listaEndereco']);
+Route::get('/layout/adicionarEndereco', ['as' => 'layout.adicionarEndereco', 'uses' => 'EnderecoController@adicionar']);
+Route::post('/layout/salvarEndereco', ['as' => 'layout.salvarEndereco', 'uses' => 'EnderecoController@salvar']);
+Route::get('/layout/editarEndereco/{id}', ['as' => 'layout.editarEndereco', 'uses' => 'EnderecoController@editar']);
+Route::put('/layout/atualizarEndereco/{id}', ['as' => 'layout.atualizarEndereco', 'uses' => 'EnderecoController@atualizar']);
+
+
+Route::get('listagemPessoa', ['as' => 'listagem.pessoas', 'uses' => 'PessoasController@ListaPessoas']);
+Route::get('/layout/adicionarPessoa', ['as' => 'layout.adicionarPessoa', 'uses' => 'PessoasController@adicionar']);

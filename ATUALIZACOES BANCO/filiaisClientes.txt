@@ -1,0 +1,2 @@
+ALTER TABLE `roteirizador`.`filiais_clientes` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `CLIENTE_id`;

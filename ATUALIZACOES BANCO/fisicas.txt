@@ -1,3 +1,16 @@
 INSERT INTO `roteirizador`.`fisicas` (`id`, `cpf`, `rg`, `PESSOAS_id`) VALUES ('1', '5588111', 'Mg12121255', '1');
 INSERT INTO `roteirizador`.`fisicas` (`id`, `cpf`, `rg`, `PESSOAS_id`) VALUES ('2', '888447556', 'MG555221113', '2');
 INSERT INTO `roteirizador`.`fisicas` (`id`, `cpf`, `rg`, `PESSOAS_id`) VALUES ('3', '888112', 'Mg55221212', '3');
+
+
+ALTER TABLE `roteirizador`.`fisicas` 
+DROP FOREIGN KEY `fk_FISICAS_PESSOAS1`;
+ALTER TABLE `roteirizador`.`fisicas` 
+DROP COLUMN `PESSOAS_id`,
+DROP INDEX `fk_FISICAS_PESSOAS1_idx` ;
+;
+
+
+ALTER TABLE `roteirizador`.`fisicas` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `rg`;
+

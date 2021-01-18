@@ -5,3 +5,8 @@ ADD COLUMN `nomeRegiao` VARCHAR(45) NULL AFTER `id`;
 ALTER TABLE `roteirizador`.`regioes` 
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `nomeRegiao`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+
+ALTER TABLE `roteirizador`.`regioes` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+

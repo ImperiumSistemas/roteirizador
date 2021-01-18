@@ -1,9 +1,4 @@
 <div class="input-field">
-  <input type="number" name="id" value="{{isset($filiais->id) ? $filiais->id : '' }}">
-  <label>ID</label>
-</div>
-
-<div class="input-field">
   <input type="text" name="cnpj" value="{{isset($filiais->cnpj) ? $filiais->cnpj : '' }}">
   <label>CNPJ</label>
 </div>
@@ -39,11 +34,6 @@
   <label>CEP</label>
 </div>
 
-
-<div class="input-field">
-  <input type="text" name="EMPRESA_id" value="{{isset($filiais->EMPRESA_id) ? $filiais->EMPRESA_id : '' }}">
-  <label>ID EMPRESA</label>
-</div>
 
 <divc class="input-field">
   <select name="EMPRESA_id">

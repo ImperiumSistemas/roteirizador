@@ -1,0 +1,8 @@
+ALTER TABLE `roteirizador`.`veiculos` 
+ADD COLUMN `update_at` VARCHAR(45) NULL AFTER `renavan`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `update_at`,
+CHANGE COLUMN `ano` `ano` INT(4) NULL DEFAULT NULL ;
+
+ALTER TABLE `roteirizador`.`veiculos` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `TIPO_VEICULOS_id`;
+

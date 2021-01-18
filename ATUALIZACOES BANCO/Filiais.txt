@@ -1,3 +1,19 @@
 ALTER TABLE `roteirizador`.`filiais` 
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `EMPRESA_id`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+ALTER TABLE `roteirizador`.`filiais` 
+ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`filiais` 
+DROP FOREIGN KEY `fk_FILIAL_EMPRESA1`;
+ALTER TABLE `roteirizador`.`filiais` 
+CHANGE COLUMN `EMPRESA_id` `EMPRESA_id` INT(11) NULL ;
+ALTER TABLE `roteirizador`.`filiais` 
+ADD CONSTRAINT `fk_FILIAL_EMPRESA1`
+  FOREIGN KEY (`EMPRESA_id`)
+  REFERENCES `roteirizador`.`empresas` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
