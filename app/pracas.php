@@ -11,6 +11,6 @@ class pracas extends Model
     use SoftDeletes;
     protected $fillable = [
 
-      'id', 'praca', 'ROTA_id'
+      'praca', 'ROTA_id'
     ];
 }

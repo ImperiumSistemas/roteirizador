@@ -14,3 +14,7 @@ DROP INDEX `fk_FISICAS_PESSOAS1_idx` ;
 ALTER TABLE `roteirizador`.`fisicas` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `rg`;
 
+ALTER TABLE `roteirizador`.`fisicas` 
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `deleted_at`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+

@@ -38,6 +38,7 @@
             <li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li> -->
             <li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li>
             <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
+            <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
           </ul>
           </div>
     </nav>
