@@ -131,6 +131,7 @@ class PessoasController extends Controller
       }
 
       if(isset($idPessoa->idJuridica)){
+
         Pessoas::find($id)->delete();
         Juridicas::find($idPessoa->idJuridica)->delete();
 

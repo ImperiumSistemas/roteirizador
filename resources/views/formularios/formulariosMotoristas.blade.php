@@ -46,8 +46,8 @@
 
 
   <select multiple name="idFilial[]">
-     <option value="" disabled>Escolha um CNPJ</option>
+     <option value="" disabled>NOME FILIAL</option>
       @foreach($filiais as $filial)
-        <option value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->cnpj}}</option>
+        <option value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->descricao}}</option>
       @endforeach
     </select>

@@ -16,6 +16,7 @@ class EnderecoController extends Controller
 
       $enderecos = Enderecos::all();
 
+
       return view('listagem.listaEndereco', compact('enderecos'));
 
     }
