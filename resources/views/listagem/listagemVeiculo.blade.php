@@ -37,7 +37,7 @@
                   <a class="btn deep-orange" href="{{route('layout.editarVeiculo', $veiculos->id)}}">Editar</a>
                 </td>
                 <td>
-                  <a class="btn red" href="#">Deletar</a>
+                  <a class="btn red" href="{{route('layout.deletarVeiculo', $veiculos->id)}}">Deletar</a>
                 </td>
               </tr>
 

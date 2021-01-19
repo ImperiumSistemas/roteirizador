@@ -17,3 +17,7 @@ ADD CONSTRAINT `fk_FILIAL_EMPRESA1`
   ON UPDATE NO ACTION;
 
 
+ALTER TABLE `roteirizador`.`filiais` 
+ADD COLUMN `descricao` VARCHAR(45) NULL AFTER `cep`;
+
+

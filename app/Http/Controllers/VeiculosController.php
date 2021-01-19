@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Veiculos;
 use App\Filiais;
-use App\FiliaisVeiculos;
+use App\filiais_veiculos;
 
 use Illuminate\Support\Facades\DB;
 
@@ -47,7 +47,7 @@ class VeiculosController extends Controller
 
       foreach($dados['idFilial'] as $filial){
 
-       FiliaisVeiculos::create(['FILIAL_id' => (int)$filial, 'VEICULO_id' => $idVeiculo]);
+       filiais_veiculos::create(['FILIAL_id' => (int)$filial, 'VEICULO_id' => $idVeiculo]);
       }
 
 
@@ -67,6 +67,15 @@ class VeiculosController extends Controller
       $dados = $req->all();
 
       Veiculos::find($id)->update($dados);
+
+      return redirect()->route('listagem.veiculo');
+
+    }
+
+    public function deletar($id){
+
+      filiais_veiculos::where('VEICULO_id', '=', $id)->delete();
+      Veiculos::find($id)->delete();
 
       return redirect()->route('listagem.veiculo');
 

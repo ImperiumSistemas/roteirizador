@@ -17,6 +17,7 @@
             <th>CIDADE</th>
             <th>BAIRRO</th>
             <th>CEP</th>
+            <th>DESCRIÇÃO<th>
             <th>ID DA EMPRESA</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
@@ -34,6 +35,7 @@
               <td>{{$filial->cidade}}</td>
               <td>{{$filial->bairro}}</td>
               <td>{{$filial->cep}}</td>
+              <td>{{$filial->descricao}}<td>
               <td>{{$filial->EMPRESA_id}}</td>
               <td>
                 <a class="btn deep-orange" href="{{route('layout.editar', $filial->id)}}">Editar</a>
