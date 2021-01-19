@@ -57,11 +57,11 @@ Route::get('layout/deletarRegiao/{id}', ['as' => 'layout.deletarRegiao', 'uses' 
 
 
 Route::get('/listagemRota', ['as' => 'listagem.rota', 'uses' => 'RotaController@listaRota']);
-Route::get('/layout/adicionarRota', ['as' => 'layout.adicionar', 'uses' => 'RotaController@adicionar']);
-Route::post('layout/salvarRota', ['as' => 'layout.salvar', 'uses' => 'RotaController@salvar']);
-Route::get('/layout/editarRota/{id}', ['as' => 'layout.editar', 'uses' => 'RotaController@editar']);
-Route::put('/layout/atualizarRota/{id}', ['as' => 'layout.atualizar', 'uses' => 'RotaController@atualizar']);
-Route::get('layou/excluirRota/{id}', ['as' => 'layout.excluir', 'uses' => 'RotaController@excluir']);
+Route::get('/layout/adicionarRota', ['as' => 'layout.adicionarRota', 'uses' => 'RotaController@adicionar']);
+Route::post('layout/salvarRota', ['as' => 'layout.salvarRota', 'uses' => 'RotaController@salvar']);
+Route::get('/layout/editarRota/{id}', ['as' => 'layout.editarRota', 'uses' => 'RotaController@editar']);
+Route::put('/layout/atualizarRota/{id}', ['as' => 'layout.atualizarRota', 'uses' => 'RotaController@atualizar']);
+Route::get('layou/excluirRota/{id}', ['as' => 'layout.excluirRota', 'uses' => 'RotaController@excluir']);
 
 Route::get('/listagemPraca', ['as' => 'listagem.praca', 'uses' => 'PracaController@listaPraca']);
 Route::get('/layout/adicionarPraca', ['as' => 'layout.adicionarPraca', 'uses' => 'PracaController@adicionar']);

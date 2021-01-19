@@ -28,10 +28,10 @@
               <td>{{$rota->descricaoRota}}</td>
               <td>{{$rota->REGIAO_id}}</td>
               <td>
-                <a class="btn deep-orange" href="{{route('layout.editar', $rota->id)}}">Editar</a>
+                <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->id)}}">Editar</a>
               </td>
               <td>
-                <a class="btn red" href="{{route('layout.excluir', $rota->id)}}">Deletar</a>
+                <a class="btn red" href="{{route('layout.excluirRota', $rota->id)}}">Deletar</a>
               </td>
             </tr>
 
@@ -42,7 +42,7 @@
     </div>
 
     <div class="row">
-      <a class="btn green" href="{{route('layout.adicionar')}}">ADICIONAR ROTA</a>
+      <a class="btn green" href="{{route('layout.adicionarRota')}}">ADICIONAR ROTA</a>
     </div>
 </div>
 

@@ -40,7 +40,11 @@ class FiliaisController extends Controller
     public function editar($id){
 
       $filiais = Filiais::find($id);
-      return view('layout.editarFilial', compact('filiais'));
+      $idEmpresa = $filiais->EMPRESA_id;
+
+      $empresas = Empresas::all();
+
+      return view('layout.editarFilial', compact('filiais', 'empresas'));
     }
 
     public function atualizar(Request $req, $id){

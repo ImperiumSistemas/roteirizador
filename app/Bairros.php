@@ -10,6 +10,6 @@ class Bairros extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-         'nomeBairro'
+         'nomeBairro', 'ativoInativo'
     ];
 }

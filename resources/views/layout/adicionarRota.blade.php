@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="row">
-      <form class="" action="{{route('layout.salvar')}}" method="post" >
+      <form class="" action="{{route('layout.salvarRota')}}" method="post" >
         {{ csrf_field() }}
 
         @include('formularios.formularioRota')

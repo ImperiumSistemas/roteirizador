@@ -39,7 +39,7 @@
   <select name="EMPRESA_id">
     <option value="" >Escolha uma Empresa</option>
     @foreach($empresas as $empresa)
-      <option value="{{isset($empresa->id) ? $empresa->id : ''}}">{{$empresa->nome_empresa}}</option>
+      <option value="{{isset($empresa->id) ? $empresa->id : ''}}">{{isset($empresa->nome_empresa) ? $empresa->nome_empresa : ''}}</option>
     @endforeach
   </select>
 </div>
