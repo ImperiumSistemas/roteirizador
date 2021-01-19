@@ -10,7 +10,7 @@ class rotas extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-      'id', 'numeroPedagio', 'gastoPedagio', 'descricaoRota', 'REGIAO_id'
+      'id', 'numeroPedagio', 'gastoPedagio', 'descricaoRota', 'REGIAO_id', 'status'
     ];
 
 }
