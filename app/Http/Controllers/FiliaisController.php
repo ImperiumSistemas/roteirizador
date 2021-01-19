@@ -56,10 +56,14 @@ class FiliaisController extends Controller
 
       return redirect()->route('listagem.filiais');
 
-
     }
 
+    public function delete($id){
 
+      Filiais::find($id)->delete();
+
+      return redirect()->route('listagem.filiais');
+    }
 
 
 }
