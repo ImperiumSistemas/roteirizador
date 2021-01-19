@@ -66,6 +66,9 @@ Route::get('layou/excluirRota/{id}', ['as' => 'layout.excluirRota', 'uses' => 'R
 Route::get('/listagemPraca', ['as' => 'listagem.praca', 'uses' => 'PracaController@listaPraca']);
 Route::get('/layout/adicionarPraca', ['as' => 'layout.adicionarPraca', 'uses' => 'PracaController@adicionar']);
 Route::post('layout/salvarPraca', ['as' => 'layout.salvarPraca', 'uses' => 'PracaController@salvar']);
+Route::get('/layout/editarPraca/{id}', ['as' => 'layout.editarPraca', 'uses' => 'PracaController@editar']);
+Route::put('/layout/atualizarPraca/{id}', ['as' => 'layout.atualizarPraca', 'uses' => 'PracaController@atualizar']);
+Route::get('/layout/excluirPraca/{id}', ['as' => 'layout.excluirPraca', 'uses' => 'PracaController@excluir']);
 
 Route::get('listagemCidades', ['as' => 'listagem.cidade', 'uses' => 'CidadesController@listaCidade']);
 Route::get('/layout/adicionarCidade', ['as' => 'layout.adicionarCidade', 'uses' => 'CidadesController@adicionar']);

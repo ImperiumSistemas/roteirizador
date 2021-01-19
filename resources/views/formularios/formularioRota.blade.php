@@ -1,9 +1,4 @@
 <div class="input-field">
-  <input type="number" name="id" value="{{isset($rota->id) ? $rota->id : '' }}">
-  <label>ID</label>
-</div>
-
-<div class="input-field">
   <input type="number" name="numeroPedagio" value="{{isset($rota->numeroPedagio) ? $rota->numeroPedagio : '' }}">
   <label>NUMERO PEDÁGIO</label>
 </div>

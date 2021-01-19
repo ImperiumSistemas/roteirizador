@@ -38,5 +38,30 @@ class PracaController extends Controller
 
     }
 
+    public function editar($id){
+
+      $praca = pracas::find($id);
+      $rotas = rotas::all();
+
+      return view('layout.editarPraca', compact('praca', 'rotas'));
+    }
+
+    public function atualizar(Request $req, $id){
+
+      $dados = $req->all();
+
+      pracas::find($id)->update($dados);
+
+      return redirect()->route('listagem.praca');
+
+    }
+
+    public function excluir($id){
+
+      pracas::find($id)->delete();
+
+      return redirect()->route('listagem.praca');
+
+    }
 
 }
