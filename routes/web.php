@@ -101,6 +101,7 @@ Route::get('/layout/adicionarEndereco', ['as' => 'layout.adicionarEndereco', 'us
 Route::post('/layout/salvarEndereco', ['as' => 'layout.salvarEndereco', 'uses' => 'EnderecoController@salvar']);
 Route::get('/layout/editarEndereco/{id}', ['as' => 'layout.editarEndereco', 'uses' => 'EnderecoController@editar']);
 Route::put('/layout/atualizarEndereco/{id}', ['as' => 'layout.atualizarEndereco', 'uses' => 'EnderecoController@atualizar']);
+Route::get('/layout/excluirEndereco/{id}', ['as' => 'layout.excluirEndereco', 'uses' => 'EnderecoController@excluir']);
 
 
 Route::get('listagemPessoa', ['as' => 'listagem.pessoas', 'uses' => 'PessoasController@ListaPessoas']);

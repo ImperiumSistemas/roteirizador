@@ -23,7 +23,7 @@
                 <a class="btn deep-orange" href="{{route('layout.editarEndereco', $endereco->id)}}">Editar</a>
               </td>
               <td>
-                <a class="btn red" href="">Deletar</a>
+                <a class="btn red" href="{{route('layout.excluirEndereco', $endereco->id)}}">Deletar</a>
               </td>
             </tr>
 

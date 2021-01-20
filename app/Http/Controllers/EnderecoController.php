@@ -75,8 +75,11 @@ class EnderecoController extends Controller
 
     }
 
-    public function excluir(){
-      
+    public function excluir($id){
+
+      Enderecos::find($id)->delete();
+
+      return redirect()->route('listagem.endereco');
     }
 
 
