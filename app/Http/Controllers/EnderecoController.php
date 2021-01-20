@@ -75,5 +75,9 @@ class EnderecoController extends Controller
 
     }
 
+    public function excluir(){
+      
+    }
+
 
 }

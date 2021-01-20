@@ -22,10 +22,10 @@
               <td>{{$cliente->PRACA_id}}</td>
               <td>{{$cliente->PESSOA_id}}</td>
               <td>
-                <a class="btn deep-orange" href="">Editar</a>
+                <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
               </td>
               <td>
-                <a class="btn red" href="#">Deletar</a>
+                <a class="btn red" href="{{route('layout.excluirCliente', $cliente->id)}}">Deletar</a>
               </td>
             </tr>
 
@@ -36,7 +36,7 @@
     </div>
 
     <div class="row">
-      <a class="btn green" href="{{route('layout.adicionarCliente')}}">ADICIONAR ENDEREÇO</a>
+      <a class="btn green" href="{{route('layout.adicionarCliente')}}">ADICIONAR CLIENTE</a>
     </div>
 </div>
 

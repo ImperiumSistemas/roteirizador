@@ -1,5 +1,5 @@
 <div class="input-field">
-<select>
+<select name="idPessoa">
   <option value="" selected>SELECIONE UMA PESSOA</option>
 
   @foreach($pessoas as $pessoa)
@@ -10,7 +10,7 @@
 </div>
 
 <div class="input-field">
-  <select>
+  <select name="idPraca">
     <option value="" selected> SELECIONE UMA PRAÇA </option>
 
     @foreach($pracas as $praca)
@@ -21,7 +21,7 @@
 
 <div>
   <select multiple name="idFilial[]">
-    <option value="" selected>SELECIONE AS FILIAIS</option>
+    <option value="" disabled>SELECIONE AS FILIAIS</option>
 
     @foreach($filiais as $filial)
       <option value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->cnpj}}</option>
