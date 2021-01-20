@@ -27,11 +27,12 @@ Route::put('/layout/atualizar/veiculo/{id}',['as' => 'layout.atualizarVeiculo', 
 Route::get('/layout/deletarVeiculo/{id}', ['as' => 'layout.deletarVeiculo', 'uses' => 'VeiculosController@deletar']);
 
 
-Route::get('/listagem/motorista', ['as' => 'listagem.motorista', 'uses' => 'MotoristaController@listaMotorista']);
-Route::get('layout/adicionarMotorista', ['as' => 'layout.adicionarMotorista', 'uses' => 'MotoristaController@adicionarMotorista']);
-Route::post('layout/salvarMotorista', ['as' => 'layout.salvarMotorista', 'uses' => 'MotoristaController@salvarMotorista']);
-Route::get('layout/deleteMotorista/{id}', ['as' => 'layout.deleteMotorista', 'uses' => 'MotoristaController@deletarMotorista']);
-
+Route::get('listagem/motorista', ['as' => 'listagem.motorista', 'uses' => 'MotoristaController@listaMotorista']);
+Route::get('/layout/adicionarMotorista', ['as' => 'layout.adicionarMotorista', 'uses' => 'MotoristaController@adicionarMotorista']);
+Route::post('/layout/salvarMotorista', ['as' => 'layout.salvarMotorista', 'uses' => 'MotoristaController@salvarMotorista']);
+Route::get('/layout/deletarMotorista/{id}', ['as' => 'layout.deleteMotorista', 'uses' => 'MotoristaController@deletar']);
+Route::get('layout/editarMotorista/{id}', ['as' => 'layout.editarMotorista', 'uses' => 'MotoristaController@editar']);
+Route::put('/layout/atualizarMotorista/{id}', ['as' => 'layout.atualizarMotorista', 'uses' => 'MotoristaController@atualizar']);
 
 Route:: get('/listagemFiliais', ['as' => 'listagem.filiais', 'uses' => 'FiliaisController@listaFiliais']);
 Route:: get('/layout/layout.adicionarFilial', ['as' => 'layout.adicionarFilial', 'uses' => 'FiliaisController@adicionar']);

@@ -17,7 +17,6 @@
             <th>NUMERO CNH</th>
             <th>VALIDADE CNH</th>
             <th>TIPO CONTRATO</th>
-            <th>CÓDIGO PESSOA</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
           </tr>
@@ -34,9 +33,8 @@
               <td>{{$motorista->numero_cnh}}</td>
               <td>{{$motorista->data_validade_cnh}}</td>
               <td>{{$motorista->tipo_contrato}}</td>
-              <td>{{$motorista->PESSOAS_id}}</td>
               <td>
-                <a class="btn deep-orange" href="#">Editar</a>
+                <a class="btn deep-orange" href="{{route('layout.editarMotorista', $motorista->id)}}">Editar</a>
               </td>
               <td>
                 <a class="btn red" href="{{route('layout.deleteMotorista', $motorista->id)}}">Deletar</a>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Motoristas;
 use App\Filiais;
 use App\FiliaisMotoristas;
+use App\filiais_motoristas;
 
 
 class MotoristaController extends Controller
@@ -58,13 +59,15 @@ class MotoristaController extends Controller
           $dados = $req->all();
 
           //dd($dados['idFilial']);
-          $idMotorista = (int)$dados['id'];
+
 
           Motoristas::create($dados);
 
+          $idMotorista = (int)$dados['id'];
+
           foreach ($dados['idFilial'] as $filial) {
 
-            FiliaisMotoristas::create(['FILIAL_id' => (int)$filial, 'MOTORISTA_id' => $idMotorista]);
+            filiais_motoristas::create(['FILIAL_id' => (int)$filial, 'MOTORISTA_id' => $idMotorista]);
 
           }
 
@@ -73,8 +76,26 @@ class MotoristaController extends Controller
         }
 
 
-        public function deletarMotorista($id){
+        public function editar($id){
 
+          $motorista = Motoristas::find($id);
+          $filiais = Filiais::all();
+
+          return view('layout.editarMotorista', compact('motorista', 'filiais'));
+        }
+
+        public function atualizar(Request $req, $id){
+
+          $dados = $req->all();
+
+          Motoristas::find($id)->update($dados);
+
+          return redirect()->route('listagem.motorista');
+        }
+
+
+        public function deletar($id){
+            filiais_motoristas::where('MOTORISTA_id', '=', $id)->delete();
             Motoristas::find($id)->delete();
             return redirect()->route('listagem.motorista');
 
