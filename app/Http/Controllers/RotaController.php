@@ -16,6 +16,13 @@ class RotaController extends Controller
 
       return view('listagem.listagemRota', compact('rotas'));
 
+    /*  $obj = new stdClass;
+      $obj->cd = $cd;
+      $obj->vehicle = $veiculo;
+      $obj->deliveries = $pedidos;
+
+      $json = json_encode($obj) */
+
     }
 
     public function adicionar(){
