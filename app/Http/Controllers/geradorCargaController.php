@@ -3,51 +3,131 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+
 
 class geradorCargaController extends Controller
 {
+    private $api;
 
-  public function gerarCarga(){
+    function __construct() {
 
-  $data = [
-    "cd"=>[
-      "address"=> "Avenida Visconde De Ibituruna, 399, Barreiro, Belo Horizonte",
-      "lat" => "-19.975875",
-      "lng" => "-44.015610"
-  ],
-    "vehicle"=> [
-        "qtde" => 2,
-        "weight"=> 100000000,
-        "cubage" => 1000000000,
-        "deliveries" => 20,
-        "km" => 1000000,
-        "time" => 100000000,
-        "vehiclesRequired" => 0
-      ],
-      "deliveries"=> [
-       "id"=> 101,
-       "address"=> "Rua Paraiba, 330, Funcionarios, Belo Horizonte",
-       "coords"=> [
-         "lat"=> -19.928990,
-         "lng"=> -43.931740
-       ],
-       "dimens"=> [
-          "weight"=> 100,
-          "cubage"=> 1000
-        ]
-     ]
-];
+        $this->api = new \GuzzleHttp\Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-type' => 'application/json',
+                'X-Auth-Client' => '',
+                'X-Auth-Token' => ''
+            ]
+        ]);
 
-$aa = [
-  'data' =>[]
-];
+    }
 
-$client = new \GuzzleHttp\Client();
-$response = $client->POST('http://localhost:3000/roteirizador', [
-    $aa
-]);
+    public function gerarCarga(){
 
-//dd($response);
+        $arr = [
+            "data" =>[
+                "cd"=> [
+                    "address" => "Avenida Visconde De Ibituruna, 399, Barreiro, Belo Horizonte",
+                    "lat" => "-19.975875",
+                    "lng" => "-44.015610"
+                ],
+                "vehicle" => [
+                    "qtde"=> "2",
+                    "weight"=> "100000000",
+                    "cubage" => "1000000000",
+                    "deliveries" => "20",
+                    "km"=> "1000000",
+                    "time" => "100000000",
+                    "vehiclesRequired"=> "1"
+                ],
+                "deliveries" => [
+                    "id" => "101",
+                    "address" => "Rua Paraiba, 330, Funcionarios, Belo Horizonte",
+                    "coords" => [
+                        "lat" => "-19.928990",
+                        "lng" => "-43.931740"
+                    ],
+                    "dimens"=> [
+                        "weight"=> "100",
+                        "cubage"=> "1000"
+                    ]
+                ],
+                [
+                    "id"=> "111",
+                    "address"=> "Avenida Olegario Maciel, 1600, Santo Agostinho, Belo Horizonte",
+                    "coords"=> [
+                        "lat"=> "-19.928966",
+                        "lng"=> "-43.946090"
+                    ],
+                    "dimens"=> [
+                        "weight"=> "100",
+                        "cubage"=> "1000"
+                    ]
+                ],
+                [
+                    "id"=> "111",
+                    "address"=> "Rua Xapuri, 172, Grajaú, Belo Horizonte",
+                    "coords"=> [
+                        "lat"=> "-19.941575",
+                        "lng"=> "-43.968900"
+                    ],
+                    "dimens"=> [
+                        "weight"=> "100",
+                        "cubage"=> "1000"
+                    ]
+                ],
+                [
+                    "id"=> "102",
+                    "address"=> "Praca Raul Soares, 12, Centro, Belo Horizonte",
+                    "coords"=> [
+                        "lat"=> "-19.922260",
+                        "lng"=> "-43.944680"
+                    ],
+                    "dimens"=> [
+                        "weight"=> "100",
+                        "cubage"=> "1000"
+                    ]
+                ],
+                [
+                    "id"=> "103",
+                    "address"=> "Rua Safira, 617, Prado, Belo Horizonte",
+                    "coords"=> [
+                        "lat"=> "-19.927334",
+                        "lng"=> "-43.964268"
+                    ],
+                    "dimens"=> [
+                        "weight"=> "100",
+                        "cubage"=> "1000"
+                    ]
+                ]
+            ]
+        ];
 
- }
+        $response = $this->api->POST('http://localhost:3000/roteirizador', [
+            'json' => $arr
+        ]);
+
+
+//        try {
+//            $response = $this->api->POST('http://localhost:3000/roteirizador', [
+//                $arr
+//            ]);
+//
+//        } catch (RequestException $e){
+//            var_dump(Psr7\str($e->getRequest()));
+//
+//            if ($e->hasResponse()) {
+//                var_dump(Psr7\str($e->getResponse()));
+//            }
+//        }
+
+    }
+
+
 }
