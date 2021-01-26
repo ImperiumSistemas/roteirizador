@@ -10,7 +10,7 @@ class cidades extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-         'nomeCidade', 'ativoInativo'
+         'nomeCidade', 'ativoInativo', 'dataInativacao'
     ];
 
 }

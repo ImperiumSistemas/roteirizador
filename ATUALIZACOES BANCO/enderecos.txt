@@ -82,3 +82,13 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
 ALTER TABLE `roteirizador`.`enderecos` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `rua` VARCHAR(45) NULL AFTER `id`,
+ADD COLUMN `bairro` VARCHAR(45) NULL AFTER `rua`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `PESSOAS_id`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;

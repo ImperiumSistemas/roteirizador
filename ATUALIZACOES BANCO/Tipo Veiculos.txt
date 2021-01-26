@@ -5,3 +5,9 @@ INSERT INTO `roteirizador`.`tipo_veiculos` (`id`, `descricao`) VALUES ('3', 'Peq
 ALTER TABLE `roteirizador`.`tipo_veiculos` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `descricao`;
 
+
+
+ALTER TABLE `roteirizador`.`veiculos` 
+ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `renavan`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`,
+CHANGE COLUMN `TIPO_VEICULOS_id` `TIPO_VEICULOS_id` INT(11) NOT NULL AFTER `dataInativacao`;

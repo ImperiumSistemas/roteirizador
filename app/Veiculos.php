@@ -13,7 +13,7 @@ class Veiculos extends Model
 
   //  use SoftDeletes;
     protected $fillable = [
-        'id','marca','km_rodado','ano','modelo','capacida_peso','capacidade_cubagem','chassi','renavan', 'TIPO_VEICULOS_id'
+        'id','marca','km_rodado','ano','modelo','capacida_peso','capacidade_cubagem','chassi','renavan', 'ativoInativo', 'dataInativacao', 'TIPO_VEICULOS_id'
     ];
 
   /* public function teste(){

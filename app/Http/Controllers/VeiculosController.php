@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Veiculos;
 use App\Filiais;
 use App\filiais_veiculos;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
 
@@ -79,6 +80,17 @@ class VeiculosController extends Controller
 
       return redirect()->route('listagem.veiculo');
 
+    }
+
+    public function ativar($id){
+      Veiculos::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.veiculo');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Veiculos::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      return redirect()->route('listagem.veiculo');
     }
 
 }

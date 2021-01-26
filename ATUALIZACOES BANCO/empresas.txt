@@ -1,2 +1,6 @@
 ALTER TABLE `roteirizador`.`empresas` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`empresas` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `nome_empresa`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;

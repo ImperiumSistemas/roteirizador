@@ -9,3 +9,7 @@ ALTER TABLE `roteirizador`.`filiais_clientes`
 DROP PRIMARY KEY;
 ;
 
+
+ALTER TABLE `roteirizador`.`filiais_clientes` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `CLIENTE_id`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;

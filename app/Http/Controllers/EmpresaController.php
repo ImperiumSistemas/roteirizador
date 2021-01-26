@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empresas;
+use Carbon\Carbon;
 
 class EmpresaController extends Controller
 {
@@ -51,6 +52,17 @@ class EmpresaController extends Controller
     public function excluir($id){
       Empresas::find($id)->delete();
 
+      return redirect()->route('listagem.empresa');
+    }
+
+    public function ativar($id){
+      Empresas::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.empresa');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Empresas::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagem.empresa');
     }
 

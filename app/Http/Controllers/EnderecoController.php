@@ -7,6 +7,9 @@ use App\Enderecos;
 use App\Pais;
 use App\Cidades;
 use App\Bairros;
+use App\Estados;
+use App\Pessoas;
+use Carbon\Carbon;
 
 class EnderecoController extends Controller
 {
@@ -23,25 +26,20 @@ class EnderecoController extends Controller
 
     public function adicionar(){
 
-      return view('layout.adicionarEndereco');
+      $paises = Pais::all();
+      $cidades = Cidades::all();
+      $bairro = Bairros::all();
+      $estados = Estados::all();
+      $pessoas = Pessoas::all();
+
+      return view('layout.adicionarEndereco', compact('paises', 'cidades', 'bairro', 'estados', 'pessoas'));
     }
 
     public function salvar(Request $req){
 
-        $nomeCidade = $req->nomeCidade;
-        $nomeBairro = $req->nomeBairro;
-        $numero = $req->numero;
-        $nomePais = $req->pais;
+        $dados = $req->all();
 
-        Cidades::create(['nomeCidade' => $nomeCidade]);
-        Bairros::create(['nomeBairro' => $nomeBairro]);
-        Pais::create(['pais' => $nomePais]);
-
-        $idCidade = Cidades::all('id')->last();
-        $idBairro = Bairros::all('id')->last();
-        $idPais = Pais::all('id')->last();
-
-        Enderecos::create(['numero' => $numero, 'BAIRRO_cod_bairro' => "$idBairro->id", 'PAIS_id' => "$idPais->id", 'CIDADE_codCidade' => "$idCidade->id"]);
+        Enderecos::create($dados);
 
         return redirect()->route('listagem.endereco');
     }
@@ -49,11 +47,12 @@ class EnderecoController extends Controller
     public function editar($id){
 
         $endereco = Enderecos::find($id);
-        $bairro = Bairros::find($endereco->BAIRRO_cod_bairro);
-        $cidade = Cidades::find($endereco->CIDADE_codCidade);
-        $pais = Pais::find($endereco->PAIS_id);
+        $estados = Estados::find($endereco->ESTADO_id)->all();
+        $paises = Pais::find($endereco->PAIS_id)->all();
+        $cidades = Cidades::find($endereco->CIDADE_codCidade)->all();
+        $pessoas = Pessoas::find($endereco->PESSOAS_id)->all();
 
-        return view('layout.editarEndereco', compact('endereco', 'bairro', 'cidade', 'pais'));
+        return view('layout.editarEndereco', compact('endereco', 'estados', 'paises', 'cidades', 'pessoas'));
 
     }
 
@@ -62,14 +61,7 @@ class EnderecoController extends Controller
 
       $dados = $req->all();
 
-      $idCidade = Enderecos::find($id);
-      $idBairro = Enderecos::find($id);
-      $idPais = Enderecos::find($id);
-
       Enderecos::find($id)->update($dados);
-      Cidades::find($idCidade->CIDADE_codCidade)->update($dados);
-      Bairros::find($idBairro->BAIRRO_cod_bairro)->update($dados);
-      Pais::find($idPais->PAIS_id)->update($dados);
 
       return redirect()->route('listagem.endereco');
 
@@ -79,6 +71,17 @@ class EnderecoController extends Controller
 
       Enderecos::find($id)->delete();
 
+      return redirect()->route('listagem.endereco');
+    }
+
+    public function ativar($id){
+      Enderecos::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.endereco');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Enderecos::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagem.endereco');
     }
 

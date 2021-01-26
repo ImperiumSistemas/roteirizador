@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\pracas;
 use App\rotas;
+use Carbon\Carbon;
 
 class PracaController extends Controller
 {
@@ -62,6 +63,20 @@ class PracaController extends Controller
 
       return redirect()->route('listagem.praca');
 
+    }
+
+    public function ativar($id){
+
+      pracas::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.praca');
+    }
+
+    public function desativar($id){
+
+      $data = Carbon::now();
+
+      pracas::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      return redirect()->route('listagem.praca');
     }
 
 }

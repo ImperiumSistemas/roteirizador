@@ -8,6 +8,7 @@ use App\Pessoas;
 use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
+use Carbon\Carbon;
 
 class ClientesController extends Controller
 {
@@ -79,6 +80,17 @@ class ClientesController extends Controller
       filiais_clientes::where('CLIENTE_id', '=', $id)->delete();
       Clientes::find($id)->delete();
 
+      return redirect()->route('listagemCliente');
+    }
+
+    public function ativar($id){
+      Clientes::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagemCliente');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Clientes::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagemCliente');
     }
 }

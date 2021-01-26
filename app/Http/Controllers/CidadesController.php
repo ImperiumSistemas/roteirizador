@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\cidades;
+use Carbon\Carbon;
 
 class CidadesController extends Controller
 {
@@ -52,6 +53,17 @@ class CidadesController extends Controller
 
       cidades::find($id)->delete();
 
+      return redirect()->route('listagem.cidade');
+    }
+
+    public function ativar($id){
+      cidades::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.cidade');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      cidades::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagem.cidade');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Pessoas;
 use \App\Fisicas;
 use \App\Juridicas;
+use Carbon\Carbon;
 
 class PessoasController extends Controller
 {
@@ -137,6 +138,17 @@ class PessoasController extends Controller
 
         return redirect()->route('listagem.pessoas');
       }
+    }
+
+    public function ativar($id){
+      Pessoas::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.pessoas');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Pessoas::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      return redirect()->route('listagem.pessoas');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Filiais;
 use App\Empresas;
+use Carbon\Carbon;
 
 class FiliaisController extends Controller
 {
@@ -62,6 +63,17 @@ class FiliaisController extends Controller
 
       Filiais::find($id)->delete();
 
+      return redirect()->route('listagem.filiais');
+    }
+
+    public function ativar($id){
+      Filiais::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.filiais');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Filiais::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagem.filiais');
     }
 

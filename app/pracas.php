@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class pracas extends Model
 {
     //
-    use SoftDeletes;
+    
     protected $fillable = [
 
-      'praca', 'ROTA_id'
+      'praca', 'ROTA_id', 'ativoInativo', 'dataInativacao'
     ];
 }

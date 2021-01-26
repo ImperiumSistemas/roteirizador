@@ -8,6 +8,7 @@ use App\Motoristas;
 use App\Filiais;
 use App\FiliaisMotoristas;
 use App\filiais_motoristas;
+use Carbon\Carbon;
 
 
 class MotoristaController extends Controller
@@ -99,5 +100,17 @@ class MotoristaController extends Controller
             Motoristas::find($id)->delete();
             return redirect()->route('listagem.motorista');
 
+        }
+
+        public function ativar($id){
+
+          Motoristas::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+          return redirect()->route('listagem.motorista');
+        }
+
+        public function desativar($id){
+          $data = Carbon::now();
+          Motoristas::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+          return redirect()->route('listagem.motorista');
         }
 }

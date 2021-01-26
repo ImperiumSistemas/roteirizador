@@ -10,3 +10,10 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 ALTER TABLE `roteirizador`.`regioes` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
 
+ALTER TABLE `roteirizador`.`regioes` 
+ADD COLUMN `ativoInativo` VARCHAR(45) NULL AFTER `nomeRegiao`;
+
+ALTER TABLE `roteirizador`.`regioes` 
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`,
+ADD COLUMN `dataAtivacao` VARCHAR(45) NULL AFTER `dataInativacao`;
+

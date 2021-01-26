@@ -3,6 +3,7 @@
   <head>
     <title> @yield('titulo') </title>
 
+    <link href="{{asset('css/estilo.css')}}" rel="stylesheet" type="text/css">
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,6 +34,9 @@
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
               <li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li>
+              <li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
+              <li><a href="{{route('listagem.estado')}}">ESTADO</a></li>
+              <li><a href="{{route('listagem.pais')}}">PAIS</a></li>
             <li class="divider"></li>
               <li><a href="{{route('listagem.praca')}}">PRAÇA</a></li>
               <li><a href="{{route('listagem.rota')}}">ROTA</a></li>
@@ -41,7 +45,7 @@
       <nav>
           <div class="nav-wrapper deep-orange">
             <img src="/logo.jpg" alt="some text" width=80 height=64>
-          <a href="#!" class="brand-logo">ROTEIRIZADOR</a>
+          <a href="#!" class="brand-logo">MONTAGEM DE CARGA</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="/site">HOME</a></li>

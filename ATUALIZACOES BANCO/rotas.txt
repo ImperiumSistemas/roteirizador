@@ -6,3 +6,8 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 ALTER TABLE `roteirizador`.`rotas` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
 
+
+ALTER TABLE `roteirizador`.`rotas` 
+ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `REGIAO_id`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
+
