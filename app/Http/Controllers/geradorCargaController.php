@@ -47,6 +47,7 @@ class geradorCargaController extends Controller
                     "vehiclesRequired"=> "1"
                 ],
                 "deliveries" => [
+                  [
                     "id" => "101",
                     "address" => "Rua Paraiba, 330, Funcionarios, Belo Horizonte",
                     "coords" => [
@@ -58,7 +59,7 @@ class geradorCargaController extends Controller
                         "cubage"=> "1000"
                     ]
                 ],
-                [
+                  [  
                     "id"=> "111",
                     "address"=> "Avenida Olegario Maciel, 1600, Santo Agostinho, Belo Horizonte",
                     "coords"=> [
@@ -106,12 +107,17 @@ class geradorCargaController extends Controller
                         "cubage"=> "1000"
                     ]
                 ]
+
+              ]
             ]
+
         ];
 
         $response = $this->api->POST('http://localhost:3000/roteirizador', [
             'json' => $arr
-        ]);
+        ])->getBody();
+
+        dd($response);
 
 
 //        try {
