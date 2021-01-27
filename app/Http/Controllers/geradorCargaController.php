@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
-
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-
 
 class geradorCargaController extends Controller
 {
@@ -25,7 +19,6 @@ class geradorCargaController extends Controller
                 'X-Auth-Token' => ''
             ]
         ]);
-
     }
 
     public function gerarCarga(){
@@ -113,27 +106,20 @@ class geradorCargaController extends Controller
 
         ];
 
-        $response = $this->api->POST('http://localhost:3000/roteirizador', [
-            'json' => $arr
-        ])->getBody();
+        try {
 
-        dd($response);
+            $response = $this->api->POST('http://localhost:3000/roteirizador', [
+                'json' => $arr
+            ]);
 
+        } catch (RequestException $e){
+            echo Psr7\str($e->getRequest());
 
-//        try {
-//            $response = $this->api->POST('http://localhost:3000/roteirizador', [
-//                $arr
-//            ]);
-//
-//        } catch (RequestException $e){
-//            var_dump(Psr7\str($e->getRequest()));
-//
-//            if ($e->hasResponse()) {
-//                var_dump(Psr7\str($e->getResponse()));
-//            }
-//        }
-
+            if ($e->hasResponse()) {
+                echo Psr7\str($e->getResponse());
+            }
+        }
+        echo $response->getBody();
     }
-
 
 }
