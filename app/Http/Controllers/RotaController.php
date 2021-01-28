@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\rotas;
 use App\regioes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RotaController extends Controller
 {
@@ -13,7 +14,13 @@ class RotaController extends Controller
 
     public function listaRota(){
 
-      $rotas = rotas::all();
+      $rotas = DB::table('rotas')
+      ->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
+      ->select('rotas.id as id','rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+        'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
+      ->get();
+
+      //$rotas = rotas::all();
 
       return view('listagem.listagemRota', compact('rotas'));
 
@@ -39,8 +46,14 @@ class RotaController extends Controller
 
     public function editar($id){
 
-      $rota = rotas::find($id);
+      //$rota = rotas::find($id);
       $regioes = regioes::all();
+
+      $rota = DB::table('rotas')->where('id', '=', $id)->get();
+      //->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
+      //->select('rotas.id as id','rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+      //  'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
+      //->get();
 
       return view('layout/editarRota', compact('rota', 'regioes'));
     }

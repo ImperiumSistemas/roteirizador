@@ -28,7 +28,7 @@
                 <td>{{$rota->gastoPedagio}}</td>
                 <td>{{$rota->descricaoRota}}</td>
                 <td>{{$rota->dataInativacao}}</td>
-                <td>{{$rota->REGIAO_id}}</td>
+                <td>{{$rota->nomeRegiao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->id)}}">Editar</a>
                 </td>
@@ -47,7 +47,7 @@
                 <td>{{$rota->gastoPedagio}}</td>
                 <td>{{$rota->descricaoRota}}</td>
                 <td>{{$rota->dataInativacao}}</td>
-                <td>{{$rota->REGIAO_id}}</td>
+                <td>{{$rota->nomeRegiao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->id)}}">Editar</a>
                 </td>
