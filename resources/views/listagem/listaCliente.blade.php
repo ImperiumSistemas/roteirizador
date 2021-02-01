@@ -24,7 +24,7 @@
               <tr class="desativado">
                 <td>{{$cliente->PRACA_id}}</td>
                 <td>{{$cliente->PESSOA_id}}</td>
-                <td>{{$cliente->dataInativacao}}</td>
+                <td>{{$cliente->datainativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
                 </td>
@@ -41,7 +41,7 @@
               <tr>
                 <td>{{$cliente->PRACA_id}}</td>
                 <td>{{$cliente->PESSOA_id}}</td>
-                <td>{{$cliente->dataInativacao}}</td>
+                <td>{{$cliente->datainativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
                 </td>

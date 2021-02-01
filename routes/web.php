@@ -112,7 +112,7 @@ Route::get('/layout/editarEstado/{id}', ['as' => 'layout.editarEstado', 'uses' =
 Route::put('layout/atualizarEstado/{id}', ['as' => 'layout.atualizarEstado', 'uses' => 'EstadoController@atualizar']);
 Route::get('/layout/deletarEstado/{id}', ['as' => 'layout.deletarEstado', 'uses' => 'EstadoController@delete']);
 Route::get('/layout/ativarPais/{id}', ['as' => 'ativarEstado', 'uses' => 'EstadoController@ativar']);
-Route::get('/layout/desativarPais/{id}', ['as' => 'desativarEstado', 'uses' => 'EstadoController@desativar']);
+Route::get('/layout/desativarEstado/{id}', ['as' => 'desativarEstado', 'uses' => 'EstadoController@desativar']);
 
 Route::get('listagemBairros', ['as' => 'listagem.bairros', 'uses' => 'BairroController@listaBairro']);
 Route::get('/layout/adicionarBairro', ['as' => 'layout.adicionarBairro', 'uses' => 'BairroController@adicionar']);

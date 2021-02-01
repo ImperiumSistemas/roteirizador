@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class cidades extends Model
 {
     //
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $fillable = [
          'nomeCidade', 'ativoInativo', 'dataInativacao'
     ];

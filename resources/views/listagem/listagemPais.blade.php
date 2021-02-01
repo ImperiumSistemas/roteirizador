@@ -35,8 +35,9 @@
               </tr>
             @endif
 
+
             @if($pais->ativoInativo == 1)
-              <tr>
+              <tr class="desativado">
                 <td>{{$pais->pais}}</td>
                 <td>{{$pais->dataInativacao}}</td>
                 <td>
@@ -46,7 +47,7 @@
                   <a class="btn red" href="{{route('layout.excluirPais', $pais->id)}}">Deletar</a>
                 </td>
                 <td>
-                  <a class="btn grey" href="{{route('desativarPais', $pais->id)}}">DESATIVAR</a>
+                  <a class="btn green" href="{{route('desativarPais', $pais->id)}}">ATIVAR</a>
                 </td>
               </tr>
             @endif

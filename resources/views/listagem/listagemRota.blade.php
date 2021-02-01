@@ -30,13 +30,13 @@
                 <td>{{$rota->dataInativacao}}</td>
                 <td>{{$rota->nomeRegiao}}</td>
                 <td>
-                  <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->rotaId)}}">Editar</a>
+                  <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->id)}}">Editar</a>
                 </td>
                 <td>
-                  <a class="btn red" href="{{route('layout.excluirRota', $rota->rotaId)}}">Deletar</a>
+                  <a class="btn red" href="{{route('layout.excluirRota', $rota->id)}}">Deletar</a>
                 </td>
                 <td>
-                  <a class="btn green" href="{{route('ativarRota', $rota->rotaId)}}">ATIVAR</a>
+                  <a class="btn green" href="{{route('ativarRota', $rota->id)}}">ATIVAR</a>
                 </td>
               </tr>
             @endif
@@ -49,13 +49,13 @@
                 <td>{{$rota->dataInativacao}}</td>
                 <td>{{$rota->nomeRegiao}}</td>
                 <td>
-                  <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->rotaId)}}">Editar</a>
+                  <a class="btn deep-orange" href="{{route('layout.editarRota', $rota->id)}}">Editar</a>
                 </td>
                 <td>
-                  <a class="btn red" href="{{route('layout.excluirRota', $rota->rotaId)}}">Deletar</a>
+                  <a class="btn red" href="{{route('layout.excluirRota', $rota->id)}}">Deletar</a>
                 </td>
                 <td>
-                  <a class="btn grey" href="{{route('desativarRota', $rota->rotaId)}}">DESATIVAR</a>
+                  <a class="btn grey" href="{{route('desativarRota', $rota->id)}}">DESATIVAR</a>
                 </td>
               </tr>
             @endif
