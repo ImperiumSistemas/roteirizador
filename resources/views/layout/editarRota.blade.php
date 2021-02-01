@@ -4,9 +4,12 @@
   <h2><center> TELA EDITAR REGIÃO </center></h2>
 </div>
 
+
+
 <div class="container">
   <div class="row">
-      <form class="" method="post" action="{{route('layout.atualizarRota', $rota->id)}}">
+
+      <form class="" method="post" action="{{route('layout.atualizarRota', $rota->rotaId)}}">
         {{ csrf_field() }}
 
         <input type="hidden" name="_method" value="put">

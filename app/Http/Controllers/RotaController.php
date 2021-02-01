@@ -16,7 +16,7 @@ class RotaController extends Controller
 
       $rotas = DB::table('rotas')
       ->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
-      ->select('rotas.id as id','rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+      ->select('rotas.id as rotaId','rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
         'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
       ->get();
 
@@ -61,6 +61,8 @@ class RotaController extends Controller
     public function atualizar(Request $req, $id){
 
       $dados = $req->all();
+
+      dd($dados);
 
       rotas::find($id)->update($dados);
 
