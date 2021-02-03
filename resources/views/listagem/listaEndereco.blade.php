@@ -9,7 +9,12 @@
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>PAIS</th>
+            <th>ESTADO</th>
+            <th>CIDADE</th>
+            <th>BAIRRO</th>
+            <th>RUA</th>
+            <th>NÚMERO</th>
             <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
@@ -21,7 +26,12 @@
           @foreach($enderecos as $endereco)
             @if($endereco->ativoInativo == 0)
               <tr class="desativado">
-                <td>{{$endereco->id}}</td>
+                <td>{{$endereco->nomePais}}</td>
+                <td>{{$endereco->nomeEstado}}</td>
+                <td>{{$endereco->nomeCidade}}</td>
+                <td>{{$endereco->bairro}}</td>
+                <td>{{$endereco->rua}}</td>
+                <td>{{$endereco->numero}}</td>
                 <td>{{$endereco->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarEndereco', $endereco->id)}}">EDITAR</a>
@@ -37,7 +47,12 @@
 
             @if($endereco->ativoInativo == 1)
               <tr>
-                <td>{{$endereco->id}}</td>
+                <td>{{$endereco->nomePais}}</td>
+                <td>{{$endereco->nomeEstado}}</td>
+                <td>{{$endereco->nomeCidade}}</td>
+                <td>{{$endereco->bairro}}</td>
+                <td>{{$endereco->rua}}</td>
+                <td>{{$endereco->numero}}</td>
                 <td>{{$endereco->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarEndereco', $endereco->id)}}">EDITAR</a>

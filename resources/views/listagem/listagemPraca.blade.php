@@ -22,8 +22,8 @@
           @foreach($pracas as $praca)
             @if($praca->ativoInativo == 0)
               <tr class="desativado">
-                <td>{{$praca->praca}}</td>
-                <td>{{$praca->ROTA_id}}</td>
+                <td>{{$praca->nomePraca}}</td>
+                <td>{{$praca->nomeRota}}</td>
                 <td>{{$praca->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarPraca', $praca->id)}}">Editar</a>
@@ -39,8 +39,8 @@
 
             @if($praca->ativoInativo == 1)
             <tr>
-              <td>{{$praca->praca}}</td>
-              <td>{{$praca->ROTA_id}}</td>
+              <td>{{$praca->nomePraca}}</td>
+              <td>{{$praca->nomeRota}}</td>
               <td>{{$praca->dataInativacao}}</td>
               <td>
                 <a class="btn deep-orange" href="{{route('layout.editarPraca', $praca->id)}}">Editar</a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\pracas;
 use App\rotas;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PracaController extends Controller
 {
@@ -13,8 +14,11 @@ class PracaController extends Controller
 
     public function listaPraca(){
 
-      $pracas = pracas::all();
-
+      //$pracas = pracas::all();
+      $pracas = DB::table('pracas')
+      ->join('rotas', 'pracas.ROTA_id', '=', 'rotas.id')
+      ->select('pracas.id', 'pracas.praca as nomePraca',
+      'pracas.dataInativacao as dataInativacao', 'pracas.ativoInativo as ativoInativo', 'rotas.descricaoRota as nomeRota')->get();
       return view('listagem/listagemPraca', compact('pracas'));
 
     }

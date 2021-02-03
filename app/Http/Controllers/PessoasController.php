@@ -7,6 +7,7 @@ use \App\Pessoas;
 use \App\Fisicas;
 use \App\Juridicas;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PessoasController extends Controller
 {
@@ -14,9 +15,23 @@ class PessoasController extends Controller
 
     public function listaPessoas(){
 
-      $pessoas = Pessoas::all();
+      //$pessoas = Pessoas::all();
+      $juridicaFisica = Pessoas::all();
 
-      return view('listagem.listaPessoas', compact('pessoas'));
+
+      $pessoaFisica = DB::table('pessoas')
+      ->join('fisicas', 'pessoas.idFisica', '=', 'fisicas.id')
+      ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
+       'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
+       'fisicas.cpf as cpf', 'fisicas.rg as rg')->get();
+
+       $pessoaJuridica = DB::table('pessoas')
+       ->join('juridicas', 'pessoas.idJuridica', '=', 'juridicas.id')
+       ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
+       'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
+       'juridicas.cnpj as cnpj', 'juridicas.razao_social as razaoSocial')->get();
+
+      return view('listagem.listaPessoas', compact('pessoaFisica', 'pessoaJuridica', 'juridicaFisica'));
 
     }
 

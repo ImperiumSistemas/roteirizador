@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row">
 
-      <form class="" method="post" action="{{route('layout.atualizarRota', $rota->rotaId)}}">
+      <form class="" method="post" action="{{route('layout.atualizarRota', $rota->id)}}">
         {{ csrf_field() }}
 
         <input type="hidden" name="_method" value="put">

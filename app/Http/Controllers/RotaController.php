@@ -16,7 +16,7 @@ class RotaController extends Controller
 
       $rotas = DB::table('rotas')
       ->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
-      ->select('rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+      ->select('rotas.id', 'rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
         'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
       ->get();
 
@@ -49,7 +49,9 @@ class RotaController extends Controller
       //$rota = rotas::find($id);
       $regioes = regioes::all();
 
-      $rota = DB::table('rotas')->where('id', '=', $id)->get();
+      $rota = rotas::find((int)$id);
+
+      //$rota = DB::table('rotas')->where('id', '=', $id)->get();
       //->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
       //->select('rotas.id as id','rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
       //  'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
@@ -61,8 +63,6 @@ class RotaController extends Controller
     public function atualizar(Request $req, $id){
 
       $dados = $req->all();
-
-      dd($dados);
 
       rotas::find($id)->update($dados);
 
@@ -82,15 +82,16 @@ class RotaController extends Controller
 
       $data = Carbon::now();
 
-      rotas::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      rotas::where('id', '=', (int)$id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
 
       return redirect()->route('listagem.rota');
     }
 
     public function desativar($id){
+      //dd((int)$id);
       $data = Carbon::now();
 
-      rotas::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      rotas::where('id', '=', (int)$id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
 
       return redirect()->route('listagem.rota');
     }

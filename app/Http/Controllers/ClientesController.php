@@ -9,13 +9,19 @@ use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
     //
     public function listaCliente(){
 
-      $clientes = Clientes::all();
+      //$clientes = Clientes::all();
+      $clientes = DB::table('clientes')
+      ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+      ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
+      ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
+      'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero', 'pracas.praca as nomePraca')->get();
 
       return view('listagem.listaCliente', compact('clientes'));
 

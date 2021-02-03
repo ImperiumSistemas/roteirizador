@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Enderecos;
 use App\Pais;
 use App\Cidades;
-use App\Bairros;
+//use App\Bairros;
 use App\Estados;
 use App\Pessoas;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EnderecoController extends Controller
 {
@@ -17,8 +18,15 @@ class EnderecoController extends Controller
 
     public function listaEndereco(){
 
-      $enderecos = Enderecos::all();
+      //$enderecos = Enderecos::all();
 
+      $enderecos = DB::table('enderecos')
+      ->join('pais', 'enderecos.PAIS_id', '=', 'pais.id')
+      ->join('estados', 'enderecos.ESTADO_id', '=', 'estados.id')
+      ->join('cidades', 'enderecos.CIDADE_codCidade', '=', 'cidades.id')
+      ->select('enderecos.id', 'enderecos.ativoInativo as ativoInativo', 'enderecos.dataInativacao as dataInativacao',
+      'enderecos.bairro as bairro', 'enderecos.numero as numero', 'enderecos.rua as rua',
+      'pais.pais as nomePais', 'estados.nomeEstado as nomeEstado', 'cidades.nomeCidade as nomeCidade')->get();
 
       return view('listagem.listaEndereco', compact('enderecos'));
 
@@ -28,7 +36,6 @@ class EnderecoController extends Controller
 
       $paises = Pais::all();
       $cidades = Cidades::all();
-      $bairro = Bairros::all();
       $estados = Estados::all();
       $pessoas = Pessoas::all();
 

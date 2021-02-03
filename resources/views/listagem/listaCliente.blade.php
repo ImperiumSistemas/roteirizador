@@ -9,9 +9,10 @@
       <table>
         <thead>
           <tr>
-            <th>ID PRAÇA</th>
-            <th>ID PESSOA</th>
-            <th>DATA DE INATIVAÇÃO</th>
+            <th>NOME</th>
+            <th>TELEFONE</th>
+            <th>PRAÇA</th>
+            <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
             <th>SITUAÇÃO</th>
@@ -22,9 +23,10 @@
           @foreach($clientes as $cliente)
             @if($cliente->ativoInativo == 0)
               <tr class="desativado">
-                <td>{{$cliente->PRACA_id}}</td>
-                <td>{{$cliente->PESSOA_id}}</td>
-                <td>{{$cliente->datainativacao}}</td>
+                <td>{{$cliente->nomePessoa}}</td>
+                <td>{{$cliente->numero}}</td>
+                <td>{{$cliente->nomePraca}}</td>
+                <td>{{$cliente->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
                 </td>
@@ -39,9 +41,10 @@
 
             @if($cliente->ativoInativo == 1)
               <tr>
-                <td>{{$cliente->PRACA_id}}</td>
-                <td>{{$cliente->PESSOA_id}}</td>
-                <td>{{$cliente->datainativacao}}</td>
+                <td>{{$cliente->nomePessoa}}</td>
+                <td>{{$cliente->numero}}</td>
+                <td>{{$cliente->nomePraca}}</td>
+                <td>{{$cliente->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
                 </td>
