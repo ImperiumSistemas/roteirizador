@@ -23,7 +23,7 @@ Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosC
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
 Route:: post('/layout/salvar',['as' =>'layout.salvar', 'uses' => 'VeiculosController@salvar']);
 Route::get('/layout/editar/veiculo/{id}', ['as' => 'layout.editarVeiculo', 'uses' => 'VeiculosController@editar']);
-Route::put('/layout/atualizar/veiculo/{id}',['as' => 'layout.atualizarVeiculo', 'uses' => 'VeiculosController@atualizar']);
+Route::put('/layout/atualizar/veiculo/{id}',['as' => 'layout.atualizarVeiculo', 'uses' => 'VeiculosController@atualizarVeiculo']);
 Route::get('/layout/deletarVeiculo/{id}', ['as' => 'layout.deletarVeiculo', 'uses' => 'VeiculosController@deletar']);
 Route::get('layout/ativarVeiculo/{id}', ['as' => 'ativarVeiculo', 'uses' => 'VeiculosController@ativar']);
 Route::get('layout/desativarVeiculo/{id}', ['as' => 'desativarVeiculo', 'uses' => 'VeiculosController@desativar']);
@@ -150,3 +150,5 @@ Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualiarCliente', '
 Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'uses' => 'ClientesController@excluir']);
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
+
+Route::get('geradorCarga', ['as' => 'geradorCarga', 'uses' => 'geradorCargaController@gerarCarga']);

@@ -9,14 +9,17 @@
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>MARCA</th>
-            <th>KM RODADO</th>
             <th>ANO</th>
             <th>MODELO</th>
             <th>CHASSI</th>
             <th>RENAVAN</th>
-            <th>TIPO VEICULO</th>
+            <th>NOME FILIAL</th>
+            <th>PAIS</th>
+            <th>ESTADO</th>
+            <th>BAIRRO</th>
+            <th>CIDADE</th>
+            <th>TELEFONE</th>
             <th>DATA DE INATIVAÇÃO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
@@ -28,46 +31,52 @@
             @foreach($veiculo as $veiculos)
               @if($veiculos->ativoInativo == 0)
                 <tr class="desativado">
-                  <td>{{$veiculos->id}}</td>
                   <td>{{$veiculos->marca}}</td>
-                  <td>{{$veiculos->km_rodado}}</td>
                   <td>{{$veiculos->ano}}</td>
                   <td>{{$veiculos->modelo}}</td>
                   <td>{{$veiculos->chassi}}</td>
                   <td>{{$veiculos->renavan}}</td>
-                  <td>{{$veiculos->TIPO_VEICULOS_id}}</td>
+                  <td>{{$veiculos->descricao}}</td>
+                  <td>{{$veiculos->pais}}</td>
+                  <td>{{$veiculos->estado}}</td>
+                  <td>{{$veiculos->bairro}}</td>
+                  <td>{{$veiculos->cidade}}</td>
+                  <td>{{$veiculos->telefone}}</td>
                   <td>{{$veiculos->dataInativacao}}</td>
                   <td>
-                    <a class="btn deep-orange" href="{{route('layout.editarVeiculo', $veiculos->id)}}">Editar</a>
+                    <a class="btn deep-orange" href="{{route('layout.editarVeiculo', $veiculos->veiculoId)}}">Editar</a>
                   </td>
                   <td>
-                    <a class="btn red" href="{{route('layout.deletarVeiculo', $veiculos->id)}}">Deletar</a>
+                    <a class="btn red" href="{{route('layout.deletarVeiculo', $veiculos->veiculoId)}}">Deletar</a>
                   </td>
                   <td>
-                    <a class="btn green" href="{{route('ativarVeiculo', $veiculos->id)}}">Ativar</a>
+                    <a class="btn green" href="{{route('ativarVeiculo', $veiculos->veiculoId)}}">Ativar</a>
                   </td>
                 </tr>
               @endif
 
               @if($veiculos->ativoInativo == 1)
                 <tr>
-                  <td>{{$veiculos->id}}</td>
                   <td>{{$veiculos->marca}}</td>
-                  <td>{{$veiculos->km_rodado}}</td>
                   <td>{{$veiculos->ano}}</td>
                   <td>{{$veiculos->modelo}}</td>
                   <td>{{$veiculos->chassi}}</td>
                   <td>{{$veiculos->renavan}}</td>
-                  <td>{{$veiculos->TIPO_VEICULOS_id}}</td>
+                  <td>{{$veiculos->descricao}}</td>
+                  <td>{{$veiculos->pais}}</td>
+                  <td>{{$veiculos->estado}}</td>
+                  <td>{{$veiculos->bairro}}</td>
+                  <td>{{$veiculos->cidade}}</td>
+                  <td>{{$veiculos->telefone}}</td>
                   <td>{{$veiculos->dataInativacao}}</td>
                   <td>
-                    <a class="btn deep-orange" href="{{route('layout.editarVeiculo', $veiculos->id)}}">Editar</a>
+                    <a class="btn deep-orange" href="{{route('layout.editarVeiculo', $veiculos->veiculoId)}}">Editar</a>
                   </td>
                   <td>
-                    <a class="btn red" href="{{route('layout.deletarVeiculo', $veiculos->id)}}">Deletar</a>
+                    <a class="btn red" href="{{route('layout.deletarVeiculo', $veiculos->veiculoId)}}">Deletar</a>
                   </td>
                   <td>
-                    <a class="btn grey" href="{{route('desativarVeiculo', $veiculos->id)}}">Desativar</a>
+                    <a class="btn grey" href="{{route('desativarVeiculo', $veiculos->veiculoId)}}">Desativar</a>
                   </td>
                 </tr>
               @endif

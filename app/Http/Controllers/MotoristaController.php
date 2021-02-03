@@ -24,12 +24,14 @@ class MotoristaController extends Controller
     public function listaMotorista(){
 
       //$motoristas = Motoristas::all();
-     /*$motoristas =  DB::table('motoristas')
+     $motoristas =  DB::table('motoristas')
            ->join('filiais_motoristas', 'motoristas.id', '=', 'filiais_motoristas.motorista_id')
            ->select('motoristas.*', 'filiais_motoristas.*')
-           ->get();*/
+           ->get();
 
-           $motoristas = Motoristas::all();
+          // $motoristas = Motoristas::all();
+
+        //  $motoristas = DB::table('')
 
       return view('listagem.listagemMotorista', compact('motoristas'));
 

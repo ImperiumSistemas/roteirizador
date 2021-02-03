@@ -7,8 +7,8 @@ use App\Veiculos;
 use App\Filiais;
 use App\filiais_veiculos;
 use Carbon\Carbon;
-
 use Illuminate\Support\Facades\DB;
+
 
 class VeiculosController extends Controller
 {
@@ -25,7 +25,17 @@ class VeiculosController extends Controller
       //var_dump($model->teste());
       //exit();
 
-      $veiculo = Veiculos::all();
+      //$veiculo = Veiculos::all();
+
+      $veiculo = DB::table('filiais_veiculos')
+      ->join('filiais', 'filiais_veiculos.FILIAL_id', '=', 'filiais.id')
+      ->join('veiculos', 'filiais_veiculos.VEICULO_id', '=', 'veiculos.id')
+      ->select('veiculos.id as veiculoId', 'veiculos.marca as marca', 'veiculos.ano as ano',
+      'veiculos.modelo as modelo', 'veiculos.chassi as chassi',
+      'veiculos.capacidade_cubagem as capacidadeCubagem', 'veiculos.renavan as renavan',
+      'veiculos.ativoInativo as ativoInativo', 'veiculos.dataInativacao as dataInativacao',
+      'filiais.descricao as descricao', 'filiais.id', 'filiais.pais as pais', 'filiais.cidade as cidade',
+      'filiais.telefone as telefone', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.estado as estado')->get();
 
       return view('listagem.listagemVeiculo', compact('veiculo'));
     }
@@ -60,14 +70,23 @@ class VeiculosController extends Controller
 
       $veiculo = Veiculos::find($id);
       $filiais = Filiais::all();
+
       return view('layout.editarVeiculo', compact('veiculo', 'filiais'));
     }
 
-    public function atualizar(Request $req, $id){
+    public function atualizarVeiculo(Request $req, $id){
+
+      dd($req);
 
       $dados = $req->all();
 
       Veiculos::find($id)->update($dados);
+      Filiais::where('ativoInativo', '=', 1)->update(['ativoInativo' => 1]);
+
+      $idVeiculo = (int)$dados['id'];
+
+      filiais_veiculos::where('VEICULO_id', '=', $id)->delete();
+
 
       return redirect()->route('listagem.veiculo');
 
