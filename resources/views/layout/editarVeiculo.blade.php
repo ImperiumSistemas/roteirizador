@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="row">
-      <form class="" action="{{route('layout.atualizarVeiculo', $veiculo->veiculoId)}}" method="post" >
+      <form class="" action="{{route('layout.atualizarVeiculo', $veiculo->id)}}" method="post" >
         {{ csrf_field() }}
 
         <input type="hidden" name="_method" value="put">

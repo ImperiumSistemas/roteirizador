@@ -24,14 +24,20 @@ class MotoristaController extends Controller
     public function listaMotorista(){
 
       //$motoristas = Motoristas::all();
-     $motoristas =  DB::table('motoristas')
+     /*$motoristas =  DB::table('motoristas')
            ->join('filiais_motoristas', 'motoristas.id', '=', 'filiais_motoristas.motorista_id')
            ->select('motoristas.*', 'filiais_motoristas.*')
-           ->get();
+           ->get();*/
 
           // $motoristas = Motoristas::all();
 
-        //  $motoristas = DB::table('')
+          $motoristas = DB::table('filiais_motoristas')
+          ->join('motoristas', 'filiais_motoristas.MOTORISTA_id', '=', 'motoristas.id')
+          ->join('filiais', 'filiais_motoristas.FILIAL_id', '=', 'filiais.id')
+          ->select('motoristas.id as motoristaId', 'motoristas.ativoInativo as ativoInativo',
+          'motoristas.cpf as cpf', 'motoristas.dataInativacao as dataInativacao', 'motoristas.nome as nome',
+          'motoristas.numero_cnh as numeroCnh', 'motoristas.telefone as telefone', 'motoristas.data_validade_cnh as dataValidadeCnh',
+           'filiais.descricao as descricao', 'filiais.id as filialId')->get();
 
       return view('listagem.listagemMotorista', compact('motoristas'));
 
@@ -92,7 +98,16 @@ class MotoristaController extends Controller
           $dados = $req->all();
 
           Motoristas::find($id)->update($dados);
+          filiais_motoristas::where('MOTORISTA_id', '=', $id)->delete();
 
+          $idMotorista = (int)$dados['id'];
+
+          foreach ($dados['idFilial'] as $filial) {
+
+            filiais_motoristas::create(['FILIAL_id' => (int)$filial, 'MOTORISTA_id' => $idMotorista]);
+
+          }
+          
           return redirect()->route('listagem.motorista');
         }
 

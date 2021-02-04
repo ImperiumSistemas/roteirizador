@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/teste', ['as' => 'teste.teste', 'uses' => 'MotoristaController@teste']);
+Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index']);
+//Route::get('/login', ['as' => 'loginSistema', 'uses' => 'LoginController@login']);
+//Route::get('/login/sair', ['as' => 'loginSair', 'uses' => 'LoginController@sair']);
+//Route::post('login/entrar', ['as' => 'loginEntrar', 'uses' => 'LoginController@entrar']);
 
-Route:: get('/site', ['uses' => 'RoteirizadorController@index']);
+//Route::group(['middleware' => 'auth'], function(){
 
 Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosController@listaVeiculo' ]);
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
@@ -151,4 +154,10 @@ Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'use
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
 
+//});
+
 Route::get('geradorCarga', ['as' => 'geradorCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

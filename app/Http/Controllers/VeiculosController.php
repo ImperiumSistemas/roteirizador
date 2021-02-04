@@ -28,8 +28,8 @@ class VeiculosController extends Controller
       //$veiculo = Veiculos::all();
 
       $veiculo = DB::table('filiais_veiculos')
-      ->join('filiais', 'filiais_veiculos.FILIAL_id', '=', 'filiais.id')
       ->join('veiculos', 'filiais_veiculos.VEICULO_id', '=', 'veiculos.id')
+      ->join('filiais', 'filiais_veiculos.FILIAL_id', '=', 'filiais.id')
       ->select('veiculos.id as veiculoId', 'veiculos.marca as marca', 'veiculos.ano as ano',
       'veiculos.modelo as modelo', 'veiculos.chassi as chassi',
       'veiculos.capacidade_cubagem as capacidadeCubagem', 'veiculos.renavan as renavan',
@@ -68,6 +68,7 @@ class VeiculosController extends Controller
 
     public function editar($id){
 
+
       $veiculo = Veiculos::find($id);
       $filiais = Filiais::all();
 
@@ -76,16 +77,17 @@ class VeiculosController extends Controller
 
     public function atualizarVeiculo(Request $req, $id){
 
-      dd($req);
-
       $dados = $req->all();
 
       Veiculos::find($id)->update($dados);
-      Filiais::where('ativoInativo', '=', 1)->update(['ativoInativo' => 1]);
+      filiais_veiculos::where('VEICULO_id', '=', $id)->delete();
 
       $idVeiculo = (int)$dados['id'];
 
-      filiais_veiculos::where('VEICULO_id', '=', $id)->delete();
+      foreach($dados['idFilial'] as $filial){
+
+       filiais_veiculos::create(['FILIAL_id' => (int)$filial, 'VEICULO_id' => $idVeiculo]);
+      }
 
 
       return redirect()->route('listagem.veiculo');
