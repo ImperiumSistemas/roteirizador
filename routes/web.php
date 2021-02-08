@@ -13,9 +13,10 @@
 
 Route::get('/', function () {
     return view('welcome');
+    //return view('login.index');
 });
 
-Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index']);
+Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index'])->middleware('auth');
 //Route::get('/login', ['as' => 'loginSistema', 'uses' => 'LoginController@login']);
 //Route::get('/login/sair', ['as' => 'loginSair', 'uses' => 'LoginController@sair']);
 //Route::post('login/entrar', ['as' => 'loginEntrar', 'uses' => 'LoginController@entrar']);
@@ -154,10 +155,16 @@ Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'use
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
 
+
+// LOGIN
+
+Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);
+
+// FIM LOGIN
 //});
 
 Route::get('geradorCarga', ['as' => 'geradorCarga', 'uses' => 'geradorCargaController@gerarCarga']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'LoginController@index');

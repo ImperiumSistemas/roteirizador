@@ -46,6 +46,10 @@
           <div class="nav-wrapper deep-orange">
             <img src="/logo.jpg" alt="some text" width=80 height=64>
           <a href="#!" class="brand-logo">MONTAGEM DE CARGA</a>
+          USUARIO LOGADO:
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="/site">HOME</a></li>
@@ -63,7 +67,20 @@
             <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
             <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>-->
             <li><a class="dropdown-trigger" href="#!" data-target="cadastros">CADASTROS<i class="material-icons right"></i></a></li>
+            <li><ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        SAIR
+                    </a>
 
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </ul>
+          </li>
 
           </ul>
           </div>

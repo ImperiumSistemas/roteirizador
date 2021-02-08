@@ -1,7 +1,7 @@
 @include('includes.header')
 
 <div class="row">
-  <h2><center> TELA DE LOGIN </center></h2>
+  <h2><center> CADASTRO DE USUARIO </center></h2>
 </div>
 
 <div class="container">
@@ -19,11 +19,15 @@
           <label>SENHA</label>
         </div>
 
-        <button class="btn deep-orange">ENTRAR</button>
+        <div class="input-field">
+          <input type="password" name="confirmacaoSenha">
+          <label>SENHA</label>
+        </div>
+
+        <button class="btn deep-orange">CADASTRAR</button>
 
       </form>
-      <br><br>
-      <a href="{{login.novoUsuario}}">Novo Usuario</a>
+    
   </div>
 </div>
 

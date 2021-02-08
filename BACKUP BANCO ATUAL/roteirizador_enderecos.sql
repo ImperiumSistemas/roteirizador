@@ -1,0 +1,70 @@
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+--
+-- Host: localhost    Database: roteirizador
+-- ------------------------------------------------------
+-- Server version	5.7.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `enderecos`
+--
+
+DROP TABLE IF EXISTS `enderecos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `enderecos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rua` varchar(45) DEFAULT NULL,
+  `bairro` varchar(45) DEFAULT NULL,
+  `numero` varchar(45) DEFAULT NULL,
+  `BAIRRO_cod_bairro` int(11) DEFAULT NULL,
+  `ESTADO_id` int(11) DEFAULT NULL,
+  `PAIS_id` int(11) DEFAULT NULL,
+  `CIDADE_codCidade` int(11) DEFAULT NULL,
+  `PESSOAS_id` int(11) DEFAULT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ENDERECO_CIDADE1_idx` (`CIDADE_codCidade`),
+  KEY `fk_ENDERECOS_PESSOAS1_idx` (`PESSOAS_id`),
+  KEY `fk_ENDERECO_BAIRRO1_idx` (`BAIRRO_cod_bairro`),
+  KEY `fk_ENDERECO_PAIS1_idx` (`PAIS_id`),
+  CONSTRAINT `fk_ENDERECOS_PESSOAS1` FOREIGN KEY (`PESSOAS_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ENDERECO_BAIRRO1` FOREIGN KEY (`BAIRRO_cod_bairro`) REFERENCES `bairros` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ENDERECO_CIDADE1` FOREIGN KEY (`CIDADE_codCidade`) REFERENCES `cidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ENDERECO_PAIS1` FOREIGN KEY (`PAIS_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enderecos`
+--
+
+LOCK TABLES `enderecos` WRITE;
+/*!40000 ALTER TABLE `enderecos` DISABLE KEYS */;
+INSERT INTO `enderecos` VALUES (8,'Rua Campo Formoso','Jardim Teresopolis','597',NULL,NULL,NULL,NULL,5,'1','','2021-02-04 16:55:21','2021-02-02 14:29:26'),(9,'Rua Campo Formoso','Tere','597',NULL,2,33,12,5,'0','2021-02-04 16:55:44','2021-02-04 16:56:08','2021-02-04 16:55:37');
+/*!40000 ALTER TABLE `enderecos` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-02-08 16:39:11
