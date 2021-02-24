@@ -110,4 +110,5 @@ Route::get('ListagemCliente', ['as' => 'listagemCliente', 'uses' => 'ClientesCon
 Route::get('/layout/adicionarCliente', ['as' => 'layout.adicionarCliente', 'uses' => 'ClientesController@adicionar']);
 Route::post('/layout/salvarCliente', ['as' => 'layout.salvarCliente', 'uses' => 'ClientesController@salvar']);
 
-Route::get('geradorCarga', ['as' => 'geradorCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
+Route::get('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);

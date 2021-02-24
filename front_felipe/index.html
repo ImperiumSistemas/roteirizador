@@ -45,6 +45,14 @@
     <script type="text/javascript" src="route.js"></script>
     <script type="text/javascript" src="roteirizador-map-view.js"></script>
     <script type='text/javascript'>
+       const routesDataExample = [];
+
+       $.get( "http://127.0.0.1:8000/geradorCarga", function( data ) {
+		  $( ".result" ).html( data );
+		  //alert( "Load was performed." );
+		  console.log();
+		});
+
         sessionStorage.setItem('routesData', JSON.stringify(routesDataExample));
         window.onload = RoteirizadorMapView.viewRoutes();
     </script>
