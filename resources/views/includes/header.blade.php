@@ -33,7 +33,10 @@
               <li><a href="{{route('listagem.motorista')}}">MOTORISTA</a></li>
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
-              <li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li>
+              <li><a href="{{route('listagem.confirmaEndereco')}}">CONFIRMAR ENDEREÇO</a></li>
+              <!--<li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li> -->
+              <!--<li><a href="{{route('listagem.rua')}}">RUA</a></li>-->
+              <!--<li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li>-->
               <li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
               <li><a href="{{route('listagem.estado')}}">ESTADO</a></li>
               <li><a href="{{route('listagem.pais')}}">PAIS</a></li>

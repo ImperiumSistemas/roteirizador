@@ -99,6 +99,16 @@ Route::get('layout/excluirCidade/{id}', ['as' => 'layout.excluirCidade', 'uses' 
 Route::get('layout/ativarCidade/{id}', ['as' => 'ativarCidade', 'uses' => 'CidadesController@ativar']);
 Route::get('layout/desativarCidade/{id}', ['as' => 'desativarCidade', 'uses' => 'CidadesController@desativar']);
 
+//Route::get('listagemNumero', ['as' => 'listagem.rua', 'uses' => 'RuaController@listagemRua']);
+
+Route::get('listagemRua', ['as' => 'listagem.rua', 'uses' => 'RuaController@listaRua']);
+Route::get('/layout/adicionarRua', ['as' => 'layout.adicionarRua', 'uses' => 'RuaController@adicionar']);
+Route::post('/layout/salvarRua', ['as' => 'layout.salvarRua', 'uses' => 'RuaController@salvar']);
+Route::get('/layout/editarRua/{id}', ['as' => 'layout.editarRua', 'uses' => 'RuaController@editar']);
+Route::put('/layout/atualizarRua/{id}', ['as' => 'layout.atualizarRua', 'uses' => 'RuaController@atualizar']);
+Route::get('/layout/excluirRua/{id}', ['as' => 'layout.excluirRua', 'uses' => 'RuaController@excluir']);
+Route::get('/layout/ativarRua/{id}', ['as' => 'ativarRua', 'uses' => 'RuaController@ativar']);
+Route::get('/layout/desativarRua/{id}', ['as' => 'desativarRua', 'uses' => 'RuaController@desativar']);
 
 Route::get('listagemPais', ['as' => 'listagem.pais', 'uses' => 'PaisController@listaPais']);
 Route::get('/layout/adicionarPais', ['as' => 'layout.adicionarPais', 'uses' => 'PaisController@adicionar']);
@@ -155,6 +165,9 @@ Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'use
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
 
+
+Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'uses' => 'ConfirmaEndereco@lista']);
+Route::get('confirmarEnderecoMapa', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
 
 // LOGIN
 

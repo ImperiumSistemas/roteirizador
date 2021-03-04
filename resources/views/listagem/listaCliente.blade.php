@@ -10,8 +10,16 @@
         <thead>
           <tr>
             <th>NOME</th>
-            <th>TELEFONE</th>
+            <th>TEL</th>
+            <th>RUA</th>
+            <th>BAIRRO</th>
+            <th>NUMERO</th>
+            <th>PAIS</th>
+            <th>CIDADE</th>
+            <th>ESTADO</th>
             <th>PRAÇA</th>
+            <th>LAT</th>
+            <th>LON</th>
             <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
@@ -25,7 +33,15 @@
               <tr class="desativado">
                 <td>{{$cliente->nomePessoa}}</td>
                 <td>{{$cliente->numero}}</td>
+                <td>{{$cliente->rua}}</td>
+                <td>{{$cliente->bairro}}</td>
+                <td>{{$cliente->numeroEndereco}}</td>
+                <td>{{$cliente->nomePais}}</td>
+                <td>{{$cliente->nomeCidade}}</td>
+                <td>{{$cliente->nomeEstado}}</td>
                 <td>{{$cliente->nomePraca}}</td>
+                <td>{{$cliente->latitude}}</td>
+                <td>{{$cliente->longitude}}</td>
                 <td>{{$cliente->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>
@@ -43,7 +59,15 @@
               <tr>
                 <td>{{$cliente->nomePessoa}}</td>
                 <td>{{$cliente->numero}}</td>
+                <td>{{$cliente->rua}}</td>
+                <td>{{$cliente->bairro}}</td>
+                <td>{{$cliente->numeroEndereco}}</td>
+                <td>{{$cliente->nomePais}}</td>
+                <td>{{$cliente->nomeCidade}}</td>
+                <td>{{$cliente->nomeEstado}}</td>
                 <td>{{$cliente->nomePraca}}</td>
+                <td>{{$cliente->latitude}}</td>
+                <td>{{$cliente->longitude}}</td>
                 <td>{{$cliente->dataInativacao}}</td>
                 <td>
                   <a class="btn deep-orange" href="{{route('layout.editarCliente', $cliente->id)}}">Editar</a>

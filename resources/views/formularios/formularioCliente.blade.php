@@ -9,6 +9,8 @@
 </select>
 </div>
 
+
+
 <div class="input-field">
   <select name="idPraca">
     <option value="" selected> SELECIONE UMA PRAÇA </option>

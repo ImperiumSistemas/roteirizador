@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Enderecos;
 use App\Pais;
 use App\Cidades;
-//use App\Bairros;
+use App\Bairros;
 use App\Estados;
+use App\Rua;
 use App\Pessoas;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -38,8 +39,10 @@ class EnderecoController extends Controller
       $cidades = Cidades::all();
       $estados = Estados::all();
       $pessoas = Pessoas::all();
+      $bairros = Bairros::all();
+      $ruas = Rua::all();
 
-      return view('layout.adicionarEndereco', compact('paises', 'cidades', 'bairro', 'estados', 'pessoas'));
+      return view('layout.adicionarEndereco', compact('paises', 'cidades', 'bairro', 'estados', 'pessoas', 'bairros', 'ruas'));
     }
 
     public function salvar(Request $req){

@@ -8,6 +8,11 @@ use App\Pessoas;
 use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
+use App\Enderecos;
+use App\Cidades;
+use App\Bairros;
+use App\Pais;
+use App\Estados;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -20,8 +25,15 @@ class ClientesController extends Controller
       $clientes = DB::table('clientes')
       ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
       ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
+      ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+      ->join('pais', 'enderecos.PAIS_id', '=', 'pais.id')
+      ->join('cidades', 'enderecos.CIDADE_codCidade', '=', 'cidades.id')
+      ->join('estados', 'enderecos.ESTADO_id', '=', 'estados.id')
       ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
-      'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero', 'pracas.praca as nomePraca')->get();
+      'clientes.latitude as latitude', 'clientes.longitude as longitude', 'pessoas.nome as nomePessoa',
+       'pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua', 'enderecos.bairro as bairro',
+       'enderecos.numero as numeroEndereco', 'pais.pais as nomePais', 'cidades.nomeCidade as nomeCidade',
+       'estados.nomeEstado as nomeEstado')->get();
 
       return view('listagem.listaCliente', compact('clientes'));
 
@@ -32,8 +44,13 @@ class ClientesController extends Controller
       $pessoas = Pessoas::all();
       $pracas = pracas::all();
       $filiais = Filiais::all();
+      $enderecos = Enderecos::all();
+      $pais = Pais::all();
+      $estados = Estados::all();
+      $cidades = Cidades::all();
+      $bairros = Bairros::all();
 
-      return view('layout.adicionarCliente', compact('pessoas', 'pracas', 'filiais'));
+      return view('layout.adicionarCliente', compact('pessoas', 'pracas', 'filiais', 'enderecos', 'pais', 'estados', 'cidades', 'bairros'));
     }
 
     public function salvar(Request $req){

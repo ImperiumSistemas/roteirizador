@@ -11,6 +11,6 @@ class Pessoas extends Model
     //use SoftDeletes;
     protected $fillable = [
 
-       'nome', 'numero_telefone', 'idFisica', 'idJuridica'
+       'nome', 'numero_telefone'
     ];
 }

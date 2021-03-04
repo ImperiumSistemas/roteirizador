@@ -29,14 +29,26 @@
 </div>
 
 <div class="input-field">
+  <select name="BAIRRO_cod_bairro">
+    <option value="" selected>Selecione o Bairro</option>
+    @foreach($bairros as $bairro)
+      <option value="{{isset($bairro->id) ? $bairro->id : ''}}">{{$bairro->nomeBairro}}</option>
+    @endforeach
+  </select>
+  <label>BAIRRO</label>
+</div>
+
+
+<div class="input-field">
   <input type="text" name="rua" value="{{isset($endereco->rua) ? $endereco->rua : '' }}">
   <label>RUA</label>
 </div>
 
+<!--
 <div class="input-field">
   <input type="text" name="bairro" value="{{isset($endereco->bairro) ? $endereco->bairro : '' }}">
   <label>BAIRRO</label>
-</div>
+</div> -->
 
 <div class="input-field">
   <input type="number" name="numero" value="{{isset($endereco->numero) ? $endereco->numero : '' }}">

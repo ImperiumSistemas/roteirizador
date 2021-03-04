@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Pessoas;
 use \App\Fisicas;
 use \App\Juridicas;
+use \App\Enderecos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -20,16 +21,25 @@ class PessoasController extends Controller
 
 
       $pessoaFisica = DB::table('pessoas')
-      ->join('fisicas', 'pessoas.idFisica', '=', 'fisicas.id')
+      ->join('fisicas', 'pessoas.id', '=', 'fisicas.PESSOAS_id')
+      ->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id')
       ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
        'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
-       'fisicas.cpf as cpf', 'fisicas.rg as rg')->get();
+       'fisicas.cpf as cpf', 'fisicas.rg as rg','enderecos.rua','enderecos.bairro',
+       'enderecos.numero','enderecos.cidade','enderecos.estado',
+       'enderecos.pais'
+       )->get();
 
        $pessoaJuridica = DB::table('pessoas')
-       ->join('juridicas', 'pessoas.idJuridica', '=', 'juridicas.id')
+       ->join('juridicas', 'pessoas.id', '=', 'juridicas.PESSOAS_id')
+       ->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id')
        ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
        'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
-       'juridicas.cnpj as cnpj', 'juridicas.razao_social as razaoSocial')->get();
+       'juridicas.cnpj as cnpj', 'juridicas.razao_social as razaoSocial',
+       'enderecos.rua','enderecos.bairro','enderecos.numero','enderecos.cidade','enderecos.estado',
+       'enderecos.pais')->get();
+
+
 
       return view('listagem.listaPessoas', compact('pessoaFisica', 'pessoaJuridica', 'juridicaFisica'));
 
@@ -48,19 +58,30 @@ class PessoasController extends Controller
 
     }
 
+
+
     public function salvarPessoaFisica(Request $req){
 
       $nome = $req->nome;
       $telefone = $req->numero_telefone;
       $cpf = $req->cpf;
       $rg = $req->rg;
+      $rua = $req->rua;
+      $bairro = $req->bairro;
+      $numero = $req->numero;
+      $cidade = $req->cidade;
+      $estado = $req->estado;
+      $pais = $req->pais;
 
-      Fisicas::create(['cpf' => $cpf, 'rg' => $rg]);
 
-      $ultimoId = Fisicas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
+      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+      $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
 
-      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'idFisica' => $ultimoId->id]);
+      Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
+      $Pessoas_id = $ultimoId->id;
 
+      Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
+      'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
       return redirect()->route('listagem.pessoas');
 
     }
@@ -71,43 +92,98 @@ class PessoasController extends Controller
       $telefone = $req->numero_telefone;
       $cnpj = $req->cnpj;
       $razaoSocial = $req->razao_social;
+      $rua = $req->rua;
+      $bairro = $req->bairro;
+      $numero = $req->numero;
+      $cidade = $req->cidade;
+      $estado = $req->estado;
+      $pais = $req->pais;
 
-      Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial]);
+      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+      $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
+      Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial, 'PESSOAS_id' => $ultimoId->id ]);
 
-      $ultimoId = Juridicas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
+      $Pessoas_id = $ultimoId->id;
 
-      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'idJuridica' => $ultimoId->id]);
+      Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
+      'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id]);
 
       return redirect()->route('listagem.pessoas');
     }
 
     public function editar($id){
 
+    /*  $endereco = DB::table('pessoas')
+      ->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id')
+      ->where('PESSOAS_id', '=', $id)
+      ->select('*'
+       )->get();*/
+
       $pessoa = Pessoas::find($id);
+      $endereco = Enderecos::where('PESSOAS_id', '=', $id)->first();
+      $tipoPessoa = Fisicas::where('PESSOAS_id', '=', $id)->first();
 
-      if(isset($pessoa->idFisica)){
+      if(isset($tipoPessoa->id)){
+        $fisica = Fisicas::where('PESSOAS_id', '=', $id)->first();
+        return view('layout.editarPessoaFisica', compact('pessoa','fisica','endereco'));
+      }else {
+        $juridica = Juridicas::where('PESSOAS_id', '=', $id)->first();
+          return view('layout.editarPessoaJuridica', compact('pessoa','juridica','endereco'));
+        }
 
-        $fisica = Fisicas::find($pessoa->idFisica);
 
-        return view('layout.editarPessoaFisica', compact('pessoa', 'fisica'));
 
-      }
-
-      if(isset($pessoa->idJuridica)){
-
-        $juridica = Juridicas::find($pessoa->idJuridica);
-
-        return view('layout.editarPessoaJuridica', compact('pessoa', 'juridica'));
-      }
     }
 
     public function atualizar(Request $req, $id){
 
       $nome = $req->nome;
       $telefone = $req->numero_telefone;
+      $cnpj = $req->cnpj;
+      $razaoSocial = $req->razao_social;
+      $rua = $req->rua;
+      $bairro = $req->bairro;
+      $numero = $req->numero;
+      $cidade = $req->cidade;
+      $estado = $req->estado;
+      $pais = $req->pais;
 
-      $idPessoa = Pessoas::find($id);
+      $tipoPessoa = Fisicas::where('PESSOAS_id', '=', $id)->first();
+      $endereco = Enderecos::where('PESSOAS_id', '=', $id)->first();
 
+      if(isset($tipoPessoa->id)){
+        $cpf = $req->cpf;
+        $rg = $req->rg;
+
+        Pessoas::find($id)->update(['nome' => $nome, 'numero_telefone' => $telefone]);
+        Fisicas::find($tipoPessoa->id)->update(['cpf' => $cpf, 'rg' => $rg]);
+        Enderecos::find($endereco->id)->update(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero,
+                    'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais]);
+
+        return redirect()->route('listagem.pessoas');
+
+      }else {
+
+        $cnpj = $req->cnpj;
+        $razaoSocial = $req->razao_social;
+
+        $tipoPessoa = Juridicas::where('PESSOAS_id', '=', $id)->first();
+        $endereco = Enderecos::where('PESSOAS_id', '=', $id)->first();
+
+        Pessoas::find($id)->update(['nome' => $nome, 'numero_telefone' => $telefone]);
+        Juridicas::find($tipoPessoa->id)->update(['cnpj' => $cnpj, 'razao_social' => $razaoSocial]);
+        Enderecos::find($endereco->id)->update(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero,
+                    'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais]);
+
+        return redirect()->route('listagem.pessoas');
+
+        }
+
+      //$idPessoa = Pessoas::find($id);
+
+
+
+      /*
       if(isset($idPessoa->idFisica)){ // Verificando se o ID (foreign) está preenchido.
 
         $cpf = $req->cpf;
@@ -131,7 +207,7 @@ class PessoasController extends Controller
         return redirect()->route('listagem.pessoas');
 
       }
-
+      */
     }
 
     public function excluir($id){

@@ -10,6 +10,6 @@ class Clientes extends Model
     //
     //use SoftDeletes;
     protected $fillable = [
-      'ativoInativo', 'dataInativacao', 'PRACA_id', 'PESSOA_id'
+      'ativoInativo', 'dataInativacao', 'latitude', 'longitude', 'PRACA_id', 'PESSOA_id'
     ];
 }
