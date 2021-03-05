@@ -9,3 +9,7 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
 ALTER TABLE `roteirizador`.`clientes` 
 ADD COLUMN `datainativacao` VARCHAR(15) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`clientes` 
+DROP COLUMN `longitude`,
+DROP COLUMN `latitude`;

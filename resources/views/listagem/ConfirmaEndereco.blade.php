@@ -24,7 +24,7 @@
                 <td>{{$listagem->nomePessoa}}</td>
                 <td>{{$listagem->idCliente}}</td>
                 <td>
-                  <a class="btn grey"  href="{{route('confirmarEnderecoMapa')}}">CONFIRMAR ENDEREÇO</a>
+                  <a class="btn grey"  href="{{route('confirmarEnderecoMapa', $listagem->idPessoa)}}">CONFIRMAR ENDEREÇO</a>
                 </td>
               </tr>
 

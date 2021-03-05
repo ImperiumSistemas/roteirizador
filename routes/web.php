@@ -167,7 +167,8 @@ Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' =
 
 
 Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'uses' => 'ConfirmaEndereco@lista']);
-Route::get('confirmarEnderecoMapa', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
+Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
+Route::post('confirmaMapa/{id}', ['as' => 'confirmaMapa', 'uses' => 'ConfirmaEndereco@confirmaEndereco']);
 
 // LOGIN
 

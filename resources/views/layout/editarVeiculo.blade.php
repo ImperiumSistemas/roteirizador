@@ -14,6 +14,7 @@
         @include('formularios.formulariosVeiculos')
 
         <button class="btn deep-orange">ATUALIZAR</button>
+        <a href="{{route('listagem.veiculo')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
 
       </form>
   </div>

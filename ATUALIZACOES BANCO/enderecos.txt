@@ -110,3 +110,16 @@ DROP INDEX `fk_ENDERECO_PAIS1_idx` ,
 DROP INDEX `fk_ENDERECO_BAIRRO1_idx` ,
 DROP INDEX `fk_ENDERECO_CIDADE1_idx` ;
 ;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `latitude` VARCHAR(45) NULL AFTER `PESSOAS_id`,
+ADD COLUMN `longitude` VARCHAR(45) NULL AFTER `latitude`;
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `confirmado` VARCHAR(45) NULL AFTER `longitude`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `cep` VARCHAR(20) NULL AFTER `confirmado`;
+

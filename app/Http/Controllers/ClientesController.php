@@ -26,14 +26,10 @@ class ClientesController extends Controller
       ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
       ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
       ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
-      ->join('pais', 'enderecos.PAIS_id', '=', 'pais.id')
-      ->join('cidades', 'enderecos.CIDADE_codCidade', '=', 'cidades.id')
-      ->join('estados', 'enderecos.ESTADO_id', '=', 'estados.id')
       ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
-      'clientes.latitude as latitude', 'clientes.longitude as longitude', 'pessoas.nome as nomePessoa',
-       'pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua', 'enderecos.bairro as bairro',
-       'enderecos.numero as numeroEndereco', 'pais.pais as nomePais', 'cidades.nomeCidade as nomeCidade',
-       'estados.nomeEstado as nomeEstado')->get();
+       'pessoas.nome as nomePessoa','pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua',
+       'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua', 'enderecos.cidade as cidade',
+       'enderecos.estado as estado', 'enderecos.pais as pais')->get();
 
       return view('listagem.listaCliente', compact('clientes'));
 

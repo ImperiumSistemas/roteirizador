@@ -12,6 +12,7 @@
         @include('formularios.formularioCliente')
 
         <button class="btn deep-orange">SALVAR</button>
+        <a href="{{route('listagemCliente')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
 
       </form>
   </div>
