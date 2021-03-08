@@ -13,13 +13,23 @@
   <label>DESCRIÇÃO ROTA</label>
 </div>
 
+<label>Escolha uma região</label>
 <div class="input-field">
-  <select name="REGIAO_id">
-    <option value="">Escolha uma região</option>
 
+  <select name="REGIAO_id">
+    <option value=""></option>
     @foreach($regioes as $regiao)
       <option value="{{isset($regiao->id) ? $regiao->id : ''}}">{{$regiao->nomeRegiao}}</option>
     @endforeach
 
   </select>
+</div>
+
+<div>
+  <label>STATUS</label>
+  <select  name="status" >
+    <option value="S" >ATIVO</option>
+    <option value="N" >INATIVO</option>
+  </select>
+
 </div>

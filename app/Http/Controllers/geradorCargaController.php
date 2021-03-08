@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\View\View;
 
 class geradorCargaController extends Controller
 {
@@ -20,6 +21,18 @@ class geradorCargaController extends Controller
             ]
         ]);
     }
+
+    public function roteirizador(){
+
+
+        return View('layout.mapa');
+
+
+
+    }
+
+
+
 
     public function gerarCarga(){
 
@@ -52,7 +65,7 @@ class geradorCargaController extends Controller
                         "cubage"=> "1000"
                     ]
                 ],
-                  [
+                  [  
                     "id"=> "111",
                     "address"=> "Avenida Olegario Maciel, 1600, Santo Agostinho, Belo Horizonte",
                     "coords"=> [
@@ -100,10 +113,8 @@ class geradorCargaController extends Controller
                         "cubage"=> "1000"
                     ]
                 ]
-
               ]
             ]
-
         ];
 
         try {

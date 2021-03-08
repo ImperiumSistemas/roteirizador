@@ -1,7 +1,7 @@
 @include('includes.header')
 
 <div class="row">
-  <h2><center> TELA EDITAR REGIÃO </center></h2>
+  <h2><center> TELA EDITAR ROTA </center></h2>
 </div>
 
 

@@ -155,10 +155,10 @@ Route::get('/layout/excluirPessoa/{id}', ['as' => 'layout.excluirPessoa', 'uses'
 Route::get('layout/ativarPessoa/{id}', ['as' => 'ativarPessoa', 'uses' => 'PessoasController@ativar']);
 Route::get('layout/desativarPessoa/{id}', ['as' => 'desativarPessoa', 'uses' => 'PessoasController@desativar']);
 
-
 Route::get('ListagemCliente', ['as' => 'listagemCliente', 'uses' => 'ClientesController@listaCliente']);
 Route::get('/layout/adicionarCliente', ['as' => 'layout.adicionarCliente', 'uses' => 'ClientesController@adicionar']);
 Route::post('/layout/salvarCliente', ['as' => 'layout.salvarCliente', 'uses' => 'ClientesController@salvar']);
+
 Route::get('/layout/editarCliente/{id}', ['as' => 'layout.editarCliente', 'uses' => 'ClientesController@editar']);
 Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualiarCliente', 'uses' => 'ClientesController@atualizar']);
 Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'uses' => 'ClientesController@excluir']);
@@ -182,3 +182,8 @@ Route::get('geradorCarga', ['as' => 'geradorCarga', 'uses' => 'geradorCargaContr
 Auth::routes();
 
 Route::get('/home', 'LoginController@index');
+
+
+Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
+Route::get('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+
