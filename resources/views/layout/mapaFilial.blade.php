@@ -14,14 +14,14 @@
 <div>
   <table>
     <tr style="border-bottom: 0px">
-      <td>Pessoa: {{$pessoa->nome}}</td>
+      <td>Filial: {{$filial->descricao}}</td>
     </tr>
     <tr style="border-bottom: 0px">
-      <td>Endereço: Rua {{$endereco->rua}}, bairro {{$endereco->bairro}}, numero {{$endereco->numero}}, cep {{$endereco->cep}}, cidade {{$endereco->cidade}},
-                    estado {{$endereco->estado}}, pais {{$endereco->pais}}</td>
+      <td>Endereço: Rua {{$filial->rua}}, bairro {{$filial->bairro}}, numero {{$filial->numero}}, cep {{$filial->cep}}, cidade {{$filial->cidade}},
+                    estado {{$filial->estado}}, pais {{$filial->pais}}</td>
       <td>
         <button id='btnSaveLatLng' class="btn btn-primary">SALVAR</button>
-        <a href="{{route('route('listagem.filiais')')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
+        <a href="{{route('listagem.filiais')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
       </td>
     </tr>
 
@@ -33,7 +33,7 @@
         <div id='mapa'></div>
 
     </section>
-    <form id='form-save' action="{{route('confirmaMapa', $pessoa->id)}}" method="post">
+    <form id='form-save' action="{{route('confirmaMapaFilial', $filial->id)}}" method="post">
       {{ csrf_field() }}
       <input type="hidden" id='inpt-lat' name='lat'/>
       <input type="hidden" id='inpt-lng' name='lng'/>
@@ -43,7 +43,7 @@
 var latitudejs = null;
 var longitudejs = null;
         $(document).ready(function(){
-          $.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address='+'<?php print $endereco->cep; ?>'+'&key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk", function( response ) {
+          $.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address='+'<?php print $filial->cep; ?>'+'&key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk", function( response ) {
              let location = response.results[0].geometry.location;
                  latitudejs = location.lat;
                  longitudejs = location.lng;
