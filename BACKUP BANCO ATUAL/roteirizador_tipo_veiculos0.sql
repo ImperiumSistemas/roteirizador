@@ -16,35 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_motoristas`
+-- Table structure for table `tipo_veiculos`
 --
 
-DROP TABLE IF EXISTS `filiais_motoristas`;
+DROP TABLE IF EXISTS `tipo_veiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_motoristas` (
-  `FILIAL_id` int(11) NOT NULL,
-  `MOTORISTA_id` int(11) NOT NULL,
+CREATE TABLE `tipo_veiculos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) DEFAULT NULL,
   `ativoInativo` varchar(3) DEFAULT NULL,
   `dataInativacao` varchar(15) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
-  KEY `fk_FILIAL_has_MOTORISTA_MOTORISTA1_idx` (`MOTORISTA_id`),
-  KEY `fk_FILIAL_has_MOTORISTA_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_MOTORISTA_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_MOTORISTA_MOTORISTA1` FOREIGN KEY (`MOTORISTA_id`) REFERENCES `motoristas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_motoristas`
+-- Dumping data for table `tipo_veiculos`
 --
 
-LOCK TABLES `filiais_motoristas` WRITE;
-/*!40000 ALTER TABLE `filiais_motoristas` DISABLE KEYS */;
-INSERT INTO `filiais_motoristas` VALUES (13,11,NULL,NULL,'2021-02-04 19:32:59','2021-02-04 19:32:59',NULL),(15,11,NULL,NULL,'2021-02-04 19:32:59','2021-02-04 19:32:59',NULL);
-/*!40000 ALTER TABLE `filiais_motoristas` ENABLE KEYS */;
+LOCK TABLES `tipo_veiculos` WRITE;
+/*!40000 ALTER TABLE `tipo_veiculos` DISABLE KEYS */;
+INSERT INTO `tipo_veiculos` VALUES (1,'Grande',NULL,NULL,NULL),(2,'Medio',NULL,NULL,NULL),(3,'Pequeno',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `tipo_veiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:12
+-- Dump completed on 2021-03-08 11:34:40

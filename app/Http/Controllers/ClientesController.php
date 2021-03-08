@@ -57,6 +57,9 @@ class ClientesController extends Controller
 
 
       Clientes::create(['PRACA_id' => $idPraca, 'PESSOA_id' => $idPessoa]);
+      $ultimoId = Clientes::all('id')->last();
+
+      Clientes::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
       $idCliente = Clientes::all()->last();
 

@@ -40,7 +40,9 @@ class FiliaisController extends Controller
         $dados = $req->all();
 
         Filiais::create($dados);
+        $ultimoId = Filiais::all('id')->last();
 
+        Filiais::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
         return redirect()->route('listagem.filiais');
 
     }

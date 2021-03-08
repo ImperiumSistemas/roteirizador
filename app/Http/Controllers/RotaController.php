@@ -38,7 +38,9 @@ class RotaController extends Controller
       $dados = $req->all();
 
       rotas::create($dados);
+      $ultimoId = rotas::all('id')->last();
 
+      rotas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
       return redirect()->route('listagem.rota');
     }

@@ -71,6 +71,9 @@ class MotoristaController extends Controller
 
 
           Motoristas::create($dados);
+          $ultimoId = Motoristas::all('id')->last();
+
+          Motoristas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
           $idMotorista = (int)$dados['id'];
 
@@ -107,7 +110,7 @@ class MotoristaController extends Controller
             filiais_motoristas::create(['FILIAL_id' => (int)$filial, 'MOTORISTA_id' => $idMotorista]);
 
           }
-          
+
           return redirect()->route('listagem.motorista');
         }
 

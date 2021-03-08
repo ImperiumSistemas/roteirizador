@@ -27,7 +27,9 @@ class EmpresaController extends Controller
       $dados = $req->all();
 
       Empresas::create($dados);
-
+      $ultimoId = Empresas::all('id')->last();
+  
+      Empresas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
       return redirect()->route('listagem.empresa');
     }
 

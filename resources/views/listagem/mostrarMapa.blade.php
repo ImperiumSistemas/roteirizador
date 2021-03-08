@@ -19,7 +19,10 @@
     <tr style="border-bottom: 0px">
       <td>Endereço: Rua {{$endereco->rua}}, bairro {{$endereco->bairro}}, numero {{$endereco->numero}}, cep {{$endereco->cep}}, cidade {{$endereco->cidade}},
                     estado {{$endereco->estado}}, pais {{$endereco->pais}}</td>
-      <td><a href="{{route('listagem.confirmaEndereco')}}" class="btn deep-green">VOLTAR LISTAGEM</a></td>
+      <td>
+        <button id='btnSaveLatLng' class="btn btn-primary">SALVAR</button>
+        <a href="{{route('listagem.confirmaEndereco')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
+      </td>
     </tr>
 
   </table>
@@ -28,8 +31,7 @@
 <body>
     <section>
         <div id='mapa'></div>
-        <div id="current">Nothing yet...</div>
-        <div><button id='btnSaveLatLng' class="btn btn-primary">SALVAR</button></div>
+
     </section>
     <form id='form-save' action="{{route('confirmaMapa', $pessoa->id)}}" method="post">
       {{ csrf_field() }}

@@ -16,36 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_veiculos`
+-- Table structure for table `pracas`
 --
 
-DROP TABLE IF EXISTS `filiais_veiculos`;
+DROP TABLE IF EXISTS `pracas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_veiculos` (
-  `FILIAL_id` int(11) NOT NULL,
-  `VEICULO_id` int(11) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
+CREATE TABLE `pracas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `praca` varchar(45) NOT NULL,
+  `ROTA_id` int(11) DEFAULT NULL,
+  `ativoInativo` varchar(3) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`FILIAL_id`,`VEICULO_id`),
-  KEY `fk_FILIAL_has_VEICULO_VEICULO1_idx` (`VEICULO_id`),
-  KEY `fk_FILIAL_has_VEICULO_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_VEICULO_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_VEICULO_VEICULO1` FOREIGN KEY (`VEICULO_id`) REFERENCES `veiculos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `fk_PRACA_ROTA1_idx` (`ROTA_id`),
+  CONSTRAINT `fk_PRACA_ROTA1` FOREIGN KEY (`ROTA_id`) REFERENCES `rotas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_veiculos`
+-- Dumping data for table `pracas`
 --
 
-LOCK TABLES `filiais_veiculos` WRITE;
-/*!40000 ALTER TABLE `filiais_veiculos` DISABLE KEYS */;
-INSERT INTO `filiais_veiculos` VALUES (13,10,NULL,NULL,'2021-02-04 19:31:40','2021-02-04 19:31:40',NULL);
-/*!40000 ALTER TABLE `filiais_veiculos` ENABLE KEYS */;
+LOCK TABLES `pracas` WRITE;
+/*!40000 ALTER TABLE `pracas` DISABLE KEYS */;
+INSERT INTO `pracas` VALUES (1,'Teste',1,'1','','2021-03-01 19:48:19','2021-03-01 19:48:16',NULL),(2,'testando',2,'1',NULL,'2021-03-08 14:14:58','2021-03-08 14:14:58',NULL);
+/*!40000 ALTER TABLE `pracas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:11
+-- Dump completed on 2021-03-08 11:34:39

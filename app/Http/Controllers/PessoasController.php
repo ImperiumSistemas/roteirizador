@@ -7,6 +7,8 @@ use \App\Pessoas;
 use \App\Fisicas;
 use \App\Juridicas;
 use \App\Enderecos;
+use \App\Clientes;
+use \App\Motoristas;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -72,7 +74,45 @@ class PessoasController extends Controller
       $cidade = $req->cidade;
       $estado = $req->estado;
       $pais = $req->pais;
+      $salvarEm = $req->salvarEm;
 
+
+      if($salvarEm == 2){
+
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
+
+        Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
+        $Pessoas_id = $ultimoId->id;
+
+        Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
+        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
+
+        Clientes::create(['PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
+
+        $ultimoId = Pessoas::all('id')->last();
+
+        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+
+        return redirect()->route('listagemCliente');
+      }
+
+      if($salvarEm == 1){
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
+
+        Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
+        $Pessoas_id = $ultimoId->id;
+
+        Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
+        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
+
+        $ultimoId = Pessoas::all('id')->last();
+
+        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+
+        Motoristas::create();
+      }
 
       Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
       $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
@@ -98,6 +138,27 @@ class PessoasController extends Controller
       $cidade = $req->cidade;
       $estado = $req->estado;
       $pais = $req->pais;
+      $salvarEm = $req->salvarEm;
+
+      if($salvarEm == 2){
+
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
+        Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial, 'PESSOAS_id' => $ultimoId->id ]);
+
+        $Pessoas_id = $ultimoId->id;
+
+        Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
+        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id]);
+
+        Clientes::create(['PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
+
+        $ultimoId = Pessoas::all('id')->last();
+
+        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+
+        return redirect()->route('listagemCliente');
+      }
 
       Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
       $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
@@ -107,6 +168,10 @@ class PessoasController extends Controller
 
       Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
       'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id]);
+
+      $ultimoId = Pessoas::all('id')->last();
+
+      Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
       return redirect()->route('listagem.pessoas');
     }

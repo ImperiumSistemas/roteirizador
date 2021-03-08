@@ -16,34 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_clientes`
+-- Table structure for table `numeros`
 --
 
-DROP TABLE IF EXISTS `filiais_clientes`;
+DROP TABLE IF EXISTS `numeros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_clientes` (
-  `FILIAL_id` int(11) NOT NULL,
-  `CLIENTE_id` int(11) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  KEY `fk_FILIAL_has_CLIENTE_CLIENTE1_idx` (`CLIENTE_id`),
-  KEY `fk_FILIAL_has_CLIENTE_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_CLIENTE1` FOREIGN KEY (`CLIENTE_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `numeros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `numero` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_clientes`
+-- Dumping data for table `numeros`
 --
 
-LOCK TABLES `filiais_clientes` WRITE;
-/*!40000 ALTER TABLE `filiais_clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `filiais_clientes` ENABLE KEYS */;
+LOCK TABLES `numeros` WRITE;
+/*!40000 ALTER TABLE `numeros` DISABLE KEYS */;
+INSERT INTO `numeros` VALUES (1,'597');
+/*!40000 ALTER TABLE `numeros` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:09
+-- Dump completed on 2021-03-08 11:34:41

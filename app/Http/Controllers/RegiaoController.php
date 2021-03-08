@@ -29,7 +29,9 @@ class RegiaoController extends Controller
         $dados = $req->all();
 
         regioes::create($dados);
+        $ultimoId = regioes::all('id')->last();
 
+        regioes::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
         return redirect()->route('listagem.regiao');
 
     }

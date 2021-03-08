@@ -50,3 +50,13 @@
   <input type="text" name="pais" value="{{isset($endereco->pais) ? $endereco->pais : '' }}">
   <label>Pais</label>
 </div>
+
+<div class="input-field">
+  <select name="salvarEm">
+    <option value="" selected>SALVAR EM</option>
+    <option value="">SALVAR APENAS PESSOA</option>
+    <option value="1">SALVAR PESSOA COMO MOTORISTA</option>
+    <option value="2">SALVAR PESSOA COMO CLIENTE</option>
+    <option></option>
+  </select>
+</div>

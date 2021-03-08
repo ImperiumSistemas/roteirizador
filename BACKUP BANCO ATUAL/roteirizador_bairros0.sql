@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `fisicas`
+-- Table structure for table `bairros`
 --
 
-DROP TABLE IF EXISTS `fisicas`;
+DROP TABLE IF EXISTS `bairros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fisicas` (
+CREATE TABLE `bairros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cpf` varchar(15) NOT NULL,
-  `rg` varchar(15) NOT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
+  `nomeBairro` varchar(45) NOT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `updated_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`,`nomeBairro`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fisicas`
+-- Dumping data for table `bairros`
 --
 
-LOCK TABLES `fisicas` WRITE;
-/*!40000 ALTER TABLE `fisicas` DISABLE KEYS */;
-INSERT INTO `fisicas` VALUES (4,'116.834.076-44','mg14741363','2021-01-18 15:08:40','2021-01-18 15:08:40'),(5,'116.834.076-44','mg14741363','2021-01-18 15:10:21','2021-01-18 15:10:21'),(6,'116.834.076-44','mg14741363','2021-01-18 15:10:44','2021-01-18 15:10:44'),(7,'116.834.076-44','mg14741363','2021-01-18 15:13:13','2021-01-18 15:13:13'),(8,'88888','mg14741363','2021-01-18 17:31:00','2021-01-18 15:15:30'),(9,'1551515','15151515','2021-01-20 14:47:50','2021-01-20 14:47:50');
-/*!40000 ALTER TABLE `fisicas` ENABLE KEYS */;
+LOCK TABLES `bairros` WRITE;
+/*!40000 ALTER TABLE `bairros` DISABLE KEYS */;
+INSERT INTO `bairros` VALUES (8,'Teresopolis',NULL,NULL,'2021-01-14 17:49:11','2021-03-02 16:48:22'),(28,'Alvorada',NULL,NULL,'2021-01-14 18:11:46','2021-01-14 20:25:28');
+/*!40000 ALTER TABLE `bairros` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:13
+-- Dump completed on 2021-03-08 11:34:40

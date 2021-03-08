@@ -16,33 +16,41 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `juridicas`
+-- Table structure for table `filiais`
 --
 
-DROP TABLE IF EXISTS `juridicas`;
+DROP TABLE IF EXISTS `filiais`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `juridicas` (
+CREATE TABLE `filiais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(15) NOT NULL,
-  `razao_social` varchar(45) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
+  `pais` varchar(45) NOT NULL,
+  `estado` varchar(45) NOT NULL,
+  `cidade` varchar(45) NOT NULL,
+  `bairro` varchar(45) NOT NULL,
+  `cep` varchar(45) NOT NULL,
+  `descricao` varchar(45) DEFAULT NULL,
+  `EMPRESA_id` int(11) DEFAULT NULL,
   `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `fk_FILIAL_EMPRESA1_idx` (`EMPRESA_id`),
+  CONSTRAINT `fk_FILIAL_EMPRESA1` FOREIGN KEY (`EMPRESA_id`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `juridicas`
+-- Dumping data for table `filiais`
 --
 
-LOCK TABLES `juridicas` WRITE;
-/*!40000 ALTER TABLE `juridicas` DISABLE KEYS */;
-INSERT INTO `juridicas` VALUES (1,'115421','Imperium',NULL,NULL,NULL,'2021-02-02 17:52:04','2021-02-02 17:52:04');
-/*!40000 ALTER TABLE `juridicas` ENABLE KEYS */;
+LOCK TABLES `filiais` WRITE;
+/*!40000 ALTER TABLE `filiais` DISABLE KEYS */;
+INSERT INTO `filiais` VALUES (13,'115421','319954781','Brasil','1','Contagem','Tere','32681-592','EMPRESA X',11,'1','','2021-03-05 17:40:11','2021-01-19 23:27:47'),(15,'111','3155111211','Brasil','MG','Betim','Tere','32681592','Imperium',11,'1','','2021-03-08 13:56:21','2021-02-04 19:32:49');
+/*!40000 ALTER TABLE `filiais` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:11
+-- Dump completed on 2021-03-08 11:34:43

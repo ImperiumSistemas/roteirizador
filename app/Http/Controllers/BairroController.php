@@ -28,7 +28,7 @@ class BairroController extends Controller
 
       $dados = $req->all();
 
-      Bairros::create($dados);
+      Bairros::create($dados);localhhos
 
       return redirect()->route('listagem.bairros');
 

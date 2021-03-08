@@ -29,7 +29,9 @@ class EstadoController extends Controller
       $dados = $req->all();
 
       Estados::create($dados);
+      $ultimoId = Estados::all('id')->last();
 
+      Estados::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
       return redirect()->route('listagem.estado');
 
     }

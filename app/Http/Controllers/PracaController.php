@@ -38,6 +38,9 @@ class PracaController extends Controller
       $dados = $req->all();
 
       pracas::create($dados);
+      $ultimoId = pracas::all('id')->last();
+
+      pracas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
       return redirect()->route('listagem.praca');
 

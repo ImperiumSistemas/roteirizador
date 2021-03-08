@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `migrations`
+-- Table structure for table `empresas`
 --
 
-DROP TABLE IF EXISTS `migrations`;
+DROP TABLE IF EXISTS `empresas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
+CREATE TABLE `empresas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_empresa` varchar(50) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data for table `empresas`
 --
 
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+LOCK TABLES `empresas` WRITE;
+/*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
+INSERT INTO `empresas` VALUES (11,'Imperium Sistemas','1','','2021-02-02 18:45:12','2021-01-19 18:05:49'),(20,'Quelog','1',NULL,'2021-03-08 13:54:32','2021-03-08 13:54:32');
+/*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:11
+-- Dump completed on 2021-03-08 11:34:42

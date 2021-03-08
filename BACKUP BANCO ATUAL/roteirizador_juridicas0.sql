@@ -16,39 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pessoas`
+-- Table structure for table `juridicas`
 --
 
-DROP TABLE IF EXISTS `pessoas`;
+DROP TABLE IF EXISTS `juridicas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pessoas` (
+CREATE TABLE `juridicas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `numero_telefone` varchar(45) DEFAULT NULL,
-  `idFisica` int(11) DEFAULT NULL,
-  `idJuridica` int(11) DEFAULT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
+  `cnpj` varchar(15) NOT NULL,
+  `razao_social` varchar(45) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(15) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idFisica` (`idFisica`),
-  KEY `idJuridica` (`idJuridica`),
-  CONSTRAINT `pessoas_ibfk_1` FOREIGN KEY (`idFisica`) REFERENCES `fisicas` (`id`),
-  CONSTRAINT `pessoas_ibfk_2` FOREIGN KEY (`idJuridica`) REFERENCES `juridicas` (`id`)
+  `PESSOAS_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pessoas`
+-- Dumping data for table `juridicas`
 --
 
-LOCK TABLES `pessoas` WRITE;
-/*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (5,'Anderson','3155111211',9,NULL,'1','',NULL,'2021-02-03 15:44:03','2021-01-20 14:47:50'),(6,'Anderson Alves','+5531995478148',NULL,1,'1','',NULL,'2021-02-03 15:44:05','2021-02-02 17:52:04');
-/*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
+LOCK TABLES `juridicas` WRITE;
+/*!40000 ALTER TABLE `juridicas` DISABLE KEYS */;
+INSERT INTO `juridicas` VALUES (2,'4445454','1155454',NULL,NULL,NULL,'2021-03-03 17:52:46','2021-03-03 17:52:46',33),(3,'4445454','1155454',NULL,NULL,NULL,'2021-03-03 17:55:22','2021-03-03 17:55:22',34),(4,'111','NPO',NULL,NULL,NULL,'2021-03-03 17:56:10','2021-03-03 17:56:10',35),(5,'77','7',NULL,NULL,NULL,'2021-03-08 14:27:33','2021-03-08 14:27:33',43),(6,'88','88',NULL,NULL,NULL,'2021-03-08 14:29:57','2021-03-08 14:29:57',44);
+/*!40000 ALTER TABLE `juridicas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 16:39:12
+-- Dump completed on 2021-03-08 11:34:41

@@ -27,6 +27,9 @@ class CidadesController extends Controller
       $dados = $req->all();
 
       cidades::create($dados);
+      $ultimoId = Cidades::all('id')->last();
+
+      Cidades::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
 
       return redirect()->route('listagem.cidade');
     }
