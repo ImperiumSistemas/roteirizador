@@ -10,10 +10,11 @@
         <thead>
           <tr>
             <th>NOME</th>
-            <th>CPF</th>
-            <th>TELEFONE</th>
             <th>NUMERO CNH</th>
             <th>VALIDADE CNH</th>
+            <th>BAIRRO</th>
+            <th>CIDADE</th>
+            <th>ESTADO</th>
             <th>DATA DE INATIVAÇÃO</th>
             <th>NOME DA FILIAL</th>
             <th>EDITAR</th>
@@ -26,11 +27,12 @@
           @foreach($motoristas as $motorista)
             @if($motorista->ativoInativo == 0)
             <tr class="desativado">
-              <td>{{$motorista->nome}}</td>
-              <td>{{$motorista->cpf}}</td>
-              <td>{{$motorista->telefone}}</td>
+              <td>{{$motorista->nomePessoa}}</td>
               <td>{{$motorista->numeroCnh}}</td>
               <td>{{$motorista->dataValidadeCnh}}</td>
+              <td>{{$motorista->bairro}}</td>
+              <td>{{$motorista->cidade}}</td>
+              <td>{{$motorista->estado}}</td>
               <td>{{$motorista->dataInativacao}}</td>
               <td>{{$motorista->descricao}}</td>
               <td>
@@ -47,11 +49,12 @@
 
             @if($motorista->ativoInativo == 1)
             <tr>
-              <td>{{$motorista->nome}}</td>
-              <td>{{$motorista->cpf}}</td>
-              <td>{{$motorista->telefone}}</td>
+              <td>{{$motorista->nomePessoa}}</td>
               <td>{{$motorista->numeroCnh}}</td>
               <td>{{$motorista->dataValidadeCnh}}</td>
+              <td>{{$motorista->bairro}}</td>
+              <td>{{$motorista->cidade}}</td>
+              <td>{{$motorista->estado}}</td>
               <td>{{$motorista->dataInativacao}}</td>
               <td>{{$motorista->descricao}}</td>
               <td>

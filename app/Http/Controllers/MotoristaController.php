@@ -8,6 +8,7 @@ use App\Motoristas;
 use App\Filiais;
 use App\FiliaisMotoristas;
 use App\filiais_motoristas;
+use App\Pessoas;
 use Carbon\Carbon;
 
 
@@ -34,12 +35,19 @@ class MotoristaController extends Controller
           $motoristas = DB::table('filiais_motoristas')
           ->join('motoristas', 'filiais_motoristas.MOTORISTA_id', '=', 'motoristas.id')
           ->join('filiais', 'filiais_motoristas.FILIAL_id', '=', 'filiais.id')
+          ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+          ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
           ->select('motoristas.id as motoristaId', 'motoristas.ativoInativo as ativoInativo',
-          'motoristas.cpf as cpf', 'motoristas.dataInativacao as dataInativacao', 'motoristas.nome as nome',
-          'motoristas.numero_cnh as numeroCnh', 'motoristas.telefone as telefone', 'motoristas.data_validade_cnh as dataValidadeCnh',
-           'filiais.descricao as descricao', 'filiais.id as filialId')->get();
+          'motoristas.dataInativacao as dataInativacao',  'motoristas.numero_cnh as numeroCnh',
+          'motoristas.data_validade_cnh as dataValidadeCnh','filiais.descricao as descricao',
+          'filiais.id as filialId',
+          'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
+          'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua',
+          'enderecos.cidade as cidade','enderecos.estado as estado', 'enderecos.pais as pais')->get();
 
-      return view('listagem.listagemMotorista', compact('motoristas'));
+          $pessoas = Pessoas::all();
+
+      return view('listagem.listagemMotorista', compact('motoristas', 'pessoas'));
 
     }
 
@@ -56,8 +64,9 @@ class MotoristaController extends Controller
 
       $filiais = Filiais::all();
       $motorista = Motoristas::all();
+      $pessoas = Pessoas::all();
 
-      return view('layout/adicionarMotorista', compact('motorista', 'filiais'));
+      return view('layout/adicionarMotorista', compact('motorista', 'filiais', 'pessoas'));
 
       //return view('layout/adicionarMotorista', compact('filiais',$filiais));
 
@@ -92,8 +101,9 @@ class MotoristaController extends Controller
 
           $motorista = Motoristas::find($id);
           $filiais = Filiais::all();
+          $pessoas = Pessoas::all();
 
-          return view('layout.editarMotorista', compact('motorista', 'filiais'));
+          return view('layout.editarMotorista', compact('motorista', 'filiais', 'pessoas'));
         }
 
         public function atualizar(Request $req, $id){

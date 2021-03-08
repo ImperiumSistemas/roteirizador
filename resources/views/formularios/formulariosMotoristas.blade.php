@@ -3,24 +3,16 @@
   <label>REGISTRO MOTORISTA</label>
 </div>
 
-<div class="input-field">
-  <input type="text" name="cpf" value="{{isset($motorista->cpf) ? $motorista->cpf : '' }}">
-  <label>CPF</label>
-</div>
-
-<div class="input-field">
-  <input type="text" name="nome" value="{{isset($motorista->nome) ? $motorista->nome : '' }}">
-  <label>NOME</label>
-</div>
+<select name="PESSOAS_id">
+  <option value="" disabled>SELECIONE A PESSOA</option>
+  @foreach($pessoas as $pessoa)
+    <option value="{{$pessoa->id}}">{{$pessoa->nome}}</option>
+  @endforeach
+</select>
 
 <div class="input-field">
   <input type="date" name="data_admissao" value="{{isset($motorista->data_admissao) ? $motorista->data_admissao : '' }}">
   <label>DATA DE ADMISSAO</label>
-</div>
-
-<div class="input-field">
-  <input type="text" name="telefone" value="{{isset($motorista->telefone) ? $motorista->telefone : '' }}">
-  <label>TELEFONE</label>
 </div>
 
 <div class="input-field">

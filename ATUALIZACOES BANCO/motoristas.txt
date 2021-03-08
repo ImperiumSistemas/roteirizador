@@ -23,3 +23,10 @@ UPDATE `roteirizador`.`motoristas` SET `PESSOAS_id` = '1' WHERE (`id` = '2');
 ALTER TABLE `roteirizador`.`motoristas` 
 ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `PESSOAS_id`,
 ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
+
+ALTER TABLE `roteirizador`.`motoristas` 
+DROP COLUMN `telefone`,
+DROP COLUMN `nome`;
+
+ALTER TABLE `roteirizador`.`motoristas` 
+DROP COLUMN `cpf`;
