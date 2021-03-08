@@ -1,0 +1,16 @@
+create table rua(
+	id integer , 
+    nomeRua varchar(50)
+);
+
+
+ALTER TABLE `roteirizador`.`rua` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ADD PRIMARY KEY (`id`);
+;
+
+ALTER TABLE `roteirizador`.`rua` 
+ADD COLUMN `ativoInativo` VARCHAR(45) NULL AFTER `nomeRua`,
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `dataInativacao`,
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `created_at`;

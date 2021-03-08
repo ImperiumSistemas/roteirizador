@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\regioes;
+use Carbon\Carbon;
 
 class RegiaoController extends Controller
 {
     public function listaRegiao(){
+
 
       $listagemRegiaos = regioes::all();
 
@@ -27,7 +29,9 @@ class RegiaoController extends Controller
         $dados = $req->all();
 
         regioes::create($dados);
+        $ultimoId = regioes::all('id')->last();
 
+        regioes::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
         return redirect()->route('listagem.regiao');
 
     }
@@ -54,6 +58,23 @@ class RegiaoController extends Controller
 
       return redirect()->route('listagem.regiao');
 
+    }
+
+    public function ativar($id){
+
+      $date = Carbon::now();
+
+      regioes::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataAtivacao' => $date, 'dataInativacao' => '']);
+      return redirect()->route('listagem.regiao');
+
+    }
+
+    public function desativar($id){
+
+      $date = Carbon::now();
+
+      regioes::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $date, 'dataAtivacao' => '']);
+      return redirect()->route('listagem.regiao');
     }
 
 

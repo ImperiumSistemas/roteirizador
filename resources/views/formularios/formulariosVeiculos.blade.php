@@ -1,6 +1,6 @@
 <div class="input-field">
   <input type="number" required name="id" value="{{isset($veiculo->id) ? $veiculo->id : '' }}">
-  <label>ID</label>
+  <label>CODIGO VEICULO</label>
 </div>
 
 <div class="input-field">
@@ -39,10 +39,10 @@
 </div>
 
 <select multiple name="idFilial[]">
-   <option value="" disabled>Escolha um CNPJ</option>
+   <option value="" disabled>ESCOLHA AS FILIAIS</option>
     @foreach($filiais as $filial)
 
-      <option  value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->cnpj}}</option>
+      <option  value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->descricao}}</option>
 
     @endforeach
 

@@ -4,8 +4,11 @@
   <h2><center> TELA EDITAR REGIÃO </center></h2>
 </div>
 
+
+
 <div class="container">
   <div class="row">
+
       <form class="" method="post" action="{{route('layout.atualizarRota', $rota->id)}}">
         {{ csrf_field() }}
 
@@ -14,6 +17,7 @@
         @include('formularios.formularioRota')
 
         <button class="btn deep-orange">ATUALIZAR</button>
+        <a href="{{route('listagem.rota')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
 
       </form>
   </div>

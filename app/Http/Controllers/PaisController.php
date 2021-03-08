@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pais;
+use Carbon\Carbon;
 
 class PaisController extends Controller
 {
@@ -54,5 +55,18 @@ class PaisController extends Controller
 
       return redirect()->route('listagem.pais');
 
+    }
+
+    public function ativar($id){
+
+      Pais::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.pais');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+
+      Pais::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      return redirect()->route('listagem.pais');
     }
 }

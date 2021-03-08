@@ -38,3 +38,9 @@ ADD CONSTRAINT `fk_ENDERECO_PAIS1`
 ALTER TABLE `roteirizador`.`bairros` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `updated_at`;
 
+
+ALTER TABLE `roteirizador`.`bairros` 
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`,
+ADD COLUMN `dataAtivacao` VARCHAR(45) NULL AFTER `dataInativacao`;
+
+

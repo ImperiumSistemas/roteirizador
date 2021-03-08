@@ -77,7 +77,9 @@
                 </div>
             @endif
 
-            <div class="content">
+            <img src="logo.jpg" width="250px" height="250px">
+
+            <!--<div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
@@ -89,7 +91,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>

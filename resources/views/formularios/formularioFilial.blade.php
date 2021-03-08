@@ -34,6 +34,11 @@
   <label>CEP</label>
 </div>
 
+<div class="input-field">
+  <input type="text" name="descricao" value="{{isset($filiais->descricao) ? $filiais->descricao : '' }}">
+  <label>DESCRIÇÃO</label>
+</div>
+
 
 <divc class="input-field">
   <select name="EMPRESA_id">

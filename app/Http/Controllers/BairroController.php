@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bairros;
+use App\Enderecos;
 
 class BairroController extends Controller
 {
@@ -27,7 +28,7 @@ class BairroController extends Controller
 
       $dados = $req->all();
 
-      Bairros::create($dados);
+      Bairros::create($dados);localhhos
 
       return redirect()->route('listagem.bairros');
 
@@ -36,6 +37,7 @@ class BairroController extends Controller
     public function editar($id){
 
       $bairro = Bairros::find($id);
+      //dd($bairro);
 
       return view('layout.editarBairro', compact('bairro'));
 
