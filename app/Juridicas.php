@@ -9,6 +9,6 @@ class Juridicas extends Model
     //
     protected $fillable = [
 
-       'cnpj', 'razao_social'
+       'cnpj', 'razao_social', 'PESSOAS_id'
     ];
 }

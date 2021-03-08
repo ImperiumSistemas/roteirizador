@@ -12,6 +12,7 @@
         @include('formularios.formulariosEmpresa')
 
         <button class="btn deep-orange">SALVAR</button>
+        <a href="{{route('listagem.empresa')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
 
       </form>
   </div>

@@ -24,3 +24,8 @@ ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `idJuridica`;
 ALTER TABLE `roteirizador`.`pessoas` 
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `deleted_at`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+
+ALTER TABLE `roteirizador`.`pessoas` 
+ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `idJuridica`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;

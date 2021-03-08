@@ -1,9 +1,4 @@
 <div class="input-field">
-  <input type="number" name="id" value="{{isset($rota->id) ? $rota->id : '' }}">
-  <label>ID</label>
-</div>
-
-<div class="input-field">
   <input type="number" name="numeroPedagio" value="{{isset($rota->numeroPedagio) ? $rota->numeroPedagio : '' }}">
   <label>NUMERO PEDÁGIO</label>
 </div>
@@ -18,13 +13,23 @@
   <label>DESCRIÇÃO ROTA</label>
 </div>
 
+<label>Escolha uma região</label>
 <div class="input-field">
-  <select name="REGIAO_id">
-    <option value="">Escolha uma região</option>
 
+  <select name="REGIAO_id">
+    <option value=""></option>
     @foreach($regioes as $regiao)
       <option value="{{isset($regiao->id) ? $regiao->id : ''}}">{{$regiao->nomeRegiao}}</option>
     @endforeach
 
   </select>
+</div>
+
+<div>
+  <label>STATUS</label>
+  <select  name="status" >
+    <option value="S" >ATIVO</option>
+    <option value="N" >INATIVO</option>
+  </select>
+
 </div>

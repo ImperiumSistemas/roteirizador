@@ -82,3 +82,44 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
 ALTER TABLE `roteirizador`.`enderecos` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `rua` VARCHAR(45) NULL AFTER `id`,
+ADD COLUMN `bairro` VARCHAR(45) NULL AFTER `rua`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `PESSOAS_id`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP FOREIGN KEY `fk_ENDERECO_PAIS1`,
+DROP FOREIGN KEY `fk_ENDERECO_CIDADE1`,
+DROP FOREIGN KEY `fk_ENDERECO_BAIRRO1`;
+ALTER TABLE `roteirizador`.`enderecos` 
+DROP COLUMN `CIDADE_codCidade`,
+DROP COLUMN `PAIS_id`,
+DROP COLUMN `ESTADO_id`,
+DROP COLUMN `BAIRRO_cod_bairro`,
+ADD COLUMN `cidade` VARCHAR(45) NULL AFTER `numero`,
+ADD COLUMN `estado` VARCHAR(45) NULL AFTER `cidade`,
+ADD COLUMN `pais` VARCHAR(45) NULL AFTER `estado`,
+DROP INDEX `fk_ENDERECO_PAIS1_idx` ,
+DROP INDEX `fk_ENDERECO_BAIRRO1_idx` ,
+DROP INDEX `fk_ENDERECO_CIDADE1_idx` ;
+;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `latitude` VARCHAR(45) NULL AFTER `PESSOAS_id`,
+ADD COLUMN `longitude` VARCHAR(45) NULL AFTER `latitude`;
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `confirmado` VARCHAR(45) NULL AFTER `longitude`;
+
+
+ALTER TABLE `roteirizador`.`enderecos` 
+ADD COLUMN `cep` VARCHAR(20) NULL AFTER `confirmado`;
+

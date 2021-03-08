@@ -14,3 +14,7 @@ ALTER TABLE `roteirizador`.`juridicas`
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `deleted_at`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
+ALTER TABLE `roteirizador`.`juridicas` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `razao_social`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
+

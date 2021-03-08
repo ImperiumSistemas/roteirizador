@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pessoas extends Model
 {
     //
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $fillable = [
 
-       'nome', 'numero_telefone', 'idFisica', 'idJuridica'
+       'nome', 'numero_telefone'
     ];
 }

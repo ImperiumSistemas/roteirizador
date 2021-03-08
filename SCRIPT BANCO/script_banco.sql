@@ -213,6 +213,14 @@ CREATE TABLE IF NOT EXISTS `roteirizador`.`BAIRROS` (
   PRIMARY KEY (`cod_bairro`, `nomeBairro`))
 ENGINE = InnoDB;
 
+-------------------------------------------------------
+-- table 'Roteirizador' 'ESTADO
+-------------------------------------------------------
+
+create table estado(
+	id int not null primary key auto_increment, 
+    nomeEstado varchar(45)
+);
 
 -- -----------------------------------------------------
 -- Table `roteirizador`.`ENDERECOS`

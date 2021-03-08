@@ -8,3 +8,8 @@ CHANGE COLUMN `codCidade` `id` INT(11) NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `roteirizador`.`cidades` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
+
+
+ALTER TABLE `roteirizador`.`cidades` 
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`,
+ADD COLUMN `dataAtivacao` VARCHAR(45) NULL AFTER `dataInativacao`;

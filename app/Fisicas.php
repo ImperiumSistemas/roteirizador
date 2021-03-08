@@ -9,6 +9,6 @@ class Fisicas extends Model
     //
     protected $fillable = [
 
-       'cpf', 'rg'
+       'cpf', 'rg','PESSOAS_id'
     ];
 }

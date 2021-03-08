@@ -1,2 +1,15 @@
 ALTER TABLE `roteirizador`.`filiais_clientes` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `CLIENTE_id`;
+
+ALTER TABLE `roteirizador`.`filiais_clientes` 
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `deleted_at`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+ALTER TABLE `roteirizador`.`filiais_clientes` 
+DROP PRIMARY KEY;
+;
+
+
+ALTER TABLE `roteirizador`.`filiais_clientes` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `CLIENTE_id`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;

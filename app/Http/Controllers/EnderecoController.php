@@ -7,6 +7,11 @@ use App\Enderecos;
 use App\Pais;
 use App\Cidades;
 use App\Bairros;
+use App\Estados;
+use App\Rua;
+use App\Pessoas;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EnderecoController extends Controller
 {
@@ -14,7 +19,15 @@ class EnderecoController extends Controller
 
     public function listaEndereco(){
 
-      $enderecos = Enderecos::all();
+      //$enderecos = Enderecos::all();
+
+      $enderecos = DB::table('enderecos')
+      ->join('pais', 'enderecos.PAIS_id', '=', 'pais.id')
+      ->join('estados', 'enderecos.ESTADO_id', '=', 'estados.id')
+      ->join('cidades', 'enderecos.CIDADE_codCidade', '=', 'cidades.id')
+      ->select('enderecos.id', 'enderecos.ativoInativo as ativoInativo', 'enderecos.dataInativacao as dataInativacao',
+      'enderecos.bairro as bairro', 'enderecos.numero as numero', 'enderecos.rua as rua',
+      'pais.pais as nomePais', 'estados.nomeEstado as nomeEstado', 'cidades.nomeCidade as nomeCidade')->get();
 
       return view('listagem.listaEndereco', compact('enderecos'));
 
@@ -22,25 +35,21 @@ class EnderecoController extends Controller
 
     public function adicionar(){
 
-      return view('layout.adicionarEndereco');
+      $paises = Pais::all();
+      $cidades = Cidades::all();
+      $estados = Estados::all();
+      $pessoas = Pessoas::all();
+      $bairros = Bairros::all();
+      $ruas = Rua::all();
+
+      return view('layout.adicionarEndereco', compact('paises', 'cidades', 'bairro', 'estados', 'pessoas', 'bairros', 'ruas'));
     }
 
     public function salvar(Request $req){
 
-        $nomeCidade = $req->nomeCidade;
-        $nomeBairro = $req->nomeBairro;
-        $numero = $req->numero;
-        $nomePais = $req->pais;
+        $dados = $req->all();
 
-        Cidades::create(['nomeCidade' => $nomeCidade]);
-        Bairros::create(['nomeBairro' => $nomeBairro]);
-        Pais::create(['pais' => $nomePais]);
-
-        $idCidade = Cidades::all('id')->last();
-        $idBairro = Bairros::all('id')->last();
-        $idPais = Pais::all('id')->last();
-
-        Enderecos::create(['numero' => $numero, 'BAIRRO_cod_bairro' => "$idBairro->id", 'PAIS_id' => "$idPais->id", 'CIDADE_codCidade' => "$idCidade->id"]);
+        Enderecos::create($dados);
 
         return redirect()->route('listagem.endereco');
     }
@@ -48,11 +57,12 @@ class EnderecoController extends Controller
     public function editar($id){
 
         $endereco = Enderecos::find($id);
-        $bairro = Bairros::find($endereco->BAIRRO_cod_bairro);
-        $cidade = Cidades::find($endereco->CIDADE_codCidade);
-        $pais = Pais::find($endereco->PAIS_id);
+        $estados = Estados::find($endereco->ESTADO_id)->all();
+        $paises = Pais::find($endereco->PAIS_id)->all();
+        $cidades = Cidades::find($endereco->CIDADE_codCidade)->all();
+        $pessoas = Pessoas::find($endereco->PESSOAS_id)->all();
 
-        return view('layout.editarEndereco', compact('endereco', 'bairro', 'cidade', 'pais'));
+        return view('layout.editarEndereco', compact('endereco', 'estados', 'paises', 'cidades', 'pessoas'));
 
     }
 
@@ -61,17 +71,28 @@ class EnderecoController extends Controller
 
       $dados = $req->all();
 
-      $idCidade = Enderecos::find($id);
-      $idBairro = Enderecos::find($id);
-      $idPais = Enderecos::find($id);
-
       Enderecos::find($id)->update($dados);
-      Cidades::find($idCidade->CIDADE_codCidade)->update($dados);
-      Bairros::find($idBairro->BAIRRO_cod_bairro)->update($dados);
-      Pais::find($idPais->PAIS_id)->update($dados);
 
       return redirect()->route('listagem.endereco');
 
+    }
+
+    public function excluir($id){
+
+      Enderecos::find($id)->delete();
+
+      return redirect()->route('listagem.endereco');
+    }
+
+    public function ativar($id){
+      Enderecos::where('id', '=', $id)->update(['ativoInativo' => 1, 'dataInativacao' => '']);
+      return redirect()->route('listagem.endereco');
+    }
+
+    public function desativar($id){
+      $data = Carbon::now();
+      Enderecos::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
+      return redirect()->route('listagem.endereco');
     }
 
 

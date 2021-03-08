@@ -1,27 +1,18 @@
-
 <div class="input-field">
   <input type="number" name="id" value="{{isset($motorista->id) ? $motorista->id : '' }}">
-  <label>ID</label>
+  <label>REGISTRO MOTORISTA</label>
 </div>
 
-<div class="input-field">
-  <input type="text" name="cpf" value="{{isset($motorista->cpf) ? $motorista->cpf : '' }}">
-  <label>CPF</label>
-</div>
-
-<div class="input-field">
-  <input type="text" name="nome" value="{{isset($motorista->nome) ? $motorista->nome : '' }}">
-  <label>NOME</label>
-</div>
+<select name="PESSOAS_id">
+  <option value="" disabled>SELECIONE A PESSOA</option>
+  @foreach($pessoas as $pessoa)
+    <option value="{{$pessoa->id}}">{{$pessoa->nome}}</option>
+  @endforeach
+</select>
 
 <div class="input-field">
   <input type="date" name="data_admissao" value="{{isset($motorista->data_admissao) ? $motorista->data_admissao : '' }}">
   <label>DATA DE ADMISSAO</label>
-</div>
-
-<div class="input-field">
-  <input type="text" name="telefone" value="{{isset($motorista->telefone) ? $motorista->telefone : '' }}">
-  <label>TELEFONE</label>
 </div>
 
 <div class="input-field">
@@ -39,15 +30,10 @@
   <label>TIPO DE CONTRATO</label>
 </div>
 
-<div class="input-field">
-  <input type="text" name="PESSOAS_id" value="{{isset($motorista->PESSOAS_id) ? $motorista->PESSOAS_id : '' }}">
-  <label>COD PESSOA</label>
-</div>
-
 
   <select multiple name="idFilial[]">
-     <option value="" disabled>Escolha um CNPJ</option>
+     <option value="" disabled>NOME FILIAL</option>
       @foreach($filiais as $filial)
-        <option value="{{isset($filial->id) ? $filial->id : ''}}">{{$filial->cnpj}}</option>
+        <option value="{{$filial->id}}">{{$filial->descricao}}</option>
       @endforeach
     </select>

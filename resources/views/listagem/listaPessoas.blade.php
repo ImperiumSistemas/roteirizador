@@ -11,25 +11,116 @@
           <tr>
             <th>NOME</th>
             <th>TELEFONE</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>CNPJ</th>
+            <th>RAZÃO SOCIAL</th>
+            <th>TIPO</th>
+            <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>
             <th>DELETAR</th>
+            <th>SITUAÇÂO</th>
           </tr>
         </thead>
         <tbody>
 
-          @foreach($pessoas as $pessoa)
-            <tr>
-              <td>{{$pessoa->nome}}</td>
-              <td>{{$pessoa->numero_telefone}}</td>
-              <td>
-                <a class="btn deep-orange" href="{{route('layout.editarPessoa', $pessoa->id)}}">Editar</a>
-              </td>
-              <td>
-                <a class="btn red" href="{{route('layout.excluirPessoa', $pessoa->id)}}">Deletar</a>
-              </td>
-            </tr>
+          @if(empty($juridicaFisica->idFisica))
 
-          @endForeach
+            @foreach($pessoaFisica as $pessoa)
+              @if($pessoa->ativoInativo == 0)
+                <tr class="desativado">
+                  <td>{{$pessoa->nomePessoa}}</td>
+                  <td>{{$pessoa->numeroTelefone}}</td>
+                  <td>{{$pessoa->cpf}}</td>
+                  <td>{{$pessoa->rg}}</td>
+                  <td></td>
+                  <td></td>
+                  <td>FISICA</td>
+                  <td>{{$pessoa->dataInativacao}}</td>
+                  <td>
+                    <a class="btn deep-orange" href="{{route('layout.editarPessoa', $pessoa->id)}}">EDITAR</a>
+                  </td>
+                  <td>
+                    <a class="btn red" href="{{route('layout.excluirPessoa', $pessoa->id)}}">DELETAR</a>
+                  </td>
+                  <td>
+                    <a class="btn green" href="{{route('ativarPessoa', $pessoa->id)}}">ATIVAR</a>
+                  </td>
+                </tr>
+              @endif
+
+              @if($pessoa->ativoInativo == 1)
+                <tr>
+                  <td>{{$pessoa->nomePessoa}}</td>
+                  <td>{{$pessoa->numeroTelefone}}</td>
+                  <td>{{$pessoa->cpf}}</td>
+                  <td>{{$pessoa->rg}}</td>
+                  <td></td>
+                  <td></td>
+                  <td>FISICA</td>
+                  <td>{{$pessoa->dataInativacao}}</td>
+                  <td>
+                    <a class="btn deep-orange" href="{{route('layout.editarPessoa', $pessoa->id)}}">EDITAR</a>
+                  </td>
+                  <td>
+                    <a class="btn red" href="{{route('layout.excluirPessoa', $pessoa->id)}}">DELETAR</a>
+                  </td>
+                  <td>
+                    <a class="btn grey" href="{{route('desativarPessoa', $pessoa->id)}}">DESATIVAR</a>
+                  </td>
+                </tr>
+              @endif
+            @endForeach
+          @endif
+
+          @if(empty($juridicaFisica->idJuridica))
+
+            @foreach($pessoaJuridica as $pessoa)
+              @if($pessoa->ativoInativo == 0)
+                <tr class="desativado">
+                  <td>{{$pessoa->nomePessoa}}</td>
+                  <td>{{$pessoa->numeroTelefone}}</td>
+                  <td></td>
+                  <td></td>
+                  <td>{{$pessoa->cnpj}}</td>
+                  <td>{{$pessoa->razaoSocial}}</td>
+                  <td>JURIDICA</td>
+                  <td>{{$pessoa->dataInativacao}}</td>
+                  <td>
+                    <a class="btn deep-orange" href="{{route('layout.editarPessoa', $pessoa->id)}}">EDITAR</a>
+                  </td>
+                  <td>
+                    <a class="btn red" href="{{route('layout.excluirPessoa', $pessoa->id)}}">DELETAR</a>
+                  </td>
+                  <td>
+                    <a class="btn green" href="{{route('ativarPessoa', $pessoa->id)}}">ATIVAR</a>
+                  </td>
+                </tr>
+              @endif
+
+              @if($pessoa->ativoInativo == 1)
+                <tr>
+                  <td>{{$pessoa->nomePessoa}}</td>
+                  <td>{{$pessoa->numeroTelefone}}</td>
+                  <td></td>
+                  <td></td>
+                  <td>{{$pessoa->cnpj}}</td>
+                  <td>{{$pessoa->razaoSocial}}</td>
+                  <td>JURIDICA</td>
+                  <td>{{$pessoa->dataInativacao}}</td>
+                  <td>
+                    <a class="btn deep-orange" href="{{route('layout.editarPessoa', $pessoa->id)}}">EDITAR</a>
+                  </td>
+                  <td>
+                    <a class="btn red" href="{{route('layout.excluirPessoa', $pessoa->id)}}">DELETAR</a>
+                  </td>
+                  <td>
+                    <a class="btn grey" href="{{route('desativarPessoa', $pessoa->id)}}">DESATIVAR</a>
+                  </td>
+                </tr>
+              @endif
+            @endForeach
+          @endif
 
         </tbody>
       </table>

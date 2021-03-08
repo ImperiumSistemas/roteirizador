@@ -1,0 +1,13 @@
+create table estado(
+	id int not null primary key auto_increment, 
+    nomeEstado varchar(45)
+);
+
+
+ALTER TABLE `roteirizador`.`estados` 
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `nomeEstado`,
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`estados` 
+ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `nomeEstado`,
+ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
