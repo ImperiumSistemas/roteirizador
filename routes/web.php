@@ -50,6 +50,9 @@ Route:: put('layout/atualizar/{id}', ['as' => 'layout.atualizar', 'uses' =>'Fili
 Route:: get('layout/deleteFilial/{id}', ['as' =>'layoute.delete', 'uses' => 'FiliaisController@delete']);
 Route:: get('layout/desativarFilial/{id}', ['as' => 'desativarFilial', 'uses' => 'FiliaisController@desativar']);
 Route:: get('layout/ativarFilial/{id}', ['as' => 'ativarFilial', 'uses' => 'FiliaisController@ativar']);
+Route::get('confirmarEnderecoMapaFilial/{id}', ['as' => 'confirmarEnderecoMapaFilial', 'uses' => 'ConfirmaEndereco@mostrarMapaFilial']);
+Route::post('confirmaMapaFilial/{id}', ['as' => 'confirmaMapaFilial', 'uses' => 'ConfirmaEndereco@confirmaEnderecoFilial']);
+
 
 
 Route::get('/listagemEmpresa', ['as' => 'listagem.empresa', 'uses' => 'EmpresaController@listaEmpresa']);

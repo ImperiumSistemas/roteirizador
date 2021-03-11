@@ -58,23 +58,23 @@ var longitudejs = null;
                 //var coordenadas = {lat: -22.912869, lng: -43.228963};
 
 
-       			//console.log(latitude)
+            //console.log(latitude)
 
-		       var map = new google.maps.Map(document.getElementById('mapa'), {
-    				zoom: 15,
-    				center: location,
-    				mapTypeId: google.maps.MapTypeId.ROADMAP
-				});
+           var map = new google.maps.Map(document.getElementById('mapa'), {
+            zoom: 15,
+            center: location,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
-		        var myMarker = new google.maps.Marker({
-    				position: location,
-    				draggable: true
-				});
+            var myMarker = new google.maps.Marker({
+            position: location,
+            draggable: true
+        });
 
-				google.maps.event.addListener(myMarker, 'dragend', function (evt) {
-    				//document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
+        google.maps.event.addListener(myMarker, 'dragend', function (evt) {
+            //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
 
-    				document.getElementById('current').innerHTML = '<input type="text"  name="latitude" value="' + evt.latLng.lat().toFixed(3) + '"> <input type="text" name="longitude" value="' + evt.latLng.lng().toFixed(3) + '">'
+            document.getElementById('current').innerHTML = '<input type="text"  name="latitude" value="' + evt.latLng.lat().toFixed(3) + '"> <input type="text" name="longitude" value="' + evt.latLng.lng().toFixed(3) + '">'
                latitudejs = evt.latLng.lat().toFixed(3);
                longitudejs = evt.latLng.lng().toFixed(3);
 
@@ -86,19 +86,19 @@ var longitudejs = null;
             console.log(longitudejs);
 
 
-    		});
+        });
 
 
-					google.maps.event.addListener(myMarker, 'dragstart', function (evt) {
-    						document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>'; // zoom
-					});
+          google.maps.event.addListener(myMarker, 'dragstart', function (evt) {
+                document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>'; // zoom
+          });
 
-				map.setCenter(myMarker.position);
-				myMarker.setMap(map);
+        map.setCenter(myMarker.position);
+        myMarker.setMap(map);
 
-		    });
+        });
 
-		});
+    });
 
     $("#btnSaveLatLng").click(function() {
       $("#inpt-lat").val(latitudejs);
