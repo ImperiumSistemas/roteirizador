@@ -46,14 +46,14 @@ class ConfirmaEndereco extends Controller
         $dados = $req->all();
         $latitude = $dados['lat'];
         $longitude = $dados['lng'];
-
+        
         //$dadosBanco = Enderecos::where('PESSOAS_id', '=', $id)->get();
 
         $dadosBanco = Enderecos::where('PESSOAS_id', '=', $id)->first();
-        $informacaoBanco = Enderecos::find($dadosBanco->id);
+        //$informacaoBanco = Enderecos::find($dadosBanco->id);
 
-        $latitudeBanco = $informacaoBanco->latitude;
-        $longitudeBanco = $informacaoBanco->longitude;
+        //$latitudeBanco = $dadosBanco->latitude;
+      //  $longitudeBanco = $informacaoBanco->longitude;
 
         Enderecos::find($dadosBanco->id)->update(['latitude' => $latitude, 'longitude' => $longitude]);
 
