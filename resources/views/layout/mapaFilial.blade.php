@@ -33,6 +33,19 @@
         {{ csrf_field() }}
         <input type="hidden" id='inpt-lat' name='lat'/>
         <input type="hidden" id='inpt-lng' name='lng'/>
+        {{$latBancoTeste = $filial->latitude}}
+        {{$lng = $filial->latitude}}
+
+        <?php
+        if (empty($teste)){
+            echo 'A variável está vazia';
+        }
+        else {
+            echo 'O valor da variável é: '.$teste;
+        }
+
+        ?>
+
     </form>
 </section>
 
@@ -41,15 +54,20 @@
 <script>
     var latitudejs = null;
     var longitudejs = null;
-    var latBanco = {{isset($filial->latitude) ? $filial->latitude : ''}};
-    var lngBanco = {{isset($filial->longitude) ? $filial->longitude : ''}};
-    console.log(latBanco, lngBanco)
+    var latBanco = {{isset($filial->latitude) ? print($filial->latitude) : print('')}};
+    var lngBanco = {{isset($filial->longitude) ? print($filial->longitude) : print('')}};
+
+    if(latBanco == 1 && lngBanco == 1){
+        latBanco = '';
+        lngBanco = '';
+    }
+
     $(document).ready(function(){
         $.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address='+'<?php print $filial->cep; ?>'+'&key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk", function( response ) {
             let location = response.results[0].geometry.location;
 
-            console.log(location.lat);
-            console.log(location.lng);
+            //console.log(location.lat);
+            //console.log(location.lng);
 
             sessionStorage.setItem('routesData', JSON.stringify(response));
 
@@ -59,8 +77,8 @@
                     'lng': lngBanco
                 }
             }
-            console.log(location.lat);
-            console.log(location.lng);
+            //console.log(location.lat);
+            //console.log(location.lng);
 
             var map = new google.maps.Map(document.getElementById('mapa'), {
                 zoom: 15,
@@ -77,8 +95,8 @@
                 //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
                 latitudejs = evt.latLng.lat().toFixed(7);
                 longitudejs = evt.latLng.lng().toFixed(7);
-                console.log(latitudejs);
-                console.log(longitudejs);
+                //console.log(latitudejs);
+                //console.log(longitudejs);
             });
 
             google.maps.event.addListener(myMarker, 'dragstart', function(evt){
