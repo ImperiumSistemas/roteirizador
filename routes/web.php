@@ -189,4 +189,3 @@ Route::get('/home', 'LoginController@index');
 
 Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
 Route::get('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
-

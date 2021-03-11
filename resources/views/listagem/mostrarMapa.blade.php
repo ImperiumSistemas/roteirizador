@@ -43,10 +43,19 @@
 <script>
     var latitudejs = null;
     var longitudejs = null;
-    var latBanco = {{isset($endereco->latitude) ? $endereco->latitude : ''}};
-    var lngBanco = {{isset($endereco->longitude) ? $endereco->longitude : ''}};
+    var latBanco = {{isset($endereco->latitude) ? print($endereco->latitude) : print('')}};
+    var lngBanco = {{isset($endereco->longitude) ? print($endereco->longitude) : print('')}};
+
+    if(latBanco == 1 && lngBanco == 1){
+      latBanco = '';
+      lngBanco = '';
+    }
+
     console.log(latBanco, lngBanco)
+
     $(document).ready(function(){
+
+
         $.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address='+'<?php print $endereco->cep; ?>'+'&key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk", function( response ) {
             let location = response.results[0].geometry.location;
 
@@ -61,6 +70,7 @@
                     'lng': lngBanco
                 }
             }
+
             console.log(location.lat);
             console.log(location.lng);
 
@@ -104,7 +114,7 @@
 </script>
 
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk&callback=inicializar">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk&">
 </script>
 
 
