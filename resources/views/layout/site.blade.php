@@ -1,5 +1,5 @@
-@include('includes.newheader')
+@include('includes.header')
 
-@include('includes.newFooter')
+@include('includes.Footer')
 
 

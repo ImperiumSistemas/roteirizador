@@ -1,4 +1,4 @@
-@include('includes.header')
+@include('includes.headerold')
 
 
 <style>
@@ -36,15 +36,7 @@
         {{$latBancoTeste = $filial->latitude}}
         {{$lng = $filial->latitude}}
 
-        <?php
-        if (empty($teste)){
-            echo 'A variável está vazia';
-        }
-        else {
-            echo 'O valor da variável é: '.$teste;
-        }
 
-        ?>
 
     </form>
 </section>
@@ -117,9 +109,10 @@
         $("#inpt-lng").val(longitudejs);
         $("#form-save").submit();
     })
+
 </script>
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiw7Css05GJeM_isoB-UPpDOx9gpQNZLk&callback=inicializar">
 </script>
-@include('includes.footer')
+@include('includes.footerold')
