@@ -8,7 +8,16 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Filiais</h6>
+            <!--<h6 class="m-0 font-weight-bold text-primary">Filiais</h6>-->
+            <div class="row" >
+                <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
+                <a href="{{route('layout.adicionarFilial')}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+                    <span class="text">ADICIONAR FILIAL</span>
+                </a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">

@@ -10,9 +10,10 @@
     <meta name="author" content="">
 
     <title>MONTAGEM DE CARGA</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Custom fonts for this template-->
-    <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
@@ -56,9 +57,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li style="background-color: orange" class="nav-item active">
-                <a style="background-color: orange" class="nav-link" href="index.html">
-                    <i style="background-color: orange" class="fas fa-fw fa-tachometer-alt"></i>
-                    <span style="background-color: orange" >Dashboard</span></a>
+                <a style="background-color: orange" class="nav-link" href="{{route('site')}}">
+                    <i style="background-color: orange" class="fas fa-fw fa-home"></i>
+                    <span style="background-color: orange" >HOME</span></a>
             </li>
 
             <!-- Heading -->
@@ -112,12 +113,12 @@
 
 
             <!-- Heading -->
-            <div style="background-color: orange" class="sidebar-heading">
+            <!--<div style="background-color: orange" class="sidebar-heading">
                 Addons
-            </div>
+            </div>-->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li style="background-color: orange" class="nav-item">
+            <!--<li style="background-color: orange" class="nav-item">
                 <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
                     <i style="background-color: orange" class="fas fa-fw fa-folder"></i>
@@ -135,21 +136,21 @@
                         <a style="background-color: orange" class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Charts -->
-            <li style="background-color: orange" class="nav-item">
+            <!--<li style="background-color: orange" class="nav-item">
                 <a style="background-color: orange" class="nav-link" href="charts.html">
                     <i style="background-color: orange" class="fas fa-fw fa-chart-area"></i>
                     <span style="background-color: orange" >Charts</span></a>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Tables -->
-            <li style="background-color: orange" class="nav-item">
+            <!--<li style="background-color: orange" class="nav-item">
                 <a style="background-color: orange" class="nav-link" href="tables.html">
                     <i style="background-color: orange" class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li>-->
 
         </ul>
         <!-- End of Sidebar -->
