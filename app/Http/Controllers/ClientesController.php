@@ -9,10 +9,6 @@ use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
 use App\Enderecos;
-use App\Cidades;
-use App\Bairros;
-use App\Pais;
-use App\Estados;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -41,12 +37,12 @@ class ClientesController extends Controller
       $pracas = pracas::all();
       $filiais = Filiais::all();
       $enderecos = Enderecos::all();
-      $pais = Pais::all();
-      $estados = Estados::all();
-      $cidades = Cidades::all();
-      $bairros = Bairros::all();
+      //$pais = Pais::all();
+      //$estados = Estados::all();
+      //$cidades = Cidades::all();
+      //$bairros = Bairros::all();
 
-      return view('layout.adicionarCliente', compact('pessoas', 'pracas', 'filiais', 'enderecos', 'pais', 'estados', 'cidades', 'bairros'));
+      return view('layout.adicionarCliente', compact('pessoas', 'pracas', 'filiais', 'enderecos'));
     }
 
     public function salvar(Request $req){
