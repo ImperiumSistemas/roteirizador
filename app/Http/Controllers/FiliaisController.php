@@ -21,7 +21,7 @@ class FiliaisController extends Controller
       ->select('filiais.id','filiais.cnpj as cnpj', 'filiais.telefone as telefone', 'filiais.pais as pais', 'filiais.estado as estado',
       'filiais.cidade as cidade', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.descricao as descricao',
        'filiais.ativoInativo as ativoInativo', 'filiais.dataInativacao as dataInativacao',
-      'empresas.nome_empresa as nomeEmpresa')->get();
+      'empresas.nome_empresa as nomeEmpresa', 'filiais.rua as rua', 'filiais.numero as numero')->get();
 
       return view('listagem.listagemFiliais', compact('filiais'));
 

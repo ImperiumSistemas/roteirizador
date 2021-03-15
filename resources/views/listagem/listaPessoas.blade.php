@@ -1,14 +1,36 @@
 @include('includes.header')
 
-<div class="container">
+<div class="container-fluid">
 
-    <h3 ><center>LISTAGEM PESSOAS </center></h3>
-    <br/><br/>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">LISTAGEM PESSOAS</h1>
 
-    <div class="row">
-      <table>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!--<h6 class="m-0 font-weight-bold text-primary">Filiais</h6>-->
+    <div class="row" >
+      <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
+      <a href="{{route('layout.adicionarPessoaFisica', 1)}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+        <span class="text">ADICIONAR PESSOA FISICA</span>
+      </a>
+        <div><span class="text" style="color:whitesmoke">.....</span></div>
+      <a href="{{route('layout.adicionarPessoaFisica', 2)}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+        <span class="text">ADICIONAR PESSOA JURIDICA</span>
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
-          <tr>
+        <tr>
             <th>NOME</th>
             <th>TELEFONE</th>
             <th>CPF</th>
@@ -125,11 +147,9 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div>
 
-    <div class="row">
-      <a class="btn green" href="{{route('layout.adicionarPessoaFisica', 1)}}">ADICIONAR PESSOA FISICA</a>
-        <a class="btn green" href="{{route('layout.adicionarPessoaFisica', 2)}}">ADICIONAR PESSOA JURIDICA</a>
-    </div>
 </div>
 
 @include('includes.footer')
