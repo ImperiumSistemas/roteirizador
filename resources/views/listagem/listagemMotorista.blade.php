@@ -1,12 +1,25 @@
 @include('includes.header')
 
-<div class="container">
+<div class="container-fluid">
 
-    <h3 ><center>LISTAGEM DE MOTORISTAS </center></h3>
-    <br/><br/>
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">LISTAGEM MOTORISTAS</h1>
 
-    <div class="row">
-      <table>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row" >
+        <a href="{{route('layout.adicionarMotorista')}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+          <span class="text">ADICIONAR MOTORISTAS</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>NOME</th>
@@ -71,12 +84,12 @@
           @endForeach
 
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
+  </div>
 
-    <div class="row">
-      <a class="btn green" href="{{route('layout.adicionarMotorista')}}">ADICIONAR MOTORISTAS</a>
-    </div>
 </div>
+
 
 @include('includes.footer')
