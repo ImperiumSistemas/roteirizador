@@ -168,6 +168,15 @@ Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'use
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
 
+Route::get('layout/listagemProdutos', ['as' => 'listagem.produtos', 'uses' => 'ProdutosController@listaProdutos']);
+Route::get('layout/adicionarProduto',['as' => 'layout.adicionarProduto', 'uses' => 'ProdutosController@adicionar']);
+Route::post('layout/salvarProdutos', ['as' => 'layout.salvarProdutos', 'uses' => 'ProdutosController@salvar']);
+Route::get('layout/editarProdutos/{id}', ['as' => 'layout.editarProdutos', 'uses' => 'ProdutosController@editar']);
+Route::put('layout/atualizarProduto/{id}', ['as' => 'layout.atualizarProduto', 'uses' => 'ProdutosController@atualizar']);
+Route::get('layout/excluirProduto/{id}', ['as' => 'layout.excluirProdutos', 'uses' => 'ProdutosController@excluir']);
+Route::get('layout/ativarProduto/{id}', ['as' => 'ativarProduto', 'uses' => 'ProdutosController@ativar']);
+Route::get('layout/desativarProduto/{id}', ['as' => 'desativarProduto', 'uses' => 'ProdutosController@desativar']);
+
 
 Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'uses' => 'ConfirmaEndereco@lista']);
 Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);

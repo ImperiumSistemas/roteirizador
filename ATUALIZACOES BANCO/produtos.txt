@@ -1,0 +1,15 @@
+create table produtos(
+	id int primary key,
+    codProduto int,
+    descricao varchar(50),
+    cubagem varchar(15),
+    peso varchar(15)
+);
+ALTER TABLE `roteirizador`.`produtos` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `roteirizador`.`produtos` 
+ADD COLUMN `ativoInativo` VARCHAR(45) NULL AFTER `peso`,
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`,
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `dataInativacao`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
