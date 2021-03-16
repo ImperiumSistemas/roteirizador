@@ -58,7 +58,7 @@ class FiliaisController extends Controller
     }
 
     public function atualizar(Request $req, $id){
-      dd($id);
+
       $dados = $req->all();
 
       Filiais::find($id)->update($dados);

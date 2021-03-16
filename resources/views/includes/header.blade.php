@@ -105,8 +105,7 @@
                      data-parent="#accordionSidebar">
                     <div  class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">MONTAGEM CARGA:</h6>
-                        <a href="{{route('listagem.regiao')}}" class="collapse-item" >MONTAR CARGA</a>
-
+                        <a href="{{route('filtros')}}" class="collapse-item" >MONTAR CARGA</a>
                     </div>
                 </div>
             </li>

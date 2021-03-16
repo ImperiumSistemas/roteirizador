@@ -128,6 +128,8 @@ Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'u
 Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
 Route::post('confirmaMapa/{id}', ['as' => 'confirmaMapa', 'uses' => 'ConfirmaEndereco@confirmaEndereco']);
 
+
+
 // LOGIN
 
 Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);
@@ -143,4 +145,8 @@ Route::get('/home', 'LoginController@index');
 
 
 Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
-Route::get('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+
+
+
+Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);

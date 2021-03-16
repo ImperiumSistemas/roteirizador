@@ -9,7 +9,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <!--<h6 class="m-0 font-weight-bold text-primary">Filiais</h6>-->
-            <div class="row" >
+            <div class="row">
                 <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
                 <a href="{{route('layout.adicionarFilial')}}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
@@ -61,7 +61,8 @@
                                     <a class="btn green" href="{{route('ativarFilial', $filial->id)}}">ATIVAR</a>
                                 </td>
                                 <td>
-                                    <a class="btn green" href="{{route('confirmarEnderecoMapaFilial', $filial->id)}}">CONFIRMAR ENDEREÇO</a>
+                                    <a class="btn green" href="{{route('confirmarEnderecoMapaFilial', $filial->id)}}">CONFIRMAR
+                                        ENDEREÇO</a>
                                 </td>
                             </tr>
                         @endif
@@ -81,7 +82,8 @@
                                     <a class="btn grey" href="{{route('desativarFilial', $filial->id)}}">DESATIVAR</a>
                                 </td>
                                 <td>
-                                    <a class="btn green" href="{{route('confirmarEnderecoMapaFilial', $filial->id)}}">CONFIRMAR ENDEREÇO</a>
+                                    <a class="btn green" href="{{route('confirmarEnderecoMapaFilial', $filial->id)}}">CONFIRMAR
+                                        ENDEREÇO</a>
                                 </td>
                             </tr>
                         @endif
@@ -93,7 +95,6 @@
     </div>
 
 </div>
-
 
 
 @include('includes.footer')
