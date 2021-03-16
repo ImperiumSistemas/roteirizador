@@ -16,30 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tipo_veiculos`
+-- Table structure for table `regioes`
 --
 
-DROP TABLE IF EXISTS `tipo_veiculos`;
+DROP TABLE IF EXISTS `regioes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipo_veiculos` (
+CREATE TABLE `regioes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) DEFAULT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
+  `nomeRegiao` varchar(45) DEFAULT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(45) DEFAULT NULL,
+  `dataAtivacao` varchar(45) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipo_veiculos`
+-- Dumping data for table `regioes`
 --
 
-LOCK TABLES `tipo_veiculos` WRITE;
-/*!40000 ALTER TABLE `tipo_veiculos` DISABLE KEYS */;
-INSERT INTO `tipo_veiculos` VALUES (1,'Grande',NULL,NULL,NULL),(2,'Medio',NULL,NULL,NULL),(3,'Pequeno',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `tipo_veiculos` ENABLE KEYS */;
+LOCK TABLES `regioes` WRITE;
+/*!40000 ALTER TABLE `regioes` DISABLE KEYS */;
+INSERT INTO `regioes` VALUES (1,'teste','1',NULL,NULL,'2021-03-08 14:16:13','2021-03-08 14:16:13',NULL);
+/*!40000 ALTER TABLE `regioes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:40
+-- Dump completed on 2021-03-16 11:35:15

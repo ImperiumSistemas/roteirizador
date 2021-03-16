@@ -16,41 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais`
+-- Table structure for table `login`
 --
 
-DROP TABLE IF EXISTS `filiais`;
+DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais` (
+CREATE TABLE `login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(14) NOT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
-  `pais` varchar(45) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `cidade` varchar(45) NOT NULL,
-  `bairro` varchar(45) NOT NULL,
-  `cep` varchar(45) NOT NULL,
-  `descricao` varchar(45) DEFAULT NULL,
-  `EMPRESA_id` int(11) DEFAULT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_FILIAL_EMPRESA1_idx` (`EMPRESA_id`),
-  CONSTRAINT `fk_FILIAL_EMPRESA1` FOREIGN KEY (`EMPRESA_id`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  `usuario` varchar(50) DEFAULT NULL,
+  `senha` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais`
+-- Dumping data for table `login`
 --
 
-LOCK TABLES `filiais` WRITE;
-/*!40000 ALTER TABLE `filiais` DISABLE KEYS */;
-INSERT INTO `filiais` VALUES (13,'115421','319954781','Brasil','1','Contagem','Tere','32681-592','EMPRESA X',11,'1','','2021-03-05 17:40:11','2021-01-19 23:27:47'),(15,'111','3155111211','Brasil','MG','Betim','Tere','32681592','Imperium',11,'1','','2021-03-08 13:56:21','2021-02-04 19:32:49');
-/*!40000 ALTER TABLE `filiais` ENABLE KEYS */;
+LOCK TABLES `login` WRITE;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:43
+-- Dump completed on 2021-03-16 11:35:17

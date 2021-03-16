@@ -16,31 +16,45 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ruas`
+-- Table structure for table `pedidos`
 --
 
-DROP TABLE IF EXISTS `ruas`;
+DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ruas` (
+CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeRua` varchar(50) DEFAULT NULL,
+  `codPedido` varchar(15) DEFAULT NULL,
+  `codCliente` varchar(45) DEFAULT NULL,
+  `nomePedido` varchar(45) DEFAULT NULL,
+  `peso` varchar(10) DEFAULT NULL,
+  `cubagem` varchar(15) DEFAULT NULL,
+  `valorPedido` varchar(10) DEFAULT NULL,
+  `codFilial` varchar(15) DEFAULT NULL,
+  `cargaErp` varchar(50) DEFAULT NULL,
+  `codPraca` int(11) DEFAULT NULL,
+  `dataPedido` varchar(10) DEFAULT NULL,
+  `podeFormarCarga` varchar(1) DEFAULT NULL,
+  `statusPedido` varchar(15) DEFAULT NULL,
   `ativoInativo` varchar(45) DEFAULT NULL,
   `dataInativacao` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `codCliente` (`codCliente`),
+  KEY `codPraca` (`codPraca`),
+  KEY `codFilial` (`codFilial`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ruas`
+-- Dumping data for table `pedidos`
 --
 
-LOCK TABLES `ruas` WRITE;
-/*!40000 ALTER TABLE `ruas` DISABLE KEYS */;
-INSERT INTO `ruas` VALUES (1,'Augusto Severo','1','',NULL,'2021-03-03 13:32:54'),(5,'Avenida Belo Horizonte','1','','2021-03-02 18:50:14','2021-03-02 18:50:17');
-/*!40000 ALTER TABLE `ruas` ENABLE KEYS */;
+LOCK TABLES `pedidos` WRITE;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (4,'1515','1010','1010','1010','1010','1010','1010','1010',1010,'1010','s',NULL,'1','','2021-03-09 17:32:55','2021-03-16 13:43:11'),(5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-03-09 17:34:05','2021-03-09 17:34:05'),(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-03-09 17:34:17','2021-03-09 17:34:17'),(7,'5050','1010','1010','1010','1010','1010','1010','1010',1010,'1010','s',NULL,'1','','2021-03-09 17:37:19','2021-03-09 17:37:26');
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-16 11:35:18
+-- Dump completed on 2021-03-16 11:35:19

@@ -32,7 +32,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Anderson','anderson@anderson.com.br','$2y$10$Wah7pab5I2TqOd0Wr3fZMOaL9M3xaGG1.QlecBNNioq84ylrn9AL.','tUgqilHMUIOj3ngO6AsNM25M7w4EHWMfrlHkeWPIXNffRwXaacd1HOWx7eYo','2021-02-04 22:26:20','2021-02-04 22:26:20'),(2,'Imperium','imperium@imperium.com.br','$2y$10$C/9WSRDgZUWrSiNzOvARief474AL5PPOb1Ytw/vNdFUt/1wrI3wh.','bvhDERuvgJ4NZvSvRHIe6zSUYDyn6nNrmcpyFvmRJDorFAgDwz6RBWOmMBKB','2021-02-08 22:28:50','2021-02-08 22:28:50'),(3,'Anderson','anderson@anderson.com','$2y$10$wJwcJZj0VDutzxE1jGrn5O3S0XnAh2.uxUaPqjAKgIWmbv8hoEltS','my49vI5eONOPN5RIzHFgPp3VwYoHT2Jokn6AaI58SxioPZAvhZhOKL4sAXBl','2021-02-24 19:34:48','2021-02-24 19:34:48');
+INSERT INTO `users` VALUES (1,'Anderson','anderson@anderson.com.br','$2y$10$Wah7pab5I2TqOd0Wr3fZMOaL9M3xaGG1.QlecBNNioq84ylrn9AL.','550H3jtfnCUFhIWhdjiWaWqGPsTJUywlbAewfZwajA7EeySwLh9LkJ8g6Hhl','2021-02-04 22:26:20','2021-02-04 22:26:20'),(2,'Imperium','imperium@imperium.com.br','$2y$10$C/9WSRDgZUWrSiNzOvARief474AL5PPOb1Ytw/vNdFUt/1wrI3wh.','bvhDERuvgJ4NZvSvRHIe6zSUYDyn6nNrmcpyFvmRJDorFAgDwz6RBWOmMBKB','2021-02-08 22:28:50','2021-02-08 22:28:50'),(3,'Anderson','anderson@anderson.com','$2y$10$wJwcJZj0VDutzxE1jGrn5O3S0XnAh2.uxUaPqjAKgIWmbv8hoEltS','P0h9Q4wEQP0UTPrtYYV2M2IY81crZtIEnfLRs3FKiy27pS0QrqYkHcu74Fo7','2021-02-24 19:34:48','2021-02-24 19:34:48'),(4,'Anderson Alves','anderson123@gmail.com','$2y$10$4H8IRyHdl74CgQDQqLwasuPjHGqkVxqbMwnpIwq55Oy69Px4bPtOa',NULL,'2021-03-10 15:23:23','2021-03-10 15:23:23'),(5,'Anderson Alves','a@a.com.br','$2y$10$VvzOYQVXogCpKrDEnE6wWOuCaxR3pEwAeUSIeUuCeaPGWCDKvcOZ2',NULL,'2021-03-15 16:46:06','2021-03-15 16:46:06');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:39
+-- Dump completed on 2021-03-16 11:35:15
