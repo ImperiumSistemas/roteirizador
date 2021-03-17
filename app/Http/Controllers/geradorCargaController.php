@@ -55,12 +55,15 @@ class geradorCargaController extends Controller
     public function gerarCarga(Request $req)
     {
         $idFilial = $req->filial_id;
+        $idFilial = $req->filial_id;
         $pracas = $req->idPracas;
-
+        $rotas = $req->idRotas;
+        $regioes = $req->idRegioes;
 
         //$DbPraca = Pracas::wherein('id', $pracas)->get();  Como fazer o select com whereIN e fazer isso com pedidos para filtrar
         $pedidos = Pedidos::where('codFilial', '=',$idFilial)
                             ->where('podeFormarCarga','=','S')
+                            ->wherein('codPraca', $pracas)
                             ->get();
         //dd($pedidos);
 
@@ -76,7 +79,7 @@ class geradorCargaController extends Controller
             $coords = array("lat"=>$endereco->lat, "lng"=>$endereco->lng);
             $endCliente = $endereco->rua.", ".$endereco->numero.", ".$endereco->bairro.", ".$endereco->cidade;
             $dimens = array( "weight" => "100","cubage" => "1000");
-        $deliveres= array("id"=>$pedido->id,"address"=>$endCliente,"coords"=>$coords,"dimens" =>$dimens);
+        $deliveres[]= array("id"=>$pedido->id,"address"=>$endCliente,"coords"=>$coords,"dimens" =>$dimens);
         }
 
         $endFilial = $dadosFiliais->rua.", ".$dadosFiliais->numero.", ".$dadosFiliais->bairro.", ".$dadosFiliais->cidade;
@@ -92,7 +95,9 @@ class geradorCargaController extends Controller
                 "deliveries" =>$deliveres
             ]
         ];
-        dd($arr);
+
+
+        //dd($arr);
         try {
 
             $response = $this->api->POST('http://localhost:3000/roteirizador', [
@@ -106,13 +111,17 @@ class geradorCargaController extends Controller
                 echo Psr7\str($e->getResponse());
             }
         }
-        echo $response->getBody();
+        //echo $response->getBody();
+        $resposta = $response->getBody();
+        //dd($response);
+        return view('layout.mapa', compact('resposta'));
+
     }
 
 
     public function arrExemplo()
     {
-        $arr = [
+        $arrr = [
             "data" => [
                 "cd" => [
                     "address" => "Avenida Visconde De Ibituruna, 399, Barreiro, Belo Horizonte",

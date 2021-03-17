@@ -15,17 +15,21 @@
     </div>
 
     <div class="container-fluid">
-        <form class="" method="post" action="{{route('gerarCarga')}}">
+        <form id='filtrosForm' class="" method="post" action="{{route('gerarCarga')}}">
             {{ csrf_field() }}
             @include('formularios.formularioFiltros')
-
             <div align="middle">
                 <p class="mb-4"></p>
                 <p class="mb-4"></p>
-                <button class="btn btn-success btn-icon-split-lg">Gerar Cargas</button>
+                <button class="btn btn-success btn-icon-split-lg" id="gerarCarga">Gerar Cargas</button>
             </div>
+
         </form>
+
     </div>
+
+
+
 
 @include('includes.Footer')
 

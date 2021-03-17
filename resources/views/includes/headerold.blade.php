@@ -35,12 +35,6 @@
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
               <li><a href="{{route('listagem.confirmaEndereco')}}">CONFIRMAR ENDEREÇO</a></li>
-              <!--<li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li> -->
-              <!--<li><a href="{{route('listagem.rua')}}">RUA</a></li>-->
-              <!--<li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li>-->
-              <!--<li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
-              <li><a href="{{route('listagem.estado')}}">ESTADO</a></li>
-              <li><a href="{{route('listagem.pais')}}">PAIS</a></li>-->
             <li class="divider"></li>
               <li><a href="{{route('listagem.praca')}}">PRAÇA</a></li>
               <li><a href="{{route('listagem.rota')}}">ROTA</a></li>
@@ -57,16 +51,13 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="/site">HOME</a></li>
-              <!--<li><a href="{{route('listagem.veiculo')}}">VEICULOS</a></li>
+              <li><a href="{{route('listagem.veiculo')}}">VEICULOS</a></li>
             <li><a href="{{route('listagem.motorista')}}">MOTORISTA</a></li>
             <li><a href="{{route('listagem.filiais')}}">FILIAIS</a></li>
             <li><a href="{{route('listagem.empresa')}}">EMPRESAS</a></li>
             <li><a href="{{route('listagem.praca')}}">PRAÇA</a></li>
             <li><a href="{{route('listagem.rota')}}">ROTA</a></li>
             <li><a href="{{route('listagem.regiao')}}">REGIÃO</a></li>
-            <li><a href="{{route('listagem.cidade')}}">CIDADES</a></li>
-            <li><a href="{{route('listagem.pais')}}">PAIS</a></li>
-            <li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li>
             <li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li>
             <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
             <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>-->

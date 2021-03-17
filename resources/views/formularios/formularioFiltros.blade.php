@@ -29,14 +29,14 @@
 
 <div>
     <label>Selecione as Rotas: </label>
-    <select class ="custom-select-lg" multiple name="idPracas[]">
+    <select class ="custom-select-lg" multiple name="idRotas[]">
         @foreach($rotas as $rota)
             <option selected value="{{isset($rota->id) ? $rota->id : ''}}">{{$rota->descricaoRota}}</option>
         @endforeach
     </select>
 
     <label>Selecione as Região: </label>
-    <select class ="custom-select-lg" multiple name="idPracas[]">
+    <select class ="custom-select-lg" multiple name="idRegioes[]">
         @foreach($regioes as $regiao)
             <option selected value="{{isset($regiao->id) ? $regiao->id : ''}}">{{$regiao->nomeRegiao}}</option>
         @endforeach
