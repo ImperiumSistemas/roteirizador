@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="{{ asset('css/mapa.css') }}" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    --><script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 
@@ -35,6 +36,7 @@
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
               <li><a href="{{route('listagem.confirmaEndereco')}}">CONFIRMAR ENDEREÇO</a></li>
+              <li><a href="{{route('listagem.niveisAcessos')}}">NIVEIS DE ACESSOS</a></li>
               <li><a href="{{route('listagem.produtos')}}">PRODUTOS</a></li>
               <!--<li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li> -->
               <!--<li><a href="{{route('listagem.rua')}}">RUA</a></li>-->
@@ -50,11 +52,12 @@
       <nav>
           <div class="nav-wrapper deep-orange">
             <img src="/logo.jpg" alt="some text" width=80 height=64>
-          <a href="#!" class="brand-logo">MONTAGEM DE CARGA</a>
+
           USUARIO LOGADO:
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{ Auth::user()->name }} <span class="caret"></span>
           </a>
+          <a href="#!" class="brand-logo" style="margin-left: 200px;">MONTAGEM DE CARGA</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="/site">HOME</a></li>
