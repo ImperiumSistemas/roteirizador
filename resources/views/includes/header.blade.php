@@ -35,6 +35,7 @@
               <li><a href="{{route('listagem.motorista')}}">MOTORISTA</a></li>
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
+              <li><a href="{{route('layout.adicionarUsuario')}}">USUÁRIOS</a></li>
               <li><a href="{{route('listagem.confirmaEndereco')}}">CONFIRMAR ENDEREÇO</a></li>
               <li><a href="{{route('listagem.niveisAcessos')}}">NIVEIS DE ACESSOS</a></li>
               <li><a href="{{route('listagem.produtos')}}">PRODUTOS</a></li>
