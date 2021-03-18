@@ -5,6 +5,7 @@
 
 <script src="../css/jquery/jquery.min.js"></script>
 <script src="../css/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../css/bootstrap/scss/_buttons.scss"></script>
 <script src="../css/jquery-easing/jquery.easing.min.js"></script>
 <script src="../css/chart.js/Chart.min.js"></script>
 
@@ -19,9 +20,9 @@
 <script src="../css/datatables/jquery.dataTables.min.js"></script>
 <script src="../css/datatables/dataTables.bootstrap4.min.js"></script>
 
-<script src="../js/demo/datatables-demo.js"></script>
+<script src="../js/demo/datatables-demo.js"></script
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 
 
 
