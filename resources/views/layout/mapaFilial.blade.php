@@ -9,42 +9,39 @@
     #current {
         padding-top: 25px;
     }
-</style>
-<div>
-<table>
-    <tr style="border-bottom: 0px">
-        <td>Filial: {{$filial->descricao}}</td>
-    </tr>
-    <tr style="border-bottom: 0px">
-        <td>Endereço: Rua {{$filial->rua}}, bairro {{$filial->bairro}}, numero {{$filial->numero}}, cep {{$filial->cep}}, cidade {{$filial->cidade}},
-            estado {{$filial->estado}}, pais {{$filial->pais}}</td>
-        <td>
-            <button id='btnSaveLatLng' class="btn btn-primary">SALVAR</button>
-            <a href="{{route('listagem.filiais')}}" class="btn deep-green">VOLTAR LISTAGEM</a>
-        </td>
-    </tr>
 
-</table>
-</div>
+</style>
+
+
+<div class ="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Filial: {{$filial->descricao}}</h1>
+    <p class="mb-4">
+        Endereço: Rua {{$filial->rua}}, bairro {{$filial->bairro}}, numero {{$filial->numero}}, cep {{$filial->cep}}, cidade {{$filial->cidade}},
+        estado {{$filial->estado}}, pais {{$filial->pais}}
+    </p>
+    <div align="right">
+        <button id='btnSaveLatLng' class="btn btn-primary" >SALVAR</button>
+
+        <a href="{{route('listagem.filiais')}}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+            <span class="text">LISTAGEM</span>
+        </a>
+    </div>
+
 <body>
 <section>
-    <div id='mapa'></div>
+    <div class ="container-fluid">
+        <p class="mb-4"></p>
+    </div>
+    <div id='mapa' class ="container-fluid"></div>
     <form id='form-save' action="{{route('confirmaMapaFilial', $filial->id)}}" method="post">
         {{ csrf_field() }}
         <input type="hidden" id='inpt-lat' name='lat'/>
         <input type="hidden" id='inpt-lng' name='lng'/>
-        {{$latBancoTeste = $filial->latitude}}
-        {{$lng = $filial->latitude}}
 
-        <?php
-        if (empty($teste)){
-            echo 'A variável está vazia';
-        }
-        else {
-            echo 'O valor da variável é: '.$teste;
-        }
 
-        ?>
 
     </form>
 </section>
@@ -117,6 +114,7 @@
         $("#inpt-lng").val(longitudejs);
         $("#form-save").submit();
     })
+
 </script>
 
 <script async defer
