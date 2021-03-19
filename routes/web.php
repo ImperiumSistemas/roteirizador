@@ -177,6 +177,17 @@ Route::get('layout/excluirProduto/{id}', ['as' => 'layout.excluirProdutos', 'use
 Route::get('layout/ativarProduto/{id}', ['as' => 'ativarProduto', 'uses' => 'ProdutosController@ativar']);
 Route::get('layout/desativarProduto/{id}', ['as' => 'desativarProduto', 'uses' => 'ProdutosController@desativar']);
 
+Route::get('listagem/niveisAcessos', ['as' => 'listagem.niveisAcessos', 'uses' => 'NiveisAcessoController@listaniveisAcesso']);
+Route::get('layout/adicionarNivelAcesso', ['as' => 'layout.adicionarNivelAcesso', 'uses' => 'NiveisAcessoController@adicionar']);
+Route::post('layout/salvarNivelAcesso', ['as' => 'layout.salavarNivelAcesso', 'uses' => 'NiveisAcessoController@salvar']);
+Route::get('layout/editarNivelAcesso/{id}', ['as' => 'layout.editarNivelAcesso', 'uses' => 'NiveisAcessoController@editar']);
+Route::put('layout/atualizarNivelAcesso/{id}', ['as' => 'layout.atualizarNivelAcesso', 'uses' => 'NiveisAcessoController@atualizar']);
+Route::get('layout/excluirNivelAcesso/{id}', ['as' => 'layout.excluirNivelAcesso', 'uses' => 'NiveisAcessoController@excluir']);
+Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'NiveisAcessoController@permissaoAcesso']);
+Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'NiveisAcessoController@salvarPermissao']);
+
+Route::get('layout/adicionarUsuario', ['as' => 'layout.adicionarUsuario', 'uses' => 'UsuarioController@adicionar']);
+Route::post('layout/salvarUsuario', ['as' => 'layout.salvarUsuario', 'uses' => 'UsuarioController@salvar']);
 
 Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'uses' => 'ConfirmaEndereco@lista']);
 Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
