@@ -81,6 +81,8 @@
                         <h6  class="collapse-header">SISTEMA:</h6>
                         <a href="{{route('listagem.empresa')}}" class="collapse-item" >EMPRESAS</a>
                         <a href="{{route('listagem.filiais')}}" class="collapse-item" >FILIAIS</a>
+                        <a href="{{route('layout.adicionarUsuario')}}" class="collapse-item" >USUARIOS</a>
+                        <a href="{{route('listagem.niveisAcessos')}}" class="collapse-item" >NIVEIS DE ACESSO</a>
                         <h6  class="collapse-header">VEÍCULO:</h6>
                         <a href="{{route('listagem.veiculo')}}" class="collapse-item" >VEÍCULOS</a>
                         <h6  class="collapse-header">PESSOA:</h6>
