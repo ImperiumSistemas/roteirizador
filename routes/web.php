@@ -182,6 +182,15 @@ Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'u
 Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
 Route::post('confirmaMapa/{id}', ['as' => 'confirmaMapa', 'uses' => 'ConfirmaEndereco@confirmaEndereco']);
 
+Route::get('listagem/pedidos', ['as' => 'listagem.pedidos', 'uses' => 'PedidosController@listaCliente']);
+Route::get('layout/adicionarPedido', ['as' => 'layout.adicionarPedido', 'uses' => 'PedidosController@adicionar']);
+Route::post('layout/salvarPedido', ['as' => 'layout.salvarPedido', 'uses' => 'PedidosController@salvar']);
+Route::get('layout/editarPedido/{id}', ['as' => 'layout.editarPedido', 'uses' => 'PedidosController@editar']);
+Route::put('layout/atualizarPedido/{id}', ['as' => 'layout.atualizarPedido', 'uses' => 'PedidosController@atualizar']);
+Route::get('layout/excluirPedido/{id}', ['as' => 'layout.excluirPedido', 'uses' => 'PedidosController@excluir']);
+Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'PedidosController@ativarPedido']);
+Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
+
 // LOGIN
 
 Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);

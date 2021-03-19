@@ -8,3 +8,6 @@ ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `created_at`;
 ALTER TABLE `roteirizador`.`pracas` 
 ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `ROTA_id`,
 ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
+
+ALTER TABLE `roteirizador`.`pracas` 
+ADD COLUMN `codPraca` VARCHAR(45) NULL AFTER `id`;

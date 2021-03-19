@@ -35,7 +35,11 @@
               <li><a href="{{route('listagemCliente')}}">CLIENTES</a></li>
               <li><a href="{{route('listagem.pessoas')}}">PESSOAS</a></li>
               <li><a href="{{route('listagem.confirmaEndereco')}}">CONFIRMAR ENDEREÇO</a></li>
+
               <li><a href="{{route('listagem.produtos')}}">PRODUTOS</a></li>
+
+              <li><a href="{{route('listagem.pedidos')}}">PEDIDOS</a></li>
+
               <!--<li><a href="{{route('listagem.endereco')}}">ENDERECO</a></li> -->
               <!--<li><a href="{{route('listagem.rua')}}">RUA</a></li>-->
               <!--<li><a href="{{route('listagem.bairros')}}">BAIRROS</a></li>-->

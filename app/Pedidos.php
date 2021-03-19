@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pedidos extends Model
 {
     //
+
     protected $fillable = [
-      'id', 'codPedido', 'codCliente', 'nomePedido', 'peso', 'cubagem', 'valorPedido', 'codFilial', 'cargaErp', 'codPraca', 'dataPedido', 'pode formarCarga', 'statusPedido'
+
+        'id', 'codPedido', 'codCliente', 'nomePedido', 'peso', 'cubagem', 'valorPedido', 'codFilial', 'cargaErp', 'codPraca',
+        'dataPedido', 'podeFormarCarga', 'statusPedido', 'ativoInativo', 'dataInativacao'
+
     ];
 }
