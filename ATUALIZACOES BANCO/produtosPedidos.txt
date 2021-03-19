@@ -1,0 +1,11 @@
+create table produtosPedidos(
+	id int not null auto_increment primary key,
+    codProduto int,
+    codPedido int 
+);
+
+alter table produtosPedidos 
+add foreign key(codProduto) references produtos;
+
+alter table produtosPedidos
+add foreign key(codPedido) references pedidos;

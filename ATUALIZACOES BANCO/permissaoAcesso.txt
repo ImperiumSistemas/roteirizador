@@ -1,0 +1,4 @@
+create table permissaoAcesso(
+	id int primary key not null auto_increment, 
+    descricao varchar(50)
+);

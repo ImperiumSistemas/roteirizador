@@ -1,20 +1,20 @@
-<div class="input-field">
+<div class="form-control-lg">
   <input type="number" name="numeroPedagio" value="{{isset($rota->numeroPedagio) ? $rota->numeroPedagio : '' }}">
   <label>NUMERO PEDÁGIO</label>
 </div>
 
-<div class="input-field">
+<div class="form-control-lg">
   <input type="number" name="gastoPedagio" value="{{isset($rota->gastoPedagio) ? $rota->gastoPedagio : '' }}">
   <label>GASTO PEDÁGIO</label>
 </div>
 
-<div class="input-field">
+<div class="form-control-lg">
   <input type="text" name="descricaoRota" value="{{isset($rota->descricaoRota) ? $rota->descricaoRota : '' }}">
   <label>DESCRIÇÃO ROTA</label>
 </div>
 
 <label>Escolha uma região</label>
-<div class="input-field">
+<div class="form-control-lg">
 
   <select name="REGIAO_id">
     <option value=""></option>

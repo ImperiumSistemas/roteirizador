@@ -169,7 +169,7 @@ const RoteirizadorMapView = {
     
 	initRoutes: (routesData) => {
 		Utils.showLoading();
-		document.getElementById('routes-count').innerText = ` - ${routesData.routes.length} routes generated!`;
+		//document.getElementById('routes-count').innerText = ` - ${routesData.routes.length} routes generated!`;
 		document.getElementById('route-tabs').innerText = '';
 
 		myMaps = {

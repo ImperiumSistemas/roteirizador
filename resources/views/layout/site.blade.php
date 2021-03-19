@@ -1,4 +1,5 @@
 @include('includes.header')
-Rorteirizador Imperium 
 
-@include('includes.footer')
+@include('includes.Footer')
+
+

@@ -10,7 +10,7 @@ html, body {
 }
 
 #map-canvas {
-    height: calc(100% - 45px);
+    height: calc(100% - 60px);
     width: 100%;
     float: left;
 }
@@ -24,18 +24,18 @@ html, body {
     pointer-events: none;
 }
 
-#container {
-    height: calc(100% - 60px);
-    width: 30%;
-    max-width: 500px;
+#containerr {
+    height: calc(50% - 100px);
+    width: 60%;
+    max-width: 350px;
     position: fixed;
-    top: 50px;
-    left: 10px;
+    top: 150px;
+    left: 230px;
     border-radius: 2px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
     box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
-    overflow: auto;
-    background: #FFF;
+    overflow-x: auto;
+    background: #F4A460;
     font-size: 12px;
 }
 

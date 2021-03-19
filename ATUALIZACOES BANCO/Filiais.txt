@@ -25,3 +25,6 @@ ALTER TABLE `roteirizador`.`filiais`
 ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `EMPRESA_id`,
 ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
 
+ALTER TABLE `roteirizador`.`filiais` 
+ADD COLUMN `CodFilial` INT NULL AFTER `descricao`;
+

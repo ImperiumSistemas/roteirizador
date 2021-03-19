@@ -1,0 +1,23 @@
+create table pedidos(
+	id int not null auto_increment primary key,
+    codPedido int, 
+    codCliente varchar(45),
+    peso varchar(10),
+    cubagem varchar(15),
+    valorPedido float, 
+    codFilial int, 
+    cargaErp varchar(50),
+    codPraca int, 
+    dataPedido date, 
+    podeFormarCarga varchar(1),
+    statusPedido varchar(15)
+);
+
+alter table pedidos 
+add foreign key(codCliente) REFERENCES Clientes(codCliente);
+
+alter table pedidos
+add foreign key(codPraca) references pracas(codPraca);
+
+alter table pedidos
+add foreign key(codFilial) references filial(codFilial);

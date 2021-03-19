@@ -1,4 +1,4 @@
-<div class="input-field">
+<div class="form-control-lg">
 <select name="idPessoa">
   <option value="" selected>SELECIONE UMA PESSOA</option>
 
@@ -11,7 +11,7 @@
 
 
 
-<div class="input-field">
+<div class="form-control-lg">
   <select name="idPraca">
     <option value="" selected> SELECIONE UMA PRAÇA </option>
 
@@ -21,7 +21,7 @@
   </select>
 </div>
 
-<div>
+<div class="form-control-lg">
   <select multiple name="idFilial[]">
     <option value="" disabled>SELECIONE AS FILIAIS</option>
 
