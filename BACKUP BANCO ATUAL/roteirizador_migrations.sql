@@ -16,41 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais`
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `filiais`;
+DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(14) NOT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
-  `pais` varchar(45) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `cidade` varchar(45) NOT NULL,
-  `bairro` varchar(45) NOT NULL,
-  `cep` varchar(45) NOT NULL,
-  `descricao` varchar(45) DEFAULT NULL,
-  `EMPRESA_id` int(11) DEFAULT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_FILIAL_EMPRESA1_idx` (`EMPRESA_id`),
-  CONSTRAINT `fk_FILIAL_EMPRESA1` FOREIGN KEY (`EMPRESA_id`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais`
+-- Dumping data for table `migrations`
 --
 
-LOCK TABLES `filiais` WRITE;
-/*!40000 ALTER TABLE `filiais` DISABLE KEYS */;
-INSERT INTO `filiais` VALUES (12,'111','888','Brasil','MG','Betim','Tere','32681-592','Teste Anderson',NULL,'1','','2021-01-26 17:49:34','2021-01-19 18:59:46'),(13,'115421','319954781','Brasil','1','Betim','Tere','32681-592','EMPRESA X',11,NULL,NULL,'2021-01-20 15:10:38','2021-01-19 23:27:47');
-/*!40000 ALTER TABLE `filiais` ENABLE KEYS */;
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:48
+-- Dump completed on 2021-03-19 10:00:02

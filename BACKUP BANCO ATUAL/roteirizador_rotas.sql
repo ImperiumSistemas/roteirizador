@@ -16,39 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pessoas`
+-- Table structure for table `rotas`
 --
 
-DROP TABLE IF EXISTS `pessoas`;
+DROP TABLE IF EXISTS `rotas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pessoas` (
+CREATE TABLE `rotas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `numero_telefone` varchar(45) DEFAULT NULL,
-  `idFisica` int(11) DEFAULT NULL,
-  `idJuridica` int(11) DEFAULT NULL,
+  `numeroPedagio` int(11) DEFAULT NULL,
+  `gastoPedagio` float DEFAULT NULL,
+  `descricaoRota` varchar(45) DEFAULT NULL,
+  `REGIAO_id` int(11) DEFAULT NULL,
   `ativoInativo` varchar(3) DEFAULT NULL,
   `dataInativacao` varchar(25) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
+  `deleted_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idFisica` (`idFisica`),
-  KEY `idJuridica` (`idJuridica`),
-  CONSTRAINT `pessoas_ibfk_1` FOREIGN KEY (`idFisica`) REFERENCES `fisicas` (`id`),
-  CONSTRAINT `pessoas_ibfk_2` FOREIGN KEY (`idJuridica`) REFERENCES `juridicas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  KEY `fk_ROTA_REGIAO1_idx` (`REGIAO_id`),
+  CONSTRAINT `fk_ROTA_REGIAO1` FOREIGN KEY (`REGIAO_id`) REFERENCES `regioes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pessoas`
+-- Dumping data for table `rotas`
 --
 
-LOCK TABLES `pessoas` WRITE;
-/*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (5,'Anderson','3155111211',9,NULL,'0','2021-02-01 15:55:28',NULL,'2021-02-01 15:55:28','2021-01-20 14:47:50');
-/*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
+LOCK TABLES `rotas` WRITE;
+/*!40000 ALTER TABLE `rotas` DISABLE KEYS */;
+INSERT INTO `rotas` VALUES (1,100,70,'Sul',NULL,'1',NULL,'2021-01-19 17:13:27',NULL,'2021-01-19 17:13:27'),(2,10,100,'Centro',NULL,'1',NULL,'2021-01-19 13:28:33','2020-12-22 02:54:33','2021-01-19 13:28:33'),(3,10,200,'Centro',NULL,'0',NULL,'2021-01-19 17:46:38','2021-01-19 17:46:31','2021-01-19 17:46:38'),(4,10,200,'Metropolitana',NULL,'0',NULL,'2021-01-19 19:14:28','2021-01-19 17:46:52','2021-01-19 19:14:28'),(5,10,15,'Oeste',NULL,'1','2021-01-25 19:26:07','2021-01-25 19:27:40','2021-01-19 17:57:15','2021-01-25 19:27:40'),(6,10,10,'Centro',NULL,'0','2021-01-25 19:35:44','2021-01-25 19:35:51','2021-01-19 19:13:53','2021-01-25 19:35:51'),(10,10,1,'Centro',NULL,NULL,NULL,'2021-01-26 19:12:56','2021-01-26 19:12:56',NULL);
+/*!40000 ALTER TABLE `rotas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:48
+-- Dump completed on 2021-03-19  9:59:51

@@ -16,35 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_motoristas`
+-- Table structure for table `bairros`
 --
 
-DROP TABLE IF EXISTS `filiais_motoristas`;
+DROP TABLE IF EXISTS `bairros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_motoristas` (
-  `FILIAL_id` int(11) NOT NULL,
-  `MOTORISTA_id` int(11) NOT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
+CREATE TABLE `bairros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeBairro` varchar(45) NOT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  KEY `fk_FILIAL_has_MOTORISTA_MOTORISTA1_idx` (`MOTORISTA_id`),
-  KEY `fk_FILIAL_has_MOTORISTA_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_MOTORISTA_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_MOTORISTA_MOTORISTA1` FOREIGN KEY (`MOTORISTA_id`) REFERENCES `motoristas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`,`nomeBairro`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_motoristas`
+-- Dumping data for table `bairros`
 --
 
-LOCK TABLES `filiais_motoristas` WRITE;
-/*!40000 ALTER TABLE `filiais_motoristas` DISABLE KEYS */;
-INSERT INTO `filiais_motoristas` VALUES (12,23,NULL,NULL,'2021-01-20 00:17:17','2021-01-20 00:17:17',NULL),(13,23,NULL,NULL,'2021-01-20 00:17:17','2021-01-20 00:17:17',NULL);
-/*!40000 ALTER TABLE `filiais_motoristas` ENABLE KEYS */;
+LOCK TABLES `bairros` WRITE;
+/*!40000 ALTER TABLE `bairros` DISABLE KEYS */;
+INSERT INTO `bairros` VALUES (8,'Teresopolis',NULL,NULL,'2021-01-14 17:49:11','2021-03-02 16:48:22'),(28,'Alvorada',NULL,NULL,'2021-01-14 18:11:46','2021-01-14 20:25:28');
+/*!40000 ALTER TABLE `bairros` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:50
+-- Dump completed on 2021-03-19 10:00:10

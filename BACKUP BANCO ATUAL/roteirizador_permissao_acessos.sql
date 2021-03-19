@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `numeros`
+-- Table structure for table `permissao_acessos`
 --
 
-DROP TABLE IF EXISTS `numeros`;
+DROP TABLE IF EXISTS `permissao_acessos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `numeros` (
+CREATE TABLE `permissao_acessos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(20) DEFAULT NULL,
+  `descricao` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `numeros`
+-- Dumping data for table `permissao_acessos`
 --
 
-LOCK TABLES `numeros` WRITE;
-/*!40000 ALTER TABLE `numeros` DISABLE KEYS */;
-INSERT INTO `numeros` VALUES (1,'597');
-/*!40000 ALTER TABLE `numeros` ENABLE KEYS */;
+LOCK TABLES `permissao_acessos` WRITE;
+/*!40000 ALTER TABLE `permissao_acessos` DISABLE KEYS */;
+INSERT INTO `permissao_acessos` VALUES (1,'EMPRESAS'),(2,'FILAIS'),(3,'VEICULOS'),(4,'MOTORISTAS'),(5,'CLIENTES'),(6,'PESSOAS'),(7,'CONFIRMAR ENDEREÇO'),(8,'NIVEIS DE ACESSOS'),(9,'PRODUTOS'),(10,'PRAÇA'),(11,'ROTA'),(12,'REGIAO'),(13,'PEDIDOS');
+/*!40000 ALTER TABLE `permissao_acessos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-19 10:00:01
+-- Dump completed on 2021-03-19 10:00:16

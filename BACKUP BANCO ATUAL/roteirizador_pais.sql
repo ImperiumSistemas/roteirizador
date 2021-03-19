@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `juridicas`
+-- Table structure for table `pais`
 --
 
-DROP TABLE IF EXISTS `juridicas`;
+DROP TABLE IF EXISTS `pais`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `juridicas` (
+CREATE TABLE `pais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(15) NOT NULL,
-  `razao_social` varchar(45) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
+  `pais` varchar(45) NOT NULL,
+  `ativoInativo` varchar(3) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `deleted_at` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`,`pais`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `juridicas`
+-- Dumping data for table `pais`
 --
 
-LOCK TABLES `juridicas` WRITE;
-/*!40000 ALTER TABLE `juridicas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `juridicas` ENABLE KEYS */;
+LOCK TABLES `pais` WRITE;
+/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
+INSERT INTO `pais` VALUES (33,'Espanha','1','','2021-01-26 13:10:27','2021-01-26 12:44:26',NULL);
+/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:49
+-- Dump completed on 2021-03-19  9:59:56

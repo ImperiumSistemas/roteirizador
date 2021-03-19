@@ -16,42 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `veiculos`
+-- Table structure for table `filiais_veiculos`
 --
 
-DROP TABLE IF EXISTS `veiculos`;
+DROP TABLE IF EXISTS `filiais_veiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `veiculos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `marca` varchar(45) DEFAULT NULL,
-  `km_rodado` int(11) DEFAULT NULL,
-  `ano` int(10) DEFAULT NULL,
-  `modelo` varchar(45) DEFAULT NULL,
-  `capacida_peso` decimal(10,0) DEFAULT NULL,
-  `capacidade_cubagem` decimal(10,0) DEFAULT NULL,
-  `chassi` varchar(45) DEFAULT NULL,
-  `renavan` varchar(45) DEFAULT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
-  `TIPO_VEICULOS_id` int(11) NOT NULL,
+CREATE TABLE `filiais_veiculos` (
+  `FILIAL_id` int(11) NOT NULL,
+  `VEICULO_id` int(11) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(15) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_VEICULOS_TIPO_VEICULOS1_idx` (`TIPO_VEICULOS_id`),
-  CONSTRAINT `fk_VEICULOS_TIPO_VEICULOS1` FOREIGN KEY (`TIPO_VEICULOS_id`) REFERENCES `tipo_veiculos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`FILIAL_id`,`VEICULO_id`),
+  KEY `fk_FILIAL_has_VEICULO_VEICULO1_idx` (`VEICULO_id`),
+  KEY `fk_FILIAL_has_VEICULO_FILIAL1_idx` (`FILIAL_id`),
+  CONSTRAINT `fk_FILIAL_has_VEICULO_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_FILIAL_has_VEICULO_VEICULO1` FOREIGN KEY (`VEICULO_id`) REFERENCES `veiculos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `veiculos`
+-- Dumping data for table `filiais_veiculos`
 --
 
-LOCK TABLES `veiculos` WRITE;
-/*!40000 ALTER TABLE `veiculos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
+LOCK TABLES `filiais_veiculos` WRITE;
+/*!40000 ALTER TABLE `filiais_veiculos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `filiais_veiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -63,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:50
+-- Dump completed on 2021-03-19 10:00:00

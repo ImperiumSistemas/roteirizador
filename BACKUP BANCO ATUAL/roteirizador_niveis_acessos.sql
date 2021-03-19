@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pais`
+-- Table structure for table `niveis_acessos`
 --
 
-DROP TABLE IF EXISTS `pais`;
+DROP TABLE IF EXISTS `niveis_acessos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pais` (
+CREATE TABLE `niveis_acessos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pais` varchar(45) NOT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
+  `descricao` varchar(50) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`,`pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pais`
+-- Dumping data for table `niveis_acessos`
 --
 
-LOCK TABLES `pais` WRITE;
-/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
-INSERT INTO `pais` VALUES (32,'Brasil','1','','2021-01-26 13:10:18','2021-01-26 12:44:20',NULL),(33,'Espanha','1','','2021-01-26 13:10:27','2021-01-26 12:44:26',NULL),(34,'Inglaterra','1','','2021-01-26 13:01:01','2021-01-26 12:44:41',NULL),(35,'Irlanda','1','','2021-01-26 13:10:34','2021-01-26 12:44:51',NULL);
-/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+LOCK TABLES `niveis_acessos` WRITE;
+/*!40000 ALTER TABLE `niveis_acessos` DISABLE KEYS */;
+INSERT INTO `niveis_acessos` VALUES (3,'Operador','2021-03-17 18:27:31','2021-03-17 16:01:16');
+/*!40000 ALTER TABLE `niveis_acessos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:49
+-- Dump completed on 2021-03-19  9:59:59

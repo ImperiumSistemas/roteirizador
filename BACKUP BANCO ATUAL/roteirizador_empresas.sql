@@ -16,27 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `numeros`
+-- Table structure for table `empresas`
 --
 
-DROP TABLE IF EXISTS `numeros`;
+DROP TABLE IF EXISTS `empresas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `numeros` (
+CREATE TABLE `empresas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(20) DEFAULT NULL,
+  `nome_empresa` varchar(50) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `numeros`
+-- Dumping data for table `empresas`
 --
 
-LOCK TABLES `numeros` WRITE;
-/*!40000 ALTER TABLE `numeros` DISABLE KEYS */;
-INSERT INTO `numeros` VALUES (1,'597');
-/*!40000 ALTER TABLE `numeros` ENABLE KEYS */;
+LOCK TABLES `empresas` WRITE;
+/*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
+INSERT INTO `empresas` VALUES (11,'Imperium Sistemas','1','','2021-02-02 18:45:12','2021-01-19 18:05:49'),(20,'Quelog','1',NULL,'2021-03-08 13:54:32','2021-03-08 13:54:32');
+/*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-19 10:00:01
+-- Dump completed on 2021-03-19 10:00:06

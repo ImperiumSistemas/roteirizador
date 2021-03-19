@@ -16,31 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `empresas`
+-- Table structure for table `clientes`
 --
 
-DROP TABLE IF EXISTS `empresas`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `empresas` (
+CREATE TABLE `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_empresa` varchar(50) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
+  `codCliente` varchar(45) DEFAULT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `datainativacao` varchar(25) DEFAULT NULL,
+  `PRACA_id` int(11) DEFAULT NULL,
+  `PESSOA_id` int(11) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `fk_CLIENTE_PRACA1_idx` (`PRACA_id`),
+  KEY `fk_CLIENTE_PESSOA1_idx` (`PESSOA_id`),
+  CONSTRAINT `fk_CLIENTE_PESSOA1` FOREIGN KEY (`PESSOA_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CLIENTE_PRACA1` FOREIGN KEY (`PRACA_id`) REFERENCES `pracas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `empresas`
+-- Dumping data for table `clientes`
 --
 
-LOCK TABLES `empresas` WRITE;
-/*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (9,'Imperium Sistemas','0','2021-02-01 15:48:38','2021-02-01 15:48:38','2021-01-14 22:04:35'),(10,'Imperium Sistemas',NULL,NULL,'2021-01-19 18:05:38','2021-01-18 23:59:48'),(11,'Imperium Sistemas','1','','2021-01-26 18:23:47','2021-01-19 18:05:49'),(12,'Imperium Sistemas','0','2021-01-26 18:23:49','2021-01-26 18:23:49','2021-01-26 18:23:39');
-/*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'',NULL,NULL,NULL,5,'2021-03-01 19:47:46','2021-03-01 19:47:46'),(4,'10','1','',1,7,'2021-03-02 16:20:03','2021-03-02 15:17:03'),(7,NULL,NULL,NULL,NULL,NULL,'2021-03-08 13:30:26','2021-03-08 13:30:26');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:25:50
+-- Dump completed on 2021-03-19  9:59:54
