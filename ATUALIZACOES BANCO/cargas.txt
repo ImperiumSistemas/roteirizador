@@ -1,0 +1,9 @@
+CREATE TABLE `roteirizador`.`cargas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cargaERP` INT NULL,
+  `status` VARCHAR(45) NULL,
+  `veiculos_id` INT NULL,
+  `motoristas_id` VARCHAR(45) NULL,
+  `created_ate` VARCHAR(45) NULL,
+  `updated_at` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));

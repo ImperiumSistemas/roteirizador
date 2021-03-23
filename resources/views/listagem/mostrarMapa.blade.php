@@ -35,7 +35,7 @@
 </section>
 <form id='form-save' action="{{route('confirmaMapa', $pessoa->id)}}" method="post">
     {{ csrf_field() }}
-    <input type="hidden" id='inpt-lat' name='lat'/>
+    <input type="hidden" id='cargas' name='cargas'/>
     <input type="hidden" id='inpt-lng' name='lng'/>
 </form>
 </body>

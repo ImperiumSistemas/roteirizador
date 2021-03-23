@@ -11,15 +11,14 @@ use App\Rotas;
 use App\Pracas;
 use App\Regioes;
 use App\Pedidos;
+use App\Cargas;
 use Illuminate\Http\Request;
 
+class geradorCargaController extends Controller {
 
-class geradorCargaController extends Controller
-{
     private $api;
 
-    function __construct()
-    {
+    function __construct() {
 
         $this->api = new \GuzzleHttp\Client([
             'headers' => [
@@ -31,29 +30,22 @@ class geradorCargaController extends Controller
         ]);
     }
 
-    public function filtros()
-    {
+    public function filtros() {
         $filiais = Filiais::all();
         $rotas = Rotas::all();
         $pracas = Pracas::all();
         $regioes = Regioes::all();
 
         return View('layout.filtroMontagemCarga', compact('filiais', 'rotas', 'pracas', 'regioes'));
-
     }
 
-    public function roteirizador()
-    {
+    public function roteirizador() {
 
 
         return View('layout.mapa');
-
-
     }
 
-
-    public function gerarCarga(Request $req)
-    {
+    public function gerarCarga(Request $req) {
 
         $idFilial = $req->filial_id;
         $pracas = $req->idPracas;
@@ -62,20 +54,20 @@ class geradorCargaController extends Controller
 
         //$DbPraca = Pracas::wherein('id', $pracas)->get();  Como fazer o select com whereIN e fazer isso com pedidos para filtrar
         $pedidos = Pedidos::where('codFilial', '=', $idFilial)
-            ->where('podeFormarCarga', '=', 'S')
-            ->wherein('codPraca', $pracas)
-            ->get();
+                ->where('podeFormarCarga', '=', 'S')
+                ->wherein('codPraca', $pracas)
+                ->get();
         //dd($pedidos);
 
         $dadosFiliais = Filiais::where('id', '=', $idFilial)->first();
         foreach ($pedidos as $pedido) {
             $endereco = DB::table('clientes')
-                ->join('pessoas', 'pessoas.id', '=', 'clientes.PESSOA_id')
-                ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
-                ->select('enderecos.latitude as lat', 'enderecos.longitude as lng',
-                    'enderecos.rua as rua', 'enderecos.numero as numero', 'enderecos.bairro as bairro',
-                    'enderecos.cidade as cidade')
-                ->where('clientes.id', '=', $pedido->codCliente)->first();
+                            ->join('pessoas', 'pessoas.id', '=', 'clientes.PESSOA_id')
+                            ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                            ->select('enderecos.latitude as lat', 'enderecos.longitude as lng',
+                                    'enderecos.rua as rua', 'enderecos.numero as numero', 'enderecos.bairro as bairro',
+                                    'enderecos.cidade as cidade')
+                            ->where('clientes.id', '=', $pedido->codCliente)->first();
             $coords = array("lat" => $endereco->lat, "lng" => $endereco->lng);
             $endCliente = $endereco->rua . ", " . $endereco->numero . ", " . $endereco->bairro . ", " . $endereco->cidade;
             $dimens = array("weight" => "100", "cubage" => "1000");
@@ -85,7 +77,7 @@ class geradorCargaController extends Controller
 
         $endFilial = $dadosFiliais->rua . ", " . $dadosFiliais->numero . ", " . $dadosFiliais->bairro . ", " . $dadosFiliais->cidade;
         $cd = array("address" => $endFilial, "lat" => $dadosFiliais->latitude, "lng" => $dadosFiliais->longitude);
-        $vehicle = array("qtde" => $req->qtde, "weight" => "100000000", "cubage" => "1000000000", "deliveries" => $req->deliveries, "km" => "1000000", "time" => "100000000", "vehiclesRequired" => "1");
+        $vehicle = array("qtde" => $req->qtde, "weight" => "100000000", "cubage" => "1000000000", "deliveries" => $req->deliveries, "km" => "1000000", "time" => "100000000", "vehiclesRequired" => "0");
         $data = array("cd" => $cd, "vehicle" => $vehicle);
 
         //dd($data);
@@ -97,14 +89,12 @@ class geradorCargaController extends Controller
             ]
         ];
 
-
         //dd($arr);
         try {
 
             $response = $this->api->POST('http://localhost:3000/roteirizador', [
                 'json' => $arr
             ]);
-
         } catch (RequestException $e) {
             echo Psr7\str($e->getRequest());
 
@@ -116,11 +106,29 @@ class geradorCargaController extends Controller
         $resposta = $response->getBody();
         //dd($response);
         return view('layout.mapa', compact('resposta'));
-
     }
 
+    public function salvarCargas(Request $req) {
+        $cargasRecebidas = json_decode($req->cargas);
 
+        foreach ($cargasRecebidas as $cargas) {
+            foreach ($cargas as $carga) {
+                $entregas = $carga->deliveries;
+                Cargas::create(['status' => 'Criado']);
+                $idCarga = Cargas::all('id')->last();
+                $sequenciaEntrega = 0;
+                foreach ($entregas as $entrega) {
+                    $idPedido = $entrega->id;
+                    if ($idPedido != '0') {
+                        $sequenciaEntrega = $sequenciaEntrega + 1;
 
+                        Pedidos::find($idPedido)->update(['cargas_id' => $idCarga->id, 'sequenciaEntrega' => $sequenciaEntrega, 'podeFormarCarga' => 'N', 'statusPedido' => 'M']);
+                    }
+                }
+            }
+        }
 
+        dd("FEITO");
+    }
 
 }

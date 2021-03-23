@@ -180,3 +180,4 @@ Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaControll
 
 
 Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);
+Route::post('salvarCarga', ['as' => 'salvarCarga', 'uses' => 'geradorCargaController@salvarCargas']);
