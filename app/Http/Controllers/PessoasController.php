@@ -40,9 +40,21 @@ class PessoasController extends Controller
        'juridicas.cnpj as cnpj', 'juridicas.razao_social as razaoSocial',
        'enderecos.rua','enderecos.bairro','enderecos.numero','enderecos.cidade','enderecos.estado',
        'enderecos.pais')->get();
-
-
-
+       
+       
+       $query = Pessoas::query();
+       $query->leftJoin('juridicas', 'pessoas.id', '=', 'juridicas.PESSOAS_id');
+       $query->leftJoin('fisicas', 'pessoas.id', '=', 'fisicas.PESSOAS_id');
+       $query->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id');
+       $query->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
+       'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
+       DB::raw('coalesce(juridicas.cnpj, fisicas.cpf,0) as cpf_CNPJ'), 'juridicas.razao_social as razaoSocial','fisicas.rg as rg',
+       'enderecos.rua','enderecos.bairro','enderecos.numero','enderecos.cidade','enderecos.estado',
+       'enderecos.pais',
+       db::raw('case when fisicas.id is null then "FISICA" else "JURIDICA" end as tipo_pessoa'));
+       $listagens = $query->paginate();
+       dd($listagens);
+       
       return view('listagem.listaPessoas', compact('pessoaFisica', 'pessoaJuridica', 'juridicaFisica'));
 
     }

@@ -2,7 +2,11 @@
 
 </div>
 
-
+<script>    
+    $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+</script>
 <script src="../css/jquery/jquery.min.js"></script>
 <script src="../css/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../css/bootstrap/scss/_buttons.scss"></script>
@@ -20,8 +24,7 @@
 <script src="../css/datatables/jquery.dataTables.min.js"></script>
 <script src="../css/datatables/dataTables.bootstrap4.min.js"></script>
 
-<script src="../js/demo/datatables-demo.js"></script
-
+<script src="../js/demo/datatables-demo.js"></script>
 
 
 
