@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp64/www/Imperium_Roteirizador/app/Http/Controllers/PessoasController.php</file>
+            <file>file:/C:/wamp64/www/Imperium_Roteirizador/resources/views/formularios/formularioFiltroPessoas.blade.php</file>
             <file>file:/C:/wamp64/www/Imperium_Roteirizador/app/Http/Controllers/ConfirmaEndereco.php</file>
-            <file>file:/C:/wamp64/www/Imperium_Roteirizador/app/Http/Controllers/geradorCargaController.php</file>
-            <file>file:/C:/wamp64/www/Imperium_Roteirizador/resources/views/listagem/mostrarMapa.blade.php</file>
-            <file>file:/C:/wamp64/www/Imperium_Roteirizador/app/Http/Controllers/ClientesController.php</file>
-            <file>file:/C:/wamp64/www/Imperium_Roteirizador/public/js/roteirizador-map-view.js</file>
-            <file>file:/C:/wamp64/www/Imperium_Roteirizador/resources/views/layout/mapa.blade.php</file>
+            <file>file:/C:/wamp64/www/Imperium_Roteirizador/routes/web.php</file>
+            <file>file:/C:/wamp64/www/Imperium_Roteirizador/resources/views/listagem/listaPessoas.blade.php</file>
+            <file>file:/C:/wamp64/www/Imperium_Roteirizador/resources/views/listagem/ConfirmaEndereco.blade.php</file>
         </group>
     </open-files>
 </project-private>

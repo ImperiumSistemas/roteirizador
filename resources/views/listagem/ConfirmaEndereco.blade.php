@@ -176,8 +176,8 @@
         var linha = linhas[i];
         linha.addEventListener("click", function () {
             //Adicionar ao atual
-            //selLinha(this, false); //Selecione apenas um
-            selLinha(this, true); //Selecione quantos quiser
+            selLinha(this, false); //Selecione apenas um
+            //selLinha(this, true); //Selecione quantos quiser
         });
     }
 
