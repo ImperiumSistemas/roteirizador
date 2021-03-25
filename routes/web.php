@@ -23,6 +23,8 @@ Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index'])
 
 //Route::group(['middleware' => 'auth'], function(){
 
+
+Route:: get('/listagemVeiculoPermissao/{nivelAcesso}',['as' => 'listagem.veiculoPermissao', 'uses' => 'VeiculosController@listaVeiculoPermissao' ]);
 Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosController@listaVeiculo' ]);
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
 Route:: post('/layout/salvar',['as' =>'layout.salvar', 'uses' => 'VeiculosController@salvar']);
@@ -33,6 +35,7 @@ Route::get('layout/ativarVeiculo/{id}', ['as' => 'ativarVeiculo', 'uses' => 'Vei
 Route::get('layout/desativarVeiculo/{id}', ['as' => 'desativarVeiculo', 'uses' => 'VeiculosController@desativar']);
 
 
+Route::get('listagem/motoristaPermissao/{nivelAcesso}', ['as' => 'listagem.motoristaPermissao', 'uses' => 'MotoristaController@listaMotoristaPermissao']);
 Route::get('listagem/motorista', ['as' => 'listagem.motorista', 'uses' => 'MotoristaController@listaMotorista']);
 Route::get('/layout/adicionarMotorista', ['as' => 'layout.adicionarMotorista', 'uses' => 'MotoristaController@adicionarMotorista']);
 Route::post('/layout/salvarMotorista', ['as' => 'layout.salvarMotorista', 'uses' => 'MotoristaController@salvarMotorista']);
@@ -42,6 +45,8 @@ Route::put('/layout/atualizarMotorista/{id}', ['as' => 'layout.atualizarMotorist
 Route::get('layout/ativarMotorista/{id}', ['as' => 'ativarMotorista', 'uses' => 'MotoristaController@ativar']);
 Route::get('layout/desativarMotorista/{id}', ['as' => 'desativarMotorista', 'uses' => 'MotoristaController@desativar']);
 
+
+Route:: get('/listagemFilialPermissao/{nivelAcesso}', ['as' => 'listagem.filialPermissao', 'uses' => 'FiliaisController@listaFiliaisPermissao']);
 Route:: get('/listagemFiliais', ['as' => 'listagem.filiais', 'uses' => 'FiliaisController@listaFiliais']);
 Route:: get('/layout/layout.adicionarFilial', ['as' => 'layout.adicionarFilial', 'uses' => 'FiliaisController@adicionar']);
 Route:: post('layout/salvarFilial', ['as' => 'layout.salvarFilial', 'uses' => 'FiliaisController@salvar']);
@@ -55,6 +60,7 @@ Route::post('confirmaMapaFilial/{id}', ['as' => 'confirmaMapaFilial', 'uses' => 
 
 
 
+Route::get('/listagemEmpresaPermissao/{nivelAcesso}', ['as' => 'listagem.empresaPermissao', 'uses' => 'EmpresaController@listaPermissao']);
 Route::get('/listagemEmpresa', ['as' => 'listagem.empresa', 'uses' => 'EmpresaController@listaEmpresa']);
 Route::get('/layout/adicionarEmpresa', ['as' => 'layout.adicionarEmpresa', 'uses' => 'EmpresaController@adicionar']);
 Route::post('layout/salvarEmpresa', ['as' => 'layout.salvarEmpresa', 'uses' => "EmpresaController@salvar"]);
@@ -65,6 +71,7 @@ Route::get('layout/ativarEmpresa/{id}', ['as' => 'ativarEmpresa', 'uses' => 'Emp
 Route::get('layout/desativarEmpresa/{id}', ['as' => 'desativarEmpresa', 'uses' => 'EmpresaController@desativar']);
 
 
+Route::get('/listagemRegiaoPermissao/{nivelAcesso}', ['as' => 'listagem.regiaoPermissao', 'uses' => 'RegiaoController@listaRegiaoPermissao']);
 Route::get('/listagemRegiao', ['as' => 'listagem.regiao', 'uses' => 'RegiaoController@listaRegiao']);
 Route::get('/layout/adicionarRegiao', ['as' => 'layout.adicionarRegiao', 'uses' => 'RegiaoController@adicionar']);
 Route::post('layout/salvarRegiao', ['as' => 'layout.salvarRegiao', 'uses' => 'RegiaoController@salvar']);
@@ -75,6 +82,7 @@ Route::get('/layout/ativarRegiao/{id}', ['as' => 'ativarRegiao', 'uses' => 'Regi
 Route::get('/layout/desativarRegiao/{id}', ['as' => 'desativarRegiao', 'uses' => 'RegiaoController@desativar']);
 
 
+Route::get('/listagemRotaPermissao/{nivelAcesso}', ['as' => 'listagem.rotaPermissao', 'uses' => 'RotaController@listaRotaPermissao']);
 Route::get('/listagemRota', ['as' => 'listagem.rota', 'uses' => 'RotaController@listaRota']);
 Route::get('/layout/adicionarRota', ['as' => 'layout.adicionarRota', 'uses' => 'RotaController@adicionar']);
 Route::post('layout/salvarRota', ['as' => 'layout.salvarRota', 'uses' => 'RotaController@salvar']);
@@ -84,6 +92,7 @@ Route::get('layou/excluirRota/{id}', ['as' => 'layout.excluirRota', 'uses' => 'R
 Route::get('layout/ativarRota/{id}', ['as' => 'ativarRota', 'uses' => 'RotaController@ativar']);
 Route::get('layout/desativarRota/{id}', ['as' => 'desativarRota', 'uses' => 'RotaController@desativar']);
 
+Route::get('/listagemPracaPermissao/{nivelAcesso}', ['as' => 'listagem.pracaPermissao', 'uses' => 'PracaController@listaPracaPermissao']);
 Route::get('/listagemPraca', ['as' => 'listagem.praca', 'uses' => 'PracaController@listaPraca']);
 Route::get('/layout/adicionarPraca', ['as' => 'layout.adicionarPraca', 'uses' => 'PracaController@adicionar']);
 Route::post('layout/salvarPraca', ['as' => 'layout.salvarPraca', 'uses' => 'PracaController@salvar']);
@@ -103,6 +112,7 @@ Route::get('/layout/excluirEndereco/{id}', ['as' => 'layout.excluirEndereco', 'u
 Route::get('layout/ativarEndereco/{id}', ['as' => 'ativarEndereco', 'uses' => 'EnderecoController@ativar']);
 Route::get('layout/desativarEndereco/{id}', ['as' => 'desativarEndereco', 'uses' => 'EnderecoController@desativar']);
 
+Route::get('listagemPessoaPermissao/{nivelAcesso}', ['as' => 'listagem.pessoasPermissao', 'uses' => 'PessoasController@ListaPessoasPermissao']);
 Route::get('listagemPessoa', ['as' => 'listagem.pessoas', 'uses' => 'PessoasController@ListaPessoas']);
 Route::get('/layout/adicionarPessoa/{id}', ['as' => 'layout.adicionarPessoaFisica', 'uses' => 'PessoasController@adicionar']);
 Route::post('/layout/salvarPessoaFisica', ['as' => 'layout.salvarPessoaFisica', 'uses' => 'PessoasController@salvarPessoaFisica']);
@@ -113,6 +123,7 @@ Route::get('/layout/excluirPessoa/{id}', ['as' => 'layout.excluirPessoa', 'uses'
 Route::get('layout/ativarPessoa/{id}', ['as' => 'ativarPessoa', 'uses' => 'PessoasController@ativar']);
 Route::get('layout/desativarPessoa/{id}', ['as' => 'desativarPessoa', 'uses' => 'PessoasController@desativar']);
 
+Route::get('ListagemClientePermissao/{nivelAcesso}', ['as' => 'listagemClientePermissao', 'uses' => 'ClientesController@listaClientePermissao']);
 Route::get('ListagemCliente', ['as' => 'listagemCliente', 'uses' => 'ClientesController@listaCliente']);
 Route::get('/layout/adicionarCliente', ['as' => 'layout.adicionarCliente', 'uses' => 'ClientesController@adicionar']);
 Route::post('/layout/salvarCliente', ['as' => 'layout.salvarCliente', 'uses' => 'ClientesController@salvar']);
@@ -132,6 +143,7 @@ Route::get('layout/excluirProduto/{id}', ['as' => 'layout.excluirProdutos', 'use
 Route::get('layout/ativarProduto/{id}', ['as' => 'ativarProduto', 'uses' => 'ProdutosController@ativar']);
 Route::get('layout/desativarProduto/{id}', ['as' => 'desativarProduto', 'uses' => 'ProdutosController@desativar']);
 
+Route::get('listagem/niveisAcessosPermissao/{nivelAcesso}', ['as' => 'listagem.niveisAcessosPermissao', 'uses' => 'NiveisAcessoController@listaniveisAcessoPermissao']);
 Route::get('listagem/niveisAcessos', ['as' => 'listagem.niveisAcessos', 'uses' => 'NiveisAcessoController@listaniveisAcesso']);
 Route::get('layout/adicionarNivelAcesso', ['as' => 'layout.adicionarNivelAcesso', 'uses' => 'NiveisAcessoController@adicionar']);
 Route::post('layout/salvarNivelAcesso', ['as' => 'layout.salavarNivelAcesso', 'uses' => 'NiveisAcessoController@salvar']);
@@ -141,9 +153,12 @@ Route::get('layout/excluirNivelAcesso/{id}', ['as' => 'layout.excluirNivelAcesso
 Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'NiveisAcessoController@permissaoAcesso']);
 Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'NiveisAcessoController@salvarPermissao']);
 
+
+Route::get('layout/adicionarUsuarioPermissao/{nivelAcesso}', ['as' => 'layout.adicionarUsuarioPermissao', 'uses' => 'UsuarioController@adicionarPermissao']);
 Route::get('layout/adicionarUsuario', ['as' => 'layout.adicionarUsuario', 'uses' => 'UsuarioController@adicionar']);
 Route::post('layout/salvarUsuario', ['as' => 'layout.salvarUsuario', 'uses' => 'UsuarioController@salvar']);
 
+Route::get('listagem/confirmaEnderecoPermissao/{nivelAcesso}', ['as' => 'listagem.confirmaEnderecoPermissao', 'uses' => 'ConfirmaEndereco@listaPermissao']);
 Route::get('listagem/confirmaEndereco', ['as' => 'listagem.confirmaEndereco', 'uses' => 'ConfirmaEndereco@lista']);
 Route::get('confirmarEnderecoMapa/{id}', ['as' => 'confirmarEnderecoMapa', 'uses' => 'ConfirmaEndereco@mostrarMapa']);
 Route::post('confirmaMapa/{id}', ['as' => 'confirmaMapa', 'uses' => 'ConfirmaEndereco@confirmaEndereco']);
@@ -179,4 +194,5 @@ Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaControll
 
 
 
+Route::get('filtrosPermissao/{nivelAcesso}', ['as' => 'filtrosPermissao', 'uses' => 'geradorCargaController@filtrosPermissao']);
 Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);

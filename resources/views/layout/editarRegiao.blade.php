@@ -19,6 +19,8 @@
         <form class="" method="post" action="{{route('layout.atualizarRegiao', $regiao->id)}}">
             {{ csrf_field() }}
 
+            <input type="hidden" name="_method" value="put">
+
             @include('formularios.formularioRegiao')
             <div align="middle">
                 <p class="mb-4"></p>

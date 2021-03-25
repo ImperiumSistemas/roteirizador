@@ -9,12 +9,44 @@ use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
 use App\Enderecos;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
     //
+
+    public function listaClientePermissao($nivelAcesso){
+
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "CLIENTES")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situaçãoClientes = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situaçãoClientes = true;
+        }
+      }
+
+      if($situaçãoClientes == true){
+        $clientes = DB::table('clientes')
+        ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+        ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
+        ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+        ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
+         'pessoas.nome as nomePessoa','pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua',
+         'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua', 'enderecos.cidade as cidade',
+         'enderecos.estado as estado', 'enderecos.pais as pais')->get();
+
+        return view('listagem.listaCliente', compact('clientes'));
+
+      }else{
+        return redirect()->route('site');
+      }
+    }
+
     public function listaCliente(){
 
       //$clientes = Clientes::all();

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Veiculos;
 use App\Filiais;
 use App\filiais_veiculos;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +19,36 @@ class VeiculosController extends Controller
     public function index(){
 
       return view('layout.site');
+    }
+
+    public function listaVeiculoPermissao($nivelAcesso){
+
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "VEICULOS")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situacaoVeiculo = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situacaoVeiculo = true;
+        }
+      }
+
+      if($situacaoVeiculo == true){
+        $veiculo = DB::table('filiais_veiculos')
+        ->join('veiculos', 'filiais_veiculos.VEICULO_id', '=', 'veiculos.id')
+        ->join('filiais', 'filiais_veiculos.FILIAL_id', '=', 'filiais.id')
+        ->select('veiculos.id as veiculoId', 'veiculos.marca as marca', 'veiculos.ano as ano',
+        'veiculos.modelo as modelo', 'veiculos.chassi as chassi',
+        'veiculos.capacidade_cubagem as capacidadeCubagem', 'veiculos.renavan as renavan',
+        'veiculos.ativoInativo as ativoInativo', 'veiculos.dataInativacao as dataInativacao',
+        'filiais.descricao as descricao', 'filiais.id', 'filiais.pais as pais', 'filiais.cidade as cidade',
+        'filiais.telefone as telefone', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.estado as estado')->get();
+
+        return view('listagem/listagemVeiculo', compact('veiculo'));
+
+      }else{
+        return redirect()->route('site');
+      }
     }
 
     public function listaVeiculo(){

@@ -20,6 +20,8 @@
         <form class="" method="post" action="{{route('layout.atualiarCliente', $cliente->id)}}" >
             {{ csrf_field() }}
 
+            <input type="hidden" name="_method" value="put">
+
             @include('formularios.formularioCliente')
             <div align="middle">
                 <p class="mb-4"></p>

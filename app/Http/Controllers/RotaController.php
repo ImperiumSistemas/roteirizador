@@ -5,12 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\rotas;
 use App\regioes;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class RotaController extends Controller
 {
     //
+    public function listaRotaPermissao($nivelAcesso){
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "ROTA")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situaçãoRota = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situaçãoRota = true;
+        }
+      }
+
+      if($situaçãoRota == true){
+
+        $rotas = DB::table('rotas')
+        ->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
+        ->select('rotas.id', 'rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+          'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
+        ->get();
+
+        return view('listagem.listagemRota', compact('rotas'));
+
+      }else{
+        return redirect()->route('site');
+      }
+    }
 
     public function listaRota(){
 

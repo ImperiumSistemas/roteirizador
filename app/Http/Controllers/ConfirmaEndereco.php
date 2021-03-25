@@ -8,11 +8,35 @@ use App\Pessoas;
 use App\Clientes;
 use App\Enderecos;
 use App\Filiais;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 
 
 class ConfirmaEndereco extends Controller
 {
     //
+    public function listaPermissao($nivelAcesso){
+      
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "CONFIRMAR ENDEREÇO")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situaçãoConfirmarEndereco = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situaçãoConfirmarEndereco = true;
+        }
+      }
+
+      if($situaçãoConfirmarEndereco == true){
+        $listagens = Pessoas::join('clientes', 'clientes.PESSOA_id', '=', 'pessoas.id')
+            ->select('pessoas.id as idPessoa', 'pessoas.nome as nomePessoa', 'clientes.id as idCliente')->paginate(10);
+
+        return view('listagem.ConfirmaEndereco', compact('listagens'));
+
+      }else{
+        return redirect()->route('site');
+      }
+    }
 
     public function lista()
     {

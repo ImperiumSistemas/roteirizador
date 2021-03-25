@@ -9,6 +9,8 @@ use App\Filiais;
 use App\FiliaisMotoristas;
 use App\filiais_motoristas;
 use App\Pessoas;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 
 
@@ -20,6 +22,41 @@ class MotoristaController extends Controller
 
       $motorista = Motoristas::all();
       return view('teste', compact('motorista'));
+    }
+
+    public function listaMotoristaPermissao($nivelAcesso){
+
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "MOTORISTAS")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situacaoMotorista = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situacaoMotorista = true;
+        }
+      }
+
+      if($situacaoMotorista == true){
+        $motoristas = DB::table('filiais_motoristas')
+        ->join('motoristas', 'filiais_motoristas.MOTORISTA_id', '=', 'motoristas.id')
+        ->join('filiais', 'filiais_motoristas.FILIAL_id', '=', 'filiais.id')
+        ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+        ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+        ->select('motoristas.id as motoristaId', 'motoristas.ativoInativo as ativoInativo',
+        'motoristas.dataInativacao as dataInativacao',  'motoristas.numero_cnh as numeroCnh',
+        'motoristas.data_validade_cnh as dataValidadeCnh','filiais.descricao as descricao',
+        'filiais.id as filialId',
+        'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
+        'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua',
+        'enderecos.cidade as cidade','enderecos.estado as estado', 'enderecos.pais as pais')->get();
+
+        $pessoas = Pessoas::all();
+
+        return view('listagem.listagemMotorista', compact('motoristas', 'pessoas'));
+
+      }else{
+        return redirect()->route('site');
+      }
     }
 
     public function listaMotorista(){
