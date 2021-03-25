@@ -179,6 +179,7 @@ Route::get('/home', 'LoginController@index');
 
 Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
 Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
+Route::post('otimizaCargas', ['as' => 'otimizaCargas', 'uses' => 'geradorCargaController@otimizaCargas']);
 
 
 

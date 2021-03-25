@@ -12,7 +12,8 @@
                 {{ csrf_field() }}
 
                 @include('formularios.formularioFiltroPessoas')
-                <br><div align="middle">
+                <br>
+                <div align="middle">
 
                     <button class="btn btn-success btn-icon-split-lg">FILTRAR</button>
                 </div>
@@ -20,7 +21,7 @@
         </div>
         <div class="card-header py-3">
             <!--<h6 class="m-0 font-weight-bold text-primary">Filiais</h6>-->
-            <div class="row" >
+            <div class="row">
 
 
                 <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
@@ -39,7 +40,7 @@
                 </a>
                 <div><span class="text" style="color:whitesmoke">.....</span></div>
                 <div>
-                    <button class="btn btn-primary btn-primary" id="editar" >
+                    <button class="btn btn-primary btn-primary" id="editar">
                         <span class="icon text-white-50">
                             <i class="fas fa-fw fa-pencil-ruler"></i>
                             <span class="text">EDITAR</span>
@@ -48,45 +49,45 @@
                 </div>
                 <div><span class="text" style="color:whitesmoke">.....</span></div>
                 <div>
-                    <button class="btn btn-danger" id="desativar" >
+                    <button class="btn btn-danger" id="desativar">
                         <span class="icon text-white-50">
                             <i class="fas fa-trash-alt "></i>
                             <span class="text">DESATIVAR</span>
                         </span>
                     </button>
                 </div>
-            </div>            
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table" id="minhaTabela">
                     <thead>
-                        <tr>
-                            <th>ID PESSOA</th> 
-                            <th onclick="sortTable(document.getElementById('minhaTabela'), 'asc', 1)">NOME</th>            
-                            <th>CPF/CNPJ</th>
-                            <th>TIPO</th>            
-                        </tr>
+                    <tr>
+                        <th>ID PESSOA</th>
+                        <th onclick="sortTable(document.getElementById('minhaTabela'), 'asc', 1)">NOME</th>
+                        <th>CPF/CNPJ</th>
+                        <th>TIPO</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach($listagens as $pessoa)
+                    @foreach($listagens as $pessoa)
                         @if($pessoa->ativoInativo == 0)
-                        <tr style="background-color:red" class="">
-                            <td>{{$pessoa->id}}</td>
-                            <td>{{$pessoa->nomePessoa}}</td>
-                            <td>{{$pessoa->cpf_CNPJ}}</td>
-                            <td>{{$pessoa->tipo_pessoa}}</td>
-                        </tr> 
+                            <tr style="background-color:red" class="">
+                                <td>{{$pessoa->id}}</td>
+                                <td>{{$pessoa->nomePessoa}}</td>
+                                <td>{{$pessoa->cpf_CNPJ}}</td>
+                                <td>{{$pessoa->tipo_pessoa}}</td>
+                            </tr>
                         @else
-                        <tr class="">   
-                            <td>{{$pessoa->id}}</td>
-                            <td>{{$pessoa->nomePessoa}}</td>
-                            <td>{{$pessoa->cpf_CNPJ}}</td>
-                            <td>{{$pessoa->tipo_pessoa}}</td>
-                        </tr>
+                            <tr class="">
+                                <td>{{$pessoa->id}}</td>
+                                <td>{{$pessoa->nomePessoa}}</td>
+                                <td>{{$pessoa->cpf_CNPJ}}</td>
+                                <td>{{$pessoa->tipo_pessoa}}</td>
+                            </tr>
                         @endif
 
-                        @endForeach
+                    @endForeach
                     </tbody>
                 </table>
             </div>
@@ -109,79 +110,73 @@
 <script src="{{asset('js/demo/table.js')}}"></script>
 
 <script>
-                                var tabela = document.getElementById("minhaTabela");
-                                var linhas = tabela.getElementsByTagName("tr");
+    var tabela = document.getElementById("minhaTabela");
+    var linhas = tabela.getElementsByTagName("tr");
 
-                                for (var i = 0; i < linhas.length; i++) {
-                                    var linha = linhas[i];
-                                    linha.addEventListener("click", function () {
-                                        //Adicionar ao atual
-                                        selLinha(this, false); //Selecione apenas um
-                                        //selLinha(this, true); //Selecione quantos quiser
-                                    });
-                                }
+    for (var i = 0; i < linhas.length; i++) {
+        var linha = linhas[i];
+        linha.addEventListener("click", function () {
+            //Adicionar ao atual
+            selLinha(this, false); //Selecione apenas um
+            //selLinha(this, true); //Selecione quantos quiser
+        });
+    }
 
-                                function selLinha(linha, multiplos) {
-                                    if (!multiplos) {
-                                        var linhas = linha.parentElement.getElementsByTagName("tr");
-                                        for (var i = 0; i < linhas.length; i++) {
-                                            var linha_ = linhas[i];
-                                            linha_.classList.remove("selecionado");
-                                        }
-                                    }
-                                    linha.classList.toggle("selecionado");
-                                }
+    function selLinha(linha, multiplos) {
+        if (!multiplos) {
+            var linhas = linha.parentElement.getElementsByTagName("tr");
+            for (var i = 0; i < linhas.length; i++) {
+                var linha_ = linhas[i];
+                linha_.classList.remove("selecionado");
+            }
+        }
+        linha.classList.toggle("selecionado");
+    }
 
-                                var btnVisualizar = document.getElementById("editar");
-                                var btnDesativar = document.getElementById("desativar");
+    var btnVisualizar = document.getElementById("editar");
+    var btnDesativar = document.getElementById("desativar");
 
-                                btnVisualizar.addEventListener("click", function () {
-                                    var selecionados = tabela.getElementsByClassName("selecionado");
-                                    //Verificar se eestá selecionado
-                                    if (selecionados.length < 1) {
-                                        alert("Selecione pelo menos uma linha");
-                                        return false;
-                                    }
-
-
-
-                                    for (var i = 0; i < selecionados.length; i++) {
-                                        var selecionado = selecionados[i];
-                                        selecionado = selecionado.getElementsByTagName("td");
-                                    }
-                                    let id = selecionado[0].innerHTML;
-                                    let tipo = selecionado[3].innerHTML;
-
-                                    document.getElementById('idPessoa').value = id;
-                                    document.getElementById('tipoPessoa').value = tipo;
-                                    document.getElementById('formEditar').submit();
-                                });
+    btnVisualizar.addEventListener("click", function () {
+        var selecionados = tabela.getElementsByClassName("selecionado");
+        //Verificar se eestá selecionado
+        if (selecionados.length < 1) {
+            alert("Selecione pelo menos uma linha");
+            return false;
+        }
 
 
-                                btnDesativar.addEventListener("click", function () {
-                                    var selecionados = tabela.getElementsByClassName("selecionado");
-                                    //Verificar se eestá selecionado
-                                    if (selecionados.length < 1) {
-                                        alert("Selecione pelo menos uma linha");
-                                        return false;
-                                    }
+        for (var i = 0; i < selecionados.length; i++) {
+            var selecionado = selecionados[i];
+            selecionado = selecionado.getElementsByTagName("td");
+        }
+        let id = selecionado[0].innerHTML;
+        let tipo = selecionado[3].innerHTML;
+
+        document.getElementById('idPessoa').value = id;
+        document.getElementById('tipoPessoa').value = tipo;
+        document.getElementById('formEditar').submit();
+    });
 
 
+    btnDesativar.addEventListener("click", function () {
+        var selecionados = tabela.getElementsByClassName("selecionado");
+        //Verificar se eestá selecionado
+        if (selecionados.length < 1) {
+            alert("Selecione pelo menos uma linha");
+            return false;
+        }
 
-                                    for (var i = 0; i < selecionados.length; i++) {
-                                        var selecionado = selecionados[i];
-                                        selecionado = selecionado.getElementsByTagName("td");
-                                    }
-                                    let id = selecionado[0].innerHTML;
 
-                                    document.getElementById('idPessoaDesativar').value = id;
-                                    document.getElementById('formDesativar').submit();
-                                });
+        for (var i = 0; i < selecionados.length; i++) {
+            var selecionado = selecionados[i];
+            selecionado = selecionado.getElementsByTagName("td");
+        }
+        let id = selecionado[0].innerHTML;
+
+        document.getElementById('idPessoaDesativar').value = id;
+        document.getElementById('formDesativar').submit();
+    });
 </script>
-
-
-
-
 
 
 @include('includes.footer')

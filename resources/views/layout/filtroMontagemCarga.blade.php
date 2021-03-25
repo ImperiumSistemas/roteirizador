@@ -1,4 +1,11 @@
 @include('includes.header')
+@if (\Session::has('error'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{!! \Session::get('error') !!}</li>
+        </ul>
+    </div>
+@endif
 
 <div class="container-fluid">
     <!-- Page Heading -->

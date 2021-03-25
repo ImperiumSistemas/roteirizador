@@ -14,6 +14,7 @@ function informacoes(primeiro) {
 
 <div  id="container" class="card-footer">
     <button id='btnSalvarCargas' class="btn btn-primary">SALVAR</button>
+    <button id='btnOtimizarCargas' class="btn btn-primary">OTIMIZAR CARGAS</button>
     <div  id="top">
         <a id="add-route" style="background-color: darkblue" class="btn" href="javascript:void(0)" onclick="RoteirizadorMapView.newRoute()"
            title="Add a new route">ADICIONAR ROTA</a>
@@ -56,15 +57,30 @@ function informacoes(primeiro) {
     
 </form>
 
+<form id='otimizaCargasForm' action="{{route('otimizaCargas')}}" method="post">
+    {{ csrf_field() }}
+    <input type="hidden" id='cargasOtimizar' name='cargasOtimizar'/>
+
+</form>
+
 <script>
 
     
      //let dados = JSON.parse(sessionStorage.getItem('routesData'));
      let dados = sessionStorage.getItem('routesData');
-     $("#btnSalvarCargas").click(function() {        
+     $("#btnSalvarCargas").click(function() {
+         dados = sessionStorage.getItem('routesData');
         $("#cargas").val(dados);
         $("#saveCargasForm").submit();
     })
+
+     $("#btnOtimizarCargas").click(function() {
+         dados = sessionStorage.getItem('routesData');
+         $("#cargasOtimizar").val(dados);
+         $("#otimizaCargasForm").submit();
+     })
+
+
     
 </script>
 @include('includes.footer-mapa')

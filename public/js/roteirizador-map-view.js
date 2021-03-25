@@ -67,7 +67,7 @@ const RoteirizadorMapView = {
                 if (delivery.id > 0) {
                     const infoWindowContent = document.createElement('div');
                     let content = `<b>Delivery:</b> ${delivery.id} - <b>Route:</b> ${charge.id}`;
-                    content += '<button class="move-delivery btn" type="button" onclick="RoteirizadorMapView.moveDeliveryRoute(' + delivery.id + ', ' + routeIndex + ')">Mover para outra rota</button></br>';
+                    content += '<button class="btn-danger" type="button" onclick="RoteirizadorMapView.moveDeliveryRoute(' + delivery.id + ', ' + routeIndex + ')">Mover para outra rota</button></br>';
                     infoWindowContent.innerHTML = content;
                     delivery.infoWindowContent = infoWindowContent.innerHTML;
                     deliveries.push(delivery);
@@ -236,11 +236,11 @@ const RoteirizadorMapView = {
             const romaneios = carga.deliveries.filter(function (item) {
                 return idDelivery == item.id;
             });
-            let msg = 'Deseja mover o romaneio ' + romaneios[0].id + ' da rota ' + carga.id + ' para qual rota?';
+            let msg = 'Deseja mover a entrega ' + romaneios[0].id + ' da rota ' + carga.id + ' para qual rota?';
             const rota = prompt(msg);
 
             if (!romaneios[0]) {
-                throw new Exception("Romaneio n�o encontrado na rota!");
+                throw new Exception("Entrega não encontrado na rota!");
             }
 
             const romaneio = romaneios.pop();
@@ -269,9 +269,10 @@ const RoteirizadorMapView = {
                     return;
                 }
             });
-
-            if (!novaRota.data) {
-                throw new Exception("A rota informada n�o existe!");
+            console.log(novaRota.data);
+            if (novaRota.data == false) {
+               // throw new Exception("A rota informada não existe!");
+                alert("A rota informada não existe!");
             }
 
             let deliveries = dados.routes[indexRoute].deliveries;
@@ -286,6 +287,7 @@ const RoteirizadorMapView = {
 
             msg = 'Romaneio ' + romaneio.id + ' movido para o final da rota ' + rota + '.';
             alert(msg);
+            //verificar com RIcardo a regra dessa parte se gera o mapa a cada alteração ou se junta varias e depois gera o mapa
             RoteirizadorMapView.applyRoutesChanges();
         } catch (ex) {
             alert(ex.getMessage());

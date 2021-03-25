@@ -6,6 +6,12 @@
             <option value="{{isset($filial->id) ? $filial->id : ''}}">{{isset($filial->descricao) ? $filial->descricao : ''}}</option>
         @endforeach
     </select>
+
+    <label>Usar Todos Veiculos?</label>
+    <select name="vehiclesRequired">
+        <option value=0>NÃO</option>
+        <option value=1>SIM</option>
+    </select>
 </div>
 
 
@@ -17,6 +23,20 @@
     <input type="text" name="deliveries" value="">
 
 </div><br>
+
+<div class="form-control">
+    <label>Limite de KM</label>
+    <input type="text" name="km" value="">
+
+    <label>Cubagem dos Veiculos</label>
+    <input type="text" name="cubage" value="">
+
+    <label>Peso dos Veiculos</label>
+    <input type="text" name="weight" value="">
+
+
+</div><br>
+
 
 <div class = "form-control-lg">
     <label>Selecione as Praças: </label>
