@@ -68,11 +68,27 @@ function informacoes(primeiro) {
     
      //let dados = JSON.parse(sessionStorage.getItem('routesData'));
      let dados = sessionStorage.getItem('routesData');
+
      $("#btnSalvarCargas").click(function() {
-         dados = sessionStorage.getItem('routesData');
-        $("#cargas").val(dados);
-        $("#saveCargasForm").submit();
+         let routesChecked = $("#route-tabs").find("input:checked");
+
+         const RoutesData = JSON.parse(window.sessionStorage.getItem('routesData') || '{}');
+         const routes = RoutesData.routes;
+         let routesFinal = [];
+
+         $.each(routesChecked, (_, elem) => {
+             let rota = routes.find((o) => { return o.id === $(elem).data('id') });
+             routesFinal.push(rota);
+         });
+         dados = RoteirizadorMapView.getCheckedRoutes();
+            //dados = JSON.parse(routesFinal)
+         //$("#cargas").val(JSON.stringify(routesFinal));
+         $("#cargas").val(dados);
+         $("#saveCargasForm").submit();
+
     })
+
+     function recuperaRotas(rotasChecadas){};
 
      $("#btnOtimizarCargas").click(function() {
          dados = sessionStorage.getItem('routesData');

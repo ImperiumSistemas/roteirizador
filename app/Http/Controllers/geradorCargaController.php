@@ -137,22 +137,20 @@ class geradorCargaController extends Controller
     public function salvarCargas(Request $req)
     {
         $cargasRecebidas = json_decode($req->cargas);
-
-        foreach ($cargasRecebidas as $cargas) {
-            foreach ($cargas as $carga) {
-                $entregas = $carga->deliveries;
-                Cargas::create(['status' => 'Criado']);
-                $idCarga = Cargas::all('id')->last();
-                $sequenciaEntrega = 0;
-                foreach ($entregas as $entrega) {
-                    $idPedido = $entrega->id;
-                    if ($idPedido != '0') {
-                        $sequenciaEntrega = $sequenciaEntrega + 1;
-
-                        Pedidos::find($idPedido)->update(['cargas_id' => $idCarga->id, 'sequenciaEntrega' => $sequenciaEntrega, 'podeFormarCarga' => 'N', 'statusPedido' => 'M']);
-                    }
+        //dd($cargasRecebidas);
+        foreach ($cargasRecebidas as $carga) {
+            $entregas = $carga->deliveries;
+            Cargas::create(['status' => 'Criado']);
+            $idCarga = Cargas::all('id')->last();
+            $sequenciaEntrega = 0;
+            foreach ($entregas as $entrega) {
+                $idPedido = $entrega->id;
+                if ($idPedido != '0') {
+                    $sequenciaEntrega = $sequenciaEntrega + 1;
+                    Pedidos::find($idPedido)->update(['cargas_id' => $idCarga->id, 'sequenciaEntrega' => $sequenciaEntrega, 'podeFormarCarga' => 'N', 'statusPedido' => 'M']);
                 }
             }
+
         }
 
         dd("FEITO");
@@ -163,7 +161,7 @@ class geradorCargaController extends Controller
         $cargasRecebidas = json_decode($req->cargasOtimizar);
         $entregasCarga = array();
         $idCarg = 0;
-        $routes =array();
+        $routes = array();
         $rotasFinais = array();
         //dd($cargasRecebidas);
         foreach ($cargasRecebidas as $cargas) {
@@ -231,69 +229,4 @@ class geradorCargaController extends Controller
     }
 
 
-    public function otimizaCargasold(Request $req)
-    {
-        $cargasRecebidas = json_decode($req->cargasOtimizar);
-        //dd($cargasRecebidas);
-        $idCarg = 0;
-        $deliveries = array();
-        $routes =array ();
-
-        foreach ($cargasRecebidas as $cargas) {
-            foreach ($cargas as $carga) {
-                $entregas = $carga->deliveries;
-                //dd($entregas);
-                $vehicle = array("qtde" => '1', "weight" => '100000', "cubage" => '100000', "deliveries" => '1000', "km" => '10000000', "time" => "100000000", "vehiclesRequired" => '0');
-                foreach ($entregas as $entrega) {
-                    if ($entrega->id == 0) {
-                        $cd = array("address" => $entrega->address, "lat" => $entrega->lat, "lng" => $entrega->lng);
-                    } else {
-                        $coords = array("lat" => $entrega->lat, "lng" => $entrega->lng);
-                        $dimens = array("weight" => "100", "cubage" => "1000");
-                        $deliveries[] = array("id" => $entrega->id, "address" => $entrega->address, "coords" => $coords, "dimens" => $dimens);
-                    }
-                }
-                $arr = [
-                    "data" => [
-                        "cd" => $cd,
-                        "vehicle" => $vehicle,
-                        "deliveries" => $deliveries
-                    ]
-                ];
-
-                try {
-                    $response = $this->api->POST('http://localhost:3000/roteirizador', [
-                        'json' => $arr
-                    ]);
-                } catch (RequestException $e) {
-                    echo Psr7\str($e->getRequest());
-                    if ($e->hasResponse()) {
-                        echo Psr7\str($e->getResponse());
-                    }
-                }
-
-
-                //$resposta = $response->getBody();
-                $rota = json_decode($response->getBody());
-
-
-                foreach ($rota as $romaneio) {
-
-                    foreach ($romaneio as $resp) {
-                        $idCarg = $idCarg + 1;
-                        //echo($idCarg);
-                        $deliveries = $resp->deliveries;
-                        $routes [] = ["id" => $idCarg, "deliveries" => $deliveries];
-                    }
-                }
-
-            }
-        }
-        //dd($routes);
-        $teste = ["routes" => $routes];
-        dd($teste);
-        $resposta = json_encode($teste);
-
-        return view('layout.mapa', compact('resposta'));
-    }
 }

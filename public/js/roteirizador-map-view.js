@@ -33,6 +33,7 @@ const RoteirizadorMapView = {
         checkbox.setAttribute('checked', 'checked');
         checkbox.setAttribute('title', `Show/hide the route ${charge.id}`);
         checkbox.setAttribute('onclick', `RoteirizadorMapView.toggleRouteShow(this, ${routeIndex})`);
+        checkbox.setAttribute('data-id', charge.id);
         routeTab.appendChild(checkbox);
         const span = document.createElement('span');
         span.innerText = `Route ${charge.id}`;
@@ -213,20 +214,17 @@ const RoteirizadorMapView = {
 
     getCheckedRoutes: function () {
 
-        const tabs = document.getElementById('route-tabs');
-        let RoutesData = window.sessionStorage.getItem('routesData') || '{}';
-        RoutesData = JSON.parse(RoutesData);
-        const routes = RoutesData.routes
-        const routesFinal = [];
-        [...tabs.children].forEach((elem, index) => {
-            [...elem.children].forEach((check) => {
-                if (check.checked) {
-                    routesFinal.push(routes[index]);
-                }
-                ;
-            });
+        let routesChecked = $("#route-tabs").find("input:checked");
+
+        const RoutesData = JSON.parse(window.sessionStorage.getItem('routesData') || '{}');
+        const routes = RoutesData.routes;
+        let routesFinal = [];
+
+        $.each(routesChecked, (_, elem) => {
+            let rota = routes.find((o) => { return o.id === $(elem).data('id') });
+            routesFinal.push(rota);
         });
-        return routesFinal;
+        return JSON.stringify(routesFinal);
     },
 
     moveDeliveryRoute: function (idDelivery, indexRoute) {
