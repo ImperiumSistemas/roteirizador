@@ -60,7 +60,6 @@ Route::post('confirmaMapaFilial/{id}', ['as' => 'confirmaMapaFilial', 'uses' => 
 
 
 
-Route::get('/listagemEmpresaPermissao/{nivelAcesso}', ['as' => 'listagem.empresaPermissao', 'uses' => 'EmpresaController@listaPermissao']);
 Route::get('/listagemEmpresa', ['as' => 'listagem.empresa', 'uses' => 'EmpresaController@listaEmpresa']);
 Route::get('/layout/adicionarEmpresa', ['as' => 'layout.adicionarEmpresa', 'uses' => 'EmpresaController@adicionar']);
 Route::post('layout/salvarEmpresa', ['as' => 'layout.salvarEmpresa', 'uses' => "EmpresaController@salvar"]);
@@ -193,6 +192,4 @@ Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaContr
 Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
 
 
-
-Route::get('filtrosPermissao/{nivelAcesso}', ['as' => 'filtrosPermissao', 'uses' => 'geradorCargaController@filtrosPermissao']);
 Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);

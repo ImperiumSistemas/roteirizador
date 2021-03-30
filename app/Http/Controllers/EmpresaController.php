@@ -28,6 +28,7 @@ class EmpresaController extends Controller
         return view('listagem/listagemEmpresa', compact('empresas'));
       }else{
         return redirect()->route('site');
+        echo "Você não tem permissão para acessar essa tela";
       }
 
     }
@@ -62,7 +63,7 @@ class EmpresaController extends Controller
 
 
     public function atualizar(Request $req, $id){
-      
+
       $dados = $req->all();
 
       Empresas::find($id)->update($dados);

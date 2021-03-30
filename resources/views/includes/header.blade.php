@@ -77,24 +77,27 @@
                     <i style="background-color: orange" class="fas fa-fw fa-cog"></i>
                     <span style="background-color: orange" >Cadastros</span>
                 </a>
+                <!--('EMPRESA', 'FILIAIS', 'VEICULOS', 'MOTORISTAS', 'CLIENTES', 'PESSOAS',
+                                                   'CONFIRMA_ENDERECO', '$NIVEIS_ACESSOS', 'PRODUTOS', 'PRACA', 'ROTA',
+                                                   'REGIAO', 'PEDIDOS', '$CADASTRO_USUARIO', '$MONTAR_CARGA')); -->
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6  class="collapse-header">SISTEMA:</h6>
-                        <a href="{{route('listagem.empresaPermissao',  Auth::user()->idNivelAcesso)}}" class="collapse-item" >EMPRESAS</a>
-                        <a href="{{route('listagem.filialPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >FILIAIS</a>
-                        <a href="{{route('layout.adicionarUsuarioPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >USUARIOS</a>
-                        <a href="{{route('listagem.niveisAcessosPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >NIVEIS DE ACESSO</a>
+                        <a href="{{isset($EMPRESA) ? route('listagem.empresa') : route('site')}}" class="collapse-item" >EMPRESAS</a>
+                        <a href="{{isset($FILIAIS) ? route('listagem.filiais') : route('site')}}" class="collapse-item" >FILIAIS</a>
+                        <a href="{{isset($CADASTRO_USUARIO) ? route('layout.adicionarUsuario') : route('site')}}" class="collapse-item" >USUARIOS</a>
+                        <a href="{{isset($NIVEIS_ACESSOS) ? route('listagem.niveisAcessos') : route('site')}}" class="collapse-item" >NIVEIS DE ACESSO</a>
                         <h6  class="collapse-header">VEÍCULO:</h6>
-                        <a href="{{route('listagem.veiculoPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >VEÍCULOS</a>
+                        <a href="{{isset($VEICULOS) ? route('listagem.veiculo') : route('site')}}" class="collapse-item" >VEÍCULOS</a>
                         <h6  class="collapse-header">PESSOA:</h6>
-                        <a href="{{route('listagem.pessoasPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >PESSOA</a>
-                        <a href="{{route('listagemClientePermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >CLIENTES</a>
-                        <a href="{{route('listagem.confirmaEnderecoPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >CONFIRMAR ENDEREÇO</a>
-                        <a href="{{route('listagem.motoristaPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >MOTORISTA</a>
+                        <a href="{{isset($PESSOAS) ? route('listagem.pessoas') : route('site')}}" class="collapse-item" >PESSOA</a>
+                        <a href="{{isset($CLIENTES) ? route('listagemCliente') : route('site')}}" class="collapse-item" >CLIENTES</a>
+                        <a href="{{isset($CONFIRMA_ENDERECO) ? route('listagem.confirmaEndereco') : route('site')}}" class="collapse-item" >CONFIRMAR ENDEREÇO</a>
+                        <a href="{{isset($MOTORISTAS) ? route('listagem.motorista') : route('site')}}" class="collapse-item" >MOTORISTA</a>
                         <h6  class="collapse-header">CARGAS:</h6>
-                        <a href="{{route('listagem.regiaoPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >REGIÃO</a>
-                        <a href="{{route('listagem.rotaPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >ROTA</a>
-                        <a href="{{route('listagem.pracaPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >PRAÇA</a>
+                        <a href="{{isset($REGIAO) ? route('listagem.regiao') : route('site')}}" class="collapse-item" >REGIÃO</a>
+                        <a href="{{isset($ROTA) ? route('listagem.rota') : route('site')}}" class="collapse-item" >ROTA</a>
+                        <a href="{{isset($PRACA) ? route('listagem.praca') : route('site')}}" class="collapse-item" >PRAÇA</a>
                     </div>
                 </div>
             </li>
@@ -110,7 +113,7 @@
                      data-parent="#accordionSidebar">
                     <div  class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">MONTAGEM CARGA:</h6>
-                        <a href="{{route('filtrosPermissao', Auth::user()->idNivelAcesso)}}" class="collapse-item" >MONTAR CARGA</a>
+                        <a href="{{isset($MONTAR_CARGA) ? route('filtros') : route('site')}}" class="collapse-item" >MONTAR CARGA</a>
                     </div>
                 </div>
             </li>
