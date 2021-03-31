@@ -66,6 +66,8 @@ class geradorCargaController extends Controller
 
         $idFilial = $req->filial_id;
         $pracas = $req->idPracas;
+        $filialFaturamento = $req->filialFaturamento_id;
+        dd($filialFaturamento);
         //$rotas = $req->idRotas;
         //$regioes = $req->idRegioes;
         $cubage = $req->cubage;
@@ -77,7 +79,7 @@ class geradorCargaController extends Controller
         $this->deliveries = $req->deliveries;
 
         //$DbPraca = Pracas::wherein('id', $pracas)->get();  Como fazer o select com whereIN e fazer isso com pedidos para filtrar
-        $pedidos = Pedidos::where('codFilial', '=', $idFilial)
+        $pedidos = Pedidos::wherein('codFilial', $filialFaturamento)
             ->where('podeFormarCarga', '=', 'S')
             ->wherein('codPraca', $pracas)
             ->get();
@@ -223,12 +225,16 @@ class geradorCargaController extends Controller
 
     public function validacaoFiltros()
     {
+        $modelo = modelosAgrupamentos::where('id', '=', $this->vehiclesRequired)->first();
+        $this->vehiclesRequired = $modelo->utilizaTodosVeiculos;
 
         $retorno = true;
-        if (($this->vehiclesRequired == 1) and (($this->qtdPedidos / $this->qtdeVeiculos) > $this->deliveries)) {
+        if (($this->vehiclesRequired == 'S') and (($this->qtdPedidos / $this->qtdeVeiculos) > $this->deliveries)) {
+            $this->vehiclesRequired = 1;
             $retorno = false;
             return $retorno;
         } else {
+            $this->vehiclesRequired = 0;
             return $retorno;
         }
 

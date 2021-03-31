@@ -21,7 +21,16 @@
               rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
+
+        <style>
+            /* example of setting the width for multiselect */
+            #testSelect1_multiSelect {
+                width: 200px;
+            }
+        </style>
+
+
         <script>
         function Mudarestado(primeiro, segundo) {
             var display = document.getElementById(primeiro).style.display;

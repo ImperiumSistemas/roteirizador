@@ -30,3 +30,6 @@ ADD COLUMN `cargas_id` INT(11) NULL AFTER `sequenciaEntrega`;
 ALTER TABLE `roteirizador`.`pedidos` 
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `cargas_id`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
+
+alter table pedidos
+	add filialFaturamento_id int null;
