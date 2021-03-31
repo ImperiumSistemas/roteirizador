@@ -180,8 +180,8 @@ Route::get('/home', 'LoginController@index');
 Route::get('roteirizador', ['as' => 'roteirizador', 'uses' => 'geradorCargaController@roteirizador']);
 Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaController@gerarCarga']);
 Route::post('otimizaCargas', ['as' => 'otimizaCargas', 'uses' => 'geradorCargaController@otimizaCargas']);
-
-
-
 Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);
 Route::post('salvarCarga', ['as' => 'salvarCarga', 'uses' => 'geradorCargaController@salvarCargas']);
+Route::post('cancelarCarga', ['as' => 'cancelarCarga', 'uses' => 'geradorCargaController@cancelarCarga']);
+Route::get('listaCargas', ['as' => 'listaCargas', 'uses' => 'geradorCargaController@listaCargas']);
+Route::post('addVeiculoCarga', ['as' => 'addVeiculoCarga', 'uses' => 'geradorCargaController@addVeiculoCarga']);

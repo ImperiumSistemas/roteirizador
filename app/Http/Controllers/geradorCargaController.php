@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Pessoas;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
@@ -12,6 +15,8 @@ use App\Pracas;
 use App\Regioes;
 use App\Pedidos;
 use App\Cargas;
+use App\Veiculos;
+use App\modelosAgrupamentos;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Array_;
 
@@ -44,8 +49,9 @@ class geradorCargaController extends Controller
         $rotas = Rotas::all();
         $pracas = Pracas::all();
         $regioes = Regioes::all();
+        $modelosAgrupamentos = modelosAgrupamentos::all();
 
-        return View('layout.filtroMontagemCarga', compact('filiais', 'rotas', 'pracas', 'regioes'));
+        return View('layout.filtroMontagemCarga', compact('filiais', 'rotas', 'pracas', 'regioes', 'modelosAgrupamentos'));
     }
 
     public function roteirizador()
@@ -104,7 +110,7 @@ class geradorCargaController extends Controller
         $endFilial = $dadosFiliais->rua . ", " . $dadosFiliais->numero . ", " . $dadosFiliais->bairro . ", " . $dadosFiliais->cidade;
         $cd = array("address" => $endFilial, "lat" => $dadosFiliais->latitude, "lng" => $dadosFiliais->longitude);
         $vehicle = array("qtde" => $req->qtde, "weight" => $weight, "cubage" => $cubage, "deliveries" => $req->deliveries, "km" => $km, "time" => "100000000", "vehiclesRequired" => $this->vehiclesRequired);
-        $data = array("cd" => $cd, "vehicle" => $vehicle);
+        //$data = array("cd" => $cd, "vehicle" => $vehicle);
 
         //dd($data);
         $arr = [
@@ -228,5 +234,27 @@ class geradorCargaController extends Controller
 
     }
 
+    public function cancelarCarga(Request $req)
+    {
+        Cargas::where('id', '=', $req->idCancelar)->update(['status' => 'Cancelado']);
+        return redirect()->route('listaCargas');
+    }
+
+
+    public function listaCargas()
+    {
+        $cargas = Cargas::paginate(10);
+        $veiculos = Veiculos::all();
+        //dd($cargas);
+        return view('listagem.listaCargas', compact('cargas', 'veiculos'));
+    }
+
+    public function addVeiculoCarga(Request $req)
+    {
+        //dd($req->all());
+        Cargas::where('id', '=', $req->idCargaVeiculo)->update(['veiculos_id' => $req->idVeiculo]);
+
+        return redirect()->route('listaCargas');
+    }
 
 }

@@ -13,7 +13,7 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="#" class="btn btn-secondary btn-icon-split">
+        <a href="{{route('listaCargas')}}" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-arrow-left"></i>
                                         </span>

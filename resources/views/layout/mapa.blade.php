@@ -13,11 +13,10 @@ function informacoes(primeiro) {
 </script>
 
 <div  id="container" class="card-footer">
-    <button id='btnSalvarCargas' class="btn btn-primary">SALVAR</button>
-    <button id='btnOtimizarCargas' class="btn btn-primary">OTIMIZAR CARGAS</button>
+
     <div  id="top">
         <a id="add-route" style="background-color: darkblue" class="btn" href="javascript:void(0)" onclick="RoteirizadorMapView.newRoute()"
-           title="Add a new route">ADICIONAR ROTA</a>
+           title="Adicionar Rota">ADICIONAR ROTA</a>
         <div  id="block-toggle">
             <input type="checkbox" checked onclick="RoteirizadorMapView.toggleRouteShow(this)"
                    title="Show/hide all routes">
@@ -28,9 +27,11 @@ function informacoes(primeiro) {
     <div style="display:none" id="routes-content"></div>
 </div>
 <div class="card-footer">
-    <a  style="background-color: darkblue" class="btn" onclick="informacoes('routes-data')">
+    <a  class="btn btn-primary" onclick="informacoes('routes-data')">
         <div>DETALHES DA CARGA</div>
     </a>
+    <button id='btnOtimizarCargas' class="btn btn-primary">OTIMIZAR CARGAS</button>
+    <button id='btnSalvarCargas' class="btn btn-primary">SALVAR</button>
 </div>
 <div id="routes-count"></div>
 <div id="loading"></div>
