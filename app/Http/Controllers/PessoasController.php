@@ -18,47 +18,6 @@ class PessoasController extends Controller
 {
     //
 
-    public function ListaPessoasPermissao($nivelAcesso){
-      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
-      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "PESSOAS")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
-      $situaçãoPessoa = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
-
-      foreach ($permissoes as $permissao) {
-        if($permissao->idPermissao == $idPermissaoAcesso->id){
-          $situaçãoPessoa = true;
-        }
-      }
-
-      if($situaçãoPessoa == true){
-
-        $juridicaFisica = Pessoas::all();
-
-        $pessoaFisica = DB::table('pessoas')
-        ->join('fisicas', 'pessoas.id', '=', 'fisicas.PESSOAS_id')
-        ->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id')
-        ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
-         'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
-         'fisicas.cpf as cpf', 'fisicas.rg as rg','enderecos.rua','enderecos.bairro',
-         'enderecos.numero','enderecos.cidade','enderecos.estado',
-         'enderecos.pais'
-         )->get();
-
-         $pessoaJuridica = DB::table('pessoas')
-         ->join('juridicas', 'pessoas.id', '=', 'juridicas.PESSOAS_id')
-         ->leftjoin('enderecos', 'pessoas.id', '=', 'enderecos.pessoas_id')
-         ->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
-         'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
-         'juridicas.cnpj as cnpj', 'juridicas.razao_social as razaoSocial',
-         'enderecos.rua','enderecos.bairro','enderecos.numero','enderecos.cidade','enderecos.estado',
-         'enderecos.pais')->get();
-
-          return view('listagem.listaPessoas', compact('pessoaFisica', 'pessoaJuridica', 'juridicaFisica'));
-
-      }else{
-        return redirect()->route('site');
-      }
-    }
-
     public function listaPessoas(){
 
       //$pessoas = Pessoas::all();

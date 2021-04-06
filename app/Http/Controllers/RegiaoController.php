@@ -11,29 +11,6 @@ use Carbon\Carbon;
 class RegiaoController extends Controller
 {
 
-    public function listaRegiaoPermissao($nivelAcesso){
-
-      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
-      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "REGIAO")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
-      $situaçãoRegiao = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
-
-      foreach ($permissoes as $permissao) {
-        if($permissao->idPermissao == $idPermissaoAcesso->id){
-          $situaçãoRegiao = true;
-        }
-      }
-
-      if($situaçãoRegiao == true){
-
-        $listagemRegiaos = regioes::all();
-
-        return view('listagem.listagemRegiao', compact('listagemRegiaos'));
-
-      }else{
-        return redirect()->route('site');
-      }
-    }
-
     public function listaRegiao(){
 
 

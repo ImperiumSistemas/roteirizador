@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Permissao;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-      //  \App\Post::class => \App\Policies\PostPolicy::class,
+      //App\Post::class => App\Policies\PostPolicy::class,
     ];
 
     /**
@@ -28,13 +29,16 @@ class AuthServiceProvider extends ServiceProvider
 
        $this->registerPolicies();
 
-       Gate::define('Administrador', function ($user) {
-         return $user->idNivelAcesso == 1;
-       });
+       foreach($this->listaPermissoes() as $permissao){
+          Gate::define($permissao->nome, function($user) use($permissao){
+            return $user->temPapelDestes($permissao->papeis) || $user->isAdmin();
+          });
+        }
 
-       Gate::define('Usuario', function ($user) {
-         return $user->idNivelAcesso == 2;
-       });
      }
+
+     public function listaPermissoes(){
+      return Permissao::with('papeis')->get();
+    }
 
 }

@@ -33,31 +33,6 @@ class geradorCargaController extends Controller
         ]);
     }
 
-    public function filtrosPermissao($nivelAcesso){
-      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
-      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "MONTAR CARGA")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
-      $situaçãoMontarCarga = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
-
-      foreach ($permissoes as $permissao) {
-        if($permissao->idPermissao == $idPermissaoAcesso->id){
-          $situaçãoMontarCarga = true;
-        }
-      }
-
-      if($situaçãoMontarCarga == true){
-
-        $filiais = Filiais::all();
-        $rotas = Rotas::all();
-        $pracas = Pracas::all();
-        $regioes = Regioes::all();
-
-        return View('layout.filtroMontagemCarga', compact('filiais', 'rotas', 'pracas', 'regioes'));
-
-      }else{
-        return redirect()->route('site');
-      }
-    }
-
     public function filtros()
     {
         $filiais = Filiais::all();

@@ -13,32 +13,7 @@ use Illuminate\Support\Facades\DB;
 class PracaController extends Controller
 {
     //
-
-    public function listaPracaPermissao($nivelAcesso){
-
-      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
-      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "PRAÇA")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
-      $situaçãoPraca = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
-
-      foreach ($permissoes as $permissao) {
-        if($permissao->idPermissao == $idPermissaoAcesso->id){
-          $situaçãoPraca = true;
-        }
-      }
-
-      if($situaçãoPraca == true){
-        $pracas = DB::table('pracas')
-        ->join('rotas', 'pracas.ROTA_id', '=', 'rotas.id')
-        ->select('pracas.id', 'pracas.praca as nomePraca',
-        'pracas.dataInativacao as dataInativacao', 'pracas.ativoInativo as ativoInativo', 'rotas.descricaoRota as nomeRota')->get();
-
-        return view('listagem/listagemPraca', compact('pracas'));
-
-      }else{
-        return redirect()->route('site');
-      }
-    }
-
+  
     public function listaPraca(){
 
       //$pracas = pracas::all();

@@ -83,21 +83,23 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6  class="collapse-header">SISTEMA:</h6>
-                        <a href="{{isset($EMPRESA) ? route('listagem.empresa') : route('site')}}" class="collapse-item" >EMPRESAS</a>
-                        <a href="{{isset($FILIAIS) ? route('listagem.filiais') : route('site')}}" class="collapse-item" >FILIAIS</a>
-                        <a href="{{isset($CADASTRO_USUARIO) ? route('layout.adicionarUsuario') : route('site')}}" class="collapse-item" >USUARIOS</a>
-                        <a href="{{isset($NIVEIS_ACESSOS) ? route('listagem.niveisAcessos') : route('site')}}" class="collapse-item" >NIVEIS DE ACESSO</a>
+                        <a @can("EMPRESAS") href="{{route('listagem.empresa')}}" @endcan class="collapse-item" >EMPRESAS</a>
+                        <a @can("FILIAIS") href="{{route('listagem.filiais')}}" @endcan class="collapse-item" >FILIAIS</a>
+                        <a @can("USUARIOS") href="{{route('layout.adicionarUsuario')}}" @endcan class="collapse-item" >USUARIOS</a>
+                        <a @can("NIVEIS_ACESSOS") href="{{route('listagem.niveisAcessos')}}" @endcan class="collapse-item" >NIVEIS DE ACESSO</a>
                         <h6  class="collapse-header">VEÍCULO:</h6>
-                        <a href="{{isset($VEICULOS) ? route('listagem.veiculo') : route('site')}}" class="collapse-item" >VEÍCULOS</a>
+                        <a @can("VEICULOS") href="{{route('listagem.veiculo')}}" @endcan class="collapse-item" >VEÍCULOS</a>
                         <h6  class="collapse-header">PESSOA:</h6>
-                        <a href="{{isset($PESSOAS) ? route('listagem.pessoas') : route('site')}}" class="collapse-item" >PESSOA</a>
-                        <a href="{{isset($CLIENTES) ? route('listagemCliente') : route('site')}}" class="collapse-item" >CLIENTES</a>
-                        <a href="{{isset($CONFIRMA_ENDERECO) ? route('listagem.confirmaEndereco') : route('site')}}" class="collapse-item" >CONFIRMAR ENDEREÇO</a>
-                        <a href="{{isset($MOTORISTAS) ? route('listagem.motorista') : route('site')}}" class="collapse-item" >MOTORISTA</a>
+                        <a @can("PESSOAS") href="{{route('listagem.pessoas')}}" @endcan class="collapse-item" >PESSOA</a>
+                        <a @can("CLIENTES") href="{{route('listagemCliente')}}" @endcan class="collapse-item" >CLIENTES</a>
+                        <a @can("CONFIRMAR_ENDERECO") href="{{route('listagem.confirmaEndereco')}}" @endcan class="collapse-item" >CONFIRMAR ENDEREÇO</a>
+                        <a @can("MOTORISTAS") href="{{route('listagem.motorista')}}" @endcan class="collapse-item" >MOTORISTA</a>
                         <h6  class="collapse-header">CARGAS:</h6>
-                        <a href="{{isset($REGIAO) ? route('listagem.regiao') : route('site')}}" class="collapse-item" >REGIÃO</a>
-                        <a href="{{isset($ROTA) ? route('listagem.rota') : route('site')}}" class="collapse-item" >ROTA</a>
-                        <a href="{{isset($PRACA) ? route('listagem.praca') : route('site')}}" class="collapse-item" >PRAÇA</a>
+
+                        <a @can('REGIAO') href="('REGIAO'){{route('listagem.regiao')}}" @endcan class="collapse-item" >REGIÃO</a>
+
+                        <a @can('ROTA') href="{{route('listagem.rota')}}" @endcan class="collapse-item" >ROTA</a>
+                        <a @can('PRACA') href="{{route('listagem.praca')}}" @endcan class="collapse-item" >PRAÇA</a>
                     </div>
                 </div>
             </li>
@@ -113,7 +115,7 @@
                      data-parent="#accordionSidebar">
                     <div  class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">MONTAGEM CARGA:</h6>
-                        <a href="{{isset($MONTAR_CARGA) ? route('filtros') : route('site')}}" class="collapse-item" >MONTAR CARGA</a>
+                        <a @can('MONTAR_CARGA') href="{{route('filtros')}}" @endcan class="collapse-item" >MONTAR CARGA</a>
                     </div>
                 </div>
             </li>

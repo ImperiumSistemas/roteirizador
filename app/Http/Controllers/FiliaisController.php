@@ -14,32 +14,6 @@ class FiliaisController extends Controller
 {
     //
 
-    public function listaFiliaisPermissao($nivelAcesso){
-
-      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
-      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "FILIAIS")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
-      $situacaoFilial = false; // iniciando a variavel como
-
-      foreach ($permissoes as $permissao) {
-        if($permissao->idPermissao == $idPermissaoAcesso->id){
-          $situacaoFilial = true;
-        }
-      }
-      if($situacaoFilial == true){
-        $filiais = DB::table('filiais')
-        ->join('empresas', 'filiais.EMPRESA_id', '=', 'empresas.id')
-        ->select('filiais.id','filiais.cnpj as cnpj', 'filiais.telefone as telefone', 'filiais.pais as pais', 'filiais.estado as estado',
-        'filiais.cidade as cidade', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.descricao as descricao',
-         'filiais.ativoInativo as ativoInativo', 'filiais.dataInativacao as dataInativacao',
-        'empresas.nome_empresa as nomeEmpresa', 'filiais.rua as rua', 'filiais.numero as numero')->get();
-
-        return view('listagem/listagemFiliais', compact('filiais'));
-      }else{
-        return redirect()->route('site');
-      }
-
-    }
-
     public function listaFiliais(){
 
       //$filiais = Filiais::all();
