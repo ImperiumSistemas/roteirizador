@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
     //return view('login.index');
 });
 
@@ -162,6 +162,7 @@ Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 
 // LOGIN
 
 Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
 // FIM LOGIN
 //});

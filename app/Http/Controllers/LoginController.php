@@ -29,4 +29,9 @@ class LoginController extends Controller
       return view('home');
   }
 
+  public function logout(Request $req){
+    Auth::logout();
+    return redirect(''/login');
+  }
+
 }
