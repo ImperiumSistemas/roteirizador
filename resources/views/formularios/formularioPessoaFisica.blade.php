@@ -23,32 +23,37 @@
 
 <div class="form-control-lg">
   <input type="text" name="rua" value="{{isset($endereco->rua) ? $endereco->rua : '' }}">
-  <label>Rua</label>
+  <label>RUA</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="numero" value="{{isset($endereco->numero) ? $endereco->numero : '' }}">
-  <label>numero</label>
+  <label>NUMERO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="bairro" value="{{isset($endereco->bairro) ? $endereco->bairro : '' }}">
-  <label>Bairro</label>
+  <label>BAIRRO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="cidade" value="{{isset($endereco->cidade) ? $endereco->cidade : '' }}">
-  <label>Cidade</label>
+  <label>CIDADE</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="estado" value="{{isset($endereco->estado) ? $endereco->estado : '' }}">
-  <label>Estado</label>
+  <label>ESTADO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="pais" value="{{isset($endereco->pais) ? $endereco->pais : '' }}">
-  <label>Pais</label>
+  <label>PAIS</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" name="cep" value="{{isset($endereco->cep) ? $endereco->cep : '' }}">
+  <label>CEP</label>
 </div>
 
 <div class="form-control-lg">

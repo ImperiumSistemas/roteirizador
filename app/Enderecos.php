@@ -11,8 +11,8 @@ class Enderecos extends Model
 
     protected $fillable = [
 
-       'rua','numero','bairro','cidade', 'estado', 'pais', 'PESSOAS_id', 'latitude', 'longitude',
-        'confirmado', 'cep', 'ativoInativo', 'dataInativacao'
+       'rua','numero','bairro','cidade', 'cep', 'estado', 'pais', 'PESSOAS_id', 'latitude', 'longitude',
+        'confirmado', 'ativoInativo', 'dataInativacao'
 
     ];
 }

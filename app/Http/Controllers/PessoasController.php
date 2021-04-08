@@ -76,54 +76,47 @@ class PessoasController extends Controller
       $cidade = $req->cidade;
       $estado = $req->estado;
       $pais = $req->pais;
+      $cep = $req->cep;
       $salvarEm = $req->salvarEm;
 
 
       if($salvarEm == 2){
 
-        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
         $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
 
         Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
         $Pessoas_id = $ultimoId->id;
 
         Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
-        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
+        'estado'=>$estado, 'cep' => $cep, 'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id, 'ativoInativo' => 1]);
 
-        Clientes::create(['PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
+        Clientes::create(['ativoInativo' => 1, 'PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
 
-        $ultimoId = Pessoas::all('id')->last();
-
-        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
-
-        return redirect()->route('listagemCliente');
+        return redirect()->route('listagem.pessoas');
       }
 
       if($salvarEm == 1){
-        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
         $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
 
         Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
         $Pessoas_id = $ultimoId->id;
 
         Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
-        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
-
-        $ultimoId = Pessoas::all('id')->last();
-
-        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+        'estado'=>$estado, 'cep' => $cep, 'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id, 'ativoInativo' => 1]);
 
         Motoristas::create();
       }
 
-      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
       $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
 
       Fisicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id'=> $ultimoId->id]);
       $Pessoas_id = $ultimoId->id;
 
       Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
-      'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id]);
+      'estado'=>$estado, 'cep' => $cep, 'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id, 'ativoInativo' => 1]);
       return redirect()->route('listagem.pessoas');
 
     }
@@ -140,40 +133,33 @@ class PessoasController extends Controller
       $cidade = $req->cidade;
       $estado = $req->estado;
       $pais = $req->pais;
+      $cep = $req->cep;
       $salvarEm = $req->salvarEm;
 
       if($salvarEm == 2){
 
-        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+        Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
         $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
         Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial, 'PESSOAS_id' => $ultimoId->id ]);
 
         $Pessoas_id = $ultimoId->id;
 
         Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
-        'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id]);
+        'cep' => $cep, 'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id, 'ativoInativo' => 1]);
 
-        Clientes::create(['PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
+        Clientes::create(['ativoInativo' => 1, 'PESSOA_id' => $ultimoId->id, 'PRACA_id' => 1]);
 
-        $ultimoId = Pessoas::all('id')->last();
-
-        Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
-
-        return redirect()->route('listagemCliente');
+        return redirect()->route('listagem.pessoas');
       }
 
-      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone]);
+      Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
       $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa (chave estrangeira)
       Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial, 'PESSOAS_id' => $ultimoId->id ]);
 
       $Pessoas_id = $ultimoId->id;
 
       Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
-      'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id]);
-
-      $ultimoId = Pessoas::all('id')->last();
-
-      Pessoas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+      'cep' => $cep, 'estado'=>$estado,'pais'=>$pais,'PESSOAS_id'=> $Pessoas_id, 'ativoInativo' => 1]);
 
       return redirect()->route('listagem.pessoas');
     }
@@ -214,6 +200,7 @@ class PessoasController extends Controller
       $cidade = $req->cidade;
       $estado = $req->estado;
       $pais = $req->pais;
+      $cep = $req->cep;
 
       $tipoPessoa = Fisicas::where('PESSOAS_id', '=', $id)->first();
       $endereco = Enderecos::where('PESSOAS_id', '=', $id)->first();
@@ -225,7 +212,7 @@ class PessoasController extends Controller
         Pessoas::find($id)->update(['nome' => $nome, 'numero_telefone' => $telefone]);
         Fisicas::find($tipoPessoa->id)->update(['cpf' => $cpf, 'rg' => $rg]);
         Enderecos::find($endereco->id)->update(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero,
-                    'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais]);
+                    'cidade' => $cidade, 'cep' => $cep, 'estado' => $estado, 'pais' => $pais]);
 
         return redirect()->route('listagem.pessoas');
 
@@ -240,7 +227,7 @@ class PessoasController extends Controller
         Pessoas::find($id)->update(['nome' => $nome, 'numero_telefone' => $telefone]);
         Juridicas::find($tipoPessoa->id)->update(['cnpj' => $cnpj, 'razao_social' => $razaoSocial]);
         Enderecos::find($endereco->id)->update(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero,
-                    'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais]);
+                    'cidade' => $cidade, 'cep' => $cep, 'estado' => $estado, 'pais' => $pais]);
 
         return redirect()->route('listagem.pessoas');
 
