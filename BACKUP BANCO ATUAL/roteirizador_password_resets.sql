@@ -16,29 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `niveis_acessos`
+-- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `niveis_acessos`;
+DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `niveis_acessos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+CREATE TABLE `password_resets` (
+  `email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `niveis_acessos`
+-- Dumping data for table `password_resets`
 --
 
-LOCK TABLES `niveis_acessos` WRITE;
-/*!40000 ALTER TABLE `niveis_acessos` DISABLE KEYS */;
-INSERT INTO `niveis_acessos` VALUES (2,'Usuario','2021-03-29 18:27:25','2021-03-29 18:27:25'),(1,'Administrador','2021-03-29 18:26:25','2021-03-29 18:26:25');
-/*!40000 ALTER TABLE `niveis_acessos` ENABLE KEYS */;
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:54
+-- Dump completed on 2021-04-08 14:24:53

@@ -16,27 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `permissao_acessos`
+-- Table structure for table `juridicas`
 --
 
-DROP TABLE IF EXISTS `permissao_acessos`;
+DROP TABLE IF EXISTS `juridicas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permissao_acessos` (
+CREATE TABLE `juridicas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT NULL,
+  `cnpj` varchar(15) NOT NULL,
+  `razao_social` varchar(45) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(15) DEFAULT NULL,
+  `deleted_at` varchar(45) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
+  `PESSOAS_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `permissao_acessos`
+-- Dumping data for table `juridicas`
 --
 
-LOCK TABLES `permissao_acessos` WRITE;
-/*!40000 ALTER TABLE `permissao_acessos` DISABLE KEYS */;
-INSERT INTO `permissao_acessos` VALUES (1,'EMPRESAS'),(2,'FILAIS'),(3,'VEICULOS'),(4,'MOTORISTAS'),(5,'CLIENTES'),(6,'PESSOAS'),(7,'CONFIRMAR ENDEREÇO'),(8,'NIVEIS DE ACESSOS'),(9,'PRODUTOS'),(10,'PRAÇA'),(11,'ROTA'),(12,'REGIAO'),(13,'PEDIDOS');
-/*!40000 ALTER TABLE `permissao_acessos` ENABLE KEYS */;
+LOCK TABLES `juridicas` WRITE;
+/*!40000 ALTER TABLE `juridicas` DISABLE KEYS */;
+INSERT INTO `juridicas` VALUES (7,'99','99',NULL,NULL,NULL,'2021-04-08 17:17:16','2021-04-08 17:17:16',57);
+/*!40000 ALTER TABLE `juridicas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-19 10:00:16
+-- Dump completed on 2021-04-08 14:24:58

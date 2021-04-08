@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `niveis_acessos`
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `niveis_acessos`;
+DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `niveis_acessos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `niveis_acessos`
+-- Dumping data for table `migrations`
 --
 
-LOCK TABLES `niveis_acessos` WRITE;
-/*!40000 ALTER TABLE `niveis_acessos` DISABLE KEYS */;
-INSERT INTO `niveis_acessos` VALUES (2,'Usuario','2021-03-29 18:27:25','2021-03-29 18:27:25'),(1,'Administrador','2021-03-29 18:26:25','2021-03-29 18:26:25');
-/*!40000 ALTER TABLE `niveis_acessos` ENABLE KEYS */;
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (3,'2014_10_12_000000_create_users_table',1),(4,'2014_10_12_100000_create_password_resets_table',1),(5,'2021_03_30_161433_create_roles_tables',2),(6,'2021_03_30_161924_create_permissions_table',2),(7,'2021_03_30_162552_create_permissions_roles_table',2),(8,'2021_03_30_162616_create_roles_users_table',3);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:54
+-- Dump completed on 2021-04-08 14:24:55

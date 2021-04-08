@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `niveis_acessos`
+-- Table structure for table `empresas`
 --
 
-DROP TABLE IF EXISTS `niveis_acessos`;
+DROP TABLE IF EXISTS `empresas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `niveis_acessos` (
+CREATE TABLE `empresas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT NULL,
+  `nome_empresa` varchar(50) NOT NULL,
+  `ativoInativo` varchar(2) DEFAULT NULL,
+  `dataInativacao` varchar(25) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `niveis_acessos`
+-- Dumping data for table `empresas`
 --
 
-LOCK TABLES `niveis_acessos` WRITE;
-/*!40000 ALTER TABLE `niveis_acessos` DISABLE KEYS */;
-INSERT INTO `niveis_acessos` VALUES (2,'Usuario','2021-03-29 18:27:25','2021-03-29 18:27:25'),(1,'Administrador','2021-03-29 18:26:25','2021-03-29 18:26:25');
-/*!40000 ALTER TABLE `niveis_acessos` ENABLE KEYS */;
+LOCK TABLES `empresas` WRITE;
+/*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
+INSERT INTO `empresas` VALUES (11,'Imperium Sistemas','1','','2021-03-25 00:51:52','2021-01-19 18:05:49');
+/*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:54
+-- Dump completed on 2021-04-08 14:24:56

@@ -16,29 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `niveis_acessos`
+-- Table structure for table `filiais_motoristas`
 --
 
-DROP TABLE IF EXISTS `niveis_acessos`;
+DROP TABLE IF EXISTS `filiais_motoristas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `niveis_acessos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT NULL,
+CREATE TABLE `filiais_motoristas` (
+  `FILIAL_id` int(11) NOT NULL,
+  `MOTORISTA_id` int(11) NOT NULL,
+  `ativoInativo` varchar(3) DEFAULT NULL,
+  `dataInativacao` varchar(15) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `deleted_at` varchar(45) DEFAULT NULL,
+  KEY `fk_FILIAL_has_MOTORISTA_MOTORISTA1_idx` (`MOTORISTA_id`),
+  KEY `fk_FILIAL_has_MOTORISTA_FILIAL1_idx` (`FILIAL_id`),
+  CONSTRAINT `fk_FILIAL_has_MOTORISTA_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_FILIAL_has_MOTORISTA_MOTORISTA1` FOREIGN KEY (`MOTORISTA_id`) REFERENCES `motoristas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `niveis_acessos`
+-- Dumping data for table `filiais_motoristas`
 --
 
-LOCK TABLES `niveis_acessos` WRITE;
-/*!40000 ALTER TABLE `niveis_acessos` DISABLE KEYS */;
-INSERT INTO `niveis_acessos` VALUES (2,'Usuario','2021-03-29 18:27:25','2021-03-29 18:27:25'),(1,'Administrador','2021-03-29 18:26:25','2021-03-29 18:26:25');
-/*!40000 ALTER TABLE `niveis_acessos` ENABLE KEYS */;
+LOCK TABLES `filiais_motoristas` WRITE;
+/*!40000 ALTER TABLE `filiais_motoristas` DISABLE KEYS */;
+INSERT INTO `filiais_motoristas` VALUES (15,101,NULL,NULL,'2021-03-08 14:04:13','2021-03-08 14:04:13',NULL),(13,1414,NULL,NULL,'2021-03-08 14:06:39','2021-03-08 14:06:39',NULL),(15,1010101,NULL,NULL,'2021-03-08 16:38:00','2021-03-08 16:38:00',NULL);
+/*!40000 ALTER TABLE `filiais_motoristas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:54
+-- Dump completed on 2021-04-08 14:24:59
