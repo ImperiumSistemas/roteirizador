@@ -16,15 +16,15 @@
       </thead>
 
       <tbody>
-        @foreach($niveisAcesso as $na)
+        @foreach($papeis as $papel)
           <tr>
-            <td>{{$na->id}}</td>
-            <td><a href="{{route('permissaoAcesso', $na->id)}}">{{$na->descricao}}</a></td>
+            <td>{{$papel->id}}</td>
+            <td><a href="{{route('permissaoAcesso', $papel->id)}}">{{$papel->nome}}</a></td>
             <td>
-              <a class="btn deep-orange" href="{{route('layout.editarNivelAcesso', $na->id)}}">Editar</a>
+              <a class="btn deep-orange" href="{{route('layout.editarNivelAcesso', $papel->id)}}">Editar</a>
             </td>
             <td>
-              <a class="btn red" href="{{route('layout.excluirNivelAcesso', $na->id)}}">Deletar</a>
+              <a class="btn red" href="{{route('layout.excluirNivelAcesso', $papel->id)}}">Deletar</a>
             </td>
           </tr>
 

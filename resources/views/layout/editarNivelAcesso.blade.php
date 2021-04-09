@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="row">
-      <form class="" method="post" action="{{route('layout.atualizarNivelAcesso', $nivelAcesso->id)}}">
+      <form class="" method="post" action="{{route('layout.atualizarNivelAcesso', $papel->id)}}">
         {{ csrf_field() }}
 
         <input type="hidden" name="_method" value="put">

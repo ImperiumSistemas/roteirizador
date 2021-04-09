@@ -5,7 +5,7 @@
     <h3 ><center>LISTA DE PERMISSÃO </center></h3>
     <br/><br/>
 
-    <form class="" action="{{route('layout.salvarPermissao', $descricaoNivelAcesso->id)}}" method="post">
+    <form class="" action="{{route('layout.salvarPermissao', $papel->id)}}" method="post">
       {{ csrf_field() }}
 
       <div class="row">
@@ -21,8 +21,21 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{$descricaoNivelAcesso->id}}</td>
-                <td>{{$descricaoNivelAcesso->descricao}}</td>
+                <td>{{$papel->id}}</td>
+                <td>{{$papel->nome}}</td>
+              </tr>
+
+              <tr>
+                <td><br/><br><b>PERMISSÕES</b></td>
+              </tr>
+              <tr>
+                <td>
+                  @foreach($permissoesPapel as $permissaoPapel)
+                    <tr>
+                      <td>{{$permissaoPapel->nome}}</td>
+                    </tr>
+                  @endforeach
+                 </td>
               </tr>
             </tbody>
           </table>
@@ -31,17 +44,17 @@
       <div class="col s4">
 
 
-          @foreach($descricaoPermissao as $dp)
+          @foreach($permissoes as $permissao)
             <label>
-              <input type="checkbox" name="idPermissao[]" value="{{isset($dp->id) ? $dp->id : '' }}"/>
-              <span>{{$dp->descricao}}</span>
               <p>
+              <input type="checkbox" name="idPermissao[]" value="{{isset($permissao->id) ? $permissao->id : '' }}"/>
+              <span>{{$permissao->nome}}</span>
             </label>
           @endforeach
       </div>
 
       <div class="col s1">
-        <button class="btn deep-orange">SALVAR</button>
+        <button class="btn btn-danger">SALVAR</button>
       </div>
     </div>
 
