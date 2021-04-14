@@ -16,33 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `regioes`
+-- Table structure for table `papel_permissao`
 --
 
-DROP TABLE IF EXISTS `regioes`;
+DROP TABLE IF EXISTS `papel_permissao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `regioes` (
+CREATE TABLE `papel_permissao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeRegiao` varchar(45) DEFAULT NULL,
-  `ativoInativo` varchar(45) DEFAULT NULL,
-  `dataInativacao` varchar(45) DEFAULT NULL,
-  `dataAtivacao` varchar(45) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `permissao_id` int(11) DEFAULT NULL,
+  `papel_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permissao_id` (`permissao_id`),
+  KEY `papel_id` (`papel_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `regioes`
+-- Dumping data for table `papel_permissao`
 --
 
-LOCK TABLES `regioes` WRITE;
-/*!40000 ALTER TABLE `regioes` DISABLE KEYS */;
-INSERT INTO `regioes` VALUES (1,'teste','1',NULL,NULL,'2021-03-08 14:16:13','2021-03-08 14:16:13',NULL);
-/*!40000 ALTER TABLE `regioes` ENABLE KEYS */;
+LOCK TABLES `papel_permissao` WRITE;
+/*!40000 ALTER TABLE `papel_permissao` DISABLE KEYS */;
+INSERT INTO `papel_permissao` VALUES (1,1,2),(2,2,2),(3,3,2),(4,4,2),(5,5,2),(7,11,3),(8,12,3);
+/*!40000 ALTER TABLE `papel_permissao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:38
+-- Dump completed on 2021-04-08 14:24:57

@@ -29,7 +29,7 @@ CREATE TABLE `papel_permissao` (
   PRIMARY KEY (`id`),
   KEY `permissao_id` (`permissao_id`),
   KEY `papel_id` (`papel_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `papel_permissao` (
 
 LOCK TABLES `papel_permissao` WRITE;
 /*!40000 ALTER TABLE `papel_permissao` DISABLE KEYS */;
-INSERT INTO `papel_permissao` VALUES (1,1,2),(2,2,2),(3,3,2),(4,4,2),(5,5,2),(7,11,3),(8,12,3);
+INSERT INTO `papel_permissao` VALUES (80,10,3),(79,11,3),(78,12,3);
 /*!40000 ALTER TABLE `papel_permissao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:57
+-- Dump completed on 2021-04-14 11:31:51

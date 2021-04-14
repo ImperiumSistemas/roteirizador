@@ -16,46 +16,45 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais`
+-- Table structure for table `pedidos`
 --
 
-DROP TABLE IF EXISTS `filiais`;
+DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais` (
+CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(14) NOT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
-  `pais` varchar(45) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `cidade` varchar(45) NOT NULL,
-  `bairro` varchar(45) NOT NULL,
-  `cep` varchar(45) NOT NULL,
-  `rua` varchar(45) DEFAULT NULL,
-  `numero` varchar(45) DEFAULT NULL,
-  `descricao` varchar(45) DEFAULT NULL,
+  `codPedido` varchar(15) DEFAULT NULL,
+  `codCliente` varchar(45) DEFAULT NULL,
+  `nomePedido` varchar(45) DEFAULT NULL,
+  `peso` varchar(10) DEFAULT NULL,
+  `cubagem` varchar(15) DEFAULT NULL,
+  `valorPedido` varchar(10) DEFAULT NULL,
   `codFilial` varchar(15) DEFAULT NULL,
-  `EMPRESA_id` int(11) DEFAULT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
+  `cargaErp` varchar(50) DEFAULT NULL,
+  `codPraca` int(11) DEFAULT NULL,
+  `dataPedido` varchar(10) DEFAULT NULL,
+  `podeFormarCarga` varchar(1) DEFAULT NULL,
+  `statusPedido` varchar(15) DEFAULT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  `latitude` varchar(45) DEFAULT NULL,
-  `longitude` varchar(45) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_FILIAL_EMPRESA1_idx` (`EMPRESA_id`),
-  CONSTRAINT `fk_FILIAL_EMPRESA1` FOREIGN KEY (`EMPRESA_id`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  KEY `codCliente` (`codCliente`),
+  KEY `codPraca` (`codPraca`),
+  KEY `codFilial` (`codFilial`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais`
+-- Dumping data for table `pedidos`
 --
 
-LOCK TABLES `filiais` WRITE;
-/*!40000 ALTER TABLE `filiais` DISABLE KEYS */;
-INSERT INTO `filiais` VALUES (13,'115421','319954781','Brasil','1','Contagem','Tere','32681-592',NULL,NULL,'EMPRESA X','5050',NULL,'1','','2021-03-25 01:34:40','2021-01-19 23:27:47','-19.9480949','-44.1225797'),(15,'111','3155111211','Brasil','MG','Betim','Tere','32681592',NULL,NULL,'Imperium','1010',11,'1','','2021-03-25 01:25:53','2021-02-04 19:32:49',NULL,NULL);
-/*!40000 ALTER TABLE `filiais` ENABLE KEYS */;
+LOCK TABLES `pedidos` WRITE;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (4,'1515','1010','1010','1010','1010','1010','1010','1010',1010,'1010','s',NULL,'1','','2021-03-09 17:32:55','2021-03-16 13:43:11'),(5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-03-09 17:34:05','2021-03-09 17:34:05'),(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-03-09 17:34:17','2021-03-09 17:34:17'),(7,'5050','1010','1010','1010','1010','1010','1010','1010',1010,'1010','s',NULL,'1','','2021-03-09 17:37:19','2021-03-09 17:37:26');
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -67,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-14 11:31:50
+-- Dump completed on 2021-04-08 14:24:59

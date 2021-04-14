@@ -16,35 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_clientes`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `filiais_clientes`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_clientes` (
-  `FILIAL_id` int(11) NOT NULL,
-  `CLIENTE_id` int(11) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  KEY `fk_FILIAL_has_CLIENTE_CLIENTE1_idx` (`CLIENTE_id`),
-  KEY `fk_FILIAL_has_CLIENTE_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_CLIENTE1` FOREIGN KEY (`CLIENTE_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_clientes`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `filiais_clientes` WRITE;
-/*!40000 ALTER TABLE `filiais_clientes` DISABLE KEYS */;
-INSERT INTO `filiais_clientes` VALUES (13,8,NULL,NULL,NULL,'2021-03-21 22:59:34','2021-03-21 22:59:34'),(15,8,NULL,NULL,NULL,'2021-03-21 22:59:34','2021-03-21 22:59:34'),(13,10,NULL,NULL,NULL,'2021-04-08 15:47:54','2021-04-08 15:47:54');
-/*!40000 ALTER TABLE `filiais_clientes` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','anderson@anderson.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','S5SMxTus5UmFXtiFGfm7rSzva6aRRUpN2CQXwt7mKlEmvRdleL4IuAY0c1HZ',NULL,NULL),(2,'User','user@user.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','EHQvaeBwI2VFV97no9C4XWe7fzdaE8eowJnwA42LYFKl4xd0DIBf5mfqWx6L',NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-14 11:31:53
+-- Dump completed on 2021-04-08 14:24:57

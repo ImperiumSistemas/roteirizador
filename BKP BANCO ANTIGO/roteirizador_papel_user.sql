@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `numeros`
+-- Table structure for table `papel_user`
 --
 
-DROP TABLE IF EXISTS `numeros`;
+DROP TABLE IF EXISTS `papel_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `numeros` (
+CREATE TABLE `papel_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `papel_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `papel_id` (`papel_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `numeros`
+-- Dumping data for table `papel_user`
 --
 
-LOCK TABLES `numeros` WRITE;
-/*!40000 ALTER TABLE `numeros` DISABLE KEYS */;
-INSERT INTO `numeros` VALUES (1,'597');
-/*!40000 ALTER TABLE `numeros` ENABLE KEYS */;
+LOCK TABLES `papel_user` WRITE;
+/*!40000 ALTER TABLE `papel_user` DISABLE KEYS */;
+INSERT INTO `papel_user` VALUES (1,1,1),(2,3,2);
+/*!40000 ALTER TABLE `papel_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:41
+-- Dump completed on 2021-04-08 14:24:58

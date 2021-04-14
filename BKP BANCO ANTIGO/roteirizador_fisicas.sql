@@ -16,35 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filiais_clientes`
+-- Table structure for table `fisicas`
 --
 
-DROP TABLE IF EXISTS `filiais_clientes`;
+DROP TABLE IF EXISTS `fisicas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filiais_clientes` (
-  `FILIAL_id` int(11) NOT NULL,
-  `CLIENTE_id` int(11) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
+CREATE TABLE `fisicas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(15) NOT NULL,
+  `rg` varchar(15) NOT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
-  KEY `fk_FILIAL_has_CLIENTE_CLIENTE1_idx` (`CLIENTE_id`),
-  KEY `fk_FILIAL_has_CLIENTE_FILIAL1_idx` (`FILIAL_id`),
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_CLIENTE1` FOREIGN KEY (`CLIENTE_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_FILIAL_has_CLIENTE_FILIAL1` FOREIGN KEY (`FILIAL_id`) REFERENCES `filiais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `PESSOAS_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `PESSOAS_id_idx` (`PESSOAS_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filiais_clientes`
+-- Dumping data for table `fisicas`
 --
 
-LOCK TABLES `filiais_clientes` WRITE;
-/*!40000 ALTER TABLE `filiais_clientes` DISABLE KEYS */;
-INSERT INTO `filiais_clientes` VALUES (13,8,NULL,NULL,NULL,'2021-03-21 22:59:34','2021-03-21 22:59:34'),(15,8,NULL,NULL,NULL,'2021-03-21 22:59:34','2021-03-21 22:59:34'),(13,10,NULL,NULL,NULL,'2021-04-08 15:47:54','2021-04-08 15:47:54');
-/*!40000 ALTER TABLE `filiais_clientes` ENABLE KEYS */;
+LOCK TABLES `fisicas` WRITE;
+/*!40000 ALTER TABLE `fisicas` DISABLE KEYS */;
+INSERT INTO `fisicas` VALUES (19,'116.834.076-44','mg14741363','2021-04-08 17:02:05','2021-04-08 17:02:05',52),(20,'1515','gmg552285','2021-04-08 17:03:53','2021-04-08 17:03:53',53),(21,'116.834.076-44','gmg552285','2021-04-08 17:04:31','2021-04-08 17:04:31',54),(22,'99','99','2021-04-08 17:10:16','2021-04-08 17:10:16',55),(23,'99','99','2021-04-08 17:16:40','2021-04-08 17:16:40',56);
+/*!40000 ALTER TABLE `fisicas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-14 11:31:53
+-- Dump completed on 2021-04-08 14:24:57

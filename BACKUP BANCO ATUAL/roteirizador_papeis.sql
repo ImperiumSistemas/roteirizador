@@ -26,8 +26,10 @@ CREATE TABLE `papeis` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) DEFAULT NULL,
   `descricao` varchar(100) DEFAULT NULL,
+  `updated_at` varchar(45) DEFAULT NULL,
+  `created_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +38,7 @@ CREATE TABLE `papeis` (
 
 LOCK TABLES `papeis` WRITE;
 /*!40000 ALTER TABLE `papeis` DISABLE KEYS */;
-INSERT INTO `papeis` VALUES (1,'Admin','Acesso Total ao Sistema'),(2,'Gerente','Gerenciamento do Sistema'),(3,'Usuario','Acesso ao site como usuário');
+INSERT INTO `papeis` VALUES (1,'Admin','Acesso Total ao Sistema',NULL,NULL),(3,'Usuario','Acesso ao site como usuário',NULL,NULL);
 /*!40000 ALTER TABLE `papeis` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:53
+-- Dump completed on 2021-04-14 11:31:47

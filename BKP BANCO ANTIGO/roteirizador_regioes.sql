@@ -16,32 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pais`
+-- Table structure for table `regioes`
 --
 
-DROP TABLE IF EXISTS `pais`;
+DROP TABLE IF EXISTS `regioes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pais` (
+CREATE TABLE `regioes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pais` varchar(45) NOT NULL,
-  `ativoInativo` varchar(3) DEFAULT NULL,
-  `dataInativacao` varchar(25) DEFAULT NULL,
+  `nomeRegiao` varchar(45) DEFAULT NULL,
+  `ativoInativo` varchar(45) DEFAULT NULL,
+  `dataInativacao` varchar(45) DEFAULT NULL,
+  `dataAtivacao` varchar(45) DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   `created_at` varchar(45) DEFAULT NULL,
   `deleted_at` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`,`pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pais`
+-- Dumping data for table `regioes`
 --
 
-LOCK TABLES `pais` WRITE;
-/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
-INSERT INTO `pais` VALUES (33,'Espanha','1','','2021-01-26 13:10:27','2021-01-26 12:44:26',NULL);
-/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+LOCK TABLES `regioes` WRITE;
+/*!40000 ALTER TABLE `regioes` DISABLE KEYS */;
+INSERT INTO `regioes` VALUES (1,'TESTE1','1','','2021-03-25 02:32:56','2021-03-25 02:32:56','2021-03-08 14:16:13',NULL);
+/*!40000 ALTER TABLE `regioes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:40
+-- Dump completed on 2021-04-08 14:24:53

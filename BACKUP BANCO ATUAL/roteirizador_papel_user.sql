@@ -29,7 +29,7 @@ CREATE TABLE `papel_user` (
   PRIMARY KEY (`id`),
   KEY `papel_id` (`papel_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `papel_user` (
 
 LOCK TABLES `papel_user` WRITE;
 /*!40000 ALTER TABLE `papel_user` DISABLE KEYS */;
-INSERT INTO `papel_user` VALUES (1,1,1),(2,3,2);
+INSERT INTO `papel_user` VALUES (8,3,2),(2,1,1),(4,3,3),(5,1,3),(6,6,3);
 /*!40000 ALTER TABLE `papel_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:58
+-- Dump completed on 2021-04-14 11:31:52

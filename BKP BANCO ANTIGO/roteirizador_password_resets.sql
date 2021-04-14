@@ -16,34 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `juridicas`
+-- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `juridicas`;
+DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `juridicas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cnpj` varchar(15) NOT NULL,
-  `razao_social` varchar(45) NOT NULL,
-  `ativoInativo` varchar(2) DEFAULT NULL,
-  `dataInativacao` varchar(15) DEFAULT NULL,
-  `deleted_at` varchar(45) DEFAULT NULL,
-  `updated_at` varchar(45) DEFAULT NULL,
-  `created_at` varchar(45) DEFAULT NULL,
-  `PESSOAS_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+CREATE TABLE `password_resets` (
+  `email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `juridicas`
+-- Dumping data for table `password_resets`
 --
 
-LOCK TABLES `juridicas` WRITE;
-/*!40000 ALTER TABLE `juridicas` DISABLE KEYS */;
-INSERT INTO `juridicas` VALUES (2,'4445454','1155454',NULL,NULL,NULL,'2021-03-03 17:52:46','2021-03-03 17:52:46',33),(3,'4445454','1155454',NULL,NULL,NULL,'2021-03-03 17:55:22','2021-03-03 17:55:22',34),(4,'111','NPO',NULL,NULL,NULL,'2021-03-03 17:56:10','2021-03-03 17:56:10',35),(5,'77','7',NULL,NULL,NULL,'2021-03-08 14:27:33','2021-03-08 14:27:33',43),(6,'88','88',NULL,NULL,NULL,'2021-03-08 14:29:57','2021-03-08 14:29:57',44);
-/*!40000 ALTER TABLE `juridicas` ENABLE KEYS */;
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:41
+-- Dump completed on 2021-04-08 14:24:53

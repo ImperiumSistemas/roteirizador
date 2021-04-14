@@ -32,7 +32,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','anderson@anderson.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','S5SMxTus5UmFXtiFGfm7rSzva6aRRUpN2CQXwt7mKlEmvRdleL4IuAY0c1HZ',NULL,NULL),(2,'User','user@user.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','EHQvaeBwI2VFV97no9C4XWe7fzdaE8eowJnwA42LYFKl4xd0DIBf5mfqWx6L',NULL,NULL);
+INSERT INTO `users` VALUES (1,'admin','anderson@anderson.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','MLmbJdDIb94wpalsjQojCtFUZG8PUByy0oDyBegnsRBOsV28HJytEMTuWY83',NULL,NULL),(2,'User','user@user.com','$2y$10$FrxpG0o6NxjWc/A0y3rIG.5FOregyKAYBGUlysW/dYfy0c3AGJ8Nu','NSuPzMUIFlyqVxjRlk4VeGMqZzE1YMJydDGuhFJzetPdszOGyTj8n3fdDd1P',NULL,NULL),(3,'Anderson','a@a.com.br','$2y$10$wri5edA/jfW2rn6HaiMV3e2J.JbHq9hUzfEbUPe9pdf3PjzWN/Pi6',NULL,'2021-04-13 20:44:13','2021-04-13 20:44:13'),(4,'Anderson','aa@a.com.br','$2y$10$qw/IhNpZCLUgyx2RWAWqHuGyZvcwNG752zIjRZ8M9iaUSDI.OtqJG',NULL,'2021-04-13 20:45:14','2021-04-13 20:45:14');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-08 14:24:57
+-- Dump completed on 2021-04-14 11:31:50

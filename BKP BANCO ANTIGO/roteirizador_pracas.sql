@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `pracas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pracas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codPraca` varchar(45) DEFAULT NULL,
   `praca` varchar(45) NOT NULL,
   `ROTA_id` int(11) DEFAULT NULL,
   `ativoInativo` varchar(3) DEFAULT NULL,
@@ -43,7 +44,7 @@ CREATE TABLE `pracas` (
 
 LOCK TABLES `pracas` WRITE;
 /*!40000 ALTER TABLE `pracas` DISABLE KEYS */;
-INSERT INTO `pracas` VALUES (1,'Teste',1,'1','','2021-03-01 19:48:19','2021-03-01 19:48:16',NULL),(2,'testando',2,'1',NULL,'2021-03-08 14:14:58','2021-03-08 14:14:58',NULL);
+INSERT INTO `pracas` VALUES (1,'999','Teste',1,'1','','2021-03-01 19:48:19','2021-03-01 19:48:16',NULL),(2,'1010','testando',2,'1',NULL,'2021-03-08 14:14:58','2021-03-08 14:14:58',NULL);
 /*!40000 ALTER TABLE `pracas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-08 11:34:39
+-- Dump completed on 2021-04-08 14:25:00
