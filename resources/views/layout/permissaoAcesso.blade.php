@@ -32,7 +32,8 @@
                 <td>
                   @foreach($permissoesPapel as $permissaoPapel)
                     <tr>
-                      <td>{{$permissaoPapel->nome}}</td>
+                      <td><br>{{$permissaoPapel->nome}}</td>
+
                     </tr>
                   @endforeach
                  </td>
@@ -43,14 +44,21 @@
 
       <div class="col s4">
 
-
+        <select name="idPermissao[]">
+          <option value="">SELECIONE A PERMISSÃO</option>
           @foreach($permissoes as $permissao)
+            <option value="{{$permissao->id}}">{{$permissao->nome}}</option>
+          @endforeach
+        </select>
+
+        <!--  @foreach($permissoes as $permissao)
             <label>
               <p>
-              <input type="checkbox" name="idPermissao[]" value="{{isset($permissao->id) ? $permissao->id : '' }}"/>
+              <!--<input type="checkbox" name="idPermissao[]" value="{{isset($permissao->id) ? $permissao->id : '' }}"/>
               <span>{{$permissao->nome}}</span>
+
             </label>
-          @endforeach
+          @endforeach -->
       </div>
 
       <div class="col s1">

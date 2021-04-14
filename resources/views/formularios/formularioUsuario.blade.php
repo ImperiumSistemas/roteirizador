@@ -16,10 +16,3 @@
   <input type="password" name="password">
   <label>SENHA</label>
 </div>
-
-<select name="idNivelAcesso">
-  <option>NIVEL DE ACESSO</option>
-  @foreach($nivelAcessos as $nivelAcesso)
-    <option value="{{$nivelAcesso->id}}">{{$nivelAcesso->descricao}}</option>
-  @endforeach
-</select>

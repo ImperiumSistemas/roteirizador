@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Papel;
 use App\Permissao;
-use App\papeisPermissoes;
+use App\papelPermissao;
 use App\papel_permissao;
+
 
 class NiveisAcessoController extends Controller
 {
@@ -16,6 +17,8 @@ class NiveisAcessoController extends Controller
 
     public function listaniveisAcesso(){
       $papeis = Papel::all();
+      //$teste = papel_permissao::all();
+      //dd($teste);
 
       return view('listagem.niveisAcesso', compact('papeis'));
     }
@@ -55,27 +58,14 @@ class NiveisAcessoController extends Controller
       return redirect()->route('listagem.niveisAcessos');
     }
 
-    public function permissaoAcesso($id){
-      $papel = Papel::find($id);
-      $permissoes = Permissao::all();
-      //$teste = papeisPermissoes::all();
-      //dd($teste);
-      $permissoesPapel = DB::table('papeis_permissoes')
-      ->join('permissoes', 'papeis_permissoes.permissao_id', '=', 'permissoes.id')
-      ->select('permissoes.nome as nome')
-      ->where('papel_id', '=', $id)->get();
-
-
-      return view('layout.permissaoAcesso', compact('papel', 'permissoes', 'permissoesPapel'));
-    }
-
+    
     public function salvarPermissao(Request $req, $id){
 
       $idPapel = $id;
       $dados = $req->all();
 
     //  $buscandoIdBanco = papeisPermissoes::all();
-      $buscandoIdBanco = papeisPermissoes::all();
+      $buscandoIdBanco = papel_permissao::all();
       //dd($buscandoIdBanco);
         if($buscandoIdBanco != ''){
 
@@ -83,10 +73,11 @@ class NiveisAcessoController extends Controller
 
             if($papelId->papel_id == (int)$idPapel){
 
-              papeisPermissoes::where('papel_id', '=', $idPapel)->delete();
+              //papeisPermissoes::where('papel_id', '=', $idPapel)->delete();
+              papel_permissao::where('papel_id', '=', $idPapel)->delete();
 
               foreach($dados['idPermissao'] as $idPermissao){
-                  papeisPermissoes::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
+                  papel_permissao::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
                 } // Fim Foreach
                 return redirect()->route('listagem.niveisAcessos');
             } // Fim IF
@@ -106,7 +97,7 @@ class NiveisAcessoController extends Controller
 
         foreach($dados['idPermissao'] as $idPermissao){
 
-            papeisPermissoes::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
+            papel_permissao::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
           } // Fim foreach
           return redirect()->route('listagem.niveisAcessos');
 
