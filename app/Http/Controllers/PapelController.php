@@ -17,7 +17,8 @@ class PapelController extends Controller
     //dd($teste);
     $permissoesPapel = DB::table('papel_permissao')
     ->join('permissoes', 'papel_permissao.permissao_id', '=', 'permissoes.id')
-    ->select('permissoes.nome as nome', 'permissoes.id as permissaoId')
+    ->join('papeis', 'papel_permissao.papel_id', '=', 'papeis.id')
+    ->select('permissoes.nome as nome', 'permissoes.id as idPermissao', 'papeis.id as idPapel')
     ->where('papel_id', '=', $id)->get();
 
     return view('layout.permissaoAcesso', compact('papel', 'permissoes', 'permissoesPapel'));
@@ -35,10 +36,10 @@ class PapelController extends Controller
     //return redirect()->route('listagem.niveisAcessos');
   }
 
-  public function permissoesDelete($id, $permissao_id){
+  public function permissoesDelete($id, $idPermissao){
     $papel = Papel::find($id);
-    $permissao = Permissao::find($permissao_id);
-    $papel->removePapel($permissao);
+    $permissao = Permissao::find($idPermissao);
+    $papel->removePermissao($permissao);
 
     return redirect()->back();
   }

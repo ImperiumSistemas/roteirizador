@@ -5,8 +5,6 @@
     <h3 ><center>LISTA DE PERMISSÃO </center></h3>
     <br/><br/>
 
-    <form class="" action="{{route('layout.salvarPermissao', $papel->id)}}" method="post">
-      {{ csrf_field() }}
 
       <div class="row">
         <div class="col s3">
@@ -28,22 +26,28 @@
               <tr>
                 <td><br/><br><b>PERMISSÕES</b></td>
               </tr>
-              <tr>
-                <td>
+                <table>
                   @foreach($permissoesPapel as $permissaoPapel)
                     <tr>
-                      <td><br>{{$permissaoPapel->nome}}</td>
+                      <td><br/>{{$permissaoPapel->nome}}</td>
+                      <td>
+                        <form action="{{route('deletaPermissao', [$permissaoPapel->idPapel, $permissaoPapel->idPermissao])}}" method="post">
+                          {{ method_field('DELETE') }}
+        									{{ csrf_field() }}
 
+                          <br/><button>Deletar</button>
+                        </form>
+                      </td>
                     </tr>
                   @endforeach
-                 </td>
-              </tr>
+                </table>
             </tbody>
           </table>
         </div>
 
       <div class="col s4">
-
+    <form class="" action="{{route('layout.salvarPermissao', $papel->id)}}" method="post">
+        {{ csrf_field() }}    
         <select name="idPermissao[]">
           <option value="">SELECIONE A PERMISSÃO</option>
           @foreach($permissoes as $permissao)

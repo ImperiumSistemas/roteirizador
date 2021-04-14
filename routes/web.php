@@ -137,9 +137,10 @@ Route::get('layout/editarNivelAcesso/{id}', ['as' => 'layout.editarNivelAcesso',
 Route::put('layout/atualizarNivelAcesso/{id}', ['as' => 'layout.atualizarNivelAcesso', 'uses' => 'NiveisAcessoController@atualizar']);
 Route::get('layout/excluirNivelAcesso/{id}', ['as' => 'layout.excluirNivelAcesso', 'uses' => 'NiveisAcessoController@excluir']);
 Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'PapelController@permissaoAcesso']);
-Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'PapelController@permissoesAdicionar']);
-//Route::post('layout/deletePermissao/{permissoes}', ['as' => 'permissaoDelete', 'uses' => 'PapelController@permissoesDelete']);
 
+Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'PapelController@permissoesAdicionar']);
+//Route::delete('layout/deletePermissao/{papel}/{permissoes}', ['as' => 'permissaoDelete', 'uses' => 'PapelController@permissoesDelete']);
+Route::delete('papel/permissao/{papel}/{permissao}', ['as' => 'deletaPermissao', 'uses' => 'PapelController@permissoesDelete']);
 
 Route::get('usuario/papel/{id}', ['as' => 'exibePapel', 'uses' => 'UsuarioController@exibePapel']);
 Route::post('usuario/papel/{papel}', ['as' => 'adicionaPapel', 'uses' => 'UsuarioController@adicionaPapel']);
