@@ -24,12 +24,3 @@
 
   </select>
 </div>
-
-<div>
-  <label>STATUS</label>
-  <select  name="status" >
-    <option value="S" >ATIVO</option>
-    <option value="N" >INATIVO</option>
-  </select>
-
-</div>

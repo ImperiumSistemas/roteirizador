@@ -96,7 +96,7 @@
                         <a @can("MOTORISTAS") href="{{route('listagem.motorista')}}" @endcan class="collapse-item" >MOTORISTA</a>
                         <h6  class="collapse-header">CARGAS:</h6>
 
-                        <a @can('REGIAO') href="('REGIAO'){{route('listagem.regiao')}}" @endcan class="collapse-item" >REGIÃO</a>
+                        <a @can('REGIAO') href="{{route('listagem.regiao')}}" @endcan class="collapse-item" >REGIÃO</a>
 
                         <a @can('ROTA') href="{{route('listagem.rota')}}" @endcan class="collapse-item" >ROTA</a>
                         <a @can('PRACA') href="{{route('listagem.praca')}}" @endcan class="collapse-item" >PRAÇA</a>

@@ -10,8 +10,7 @@ class Motoristas extends Model
 {
     //
 
-    use SoftDeletes;
     protected $fillable = [
-        'id', 'data_admissao', 'telefone', 'numero_cnh', 'data_validade_cnh', 'tipo_contrato', 'PESSOAS_id', 'ativoInativo', 'dataInativacao'
+        'id', 'data_admissao', 'numero_cnh', 'data_validade_cnh', 'tipo_contrato', 'PESSOAS_id', 'ativoInativo', 'dataInativacao'
     ];
 }

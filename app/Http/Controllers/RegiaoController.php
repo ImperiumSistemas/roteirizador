@@ -12,8 +12,7 @@ class RegiaoController extends Controller
 {
 
     public function listaRegiao(){
-
-
+  
       $listagemRegiaos = regioes::all();
 
       return view('listagem.listagemRegiao', compact('listagemRegiaos'));

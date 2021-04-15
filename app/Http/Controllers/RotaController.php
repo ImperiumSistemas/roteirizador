@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 class RotaController extends Controller
 {
     //
-    
+
     public function listaRota(){
 
       $rotas = DB::table('rotas')
       ->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
-      ->select('rotas.id', 'rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
+      ->select('rotas.id as id', 'rotas.numeroPedagio as numeroPedagio', 'rotas.gastoPedagio as gastoPedagio', 'rotas.descricaoRota as descricaoRota',
         'rotas.ativoInativo as ativoInativo', 'rotas.dataInativacao as dataInativacao', 'regioes.nomeRegiao as nomeRegiao')
       ->get();
 
@@ -56,11 +56,10 @@ class RotaController extends Controller
 
 
     public function editar($id){
-
       //$rota = rotas::find($id);
       $regioes = regioes::all();
 
-      $rota = rotas::find((int)$id);
+      $rota = rotas::find($id);
 
       //$rota = DB::table('rotas')->where('id', '=', $id)->get();
       //->join('regioes', 'rotas.REGIAO_id', '=', 'regioes.id')
@@ -72,7 +71,7 @@ class RotaController extends Controller
     }
 
     public function atualizar(Request $req, $id){
-
+      
       $dados = $req->all();
 
       rotas::find($id)->update($dados);

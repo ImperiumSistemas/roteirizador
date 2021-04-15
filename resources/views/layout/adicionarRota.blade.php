@@ -18,7 +18,7 @@
     </div>
 
     <div class="container-fluid">
-        <form class="" method="post" action=""{{route('layout.salvarRota')}}" >
+        <form class="" method="post" action="{{route('layout.salvarRota')}}" >
             {{ csrf_field() }}
 
         @include('formularios.formularioRota')
