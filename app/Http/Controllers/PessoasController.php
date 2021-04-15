@@ -267,22 +267,24 @@ class PessoasController extends Controller
     public function excluir($id){
 
       $idPessoa = Pessoas::find($id);
+      $idFisica = null;
+      $idFisica = Fisicas::where('PESSOAS_id', '=', $idPessoa->id);
+      $idJuridica = Juridicas::where('PESSOAS_id', '=', $idPessoa->id);
 
-      if(isset($idPessoa->idFisica)){
-
+      if(isset($idFisica)){
+        dd("Fisica");
+        Fisicas::where('PESSOAS_id', '=', $idPessoa->id)->delete();
         Pessoas::find($id)->delete();
-        Fisicas::find($idPessoa->idFisica)->delete();
-
-        return redirect()->route('listagem.pessoas');
       }
 
-      if(isset($idPessoa->idJuridica)){
-
+      if(isset($idJuridica)){
+        dd('Juridica');
         Pessoas::find($id)->delete();
         Juridicas::find($idPessoa->idJuridica)->delete();
-
-        return redirect()->route('listagem.pessoas');
       }
+
+       return redirect()->route('listagem.pessoas');
+
     }
 
     public function ativar($id){
