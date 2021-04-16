@@ -267,16 +267,16 @@ class PessoasController extends Controller
     public function excluir($id){
 
       $idPessoa = Pessoas::find($id);
-      $idFisica = null;
+
       $idFisica = Fisicas::where('PESSOAS_id', '=', $idPessoa->id);
       $idJuridica = Juridicas::where('PESSOAS_id', '=', $idPessoa->id);
 
-      if(isset($idFisica)){
+      if(isset($idFisica) || $idFisica != null){
         dd("Fisica");
         Fisicas::where('PESSOAS_id', '=', $idPessoa->id)->delete();
         Pessoas::find($id)->delete();
       }
-
+      dd('sai');
       if(isset($idJuridica)){
         dd('Juridica');
         Pessoas::find($id)->delete();
