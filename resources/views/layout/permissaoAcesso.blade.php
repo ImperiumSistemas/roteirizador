@@ -47,7 +47,7 @@
 
       <div class="col s4">
     <form class="" action="{{route('layout.salvarPermissao', $papel->id)}}" method="post">
-        {{ csrf_field() }}    
+        {{ csrf_field() }}
         <select name="idPermissao[]">
           <option value="">SELECIONE A PERMISSÃO</option>
           @foreach($permissoes as $permissao)

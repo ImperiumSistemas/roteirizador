@@ -83,7 +83,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6  class="collapse-header">SISTEMA:</h6>
-                        <a @can("EMPRESAS") href="{{route('listagem.empresa')}}" @endcan class="collapse-item" >EMPRESAS</a>
+                      @can("EMPRESAS")  <a  href="{{route('listagem.empresa')}}"  class="collapse-item" >EMPRESAS</a> @endcan
                         <a @can("FILIAIS") href="{{route('listagem.filiais')}}" @endcan class="collapse-item" >FILIAIS</a>
                         <a @can("USUARIOS") href="{{route('layout.adicionarUsuario')}}" @endcan class="collapse-item" >USUARIOS</a>
                         <a @can("NIVEIS_ACESSOS") href="{{route('listagem.niveisAcessos')}}" @endcan class="collapse-item" >NIVEIS DE ACESSO</a>
