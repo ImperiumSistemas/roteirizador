@@ -2,7 +2,7 @@
 
 </div>
 
-
+<script src="{{asset('js/mask.js')}}" type="text/javascript"></script>
 <script src="../css/jquery/jquery.min.js"></script>
 <script src="../css/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../css/bootstrap/scss/_buttons.scss"></script>

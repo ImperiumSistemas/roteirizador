@@ -12,6 +12,7 @@
     <title>MONTAGEM DE CARGA</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{{asset('js/mask.js')}}" type="text/javascript"></script>
 
     <!-- Custom fonts for this template-->
     <!--<link href="../css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
@@ -37,6 +38,8 @@
             document.getElementById(segundo).style.display = 'block';
 
     }
+
+
 </script>
 
 </head>
