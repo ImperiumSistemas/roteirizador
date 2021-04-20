@@ -1,11 +1,5 @@
-<script>
-  $(document).ready(function(){
-    $('#telefone').mask('(00) 0000-0000');
-  });
-</script>
-
 <div class="form-control-lg">
-  <input type="text" name="cnpj" value="{{isset($filiais->cnpj) ? $filiais->cnpj : '' }}">
+  <input type="text" name="cnpj"  data-mask="00.000.000/000-00" placeholder="00.000.000/000-00" value="{{isset($filiais->cnpj) ? $filiais->cnpj : '' }}">
   <label>CNPJ</label>
 
   <input type="text" name="descricao" value="{{isset($filiais->descricao) ? $filiais->descricao : '' }}">
@@ -39,12 +33,12 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text"  data-mask="00/00/0000" name="cep" value="{{isset($filiais->cep) ? $filiais->cep : '' }}">
+  <input type="text" data-mask="00000-000" placeholder="00000-000" name="cep" value="{{isset($filiais->cep) ? $filiais->cep : '' }}">
   <label>CEP</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="telefone" pattern="\(\d{2}\)\d{4}-\d{4}" value="{{isset($filiais->telefone) ? $filiais->telefone : '' }}">
+  <input type="text" name="telefone" data-mask="(00)00000-0000" placeholder="(00)0000-0000" value="{{isset($filiais->telefone) ? $filiais->telefone : '' }}">
   <label>TELEFONE</label>
 </div>
 
