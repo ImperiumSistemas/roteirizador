@@ -1,0 +1,5 @@
+create table permissoes(
+	id integer primary key auto_increment,
+    nome varchar(100),
+    descricao varchar(100)
+);

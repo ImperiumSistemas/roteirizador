@@ -1,8 +1,0 @@
-create table niveisAcesso(
-	id int primary key not null auto_increment,
-    descricao varchar(50)
-);
-
-ALTER TABLE `roteirizador`.`niveis_acessos` 
-ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `descricao`,
-ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;

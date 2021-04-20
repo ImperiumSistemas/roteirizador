@@ -1,0 +1,13 @@
+create table papel_user(
+	id integer primary key auto_increment,
+    papel_id integer, 
+    user_id integer
+);
+
+
+alter table papel_user
+add foreign key(papel_id) references papeis(id);
+
+
+alter table papel_user
+add foreign key(user_id) references users(id);
