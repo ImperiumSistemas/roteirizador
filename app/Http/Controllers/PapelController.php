@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\papel;
 use App\Permissao;
+use App\papel_permissao;
 
 class PapelController extends Controller
 {

@@ -48,21 +48,20 @@
       <div class="col s4">
     <form class="" action="{{route('layout.salvarPermissao', $papel->id)}}" method="post">
         {{ csrf_field() }}
-        <select name="idPermissao[]">
+        <!--<select name="idPermissao[]">
           <option value="">SELECIONE A PERMISSÃO</option>
           @foreach($permissoes as $permissao)
             <option value="{{$permissao->id}}">{{$permissao->nome}}</option>
           @endforeach
-        </select>
+        </select> -->
 
-        <!--  @foreach($permissoes as $permissao)
+          @foreach($permissoes as $permissao)
             <label>
               <p>
-              <!--<input type="checkbox" name="idPermissao[]" value="{{isset($permissao->id) ? $permissao->id : '' }}"/>
-              <span>{{$permissao->nome}}</span>
-
+                <input type="checkbox" name="idPermissao[]" value="{{isset($permissao->id) ? $permissao->id : '' }}"/>
+                <span>{{$permissao->nome}}</span>
             </label>
-          @endforeach -->
+          @endforeach
       </div>
 
       <div class="col s1">

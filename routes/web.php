@@ -23,6 +23,8 @@ Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index'])
 
 //Route::group(['middleware' => 'auth'], function(){
 
+Route::group(['middleware' => 'auth'], function(){
+
 Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosController@listaVeiculo' ]);
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
 Route:: post('/layout/salvar',['as' =>'layout.salvar', 'uses' => 'VeiculosController@salvar']);
@@ -166,6 +168,9 @@ Route::put('layout/atualizarPedido/{id}', ['as' => 'layout.atualizarPedido', 'us
 Route::get('layout/excluirPedido/{id}', ['as' => 'layout.excluirPedido', 'uses' => 'PedidosController@excluir']);
 Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'PedidosController@ativarPedido']);
 Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
+
+
+});
 
 // LOGIN
 

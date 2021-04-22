@@ -22,7 +22,7 @@ class Papel extends Model
   }
 
   public function adicionaPermissao($permissao){
-
+      
       if(is_string($permissao)){
         $permissao = Permissao::where('nome', '=', $permissao)->firstOrFail();
       }
