@@ -11,6 +11,6 @@ class pracas extends Model
 
     protected $fillable = [
 
-      'codPraca', 'praca', 'ROTA_id', 'ativoInativo', 'dataInativacao'
+      'id', 'codPraca', 'praca', 'ROTA_id', 'ativoInativo', 'dataInativacao'
     ];
 }

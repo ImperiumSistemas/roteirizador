@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class PracaController extends Controller
 {
     //
-  
+
     public function listaPraca(){
 
       //$pracas = pracas::all();
@@ -41,9 +41,7 @@ class PracaController extends Controller
 
       pracas::create($dados);
       $ultimoId = pracas::all('id')->last();
-
-      pracas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
-
+      pracas::find($ultimoId->id)->update(['ativoInativo' => 1]);
       return redirect()->route('listagem.praca');
 
     }

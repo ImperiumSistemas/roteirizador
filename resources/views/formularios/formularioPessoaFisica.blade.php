@@ -4,17 +4,17 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="numero_telefone" value="{{isset($pessoa->numero_telefone) ? $pessoa->numero_telefone : '' }}">
+  <input type="text" name="numero_telefone" data-mask="(00)00000-0000" placeholder="(00)0000-0000" value="{{isset($pessoa->numero_telefone) ? $pessoa->numero_telefone : '' }}">
   <label>NÚMERO DE TELEFONE</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="cpf" value="{{isset($fisica->cpf) ? $fisica->cpf : '' }}">
+  <input type="text" name="cpf" data-mask="000.000.000-00" placeholder="000.000.000-00" value="{{isset($fisica->cpf) ? $fisica->cpf : '' }}">
   <label>CPF</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="rg" value="{{isset($fisica->rg) ? $fisica->rg : '' }}">
+  <input type="text" name="rg" data-mask="XX00000000" placeholder="XX00000000" value="{{isset($fisica->rg) ? $fisica->rg : '' }}">
   <label>RG</label>
 </div>
 
@@ -23,32 +23,37 @@
 
 <div class="form-control-lg">
   <input type="text" name="rua" value="{{isset($endereco->rua) ? $endereco->rua : '' }}">
-  <label>Rua</label>
+  <label>RUA</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="numero" value="{{isset($endereco->numero) ? $endereco->numero : '' }}">
-  <label>numero</label>
+  <input type="number" name="numero" value="{{isset($endereco->numero) ? $endereco->numero : '' }}">
+  <label>NUMERO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="bairro" value="{{isset($endereco->bairro) ? $endereco->bairro : '' }}">
-  <label>Bairro</label>
+  <label>BAIRRO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="cidade" value="{{isset($endereco->cidade) ? $endereco->cidade : '' }}">
-  <label>Cidade</label>
+  <label>CIDADE</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="estado" value="{{isset($endereco->estado) ? $endereco->estado : '' }}">
-  <label>Estado</label>
+  <label>ESTADO</label>
 </div>
 
 <div class="form-control-lg">
   <input type="text" name="pais" value="{{isset($endereco->pais) ? $endereco->pais : '' }}">
-  <label>Pais</label>
+  <label>PAIS</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" name="cep" data-mask="00000-000" placeholder="00000-000" value="{{isset($endereco->cep) ? $endereco->cep : '' }}">
+  <label>CEP</label>
 </div>
 
 <div class="form-control-lg">

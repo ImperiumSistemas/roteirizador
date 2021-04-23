@@ -56,9 +56,10 @@ class VeiculosController extends Controller
 
       Veiculos::create($dados);
 
-      $ultimoId = Veiculos::all('id')->last();
-
-      Veiculos::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+      //$ultimoId = Veiculos::all('id')->last();
+      $idVeiculo = $dados['id'];
+  
+      Veiculos::where('id', '=', $idVeiculo)->update(['ativoInativo' => 1]);
 
       $idVeiculo = (int)$dados['id'];
 

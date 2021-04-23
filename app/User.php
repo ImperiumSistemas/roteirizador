@@ -38,6 +38,20 @@ class User extends Authenticatable
       return $this->existePapel('Admin');
     }
 
+    public function adicionaPapel($papel){
+
+      if(is_string($papel)){
+        $papel = Papel::where('nome', '=', $papel)->firstOrFail();
+      }
+
+      if($this->existePapel($papel)){
+        return;
+      }
+
+      return $this->papeis()->attach($papel); // attach adiciona um relacionamento de uma tabela com outra.
+    }
+
+
     public function existePapel($papel)
    {
        if (is_string($papel)) {
@@ -47,6 +61,12 @@ class User extends Authenticatable
        return (boolean) $this->papeis()->find($papel->id);
   }
 
+  public function removePapel($papel){
+    if(is_string($papel)){
+      $papel = Papel::where('nome', '=', $papel)->firstOrFail();
+    }
+    return $this->papeis()->detach($papel); // detach remove um relacionamento de uma tabela com outra. 
+  }
 
   public function temPapelDestes($papeis){
      $usePapeis = $this->papeis;

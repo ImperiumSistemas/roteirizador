@@ -28,7 +28,7 @@ class ClientesController extends Controller
       ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
        'pessoas.nome as nomePessoa','pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua',
        'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua', 'enderecos.cidade as cidade',
-       'enderecos.estado as estado', 'enderecos.pais as pais')->get();
+       'enderecos.estado as estado', 'enderecos.cep as cep', 'enderecos.pais as pais')->get();
 
       return view('listagem.listaCliente', compact('clientes'));
 

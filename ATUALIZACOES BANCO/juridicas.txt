@@ -18,3 +18,7 @@ ALTER TABLE `roteirizador`.`juridicas`
 ADD COLUMN `ativoInativo` VARCHAR(2) NULL AFTER `razao_social`,
 ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
 
+
+ALTER TABLE `roteirizador`.`juridicas` 
+CHANGE COLUMN `cnpj` `cnpj` VARCHAR(25) NOT NULL ;
+

@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Niveis_acessos;
-use App\Permissao_acessos;
-use App\permissao_niveis_acessos;
+use Illuminate\Support\Facades\DB;
+use App\Papel;
+use App\Permissao;
+use App\papelPermissao;
+use App\papel_permissao;
+
 
 class NiveisAcessoController extends Controller
 {
     //
 
-  
-    public function listaniveisAcesso(){
-      $niveisAcesso = Niveis_acessos::all();
 
-      return view('listagem.niveisAcesso', compact('niveisAcesso'));
+    public function listaniveisAcesso(){
+      $papeis = Papel::all();
+      //$teste = papel_permissao::all();
+      //dd($teste);
+
+      return view('listagem.niveisAcesso', compact('papeis'));
     }
 
     public function adicionar(){
@@ -25,75 +30,74 @@ class NiveisAcessoController extends Controller
     public function salvar(Request $req){
       $dados = $req->all();
 
-      Niveis_acessos::create($dados);
+      Papel::create($dados);
 
       return redirect()->route('listagem.niveisAcessos');
     }
 
     public function editar($id){
 
-      $nivelAcesso = Niveis_acessos::find($id);
+      $papel = Papel::find($id);
 
-      return view('layout.editarNivelAcesso', compact('nivelAcesso'));
+      return view('layout.editarNivelAcesso', compact('papel'));
     }
 
     public function atualizar(Request $req, $id){
 
       $dados = $req->all();
 
-      Niveis_acessos::find($id)->update($dados);
+      Papel::find($id)->update($dados);
 
       return redirect()->route('listagem.niveisAcessos');
     }
 
     public function excluir($id){
 
-      Niveis_acessos::find($id)->delete();
+      Papel::find($id)->delete();
 
       return redirect()->route('listagem.niveisAcessos');
     }
 
-    public function permissaoAcesso($id){
-      $descricaoNivelAcesso = Niveis_acessos::find($id);
-      //dd($descricaoNivelAcesso->descricao);
-      $descricaoPermissao = Permissao_acessos::all();
-
-      return view('layout.permissaoAcesso', compact('descricaoNivelAcesso', 'descricaoPermissao'));
-    }
-
+    
     public function salvarPermissao(Request $req, $id){
-      $idNivelAcesso = $id;
+
+      $idPapel = $id;
       $dados = $req->all();
 
-      $buscandoIdBanco = permissao_niveis_acessos::all();
-
+    //  $buscandoIdBanco = papeisPermissoes::all();
+      $buscandoIdBanco = papel_permissao::all();
+      //dd($buscandoIdBanco);
         if($buscandoIdBanco != ''){
 
-          foreach($buscandoIdBanco as $id){
+          foreach($buscandoIdBanco as $papelId){
 
-            if($id->idNivelAcesso == $idNivelAcesso){
-              permissao_niveis_acessos::where('idNivelAcesso', '=', $idNivelAcesso)->delete();
+            if($papelId->papel_id == (int)$idPapel){
+
+              //papeisPermissoes::where('papel_id', '=', $idPapel)->delete();
+              papel_permissao::where('papel_id', '=', $idPapel)->delete();
 
               foreach($dados['idPermissao'] as $idPermissao){
-                  permissao_niveis_acessos::create(['idNivelAcesso' => $idNivelAcesso, 'idPermissao' => $idPermissao]);
+                  papel_permissao::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
                 } // Fim Foreach
                 return redirect()->route('listagem.niveisAcessos');
             } // Fim IF
 
-            else{
+          /*  else{
               foreach($dados['idPermissao'] as $idPermissao){
                   permissao_niveis_acessos::create(['idNivelAcesso' => $idNivelAcesso, 'idPermissao' => $idPermissao]);
                 } // Fim foreach
                 return redirect()->route('listagem.niveisAcessos');
-            }
+            }*/
           } // Fim Foreach
 
         } // Fim If comparação $buscandoIdBanco != ''
 
 
         // Caso não entre no If, vai executar o foreach abaixo, entendendo que ainda não tem nada na tabela.
+
         foreach($dados['idPermissao'] as $idPermissao){
-            permissao_niveis_acessos::create(['idNivelAcesso' => $idNivelAcesso, 'idPermissao' => $idPermissao]);
+
+            papel_permissao::create(['papel_id' => $idPapel, 'permissao_id' => $idPermissao]);
           } // Fim foreach
           return redirect()->route('listagem.niveisAcessos');
 

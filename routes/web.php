@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
     //return view('login.index');
 });
 
@@ -22,6 +22,8 @@ Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index'])
 //Route::post('login/entrar', ['as' => 'loginEntrar', 'uses' => 'LoginController@entrar']);
 
 //Route::group(['middleware' => 'auth'], function(){
+
+Route::group(['middleware' => 'auth'], function(){
 
 Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosController@listaVeiculo' ]);
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
@@ -136,8 +138,16 @@ Route::post('layout/salvarNivelAcesso', ['as' => 'layout.salavarNivelAcesso', 'u
 Route::get('layout/editarNivelAcesso/{id}', ['as' => 'layout.editarNivelAcesso', 'uses' => 'NiveisAcessoController@editar']);
 Route::put('layout/atualizarNivelAcesso/{id}', ['as' => 'layout.atualizarNivelAcesso', 'uses' => 'NiveisAcessoController@atualizar']);
 Route::get('layout/excluirNivelAcesso/{id}', ['as' => 'layout.excluirNivelAcesso', 'uses' => 'NiveisAcessoController@excluir']);
-Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'NiveisAcessoController@permissaoAcesso']);
-Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'NiveisAcessoController@salvarPermissao']);
+Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'PapelController@permissaoAcesso']);
+
+Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'PapelController@permissoesAdicionar']);
+//Route::delete('layout/deletePermissao/{papel}/{permissoes}', ['as' => 'permissaoDelete', 'uses' => 'PapelController@permissoesDelete']);
+Route::delete('papel/permissao/{papel}/{permissao}', ['as' => 'deletaPermissao', 'uses' => 'PapelController@permissoesDelete']);
+
+Route::get('usuario/papel/{id}', ['as' => 'exibePapel', 'uses' => 'UsuarioController@exibePapel']);
+Route::post('usuario/papel/{papel}', ['as' => 'adicionaPapel', 'uses' => 'UsuarioController@adicionaPapel']);
+Route::delete('usuario/papel/{usuario}/{papel}', ['as' => 'deletaPapel', 'uses' => 'UsuarioController@deletaPapel']);
+
 
 
 Route::get('layout/adicionarUsuario', ['as' => 'layout.adicionarUsuario', 'uses' => 'UsuarioController@adicionar']);
@@ -159,9 +169,13 @@ Route::get('layout/excluirPedido/{id}', ['as' => 'layout.excluirPedido', 'uses' 
 Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'PedidosController@ativarPedido']);
 Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
 
+
+});
+
 // LOGIN
 
 Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
 // FIM LOGIN
 //});
