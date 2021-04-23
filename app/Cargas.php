@@ -5,13 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pessoas extends Model
+class Cargas extends Model
 {
     //
     //use SoftDeletes;
     protected $fillable = [
-
-       'nome', 'numero_telefone','ativoInativo','dataInativacao'
-
+      'id','cargaERP','status','veiculo_id','motorista_id'
     ];
 }

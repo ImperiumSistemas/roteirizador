@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
 
     <meta charset="utf-8">
@@ -13,247 +14,272 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-
     <!-- Custom fonts for this template-->
     <!--<link href="../css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
     <link href="{{asset('css/estilo.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+          rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
-<script>
-    function Mudarestado(primeiro, segundo) {
-        var display = document.getElementById(primeiro).style.display;
-        if (display == "none")
-            document.getElementById(primeiro).style.display = 'block';
-        else
-            document.getElementById(primeiro).style.display = 'none';
+    <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
 
-        var displayy = document.getElementById(segundo).style.display;
-        if (displayy == "block")
-            document.getElementById(segundo).style.display = 'none';
-        else
-            document.getElementById(segundo).style.display = 'block';
-
-    }
+    <style>
+        /* example of setting the width for multiselect */
+        #testSelect1_multiSelect {
+            width: 200px;
+        }
+    </style>
 
 
-</script>
+    <script>
+        function Mudarestado(primeiro, segundo) {
+            var display = document.getElementById(primeiro).style.display;
+            if (display == "none")
+                document.getElementById(primeiro).style.display = 'block';
+            else
+                document.getElementById(primeiro).style.display = 'none';
+
+            var displayy = document.getElementById(segundo).style.display;
+            if (displayy == "block")
+                document.getElementById(segundo).style.display = 'none';
+            else
+                document.getElementById(segundo).style.display = 'block';
+
+        }
+    </script>
 
 </head>
 <body id="page-top">
-    <div style="background-color:orange" id="wrapper">
-        <ul style="background-color:orange" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<div style="background-color:orange" id="wrapper">
+    <ul style="background-color:orange" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a  style="background-color:white"  class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div  class="sidebar-brand-icon" >
-                  <!-- <i style="background-color:orange" class="fas fa-laugh-wink"></i>-->
-                  <img style="display:none" src="/logo_grande.jpeg" alt="some text" width=100 height=70 id = "logoPequena">
-                </div>
-                <div ><img style="display:block" src="/logo_grande.jpeg" alt="some text" width=200 height=70 id = "logoGrande"></div>
+        <!-- Sidebar - Brand -->
+        <a style="background-color:white" class="sidebar-brand d-flex align-items-center justify-content-center"
+           href="index.html">
+            <div class="sidebar-brand-icon">
+                <!-- <i style="background-color:orange" class="fas fa-laugh-wink"></i>-->
+                <img style="display:block" src="/logo_grande.jpeg" alt="some text" width=100 height=70 id="logoPequena">
+
+            </div>
+            <div><img style="display:none" src="/logo_grande.jpeg" alt="some text" width=200 height=70 id="logoGrande">
+            </div>
+        </a>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div style="background-color: orange" class="text-center d-none d-md-inline">
+            <button style="background-color: orange" class="rounded-circle border-0" id="sidebarToggle"
+                    onclick="Mudarestado('logoPequena', 'logoGrande')"></button>
+
+        </div>
+
+
+        <!-- Nav Item - Dashboard -->
+        <li style="background-color: orange" class="nav-item active">
+            <a style="background-color: orange" class="nav-link" href="{{route('site')}}">
+                <i style="background-color: orange" class="fas fa-fw fa-home"></i>
+                <span style="background-color: orange">HOME</span></a>
+        </li>
+
+        <!-- Heading -->
+        <div style="background-color: orange" class="sidebar-heading">
+            SISTEMA
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse"
+               data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i style="background-color: orange" class="fas fa-fw fa-cog"></i>
+                <span style="background-color: orange">SISTEMA</span>
             </a>
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div style="background-color: orange" class="text-center d-none d-md-inline">
-                <button style="background-color: orange" class="rounded-circle border-0" id="sidebarToggle" onclick="Mudarestado('logoPequena', 'logoGrande')"></button>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">SISTEMA:</h6>
+                    @can("EMPRESAS")<a href="{{route('listagem.empresa')}}" class="collapse-item">EMPRESAS</a>@endcan
+                    @can("FILIAIS")<a href="{{route('listagem.filiais')}}" class="collapse-item">FILIAIS</a>@endcan
+                    @can("USUARIOS")<a href="{{route('layout.adicionarUsuario')}}" class="collapse-item">USUARIOS</a>@endcan
+                    @can("NIVEIS_ACESSOS")<a href="{{route('listagem.niveisAcessos')}}" class="collapse-item">NIVEIS DE ACESSO</a>@endcan
+                </div>
             </div>
+        </li>
 
-
-            <!-- Nav Item - Dashboard -->
-            <li style="background-color: orange" class="nav-item active">
-                <a style="background-color: orange" class="nav-link" href="{{route('site')}}">
-                    <i style="background-color: orange" class="fas fa-fw fa-home"></i>
-                    <span style="background-color: orange" >HOME</span></a>
-            </li>
-
-            <!-- Heading -->
-            <div style="background-color: orange" class="sidebar-heading">
-                Interface
+        <li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse"
+               data-target="#collapseOne"
+               aria-expanded="true" aria-controls="collapsOne">
+                <i style="background-color: orange" class="fas fa-fw fa-cog"></i>
+                <span style="background-color: orange">CADASTROS</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can("VEICULOS")<h6 class="collapse-header">VEÍCULO:</h6>@endcan
+                    @can("VEICULOS")<a href="{{route('listagem.veiculo')}}" class="collapse-item">VEÍCULOS</a>@endcan
+                    <h6 class="collapse-header">PESSOA:</h6>
+                    @can("PESSOAS")<a href="{{route('listagem.pessoas')}}" class="collapse-item">PESSOA</a>@endcan
+                    @can("CLIENTES")<a href="{{route('listagemCliente')}}" class="collapse-item">CLIENTES</a>@endcan
+                    @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
+                    @can("MOTORISTAS")<a href="{{route('listagem.motorista')}}" class="collapse-item">MOTORISTA</a>@endcan
+                    <h6 class="collapse-header">CARGAS:</h6>
+                    @can("REGIAO")<a href="{{route('listagem.regiao')}}" class="collapse-item">REGIÃO</a>@endcan
+                    @can("ROTA")<a href="{{route('listagem.rota')}}" class="collapse-item">ROTA</a>@endcan
+                    @can("PRACA")<a href="{{route('listagem.praca')}}" class="collapse-item">PRAÇA</a>@endcan
+                </div>
             </div>
+        </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li style="background-color: orange" class="nav-item">
-                <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i style="background-color: orange" class="fas fa-fw fa-cog"></i>
-                    <span style="background-color: orange" >Cadastros</span>
-                </a>
-                <!--('EMPRESA', 'FILIAIS', 'VEICULOS', 'MOTORISTAS', 'CLIENTES', 'PESSOAS',
-                                                   'CONFIRMA_ENDERECO', '$NIVEIS_ACESSOS', 'PRODUTOS', 'PRACA', 'ROTA',
-                                                   'REGIAO', 'PEDIDOS', '$CADASTRO_USUARIO', '$MONTAR_CARGA')); -->
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6  class="collapse-header">SISTEMA:</h6>
-                      @can("EMPRESAS")  <a  href="{{route('listagem.empresa')}}"  class="collapse-item" >EMPRESAS</a> @endcan
-                      @can("FILIAIS")  <a  href="{{route('listagem.filiais')}}"  class="collapse-item" >FILIAIS</a> @endcan
-                      @can("USUARIOS")  <a  href="{{route('layout.adicionarUsuario')}}"  class="collapse-item" >USUARIOS</a> @endcan
-                      @can("NIVEIS_ACESSOS")  <a  href="{{route('listagem.niveisAcessos')}}"  class="collapse-item" >NIVEIS DE ACESSO</a> @endcan
-                        <h6  class="collapse-header">VEÍCULO:</h6>
-                      @can("VEICULOS")  <a  href="{{route('listagem.veiculo')}}"  class="collapse-item" >VEÍCULOS</a> @endcan
-                        <h6  class="collapse-header">PESSOA:</h6>
-                      @can("PESSOAS")  <a  href="{{route('listagem.pessoas')}}"  class="collapse-item" >PESSOA</a> @endcan
-                      @can("CLIENTES")  <a  href="{{route('listagemCliente')}}"  class="collapse-item" >CLIENTES</a> @endcan
-                      @can("CONFIRMAR_ENDERECO")  <a  href="{{route('listagem.confirmaEndereco')}}"  class="collapse-item" >CONFIRMAR ENDEREÇO</a> @endcan
-                      @can("MOTORISTAS")  <a  href="{{route('listagem.motorista')}}"  class="collapse-item" >MOTORISTA</a> @endcan
-                        <h6  class="collapse-header">CARGAS:</h6>
-
-                      @can('REGIAO')  <a  href="{{route('listagem.regiao')}}"  class="collapse-item" >REGIÃO</a> @endcan
-
-                      @can('ROTA')  <a  href="{{route('listagem.rota')}}"  class="collapse-item" >ROTA</a> @endcan
-                      @can('PRACA')  <a  href="{{route('listagem.praca')}}"  class="collapse-item" >PRAÇA</a> @endcan
-                    </div>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse"
+               data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i style="background-color: orange" class="fas fa-fw fa-map-marker"></i>
+                <span>CARGAS</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">MONTAGEM CARGA:</h6>
+                    <a href="{{route('listaCargas')}}" class="collapse-item">CARGAS</a>
+                    @can("MONTAR_CARGA")<a href="{{route('filtros')}}" class="collapse-item">MONTAR CARGA</a>@endcan
                 </div>
-            </li>
+            </div>
+        </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li style="background-color: orange" class="nav-item">
-                <a  style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i style="background-color: orange" class="fas fa-fw fa-map-marker"></i>
-                    <span>CARGAS</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div  class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">MONTAGEM CARGA:</h6>
-                      @can('MONTAR_CARGA')  <a  href="{{route('filtros')}}"  class="collapse-item" >MONTAR CARGA</a> @endcan
-                    </div>
+
+        <!-- Heading -->
+        <!--<div style="background-color: orange" class="sidebar-heading">
+            Addons
+        </div>-->
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!--<li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i style="background-color: orange" class="fas fa-fw fa-folder"></i>
+                <span style="background-color: orange">Pages</span>
+            </a>
+            <div style="background-color: orange" id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div style="background-color: orange" class="bg-white py-2 collapse-inner rounded">
+                    <h6 style="background-color: orange" class="collapse-header">Login Screens:</h6>
+                    <a style="background-color: orange" class="collapse-item" href="login.html">Login</a>
+                    <a style="background-color: orange" class="collapse-item" href="register.html">Register</a>
+                    <a style="background-color: orange" class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div style="background-color: orange" class="collapse-divider"></div>
+                    <h6 style="background-color: orange" class="collapse-header">Other Pages:</h6>
+                    <a style="background-color: orange" class="collapse-item" href="404.html">404 Page</a>
+                    <a style="background-color: orange" class="collapse-item" href="blank.html">Blank Page</a>
                 </div>
-            </li>
+            </div>
+        </li>-->
 
+        <!-- Nav Item - Charts -->
+        <!--<li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link" href="charts.html">
+                <i style="background-color: orange" class="fas fa-fw fa-chart-area"></i>
+                <span style="background-color: orange" >Charts</span></a>
+        </li>-->
 
-            <!-- Heading -->
-            <!--<div style="background-color: orange" class="sidebar-heading">
-                Addons
-            </div>-->
+        <!-- Nav Item - Tables -->
+        <!--<li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link" href="tables.html">
+                <i style="background-color: orange" class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li>-->
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!--<li style="background-color: orange" class="nav-item">
-                <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
-                    <i style="background-color: orange" class="fas fa-fw fa-folder"></i>
-                    <span style="background-color: orange">Pages</span>
-                </a>
-                <div style="background-color: orange" id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div style="background-color: orange" class="bg-white py-2 collapse-inner rounded">
-                        <h6 style="background-color: orange" class="collapse-header">Login Screens:</h6>
-                        <a style="background-color: orange" class="collapse-item" href="login.html">Login</a>
-                        <a style="background-color: orange" class="collapse-item" href="register.html">Register</a>
-                        <a style="background-color: orange" class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div style="background-color: orange" class="collapse-divider"></div>
-                        <h6 style="background-color: orange" class="collapse-header">Other Pages:</h6>
-                        <a style="background-color: orange" class="collapse-item" href="404.html">404 Page</a>
-                        <a style="background-color: orange" class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>-->
+    </ul>
+    <!-- End of Sidebar -->
 
-            <!-- Nav Item - Charts -->
-            <!--<li style="background-color: orange" class="nav-item">
-                <a style="background-color: orange" class="nav-link" href="charts.html">
-                    <i style="background-color: orange" class="fas fa-fw fa-chart-area"></i>
-                    <span style="background-color: orange" >Charts</span></a>
-            </li>-->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Nav Item - Tables -->
-            <!--<li style="background-color: orange" class="nav-item">
-                <a style="background-color: orange" class="nav-link" href="tables.html">
-                    <i style="background-color: orange" class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>-->
+        <!-- Main Content -->
+        <div id="content">
 
-        </ul>
-        <!-- End of Sidebar -->
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
 
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button style=" background-color: orange" class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
+                <!-- Topbar Search -->
+                <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button style=" background-color: orange" class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
                         </div>
-                    </form>
+                    </div>
+                </form>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
-                                               aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                             aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                           placeholder="Search for..." aria-label="Search"
+                                           aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
-                            </div>
-                        </li>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
 
 
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
+                            <!--<img class="img-profile rounded-circle"
+                                 src="img/undraw_profile.svg">-->
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <div class="dropdown-divider"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
-                                <!--<img class="img-profile rounded-circle"
-                                     src="img/undraw_profile.svg">-->
+                            <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
+                               data-target="#logoutModal"
+                               onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <div class="dropdown-divider"></div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                    </li>
 
-                                <a class="dropdown-item"  href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"
-                                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </li>
+                </ul>
 
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
+            </nav>
+            <!-- End of Topbar -->
 
 
-            </div>
+        </div>
+

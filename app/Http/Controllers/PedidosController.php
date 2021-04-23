@@ -17,7 +17,7 @@ class PedidosController extends Controller
     public function listaCliente(){
 
       $pedidos = DB::table('pedidos')
-      ->join('clientes', 'clientes.codCliente', '=', 'pedidos.codCliente')
+      ->join('clientes', 'clientes.id', '=', 'pedidos.codCliente')
       ->join('pracas', 'pracas.codPraca', '=', 'pedidos.codPraca')
       ->join('filiais', 'filiais.codFilial', '=', 'pedidos.codFilial')
       ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
