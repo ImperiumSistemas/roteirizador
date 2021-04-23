@@ -1,0 +1,11 @@
+create table papel_permissao(
+	id integer primary key auto_increment,
+    permissao_id integer, 
+    papel_id integer
+);
+
+alter table papel_permissao
+add foreign key(permissao_id) references permissoes(id);
+
+alter table papel_permissao
+add foreign key(papel_id) references papel(id);

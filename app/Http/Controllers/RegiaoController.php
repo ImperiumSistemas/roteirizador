@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\regioes;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 
 class RegiaoController extends Controller
 {
+
     public function listaRegiao(){
-
-
+  
       $listagemRegiaos = regioes::all();
 
       return view('listagem.listagemRegiao', compact('listagemRegiaos'));

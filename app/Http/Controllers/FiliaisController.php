@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Filiais;
 use App\Empresas;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 

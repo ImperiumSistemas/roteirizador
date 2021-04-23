@@ -5,16 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Empresas;
 use Carbon\Carbon;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 
 class EmpresaController extends Controller
 {
     //
+    public function listaPermissao($nivelAcesso){
+
+      $permissoes = permissao_niveis_acessos::where('idNivelAcesso', '=', $nivelAcesso)->get(); // Buscando tudo da tabela permissao_niveis_acessos onde o idNivelAcesso = ao Id que está sendo recebido pela função.
+      $idPermissaoAcesso = permissao_acessos::where('descricao', '=', "EMPRESAS")->first(); // Buscando na tabela a informação onde o nome da permissão for EMPRESAS.
+      $situaçãoEmpresa = false; // iniciando a variavel como falsa, para inserir ela como verdadeira dentro do foreach caso a comparação seja verdade.
+
+      foreach ($permissoes as $permissao) {
+        if($permissao->idPermissao == $idPermissaoAcesso->id){
+          $situaçãoEmpresa = true;
+        }
+      }
+
+      if($situaçãoEmpresa == true){
+        $empresas = Empresas::all();
+        return view('listagem/listagemEmpresa', compact('empresas'));
+      }else{
+        return redirect()->route('site');
+        echo "Você não tem permissão para acessar essa tela";
+      }
+
+    }
+
     public function listaEmpresa(){
-
       $empresas = Empresas::all();
-
       return view('listagem/listagemEmpresa', compact('empresas'));
-
     }
 
     public function adicionar(){
@@ -28,7 +49,7 @@ class EmpresaController extends Controller
 
       Empresas::create($dados);
       $ultimoId = Empresas::all('id')->last();
-  
+
       Empresas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
       return redirect()->route('listagem.empresa');
     }

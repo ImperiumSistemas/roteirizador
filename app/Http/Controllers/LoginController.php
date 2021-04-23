@@ -29,23 +29,9 @@ class LoginController extends Controller
       return view('home');
   }
 
+  public function logout(Request $req){
+    Auth::logout();
+    return redirect('/login');
+  }
 
-    /*public function index(){
-      return view('login.index');
-    }
-
-    public function entrar(Request $req){
-
-      $dados = $req->all();
-
-      if(Auth::attempt(['email' => $dados['email'], 'password' => $dados['senha']])){
-        return redirect()->route('site');
-      }
-      return redirect()->route('login.index');
-    }
-
-    public function sair(){
-      Auth::logout();
-      return redirect()->route('login.index');
-    }*/
 }

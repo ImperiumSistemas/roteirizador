@@ -1,13 +1,42 @@
+
+
 <div class="form-control">
-    <label>Filial de Partida</label>
+    <label>Filial Logistica</label>
     <select name="filial_id">
         <option value="0"></option>
         @foreach($filiais as $filial)
             <option value="{{isset($filial->id) ? $filial->id : ''}}">{{isset($filial->descricao) ? $filial->descricao : ''}}</option>
         @endforeach
     </select>
-</div>
 
+
+</div>
+<div><span class="text" style="color:whitesmoke">.....</span></div>
+<div  class="form-control">
+    <label>Modelo de Formação de Carga:</label>
+    <select name="vehiclesRequired">
+        <!--<option value=0>NÃO</option>
+        <option value=1>SIM</option>-->
+        @foreach($modelosAgrupamentos as $modeloAgrupamento)
+            <option value="{{isset($modeloAgrupamento->id) ? $modeloAgrupamento->id : ''}}">{{isset($modeloAgrupamento->descricao) ? $modeloAgrupamento->descricao : ''}}</option>
+        @endforeach
+    </select>
+</div>
+<div><span class="text" style="color:whitesmoke">.....</span></div>
+<div><span class="text" style="color:whitesmoke">.....</span></div>
+<div >
+<label>Filial de Faturamento:</label>
+    <select MULTIPLE name="filialFaturamento_id[]">
+    @foreach($filiais as $filial)
+        <option selected value="{{isset($filial->id) ? $filial->id : ''}}">{{isset($filial->descricao) ? $filial->descricao : ''}}</option>
+    @endforeach
+</select>
+</div><br>
+
+
+
+<div><span class="text" style="color:whitesmoke">.....</span></div>
+<div><span class="text" style="color:whitesmoke">.....</span></div>
 
 <div class="form-control">
     <label>Quantidade Veiculos</label>
@@ -17,6 +46,20 @@
     <input type="text" name="deliveries" value="">
 
 </div><br>
+
+<div class="form-control">
+    <label>Limite de KM</label>
+    <input type="text" name="km" value="">
+
+    <label>Cubagem dos Veiculos</label>
+    <input type="text" name="cubage" value="">
+
+    <label>Peso dos Veiculos</label>
+    <input type="text" name="weight" value="">
+
+
+</div><br>
+
 
 <div class = "form-control-lg">
     <label>Selecione as Praças: </label>
@@ -42,5 +85,6 @@
         @endforeach
     </select>
 </div><br><br>
+
 
 

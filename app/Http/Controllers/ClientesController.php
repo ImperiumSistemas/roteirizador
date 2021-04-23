@@ -9,12 +9,15 @@ use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
 use App\Enderecos;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
     //
+
     public function listaCliente(){
 
       //$clientes = Clientes::all();
@@ -25,7 +28,7 @@ class ClientesController extends Controller
       ->select('clientes.id', 'clientes.ativoInativo as ativoInativo', 'clientes.dataInativacao as dataInativacao',
        'pessoas.nome as nomePessoa','pessoas.numero_telefone as numero', 'pracas.praca as nomePraca', 'enderecos.rua as rua',
        'enderecos.bairro as bairro','enderecos.numero as numeroEndereco', 'enderecos.rua as rua', 'enderecos.cidade as cidade',
-       'enderecos.estado as estado', 'enderecos.pais as pais')->get();
+       'enderecos.estado as estado', 'enderecos.cep as cep', 'enderecos.pais as pais')->get();
 
       return view('listagem.listaCliente', compact('clientes'));
 

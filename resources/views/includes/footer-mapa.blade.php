@@ -1,4 +1,8 @@
-
+<script>    
+    $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+</script>
 <!--JavaScript at end of body for optimized loading-->
 <!-- Compiled and minified JavaScript -->
 <script src="../js/sb-admin-2.min.js"></script>

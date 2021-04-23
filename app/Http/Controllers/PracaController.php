@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\pracas;
 use App\rotas;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -39,9 +41,7 @@ class PracaController extends Controller
 
       pracas::create($dados);
       $ultimoId = pracas::all('id')->last();
-
-      pracas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
-
+      pracas::find($ultimoId->id)->update(['ativoInativo' => 1]);
       return redirect()->route('listagem.praca');
 
     }

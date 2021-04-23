@@ -28,9 +28,10 @@
             <th>RUA</th>
             <th>BAIRRO</th>
             <th>NUMERO</th>
-            <th>PAIS</th>
             <th>CIDADE</th>
             <th>ESTADO</th>
+            <th>PAIS</th>
+            <th>CEP</th>            
             <th>PRAÇA</th>
             <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>
@@ -48,9 +49,10 @@
                 <td>{{$cliente->rua}}</td>
                 <td>{{$cliente->bairro}}</td>
                 <td>{{$cliente->numeroEndereco}}</td>
-                <td>{{$cliente->pais}}</td>
                 <td>{{$cliente->cidade}}</td>
                 <td>{{$cliente->estado}}</td>
+                <td>{{$cliente->pais}}</td>
+                <td>{{$cliente->cep}}</td>
                 <td>{{$cliente->nomePraca}}</td>
                 <td>{{$cliente->dataInativacao}}</td>
                 <td>
@@ -72,9 +74,10 @@
                 <td>{{$cliente->rua}}</td>
                 <td>{{$cliente->bairro}}</td>
                 <td>{{$cliente->numeroEndereco}}</td>
-                <td>{{$cliente->pais}}</td>
                 <td>{{$cliente->cidade}}</td>
                 <td>{{$cliente->estado}}</td>
+                <td>{{$cliente->pais}}</td>
+                <td>{{$cliente->cep}}</td>
                 <td>{{$cliente->nomePraca}}</td>
                 <td>{{$cliente->dataInativacao}}</td>
                 <td>

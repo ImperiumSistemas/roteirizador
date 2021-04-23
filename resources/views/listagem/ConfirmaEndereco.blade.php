@@ -1,60 +1,5 @@
 @include('includes.header')
-<style>
 
-
-    /**Cor quando passar por cima**/
-    #minhaTabela tr:hover td {
-        background-color: #feffb7;
-    }
-
-    /**Cor quando selecionado**/
-    #minhaTabela tr.selecionado td {
-        background-color: #aff7ff;
-    }
-
-    ul.pagination {
-        display: inline-block;
-        padding: 0;
-        margin: 0;
-    }
-
-    ul.pagination li {display: inline;}
-
-    ul.pagination li span {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #ddd;
-        font-size: 18px;
-    }
-
-    ul.pagination li span.active {
-        background-color: #eee;
-        color: black;
-        border: 1px solid #ddd;
-    }
-
-    ul.pagination li span:hover:not(.active) {background-color: #ddd;}
-
-    ul.pagination li a {
-        background-color: #eee;
-        color: black;
-        border: 1px solid #ddd;
-    }
-
-    ul.pagination li a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #ddd;
-        font-size: 18px;
-    }
-
-</style>
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -80,18 +25,23 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                 
+                           <!-- <th><input type="text" id="txtColuna1"/></th>
+                            <th><input type="text" id="txtColuna2"/></th>
+                            <th><input type="text" id="txtColuna3"/></th>-->
+                                
                 <table class="table" id="minhaTabela">
                     <thead>
-                    <tr>
-                        <th>ID PESSOA</th>
-                        <th>NOME</th>
-                        <th>ID ClIENTE</th>
-                        <th>CONFIRMAR ENDEREÇO</th>
-                    </tr>
+                        <tr>
+                            <th><input type="text" id="txtColuna1"/><br>ID PESSOA</th>
+                            <th onclick="sortTable(document.getElementById('minhaTabela'), 'asc', 1)"><input type="text" id="txtColuna2"/><br>NOME</th>
+                            <th><input type="text" id="txtColuna3"/><br>ID ClIENTE</th>
+                            <th>CONFIRMAR ENDEREÇO</th>
+                        </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($listagens as $listagem)
+                        @foreach($listagens as $listagem)
 
                         <tr>
                             <td>{{$listagem->idPessoa}}</td>
@@ -104,18 +54,118 @@
                             </td>
                         </tr>
 
-                    @endForeach
+                        @endForeach
                     </tbody>
                 </table>
             </div>
 
 
             {{$listagens->links()}}
-
+            
         </div>
     </div>
 
 </div>
+
+
+<script>
+    $(function () {
+        $("#minhaTabela input").keyup(function () {
+            var index = $(this).parent().index();
+            var nth = "#minhaTabela td:nth-child(" + (index + 1).toString() + ")";
+            var valor = $(this).val().toUpperCase();
+            $("#minhaTabela tbody tr").show();
+            $(nth).each(function () {
+                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
+                    $(this).parent().hide();
+                }
+            });
+        });
+
+        $("#minhaTabela input").blur(function () {
+            $(this).val("");
+        });
+    });
+
+
+</script>
+
+
+
+
+<script>
+    function sortTable(table, dir, n) {
+        var rows, switching, i, x, y, shouldSwitch, switchcount = 0;
+        switching = true;
+        /*Faça um loop que continuará até
+         nenhuma troca foi feita:*/
+        while (switching) {
+            //comece dizendo: nenhuma troca é feita:
+            switching = false;
+            rows = table.rows;
+            /*Faça um loop por todas as linhas da tabela (exceto o
+             primeiro, que contém cabeçalhos da tabela):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //comece dizendo que não deve haver alternância:
+                shouldSwitch = false;
+                /*Obtenha os dois elementos que você deseja comparar,
+                 um da linha atual e o outro da próxima:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*verifique se as duas linhas devem mudar de lugar,
+                 com base na direção, asc ou desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //Nesse caso, marque como uma opção e interrompa o loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //Nesse caso, marque como uma opção e interrompa o loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*Se um interruptor foi marcado, faça-o
+                 e marque que uma troca foi feita:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Cada vez que uma troca for concluída, aumente essa contagem em 1:
+                switchcount++;
+            } else {
+                /*Se nenhuma mudança foi feita E a direção for "asc",
+                 defina a direção para "desc" e execute o loop while novamente.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+
+    var minhaTabela = document.getElementById('minhaTabela');
+    sortTable(minhaTabela, 'asc', 0);
+
+//Button click:
+    let ord = false;
+    document.getElementById("button1").onclick = function () {
+        if (!ord) {
+            sortTable(minhaTabela, 'asc', 0);
+            //sortTable(minhaTabela, 'asc', 1);
+            ord = true;
+        } else {
+            sortTable(minhaTabela, 'desc', 0);
+            //sortTable(minhaTabela, 'desc', 1);
+            ord = false;
+        }
+    }
+
+</script>
+
+
 
 
 <script>
@@ -126,8 +176,8 @@
         var linha = linhas[i];
         linha.addEventListener("click", function () {
             //Adicionar ao atual
-            //selLinha(this, false); //Selecione apenas um
-            selLinha(this, true); //Selecione quantos quiser
+            selLinha(this, false); //Selecione apenas um
+            //selLinha(this, true); //Selecione quantos quiser
         });
     }
 
@@ -163,5 +213,7 @@
         alert(dados);
     });
 </script>
+
+
 
 @include('includes.footer')

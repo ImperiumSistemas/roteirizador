@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class UsuarioSeeder extends Seeder
 {
@@ -10,23 +11,19 @@ class UsuarioSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-      $dados = [
-        'name' => "imperium",
-        'email' => "imperium@imperium.com",
+    public function run(){
+      DB::table('users')->insert([
+        'id' => 1,
+        'name' => 'admin',
+        'email' => 'anderson@anderson.com',
         'password' => bcrypt("123"),
+      ]);
 
-      ];
-
-      if(User::where('email', '=', $dados['email'])->count()){
-          $usuario = User::where('email', '=', $dados['email'])->first();
-          $usuario->update($dados);
-          echo "Usuaurio Alterado";
-      }else{
-        User::create($dados);
-        echo "Usuario Criado";
-      }
-
+      DB::table('users')->insert([
+        'id' => 2,
+        'name' => 'User',
+        'email' => 'user@user.com',
+        'password' => bcrypt("123"),
+      ]);
     }
 }

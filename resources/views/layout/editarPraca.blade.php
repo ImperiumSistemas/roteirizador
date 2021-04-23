@@ -21,6 +21,8 @@
         <form class="" method="post" action="{{route('layout.atualizarPraca', $praca->id)}}" >
             {{ csrf_field() }}
 
+            <input type="hidden" name="_method" value="put">
+
             @include('formularios.formularioPraca')
             <div align="middle">
                 <p class="mb-4"></p>

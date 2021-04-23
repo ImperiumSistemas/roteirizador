@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Veiculos;
 use App\Filiais;
 use App\filiais_veiculos;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -54,9 +56,10 @@ class VeiculosController extends Controller
 
       Veiculos::create($dados);
 
-      $ultimoId = Veiculos::all('id')->last();
-
-      Veiculos::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+      //$ultimoId = Veiculos::all('id')->last();
+      $idVeiculo = $dados['id'];
+  
+      Veiculos::where('id', '=', $idVeiculo)->update(['ativoInativo' => 1]);
 
       $idVeiculo = (int)$dados['id'];
 

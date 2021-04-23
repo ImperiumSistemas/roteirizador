@@ -9,6 +9,8 @@ use App\Filiais;
 use App\FiliaisMotoristas;
 use App\filiais_motoristas;
 use App\Pessoas;
+use App\permissao_niveis_acessos;
+use App\permissao_acessos;
 use Carbon\Carbon;
 
 
@@ -21,6 +23,7 @@ class MotoristaController extends Controller
       $motorista = Motoristas::all();
       return view('teste', compact('motorista'));
     }
+
 
     public function listaMotorista(){
 
@@ -80,9 +83,9 @@ class MotoristaController extends Controller
 
 
           Motoristas::create($dados);
-          $ultimoId = Motoristas::all('id')->last();
-
-          Motoristas::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+          //$ultimoId = Motoristas::all('id')->last();
+          $idMotorista = $dados['id'];
+          Motoristas::where('id', '=', $idMotorista)->update(['ativoInativo' => 1]);
 
           $idMotorista = (int)$dados['id'];
 
@@ -127,7 +130,7 @@ class MotoristaController extends Controller
 
         public function deletar($id){
             filiais_motoristas::where('MOTORISTA_id', '=', $id)->delete();
-            Motoristas::find($id)->delete();
+            Motoristas::where('id', '=', $id)->delete();
             return redirect()->route('listagem.motorista');
 
         }

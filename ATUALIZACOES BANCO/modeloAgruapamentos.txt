@@ -1,0 +1,14 @@
+create table modelos_agrupamentos
+(
+	id int auto_increment,
+	descricao varchar(45) not null,
+	utilizaTodosVeiculos varchar(10) not null
+);
+
+
+alter table modelos_agrupamentos
+	add create_at Varchar(45) null;
+
+alter table modelos_agrupamentos
+	add update_at varchar(45) null;
+

@@ -15,7 +15,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fas fa-fw fa-plus-square"></i>
                                         </span>
-                    <span class="text">ADICIONAR FILIAL</span>
+                    <span class="text">ADICIONAR REGIÃO</span>
                 </a>
             </div>
         </div>

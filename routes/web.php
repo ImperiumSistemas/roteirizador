@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
     //return view('login.index');
 });
 
@@ -22,6 +22,8 @@ Route:: get('/site', ['as' => 'site', 'uses' => 'RoteirizadorController@index'])
 //Route::post('login/entrar', ['as' => 'loginEntrar', 'uses' => 'LoginController@entrar']);
 
 //Route::group(['middleware' => 'auth'], function(){
+
+Route::group(['middleware' => 'auth'], function(){
 
 Route:: get('/listagemVeiculo',['as' => 'listagem.veiculo', 'uses' => 'VeiculosController@listaVeiculo' ]);
 Route:: get('/layout/adcionarVeiculo',['as' =>'layout.adicionarVeiculo', 'uses' => 'VeiculosController@adicionar']);
@@ -54,8 +56,7 @@ Route::get('confirmarEnderecoMapaFilial/{id}', ['as' => 'confirmarEnderecoMapaFi
 Route::post('confirmaMapaFilial/{id}', ['as' => 'confirmaMapaFilial', 'uses' => 'ConfirmaEndereco@confirmaEnderecoFilial']);
 
 
-
-Route::get('/listagemEmpresa', ['as' => 'listagem.empresa', 'uses' => 'EmpresaController@listaEmpresa']);
+Route::get('/layout/listaEmpresa', ['as' => 'listagem.empresa', 'uses' => 'EmpresaController@listaEmpresa']);
 Route::get('/layout/adicionarEmpresa', ['as' => 'layout.adicionarEmpresa', 'uses' => 'EmpresaController@adicionar']);
 Route::post('layout/salvarEmpresa', ['as' => 'layout.salvarEmpresa', 'uses' => "EmpresaController@salvar"]);
 Route::get('layout/editarEmpresa/{id}', ['as' => 'layout.editarEmpresa', 'uses' => 'EmpresaController@editar']);
@@ -94,7 +95,6 @@ Route::get('/layout/ativarPraca/{id}', ['as' => 'ativarPraca', 'uses' => 'PracaC
 Route::get('/layout/desativarPraca/{id}', ['as' => 'desativarPraca', 'uses' => 'PracaController@desativar']);
 
 
-Route::get('listagemEndereco', ['as' => 'listagem.endereco', 'uses' => 'EnderecoController@listaEndereco']);
 Route::get('/layout/adicionarEndereco', ['as' => 'layout.adicionarEndereco', 'uses' => 'EnderecoController@adicionar']);
 Route::post('/layout/salvarEndereco', ['as' => 'layout.salvarEndereco', 'uses' => 'EnderecoController@salvar']);
 Route::get('/layout/editarEndereco/{id}', ['as' => 'layout.editarEndereco', 'uses' => 'EnderecoController@editar']);
@@ -104,14 +104,17 @@ Route::get('layout/ativarEndereco/{id}', ['as' => 'ativarEndereco', 'uses' => 'E
 Route::get('layout/desativarEndereco/{id}', ['as' => 'desativarEndereco', 'uses' => 'EnderecoController@desativar']);
 
 Route::get('listagemPessoa', ['as' => 'listagem.pessoas', 'uses' => 'PessoasController@ListaPessoas']);
+Route::post('listagem.PessoaFiltro', ['as' => 'listagem.PessoaFiltro', 'uses' => 'PessoasController@ListaPessoasFiltro']);
 Route::get('/layout/adicionarPessoa/{id}', ['as' => 'layout.adicionarPessoaFisica', 'uses' => 'PessoasController@adicionar']);
 Route::post('/layout/salvarPessoaFisica', ['as' => 'layout.salvarPessoaFisica', 'uses' => 'PessoasController@salvarPessoaFisica']);
 Route::post('/layout/salvarPessoaJuridica', ['as' => 'layout.salvarPessoaJuridica', 'uses' => 'PessoasController@salvarPessoaJuridica']);
-Route::get('/layout/editarPessoa/{id}', ['as' => 'layout.editarPessoa', 'uses' => 'PessoasController@editar']);
+//Route::get('/layout/editarPessoa/{id}', ['as' => 'layout.editarPessoa', 'uses' => 'PessoasController@editar']);
 Route::put('/layout/atualizarPessoa/{id}', ['as' => 'layout.atualizarPessoa', 'uses' => 'PessoasController@atualizar']);
 Route::get('/layout/excluirPessoa/{id}', ['as' => 'layout.excluirPessoa', 'uses' => 'PessoasController@excluir']);
 Route::get('layout/ativarPessoa/{id}', ['as' => 'ativarPessoa', 'uses' => 'PessoasController@ativar']);
-Route::get('layout/desativarPessoa/{id}', ['as' => 'desativarPessoa', 'uses' => 'PessoasController@desativar']);
+//Route::get('layout/desativarPessoa/{id}', ['as' => 'desativarPessoa', 'uses' => 'PessoasController@desativar']);
+Route::post('desativarPessoa}', ['as' => 'desativarPessoa', 'uses' => 'PessoasController@desativar']);
+Route::post('editarPessoa', ['as' => 'editarPessoa', 'uses' => 'PessoasController@editar']);
 
 Route::get('ListagemCliente', ['as' => 'listagemCliente', 'uses' => 'ClientesController@listaCliente']);
 Route::get('/layout/adicionarCliente', ['as' => 'layout.adicionarCliente', 'uses' => 'ClientesController@adicionar']);
@@ -138,8 +141,17 @@ Route::post('layout/salvarNivelAcesso', ['as' => 'layout.salavarNivelAcesso', 'u
 Route::get('layout/editarNivelAcesso/{id}', ['as' => 'layout.editarNivelAcesso', 'uses' => 'NiveisAcessoController@editar']);
 Route::put('layout/atualizarNivelAcesso/{id}', ['as' => 'layout.atualizarNivelAcesso', 'uses' => 'NiveisAcessoController@atualizar']);
 Route::get('layout/excluirNivelAcesso/{id}', ['as' => 'layout.excluirNivelAcesso', 'uses' => 'NiveisAcessoController@excluir']);
-Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'NiveisAcessoController@permissaoAcesso']);
-Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'NiveisAcessoController@salvarPermissao']);
+Route::get('layout/permissaoAcesso/{id}', ['as' => 'permissaoAcesso', 'uses' => 'PapelController@permissaoAcesso']);
+
+Route::post('layout/salvarPermissao/{id}', ['as' => 'layout.salvarPermissao', 'uses' => 'PapelController@permissoesAdicionar']);
+//Route::delete('layout/deletePermissao/{papel}/{permissoes}', ['as' => 'permissaoDelete', 'uses' => 'PapelController@permissoesDelete']);
+Route::delete('papel/permissao/{papel}/{permissao}', ['as' => 'deletaPermissao', 'uses' => 'PapelController@permissoesDelete']);
+
+Route::get('usuario/papel/{id}', ['as' => 'exibePapel', 'uses' => 'UsuarioController@exibePapel']);
+Route::post('usuario/papel/{papel}', ['as' => 'adicionaPapel', 'uses' => 'UsuarioController@adicionaPapel']);
+Route::delete('usuario/papel/{usuario}/{papel}', ['as' => 'deletaPapel', 'uses' => 'UsuarioController@deletaPapel']);
+
+
 
 Route::get('layout/adicionarUsuario', ['as' => 'layout.adicionarUsuario', 'uses' => 'UsuarioController@adicionar']);
 Route::post('layout/salvarUsuario', ['as' => 'layout.salvarUsuario', 'uses' => 'UsuarioController@salvar']);
@@ -160,9 +172,13 @@ Route::get('layout/excluirPedido/{id}', ['as' => 'layout.excluirPedido', 'uses' 
 Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'PedidosController@ativarPedido']);
 Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
 
+
+});
+
 // LOGIN
 
 Route::get('novoLogin', ['as' => 'novoUsuário', 'uses' => 'LoginController@novoUsuario']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
 // FIM LOGIN
 //});
@@ -179,4 +195,11 @@ Route::post('gerarCarga', ['as' => 'gerarCarga', 'uses' => 'geradorCargaControll
 
 
 
+
+Route::post('otimizaCargas', ['as' => 'otimizaCargas', 'uses' => 'geradorCargaController@otimizaCargas']);
+
 Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filtros']);
+Route::post('salvarCarga', ['as' => 'salvarCarga', 'uses' => 'geradorCargaController@salvarCargas']);
+Route::post('cancelarCarga', ['as' => 'cancelarCarga', 'uses' => 'geradorCargaController@cancelarCarga']);
+Route::get('listaCargas', ['as' => 'listaCargas', 'uses' => 'geradorCargaController@listaCargas']);
+Route::post('addVeiculoCarga', ['as' => 'addVeiculoCarga', 'uses' => 'geradorCargaController@addVeiculoCarga']);
