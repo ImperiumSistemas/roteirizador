@@ -67,7 +67,6 @@ class geradorCargaController extends Controller
         $idFilial = $req->filial_id;
         $pracas = $req->idPracas;
         $filialFaturamento = $req->filialFaturamento_id;
-        dd($filialFaturamento);
         //$rotas = $req->idRotas;
         //$regioes = $req->idRegioes;
         $cubage = $req->cubage;

@@ -11,7 +11,7 @@
             <form class="" method="post" action="{{route('listagem.PessoaFiltro')}}">
                 {{ csrf_field() }}
 
-                @include('formularios.formularioFiltroPessoas')
+                @include('formularios.formularioFiltroCargas')
                 <br>
                 <div align="middle">
 
