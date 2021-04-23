@@ -87,22 +87,22 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6  class="collapse-header">SISTEMA:</h6>
                       @can("EMPRESAS")  <a  href="{{route('listagem.empresa')}}"  class="collapse-item" >EMPRESAS</a> @endcan
-                        <a @can("FILIAIS") href="{{route('listagem.filiais')}}" @endcan class="collapse-item" >FILIAIS</a>
-                        <a @can("USUARIOS") href="{{route('layout.adicionarUsuario')}}" @endcan class="collapse-item" >USUARIOS</a>
-                        <a @can("NIVEIS_ACESSOS") href="{{route('listagem.niveisAcessos')}}" @endcan class="collapse-item" >NIVEIS DE ACESSO</a>
+                      @can("FILIAIS")  <a  href="{{route('listagem.filiais')}}"  class="collapse-item" >FILIAIS</a> @endcan
+                      @can("USUARIOS")  <a  href="{{route('layout.adicionarUsuario')}}"  class="collapse-item" >USUARIOS</a> @endcan
+                      @can("NIVEIS_ACESSOS")  <a  href="{{route('listagem.niveisAcessos')}}"  class="collapse-item" >NIVEIS DE ACESSO</a> @endcan
                         <h6  class="collapse-header">VEÍCULO:</h6>
-                        <a @can("VEICULOS") href="{{route('listagem.veiculo')}}" @endcan class="collapse-item" >VEÍCULOS</a>
+                      @can("VEICULOS")  <a  href="{{route('listagem.veiculo')}}"  class="collapse-item" >VEÍCULOS</a> @endcan
                         <h6  class="collapse-header">PESSOA:</h6>
-                        <a @can("PESSOAS") href="{{route('listagem.pessoas')}}" @endcan class="collapse-item" >PESSOA</a>
-                        <a @can("CLIENTES") href="{{route('listagemCliente')}}" @endcan class="collapse-item" >CLIENTES</a>
-                        <a @can("CONFIRMAR_ENDERECO") href="{{route('listagem.confirmaEndereco')}}" @endcan class="collapse-item" >CONFIRMAR ENDEREÇO</a>
-                        <a @can("MOTORISTAS") href="{{route('listagem.motorista')}}" @endcan class="collapse-item" >MOTORISTA</a>
+                      @can("PESSOAS")  <a  href="{{route('listagem.pessoas')}}"  class="collapse-item" >PESSOA</a> @endcan
+                      @can("CLIENTES")  <a  href="{{route('listagemCliente')}}"  class="collapse-item" >CLIENTES</a> @endcan
+                      @can("CONFIRMAR_ENDERECO")  <a  href="{{route('listagem.confirmaEndereco')}}"  class="collapse-item" >CONFIRMAR ENDEREÇO</a> @endcan
+                      @can("MOTORISTAS")  <a  href="{{route('listagem.motorista')}}"  class="collapse-item" >MOTORISTA</a> @endcan
                         <h6  class="collapse-header">CARGAS:</h6>
 
-                        <a @can('REGIAO') href="{{route('listagem.regiao')}}" @endcan class="collapse-item" >REGIÃO</a>
+                      @can('REGIAO')  <a  href="{{route('listagem.regiao')}}"  class="collapse-item" >REGIÃO</a> @endcan
 
-                        <a @can('ROTA') href="{{route('listagem.rota')}}" @endcan class="collapse-item" >ROTA</a>
-                        <a @can('PRACA') href="{{route('listagem.praca')}}" @endcan class="collapse-item" >PRAÇA</a>
+                      @can('ROTA')  <a  href="{{route('listagem.rota')}}"  class="collapse-item" >ROTA</a> @endcan
+                      @can('PRACA')  <a  href="{{route('listagem.praca')}}"  class="collapse-item" >PRAÇA</a> @endcan
                     </div>
                 </div>
             </li>
@@ -118,7 +118,7 @@
                      data-parent="#accordionSidebar">
                     <div  class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">MONTAGEM CARGA:</h6>
-                        <a @can('MONTAR_CARGA') href="{{route('filtros')}}" @endcan class="collapse-item" >MONTAR CARGA</a>
+                      @can('MONTAR_CARGA')  <a  href="{{route('filtros')}}"  class="collapse-item" >MONTAR CARGA</a> @endcan
                     </div>
                 </div>
             </li>
