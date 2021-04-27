@@ -16,7 +16,7 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="numero_cnh" data-mask="00000000000" placeholder="00000000000" value="{{isset($motorista->numero_cnh) ? $motorista->numero_cnh : '' }}">
+  <input type="text" minlength="11" name="numero_cnh" data-mask="00000000000" placeholder="00000000000" value="{{isset($motorista->numero_cnh) ? $motorista->numero_cnh : '' }}">
   <label>NUMERO CNH</label>
 </div>
 

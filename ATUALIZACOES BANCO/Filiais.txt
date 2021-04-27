@@ -28,3 +28,5 @@ ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
 ALTER TABLE `roteirizador`.`filiais` 
 ADD COLUMN `CodFilial` INT NULL AFTER `descricao`;
 
+ALTER TABLE `roteirizador`.`filiais` 
+CHANGE COLUMN `cnpj` `cnpj` VARCHAR(20) NOT NULL ;

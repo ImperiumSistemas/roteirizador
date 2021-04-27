@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" required name="ano" data-mask="0000" placeholder="0000" value="{{isset($veiculo->ano) ? $veiculo->ano : '' }}">
+  <input type="text" minlength = "4" required name="ano" data-mask="0000" placeholder="0000" value="{{isset($veiculo->ano) ? $veiculo->ano : '' }}">
   <label>ANO</label>
 </div>
 

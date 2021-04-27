@@ -4,17 +4,17 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="numero_telefone" data-mask="(00)00000-0000" placeholder="(00)0000-0000" value="{{isset($pessoa->numero_telefone) ? $pessoa->numero_telefone : '' }}">
+  <input type="text" minlength ="14" name="numero_telefone" data-mask="(00)00000-0000" placeholder="(00)0000-0000" value="{{isset($pessoa->numero_telefone) ? $pessoa->numero_telefone : '' }}">
   <label>NÚMERO DE TELEFONE</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="cpf" data-mask="000.000.000-00" placeholder="000.000.000-00" value="{{isset($fisica->cpf) ? $fisica->cpf : '' }}">
+  <input type="text" minlength="14" name="cpf" data-mask="000.000.000-00" placeholder="000.000.000-00" value="{{isset($fisica->cpf) ? $fisica->cpf : '' }}">
   <label>CPF</label>
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="rg" data-mask="XX00000000" placeholder="XX00000000" value="{{isset($fisica->rg) ? $fisica->rg : '' }}">
+  <input type="text" minlength="8" name="rg" data-mask="00000000" placeholder="00000000" value="{{isset($fisica->rg) ? $fisica->rg : '' }}">
   <label>RG</label>
 </div>
 
@@ -52,7 +52,7 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" name="cep" data-mask="00000-000" placeholder="00000-000" value="{{isset($endereco->cep) ? $endereco->cep : '' }}">
+  <input type="text" minlength = "9" name="cep" data-mask="00000-000" placeholder="00000-000" value="{{isset($endereco->cep) ? $endereco->cep : '' }}">
   <label>CEP</label>
 </div>
 
