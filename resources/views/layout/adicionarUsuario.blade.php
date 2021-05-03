@@ -7,6 +7,24 @@
 <div class="container">
   <div class="row">
       <div class="col s6">
+        <div class="input-field">
+          <form method="post" action="{{route('pesquisaUsuario')}}">
+            {{ csrf_field() }}
+            <input type="text" placeholder="CPF" name="cpf" required>
+            <button>PESQUISAR PESSOA</button>
+          </form>
+        </div>
+
+        @if(isset($pessoa))
+          @foreach($pessoa as $pe)
+            <!--Apenas para  pegar as informações dentro de pessoas para passar para dentro do value no input-->
+          @endforeach
+        @endif
+
+        @if(isset($mensagem) ? $mensagem : '')
+          <span>{{$mensagem}}</span>
+        @endif
+
         <form class="" action="{{route('layout.salvarUsuario')}}" method="post">
           {{ csrf_field() }}
 
@@ -33,7 +51,7 @@
         </table>
       </div>
   </div>
-  teste
+
 </div>
 
 

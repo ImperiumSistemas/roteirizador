@@ -1,18 +1,21 @@
-<div class="input-field">
-  <select name="name">
-    <option selected value="">NOME USUÁRIO</option>
-    @foreach($pessoas as $pessoa)
-      <option value="{{$pessoa->nome}}">{{$pessoa->nome}}</option>
-    @endforeach
-  </select>
-</div>
+<div class="row">
 
-<div class="input-field">
-  <input type="email" name="email">
-  <label>E-MAIL</label>
-</div>
+  <div class="col s12">
+    <div class="input-field">
 
-<div class="input-field">
-  <input type="password" name="password">
-  <label>SENHA</label>
+        <input type="text" value="{{isset($pe->nome) ? $pe->nome : '' }}" name="name"  required >
+        <label>NOME</label>
+    </div>
+
+    <div class="input-field">
+      <input type="email" name="email" value="{{isset($email) ? $email : ''}}" required>
+      <label>E-MAIL</label>
+
+    </div>
+
+    <div class="input-field">
+      <input type="password" name="password" required>
+      <label>SENHA</label>
+    </div>
+  </div>
 </div>

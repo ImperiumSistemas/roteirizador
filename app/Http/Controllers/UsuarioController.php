@@ -23,9 +23,20 @@ class UsuarioController extends Controller
       $nome = $req->name;
       $senha = $req->password;
       $email = $req->email;
+      $existeEmail = User::all();
+
+      foreach($existeEmail as $em){
+        if($em->email == $email){
+          $mensagem = 'Usuário Já existe';
+          $pessoas = Pessoas::all();
+          $usuarios = User::all();
+          return view('layout.adicionarUsuario', compact('pessoas', 'usuarios', 'mensagem', 'email', 'nome'));
+        }
+      }
 
       User::create(['name' => $nome, 'email' => $email, 'password' => bcrypt($senha)]);
-      return redirect()->back();
+      //return redirect()->back();
+      return redirect()->route('layout.adicionarUsuario');
     }
 
     public function exibePapel($id){
@@ -51,7 +62,7 @@ class UsuarioController extends Controller
     }
 
     public function deletaPapel($id, $papel_id){
-      
+
       $usuario = User::find($id);
       $papel = Papel::find($papel_id);
       $usuario->removePapel($papel);
