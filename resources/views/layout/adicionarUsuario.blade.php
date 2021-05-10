@@ -10,7 +10,7 @@
         <div class="input-field">
           <form method="post" action="{{route('pesquisaUsuario')}}">
             {{ csrf_field() }}
-            <input type="text" placeholder="CPF" name="cpf" required>
+            <input type="text" minlength="14" data-mask="000.000.000-00" placeholder="000.000.000-00"  name="cpf" required>
             <button>PESQUISAR PESSOA</button>
           </form>
         </div>

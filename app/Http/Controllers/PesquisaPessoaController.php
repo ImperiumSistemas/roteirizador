@@ -32,7 +32,7 @@ class PesquisaPessoaController extends Controller
       if($encontraCpf == true){
         return view('layout.adicionarUsuario', compact('pessoa', 'usuarios'));
       }else{
-        dd('false');
+        return redirect()->route('layout.adicionarUsuarioFisica');
       }
     }
 }

@@ -106,6 +106,7 @@ Route::get('layout/desativarEndereco/{id}', ['as' => 'desativarEndereco', 'uses'
 Route::get('listagemPessoa', ['as' => 'listagem.pessoas', 'uses' => 'PessoasController@ListaPessoas']);
 Route::post('listagem.PessoaFiltro', ['as' => 'listagem.PessoaFiltro', 'uses' => 'PessoasController@ListaPessoasFiltro']);
 Route::get('/layout/adicionarPessoa/{id}', ['as' => 'layout.adicionarPessoaFisica', 'uses' => 'PessoasController@adicionar']);
+Route::get('/layout/adicionarUsuarioFisica', ['as' => 'layout.adicionarUsuarioFisica', 'uses' => 'PessoasController@adicionarUsuario']);
 Route::post('/layout/salvarPessoaFisica', ['as' => 'layout.salvarPessoaFisica', 'uses' => 'PessoasController@salvarPessoaFisica']);
 Route::post('/layout/salvarPessoaJuridica', ['as' => 'layout.salvarPessoaJuridica', 'uses' => 'PessoasController@salvarPessoaJuridica']);
 //Route::get('/layout/editarPessoa/{id}', ['as' => 'layout.editarPessoa', 'uses' => 'PessoasController@editar']);

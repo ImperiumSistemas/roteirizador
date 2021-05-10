@@ -38,7 +38,7 @@ class PessoasController extends Controller {
     }
 
     public function listaPessoasFIltro(Request $req) {
-        
+
 
         $query = Pessoas::query();
         $query->orderBy('pessoas.nome');
@@ -52,11 +52,11 @@ class PessoasController extends Controller {
         } else {
             //sem where
         }
-        
+
         if($req->nomeCliente != "null"){
              $query->where('pessoas.nome', 'like', '%'.$req->nomePessoa.'%');
         }
-        
+
         $query->select('pessoas.id', 'pessoas.ativoInativo as ativoInativo', 'pessoas.dataInativacao as dataInativacao',
                 'pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numeroTelefone',
                 DB::raw('coalesce(juridicas.cnpj, fisicas.cpf,0) as cpf_CNPJ'), 'juridicas.razao_social as razaoSocial', 'fisicas.rg as rg',
@@ -81,6 +81,11 @@ class PessoasController extends Controller {
         }
     }
 
+    public function adicionarUsuario(){
+
+        return view('layout.adicionarPessoaFisica');
+    }
+
     public function salvarPessoaFisica(Request $req){
 
         $nome = $req->nome;
@@ -94,10 +99,10 @@ class PessoasController extends Controller {
         $estado = $req->estado;
         $pais = $req->pais;
         $cep = $req->cep;
-        $salvarEm = $req->salvarEm;
+        //$salvarEm = $req->salvarEm;
 
 
-        if($salvarEm == 2){
+        /*if($salvarEm == 2){
 
             Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
             $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
@@ -124,7 +129,7 @@ class PessoasController extends Controller {
                 'estado'=>$estado, 'cep' => $cep, 'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id, 'ativoInativo' => 1]);
 
             Motoristas::create();
-        }
+        } */
 
         Pessoas::create(['nome' => $nome, 'numero_telefone' => $telefone, 'ativoInativo' => 1]);
         $ultimoId = Pessoas::all('id')->last(); // Pegando sempre o último ID cadastrado na hora do cadastro para poder vincular com a tabela pessoa.
@@ -134,8 +139,9 @@ class PessoasController extends Controller {
 
         Enderecos::create(['rua'=>$rua, 'numero'=>$numero, 'bairro'=>$bairro, 'cidade'=>$cidade,
             'estado'=>$estado, 'cep' => $cep, 'pais'=>$pais,'PESSOAS_id'=>$Pessoas_id, 'ativoInativo' => 1]);
-        return redirect()->route('listagem.pessoas');
 
+        //return redirect()->route('listagem.pessoas');
+        return redirect()->route('layout.adicionarUsuario');
     }
 
 
@@ -185,13 +191,13 @@ class PessoasController extends Controller {
     public function Editar(Request $req) {
         $id =$req->idPessoa;
         $tipoPessoa = $req->tipoPessoa;
-         
+
         $pessoa = Pessoas::find($id);
         $endereco = Enderecos::where('PESSOAS_id', '=', $id)->first();
         $tipoPessoa = Fisicas::where('PESSOAS_id', '=', $id)->first();
 
         if ($tipoPessoa == 'FISICA') {
-            
+
             $fisica = Fisicas::where('PESSOAS_id', '=', $id)->first();
             return view('layout.editarPessoaFisica', compact('pessoa', 'fisica', 'endereco'));
         } else {
