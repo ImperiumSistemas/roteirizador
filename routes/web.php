@@ -36,8 +36,10 @@ Route::get('layout/desativarVeiculo/{id}', ['as' => 'desativarVeiculo', 'uses' =
 
 
 Route::get('listagem/motorista', ['as' => 'listagem.motorista', 'uses' => 'MotoristaController@listaMotorista']);
-Route::get('/layout/adicionarMotorista', ['as' => 'layout.adicionarMotorista', 'uses' => 'MotoristaController@adicionarMotorista']);
-Route::post('/layout/salvarMotorista', ['as' => 'layout.salvarMotorista', 'uses' => 'MotoristaController@salvarMotorista']);
+Route::get('/layout/adicionarMotoristaFisico', ['as' => 'layout.adicionarMotoristaFisico', 'uses' => 'MotoristaController@adicionarMotoristaFisico']);
+Route::get('/layout/adicionarMotoristaJuridico', ['as' => 'layout.adicionarMotoristaJuridico', 'uses' => 'MotoristaController@adicionarMotoristaJuridico']);
+Route::post('/layout/salvarMotoristaFisico', ['as' => 'layout.salvarMotoristaFisico', 'uses' => 'MotoristaController@salvarMotoristaFisico']);
+Route::post('/layout/salvarMotoristaJuridico', ['as' => 'layout.salvarMotoristaJuridico', 'uses' => 'MotoristaController@salvarMotoristaJuridico']);
 Route::get('/layout/deletarMotorista/{id}', ['as' => 'layout.deleteMotorista', 'uses' => 'MotoristaController@deletar']);
 Route::get('layout/editarMotorista/{id}', ['as' => 'layout.editarMotorista', 'uses' => 'MotoristaController@editar']);
 Route::put('/layout/atualizarMotorista/{id}', ['as' => 'layout.atualizarMotorista', 'uses' => 'MotoristaController@atualizar']);
@@ -177,7 +179,7 @@ Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 
 // Pesquisando PESSOA CLIENTE, PESSOA MOTORISTA, PESSOA USUARIO.
 
 Route::post('pesquisaUsuario', ['as' => 'pesquisaUsuario', 'uses' => 'PesquisaPessoaController@pesquisaUsuario']);
-
+Route::post('pesquisaMotorista', ['as' => 'pesquisaMotorista', 'uses' => 'MotoristaController@pesquisaMotorista']);
 });
 
 // LOGIN

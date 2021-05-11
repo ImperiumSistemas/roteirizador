@@ -11,6 +11,6 @@ class Motoristas extends Model
     //
 
     protected $fillable = [
-        'id', 'data_admissao', 'numero_cnh', 'data_validade_cnh', 'tipo_contrato', 'PESSOAS_id', 'ativoInativo', 'dataInativacao'
+        'codMotorista', 'data_admissao', 'numero_cnh', 'data_validade_cnh', 'tipo_contrato', 'PESSOAS_id', 'ativoInativo', 'dataInativacao'
     ];
 }

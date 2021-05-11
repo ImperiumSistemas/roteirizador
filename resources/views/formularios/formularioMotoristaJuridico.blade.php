@@ -1,4 +1,9 @@
 <div class="form-control-lg">
+  <input type="number" name="codMotorista" value="{{isset($motorista->codMotorista) ? $motorista->codMotorista : '' }}">
+  <label>REGISTRO MOTORISTA</label>
+</div>
+
+<div class="form-control-lg">
   <input type="text" name="nome" value="{{isset($pessoa->nome) ? $pessoa->nome : '' }}">
   <label>NOME</label>
 </div>
@@ -16,6 +21,26 @@
 <div class="form-control-lg">
   <input type="text" name="razao_social" value="{{isset($juridica->razao_social) ? $juridica->razao_social : '' }}">
   <label>RAZAO SOCIAL</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="date" name="data_admissao" value="{{isset($motorista->data_admissao) ? $motorista->data_admissao : '' }}">
+  <label>DATA DE ADMISSAO</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" minlength="11" name="numero_cnh" data-mask="00000000000" placeholder="00000000000" value="{{isset($motorista->numero_cnh) ? $motorista->numero_cnh : '' }}">
+  <label>NUMERO CNH</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="date" name="data_validade_cnh" value="{{isset($motorista->data_validade_cnh) ? $motorista->data_validade_cnh : '' }}">
+  <label>VALIDADE CNH</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" name="tipo_contrato" value="{{isset($motorista->tipo_contrato) ? $motorista->tipo_contrato : '' }}">
+  <label>TIPO DE CONTRATO</label>
 </div>
 
 <label>ENDEREÇO</label>
@@ -54,3 +79,10 @@
   <input type="text" minlength ="9" name="cep" data-mask="00000-000" placeholder="00000-000" value="{{isset($endereco->cep) ? $endereco->cep : '' }}">
   <label>CEP</label>
 </div>
+
+  <select required class = "form-control-lg" multiple name="idFilial[]">
+     <option value="" disabled>NOME FILIAL</option>
+      @foreach($filiais as $filial)
+        <option value="{{$filial->id}}">{{$filial->descricao}}</option>
+      @endforeach
+    </select>

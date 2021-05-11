@@ -9,11 +9,17 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="row" >
-        <a href="{{route('layout.adicionarMotorista')}}" class="btn btn-primary btn-icon-split">
+        <a href="{{route('layout.adicionarMotoristaFisico')}}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-fw fa-plus-square"></i>
                                         </span>
-          <span class="text">ADICIONAR MOTORISTAS</span>
+          <span class="text">ADICIONAR MOTORISTA FISÍCO</span>
+        </a>
+        <a href="{{route('layout.adicionarMotoristaJuridico')}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+          <span class="text">ADICIONAR MOTORISTA JURÍDICO</span>
         </a>
       </div>
     </div>

@@ -30,3 +30,9 @@ DROP COLUMN `nome`;
 
 ALTER TABLE `roteirizador`.`motoristas` 
 DROP COLUMN `cpf`;
+
+ALTER TABLE `roteirizador`.`motoristas` 
+ADD COLUMN `codMotorista` INT NULL AFTER `id`,
+CHANGE COLUMN `deleted_at` `deleted_at` VARCHAR(45) NULL DEFAULT NULL AFTER `ativoInativo`,
+CHANGE COLUMN `created_at` `created_at` VARCHAR(45) NULL DEFAULT NULL AFTER `deleted_at`,
+CHANGE COLUMN `updated_at` `updated_at` VARCHAR(45) NULL DEFAULT NULL AFTER `created_at`;
