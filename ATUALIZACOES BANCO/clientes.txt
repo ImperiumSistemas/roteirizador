@@ -16,3 +16,8 @@ DROP COLUMN `latitude`;
 
 ALTER TABLE `roteirizador`.`clientes` 
 ADD COLUMN `codCliente` VARCHAR(45) NULL AFTER `id`;
+
+ALTER TABLE `roteirizador`.`clientes` 
+ADD COLUMN `latitude` VARCHAR(45) NULL AFTER `datainativacao`,
+ADD COLUMN `longitude` VARCHAR(45) NULL AFTER `latitude`;
+

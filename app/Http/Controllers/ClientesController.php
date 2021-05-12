@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clientes;
 use App\Pessoas;
+use App\Fisicas;
+use App\Juridicas;
+use App\Enderecos;
 use App\pracas;
 use App\Filiais;
 use App\filiais_clientes;
-use App\Enderecos;
 use App\permissao_niveis_acessos;
 use App\permissao_acessos;
 use Carbon\Carbon;
@@ -34,37 +36,94 @@ class ClientesController extends Controller
 
     }
 
-    public function adicionar(){
+    public function adicionarClienteFisico(){
 
-      $pessoas = Pessoas::all();
       $pracas = pracas::all();
       $filiais = Filiais::all();
-      $enderecos = Enderecos::all();
-      //$pais = Pais::all();
-      //$estados = Estados::all();
-      //$cidades = Cidades::all();
-      //$bairros = Bairros::all();
 
-      return view('layout.adicionarCliente', compact('pessoas', 'pracas', 'filiais', 'enderecos'));
+      return view('layout.adicionarClienteFisico', compact('pracas', 'filiais'));
     }
 
-    public function salvar(Request $req){
+    public function adicionarClienteJuridico(){
+      $pracas = pracas::all();
+      $filiais = Filiais::all();
 
-      $idPessoa = $req->idPessoa;
-      $idPraca = $req->idPraca;
+      return view('layout.adicionarClienteJuridico', compact('pracas', 'filiais'));
+    }
+
+    public function salvarClienteFisico(Request $req){
+
       $dados = $req->all();
 
+      $codCliente = $dados['codCliente'];
+      $nomeCliente = $dados['nome'];
+      $numeroTelefone = $dados['numero_telefone'];
+      $cpf = $dados['cpf'];
+      $rg = $dados['rg'];
+      $rua = $dados['rua'];
+      $numero = $dados['numero'];
+      $bairro = $dados['bairro'];
+      $cidade = $dados['cidade'];
+      $estado = $dados['estado'];
+      $pais = $dados['pais'];
+      $cep = $dados['cep'];
+      $idFilial = $dados['idFilial'];
+      $idPraca = $dados['idPraca'];
 
-      Clientes::create(['PRACA_id' => $idPraca, 'PESSOA_id' => $idPessoa]);
-      $ultimoId = Clientes::all('id')->last();
 
-      Clientes::where('id', '=', $ultimoId->id)->update(['ativoInativo' => 1]);
+      Pessoas::create(['nome' => $nomeCliente, 'numero_telefone' => $numeroTelefone, 'ativoInativo' => 1]);
+      $ultimoIdPessoa = Pessoas::all('id')->last(); // Pegando o Id da última pessoa cadastrada no banco de dados.
 
-      $idCliente = Clientes::all()->last();
+      Juridicas::create(['cpf' => $cpf, 'rg' => $rg, 'PESSOAS_id' => $ultimoIdPessoa->id]);
+
+      Enderecos::create(['rua' => $rua, 'numero' => $numero, 'bairro' => $bairro, 'cep' => $cep, 'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais,
+                         'PESSOAS_id' => $ultimoIdPessoa->id, 'ativoInativo' => 1]);
+
+      Clientes::create(['codCliente' => $codCliente, 'PRACA_id' => $idPraca, 'PESSOA_id' => $ultimoIdPessoa->id, 'ativoInativo' => 1]);
+      $ultimoIdCliente = Clientes::all('id')->last();
 
       foreach($dados['idFilial'] as $filial){
 
-        filiais_clientes::create(['FILIAL_id' => (int)$filial, 'CLIENTE_id' => $idCliente->id]);
+        filiais_clientes::create(['FILIAL_id' => (int)$filial, 'CLIENTE_id' => $ultimoIdCliente->id]);
+
+      }
+
+      return redirect()->route('listagemCliente');
+
+    }
+
+    public function salvarClienteJuridico(Request $req){
+      $dados = $req->all();
+
+      $codCliente = $dados['codCliente'];
+      $nomeCliente = $dados['nome'];
+      $numeroTelefone = $dados['numero_telefone'];
+      $cnpj = $dados['cnpj'];
+      $razaoSocial = $dados['razao_social'];
+      $rua = $dados['rua'];
+      $numero = $dados['numero'];
+      $bairro = $dados['bairro'];
+      $cidade = $dados['cidade'];
+      $estado = $dados['estado'];
+      $pais = $dados['pais'];
+      $cep = $dados['cep'];
+      $idFilial = $dados['idFilial'];
+      $idPraca = $dados['idPraca'];
+
+      Pessoas::create(['nome' => $nomeCliente, 'numero_telefone' => $numeroTelefone, 'ativoInativo' => 1]);
+      $ultimoIdPessoa = Pessoas::all('id')->last(); // Pegando o Id da última pessoa cadastrada no banco de dados.
+
+      Juridicas::create(['cnpj' => $cnpj, 'razao_social' => $razaoSocial, 'PESSOAS_id' => $ultimoIdPessoa->id]);
+
+      Enderecos::create(['rua' => $rua, 'numero' => $numero, 'bairro' => $bairro, 'cep' => $cep, 'cidade' => $cidade, 'estado' => $estado, 'pais' => $pais,
+                         'PESSOAS_id' => $ultimoIdPessoa->id, 'ativoInativo' => 1]);
+
+      Clientes::create(['codCliente' => $codCliente, 'PRACA_id' => $idPraca, 'PESSOA_id' => $ultimoIdPessoa->id, 'ativoInativo' => 1]);
+      $ultimoIdCliente = Clientes::all('id')->last();
+
+      foreach($dados['idFilial'] as $filial){
+
+        filiais_clientes::create(['FILIAL_id' => (int)$filial, 'CLIENTE_id' => $ultimoIdCliente->id]);
 
       }
 

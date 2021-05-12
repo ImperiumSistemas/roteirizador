@@ -10,11 +10,17 @@
     <div class="card-header py-3">
       <div class="row" >
         <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
-        <a href="{{route('layout.adicionarCliente')}}" class="btn btn-primary btn-icon-split">
+        <a href="{{route('layout.adicionarClienteFisico')}}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-fw fa-plus-square"></i>
                                         </span>
-          <span class="text">ADICIONAR CLIENTE</span>
+          <span class="text">ADICIONAR CLIENTE FISICO</span>
+        </a>
+        <a href="{{route('layout.adicionarClienteJuridico')}}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-fw fa-plus-square"></i>
+                                        </span>
+          <span class="text">ADICIONAR CLIENTE JURIDICO</span>
         </a>
       </div>
     </div>
@@ -31,7 +37,7 @@
             <th>CIDADE</th>
             <th>ESTADO</th>
             <th>PAIS</th>
-            <th>CEP</th>            
+            <th>CEP</th>
             <th>PRAÇA</th>
             <th>DATA INATIVAÇÃO</th>
             <th>EDITAR</th>

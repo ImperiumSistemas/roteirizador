@@ -120,9 +120,10 @@ Route::post('desativarPessoa}', ['as' => 'desativarPessoa', 'uses' => 'PessoasCo
 Route::post('editarPessoa', ['as' => 'editarPessoa', 'uses' => 'PessoasController@editar']);
 
 Route::get('ListagemCliente', ['as' => 'listagemCliente', 'uses' => 'ClientesController@listaCliente']);
-Route::get('/layout/adicionarCliente', ['as' => 'layout.adicionarCliente', 'uses' => 'ClientesController@adicionar']);
-Route::post('/layout/salvarCliente', ['as' => 'layout.salvarCliente', 'uses' => 'ClientesController@salvar']);
-
+Route::get('/layout/adicionarClienteFisico', ['as' => 'layout.adicionarClienteFisico', 'uses' => 'ClientesController@adicionarClienteFisico']);
+Route::get('/layout/adicionarClienteJuridico', ['as' => 'layout.adicionarClienteJuridico', 'uses' => 'ClientesController@adicionarClienteJuridico']);
+Route::post('/layout/salvarClienteFisico', ['as' => 'layout.salvarClienteFisico', 'uses' => 'ClientesController@salvarClienteFisico']);
+Route::post('/layout/salvarClienteJuridico', ['as' => 'layout.salvarClienteJuridico', 'uses' => 'ClientesController@salvarClienteJuridico']);
 Route::get('/layout/editarCliente/{id}', ['as' => 'layout.editarCliente', 'uses' => 'ClientesController@editar']);
 Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualiarCliente', 'uses' => 'ClientesController@atualizar']);
 Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'uses' => 'ClientesController@excluir']);

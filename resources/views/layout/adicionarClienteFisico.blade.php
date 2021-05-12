@@ -17,10 +17,10 @@
     </div>
 
     <div class="container-fluid">
-        <form class="" method="post" action="{{route('layout.salvarCliente')}}" >
+        <form class="" method="post" action="{{route('layout.salvarClienteFisico')}}" >
             {{ csrf_field() }}
 
-            @include('formularios.formularioCliente')
+            @include('formularios.formularioClienteFisico')
             <div align="middle">
                 <p class="mb-4"></p>
                 <p class="mb-4"></p>
