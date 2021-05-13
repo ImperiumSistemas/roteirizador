@@ -117,8 +117,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     @can("VEICULOS")<h6 class="collapse-header">VEÍCULO:</h6>@endcan
                     @can("VEICULOS")<a href="{{route('listagem.veiculo')}}" class="collapse-item">VEÍCULOS</a>@endcan
+                    @can("VEICULOS")<a href="{{route('listagem.tipoVeiculo')}}" class="collapse-item">TIPO DE VEÍCULOS</a>@endcan
                     <h6 class="collapse-header">PESSOA:</h6>
-                    @can("PESSOAS")<a href="{{route('listagem.pessoas')}}" class="collapse-item">PESSOA</a>@endcan
+                    <!--@can("PESSOAS")<a href="{{route('listagem.pessoas')}}" class="collapse-item">PESSOA</a>@endcan-->
                     @can("CLIENTES")<a href="{{route('listagemCliente')}}" class="collapse-item">CLIENTES</a>@endcan
                     @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
                     @can("MOTORISTAS")<a href="{{route('listagem.motorista')}}" class="collapse-item">MOTORISTA</a>@endcan
@@ -282,4 +283,3 @@
 
 
         </div>
-

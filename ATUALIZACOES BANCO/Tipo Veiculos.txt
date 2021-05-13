@@ -11,3 +11,10 @@ ALTER TABLE `roteirizador`.`veiculos`
 ADD COLUMN `ativoInativo` VARCHAR(3) NULL AFTER `renavan`,
 ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`,
 CHANGE COLUMN `TIPO_VEICULOS_id` `TIPO_VEICULOS_id` INT(11) NOT NULL AFTER `dataInativacao`;
+
+ALTER TABLE `roteirizador`.`tipo_veiculos` 
+ADD COLUMN `'updated_at'` VARCHAR(45) NULL AFTER `deleted_at`,
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `'updated_at'`;
+
+ALTER TABLE `roteirizador`.`tipo_veiculos` 
+CHANGE COLUMN `dataInativacao` `dataInativacao` VARCHAR(25) NULL DEFAULT

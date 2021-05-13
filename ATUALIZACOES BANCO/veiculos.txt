@@ -6,3 +6,8 @@ CHANGE COLUMN `ano` `ano` INT(4) NULL DEFAULT NULL ;
 ALTER TABLE `roteirizador`.`veiculos` 
 ADD COLUMN `deleted_at` VARCHAR(45) NULL AFTER `TIPO_VEICULOS_id`;
 
+alter table veiculos
+add idTipoVeiculo int;
+
+alter table veiculos 
+add foreign key(idTipoVeiculo) references tipo_veiculos(id);

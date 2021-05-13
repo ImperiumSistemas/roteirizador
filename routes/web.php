@@ -34,6 +34,14 @@ Route::get('/layout/deletarVeiculo/{id}', ['as' => 'layout.deletarVeiculo', 'use
 Route::get('layout/ativarVeiculo/{id}', ['as' => 'ativarVeiculo', 'uses' => 'VeiculosController@ativar']);
 Route::get('layout/desativarVeiculo/{id}', ['as' => 'desativarVeiculo', 'uses' => 'VeiculosController@desativar']);
 
+Route::get('/listagemTipoVeiculo', ['as' => 'listagem.tipoVeiculo', 'uses' => 'TipoVeiculo@listaTipoVeiculo']);
+Route::get('/layout/adicionarTipoVeiculo', ['as' => 'layout.adicionarTipoVeiculo', 'uses' => 'TipoVeiculo@adicionar']);
+Route::post('layout/salvarTipoVeiculo', ['as' => 'layout.SalvarTipoVeiculo', 'uses' => 'TipoVeiculo@salvar']);
+Route::get('layout/editarTipoVeiculo/{id}', ['as' => 'layout.editarTipoVeiculo', 'uses' => 'TipoVeiculo@editar']);
+Route::put('layout/atualizarTipoVeiculo/{id}', ['as' => 'layout.atualizarTipoVeiculo', 'uses' => 'TipoVeiculo@atualizar']);
+Route::get('layout/deletarTipoVeiculo/{id}', ['as' => 'layout.deletarTipoVeiculo', 'uses' => 'TipoVeiculo@deletar']);
+Route::get('layout/desativarTipoVeiculo/{id}', ['as' => 'desativarTipoVeiculo', 'uses' => 'TipoVeiculo@desativar']);
+Route::get('layout/ativarTipoVeiculo/{id}', ['as' => 'ativarTipoVeiculo', 'uses' => 'TipoVeiculo@ativar']);
 
 Route::get('listagem/motorista', ['as' => 'listagem.motorista', 'uses' => 'MotoristaController@listaMotorista']);
 Route::get('/layout/adicionarMotoristaFisico', ['as' => 'layout.adicionarMotoristaFisico', 'uses' => 'MotoristaController@adicionarMotoristaFisico']);
