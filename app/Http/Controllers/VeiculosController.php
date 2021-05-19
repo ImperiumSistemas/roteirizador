@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Veiculos;
+use App\tipo_veiculos;
 use App\Filiais;
 use App\filiais_veiculos;
 use App\permissao_niveis_acessos;
@@ -32,12 +33,14 @@ class VeiculosController extends Controller
       $veiculo = DB::table('filiais_veiculos')
       ->join('veiculos', 'filiais_veiculos.VEICULO_id', '=', 'veiculos.id')
       ->join('filiais', 'filiais_veiculos.FILIAL_id', '=', 'filiais.id')
+      ->join('tipo_veiculos', 'veiculos.TIPO_VEICULOS_id', '=', 'tipo_veiculos.id')
       ->select('veiculos.id as veiculoId', 'veiculos.marca as marca', 'veiculos.ano as ano',
       'veiculos.modelo as modelo', 'veiculos.chassi as chassi',
       'veiculos.capacidade_cubagem as capacidadeCubagem', 'veiculos.renavan as renavan',
       'veiculos.ativoInativo as ativoInativo', 'veiculos.dataInativacao as dataInativacao',
-      'filiais.descricao as descricao', 'filiais.id', 'filiais.pais as pais', 'filiais.cidade as cidade',
-      'filiais.telefone as telefone', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.estado as estado')->get();
+      'filiais.descricao as nomeFilial', 'filiais.id', 'filiais.pais as pais', 'filiais.cidade as cidade',
+      'filiais.telefone as telefone', 'filiais.bairro as bairro', 'filiais.cep as cep', 'filiais.estado as estado',
+      'tipo_veiculos.descricao as descricaoTipoVeiculo')->get();
 
       return view('listagem.listagemVeiculo', compact('veiculo'));
     }
@@ -46,8 +49,9 @@ class VeiculosController extends Controller
 
       $filiais = Filiais::all();
       $veiculos = Veiculos::all();
+      $tipoVeiculos = tipo_veiculos::all();
 
-      return view('layout.adicionarVeiculo',compact('filiais','veiculos'));
+      return view('layout.adicionarVeiculo',compact('filiais','veiculos', 'tipoVeiculos'));
     }
 
     public function salvar(Request $req){
@@ -58,7 +62,7 @@ class VeiculosController extends Controller
 
       //$ultimoId = Veiculos::all('id')->last();
       $idVeiculo = $dados['id'];
-  
+
       Veiculos::where('id', '=', $idVeiculo)->update(['ativoInativo' => 1]);
 
       $idVeiculo = (int)$dados['id'];
@@ -78,8 +82,9 @@ class VeiculosController extends Controller
 
       $veiculo = Veiculos::find($id);
       $filiais = Filiais::all();
+      $tipoVeiculos = tipo_veiculos::all();
 
-      return view('layout.editarVeiculo', compact('veiculo', 'filiais'));
+      return view('layout.editarVeiculo', compact('veiculo', 'filiais', 'tipoVeiculos'));
     }
 
     public function atualizarVeiculo(Request $req, $id){

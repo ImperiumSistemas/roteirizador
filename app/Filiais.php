@@ -12,7 +12,8 @@ class Filiais extends Model
     //
     //use SoftDeletes;
     protected $fillable = [
-        'cnpj', 'telefone', 'pais', 'estado', 'cidade', 'bairro', 'cep', 'rua', 'numero', 'descricao', 'EMPRESA_id', 'ativoInativo', 'dataInativacao', 'latitude', 'longitude'
-
+        'cnpj', 'telefone', 'pais', 'estado', 'cidade', 'bairro', 'cep', 'rua', 'numero', 'descricao',
+        'inscricao_estadual', 'razao_social', 'fantasia', 'EMPRESA_id', 'ativoInativo', 'dataInativacao',
+        'latitude', 'longitude'
     ];
 }

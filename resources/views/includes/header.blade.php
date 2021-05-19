@@ -121,8 +121,9 @@
                     <h6 class="collapse-header">PESSOA:</h6>
                     <!--@can("PESSOAS")<a href="{{route('listagem.pessoas')}}" class="collapse-item">PESSOA</a>@endcan-->
                     @can("CLIENTES")<a href="{{route('listagemCliente')}}" class="collapse-item">CLIENTES</a>@endcan
-                    @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
+                    <a href="{{route('listagemVendedor')}}" class="collapse-item">VENDEDOR</a>
                     @can("MOTORISTAS")<a href="{{route('listagem.motorista')}}" class="collapse-item">MOTORISTA</a>@endcan
+                    @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
                     <h6 class="collapse-header">CARGAS:</h6>
                     @can("REGIAO")<a href="{{route('listagem.regiao')}}" class="collapse-item">REGIÃO</a>@endcan
                     @can("ROTA")<a href="{{route('listagem.rota')}}" class="collapse-item">ROTA</a>@endcan

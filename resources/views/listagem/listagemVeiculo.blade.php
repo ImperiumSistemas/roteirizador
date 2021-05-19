@@ -29,6 +29,7 @@
                         <th>MODELO</th>
                         <th>CHASSI</th>
                         <th>RENAVAN</th>
+                        <th>TIPO VEICULO</th>
                         <th>NOME FILIAL</th>
                         <th>PAIS</th>
                         <th>ESTADO</th>
@@ -51,7 +52,8 @@
                                 <td>{{$veiculos->modelo}}</td>
                                 <td>{{$veiculos->chassi}}</td>
                                 <td>{{$veiculos->renavan}}</td>
-                                <td>{{$veiculos->descricao}}</td>
+                                <td>{{$veiculos->descricaoTipoVeiculo}}</td>
+                                <td>{{$veiculos->nomeFilial}}</td>
                                 <td>{{$veiculos->pais}}</td>
                                 <td>{{$veiculos->estado}}</td>
                                 <td>{{$veiculos->bairro}}</td>
@@ -79,7 +81,8 @@
                                 <td>{{$veiculos->modelo}}</td>
                                 <td>{{$veiculos->chassi}}</td>
                                 <td>{{$veiculos->renavan}}</td>
-                                <td>{{$veiculos->descricao}}</td>
+                                <td>{{$veiculos->descricaoTipoVeiculo}}</td>
+                                <td>{{$veiculos->nomeFilial}}</td>
                                 <td>{{$veiculos->pais}}</td>
                                 <td>{{$veiculos->estado}}</td>
                                 <td>{{$veiculos->bairro}}</td>

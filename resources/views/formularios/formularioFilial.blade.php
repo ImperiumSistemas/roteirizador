@@ -1,15 +1,34 @@
 <div class="form-control-lg">
   <input type="text" minlength="17" name="cnpj"  data-mask="00.000.000/000-00" placeholder="00.000.000/000-00" value="{{isset($filiais->cnpj) ? $filiais->cnpj : '' }}">
   <label>CNPJ</label>
+</div>
 
+<div class="form-control-lg">
   <input type="text" name="descricao" value="{{isset($filiais->descricao) ? $filiais->descricao : '' }}">
   <label>DESCRIÇÃO</label>
 </div>
 
 <div class="form-control-lg">
+  <input type="text" name="inscricao_estadual" value="{{isset($filiais->inscricao_estadual) ? $filiais->inscricao_estadual : '' }}">
+  <label>INSCRIÇÃO ESTADUAL</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" name="razao_social" value="{{isset($filiais->razao_social) ? $filiais->razao_social : '' }}">
+  <label>RAZÃO SOCIAL</label>
+</div>
+
+<div class="form-control-lg">
+  <input type="text" name="fantasia" value="{{isset($filiais->fantasia) ? $filiais->fantasia : '' }}">
+  <label>FANTASIA</label>
+</div>
+
+<div class="form-control-lg">
   <input type="text" name="rua" value="{{isset($filiais->rua) ? $filiais->rua : '' }}">
   <label>RUA</label>
+</div>
 
+<div class="form-control-lg">
   <input type="number" name="numero" value="{{isset($filiais->numero) ? $filiais->numero : '' }}">
   <label>NUMERO</label>
 </div>
@@ -17,17 +36,19 @@
 <div class="form-control-lg">
   <input type="text" name="bairro" value="{{isset($filiais->bairro) ? $filiais->bairro : '' }}">
   <label>BAIRRO</label>
+</div>
 
+<div class="form-control-lg">
   <input type="text" name="cidade" value="{{isset($filiais->cidade) ? $filiais->cidade : '' }}">
   <label>CIDADE</label>
 </div>
 
-
-
 <div class="form-control-lg">
   <input type="text" name="estado" value="{{isset($filiais->estado) ? $filiais->estado : '' }}">
   <label>ESTADO</label>
+</div>
 
+<div class="form-control-lg">
   <input type="text" name="pais" value="{{isset($filiais->pais) ? $filiais->pais : '' }}">
   <label>PAIS</label>
 </div>
@@ -41,7 +62,6 @@
   <input type="text" minlength="14" name="telefone" data-mask="(00)00000-0000" placeholder="(00)0000-0000" value="{{isset($filiais->telefone) ? $filiais->telefone : '' }}">
   <label>TELEFONE</label>
 </div>
-
 
 <div class="form-control-lg">
   <select name="EMPRESA_id">

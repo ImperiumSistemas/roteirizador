@@ -138,6 +138,13 @@ Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'use
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
 
+Route::get('listagemVendedor', ['as' => 'listagemVendedor', 'uses' => 'VendedorController@listaVendedor']);
+Route::get('/layout/adicionarVendedorFisico', ['as' => 'layout.adicionarVendedorFisico', 'uses' => 'VendedorController@adicionarVendedorFisico']);
+Route::get('/layout/adicionarVendedorJuridico', ['as' => 'layout.adicionarVendedorJuridico', 'uses' => 'VendedorController@adicionarVendedorJuridico']);
+Route::post('layout/salvarVendedorFisico', ['as' => 'layout.salvarVendedorFisico', 'uses' => 'VendedorController@salvarVendedorFisico']);
+Route::post('layout/salvarVendedorJuridico', ['as' => 'layout.salvarVendedorJuridico', 'uses' => 'VendedorController@salvarVendedorJuridico']);
+Route::get('layout/editarVedendor/{id}', ['as'=> 'layout.editarVendedor', 'uses' => 'VendedorController@editar']);
+
 Route::get('layout/listagemProdutos', ['as' => 'listagem.produtos', 'uses' => 'ProdutosController@listaProdutos']);
 Route::get('layout/adicionarProduto',['as' => 'layout.adicionarProduto', 'uses' => 'ProdutosController@adicionar']);
 Route::post('layout/salvarProdutos', ['as' => 'layout.salvarProdutos', 'uses' => 'ProdutosController@salvar']);

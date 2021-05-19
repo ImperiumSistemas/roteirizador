@@ -34,8 +34,12 @@
 </div>
 
 <div class="form-control-lg">
-  <input type="text" required name="TIPO_VEICULOS_id" value="{{isset($veiculo->TIPO_VEICULOS_id) ? $veiculo->TIPO_VEICULOS_id : '' }}">
-  <label>TIPO VEICULOS</label>
+  <select name="TIPO_VEICULOS_id">
+    <option value="">Tipo de Veiculo</option>
+    @foreach($tipoVeiculos as $tipoVeiculo)
+      <option value="{{$tipoVeiculo->id}}">{{$tipoVeiculo->descricao}}</option>
+    @endForeach
+  </select>
 </div>
 
 <select multiple name="idFilial[]">
