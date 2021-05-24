@@ -195,7 +195,8 @@ Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 
 // Pesquisando PESSOA CLIENTE, PESSOA MOTORISTA, PESSOA USUARIO.
 
 Route::post('pesquisaUsuario', ['as' => 'pesquisaUsuario', 'uses' => 'PesquisaPessoaController@pesquisaUsuario']);
-Route::post('pesquisaMotorista', ['as' => 'pesquisaMotorista', 'uses' => 'MotoristaController@pesquisaMotorista']);
+Route::post('pesquisaMotoristaFisico', ['as' => 'pesquisaMotoristaFisico', 'uses' => 'MotoristaController@pesquisaMotoristaFisico']);
+Route::post('pesquisaMotoristaJuridico', ['as' => 'pesquisaMotoristaJuridico', 'uses' => 'MotoristaController@pesquisaMotoristaJuridico']);
 });
 
 // LOGIN

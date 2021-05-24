@@ -21,8 +21,13 @@
             {{ csrf_field() }}
 
             <input type="hidden" name="_method" value="put">
+            @if($motorista->fisicaJuridica == 1)
+              @include('formularios.formularioMotoristaFisico')
+            @endif
 
-            @include('formularios.formulariosMotoristas')
+            @if($motorista->fisicaJuridica == 2)
+              @include('formularios.formularioMotoristaJuridico')
+            @endif
             <div align="middle">
                 <p class="mb-4"></p>
                 <p class="mb-4"></p>
