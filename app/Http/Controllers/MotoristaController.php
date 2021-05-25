@@ -264,18 +264,22 @@ class MotoristaController extends Controller
               ->select('pessoas.nome as nome', 'pessoas.numero_telefone as numero_telefone',
                        'motoristas.codMotorista', 'motoristas.id as id', 'motoristas.data_admissao as data_admissao',
                        'motoristas.numero_cnh as numero_cnh', 'motoristas.data_validade_cnh as data_validade_cnh',
-                       'motoristas.tipo_contrato as tipo_contrato',
+                       'motoristas.tipo_contrato as tipo_contrato', 'motoristas.fisicaJuridica as fisicaJuridica',
                        'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social',
                        'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numero',
                        'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
                        'enderecos.pais as pais')->first();
 
+              $filiais = Filiais::all();
+
+              return view('layout.editarMotorista', compact('motorista', 'filiais'));
+
             }else {
-              dd('Entrei no else');
+              return redirect()->back();
             }
           }
 
-          dd("Não existe Motorista Juridico cadastrado");
+          return redirect()->back();
         }
 
         public function pesquisaMotoristaFisico(Request $req){

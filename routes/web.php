@@ -133,7 +133,7 @@ Route::get('/layout/adicionarClienteJuridico', ['as' => 'layout.adicionarCliente
 Route::post('/layout/salvarClienteFisico', ['as' => 'layout.salvarClienteFisico', 'uses' => 'ClientesController@salvarClienteFisico']);
 Route::post('/layout/salvarClienteJuridico', ['as' => 'layout.salvarClienteJuridico', 'uses' => 'ClientesController@salvarClienteJuridico']);
 Route::get('/layout/editarCliente/{id}', ['as' => 'layout.editarCliente', 'uses' => 'ClientesController@editar']);
-Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualiarCliente', 'uses' => 'ClientesController@atualizar']);
+Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualizarCliente', 'uses' => 'ClientesController@atualizar']);
 Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'uses' => 'ClientesController@excluir']);
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
@@ -197,6 +197,8 @@ Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 
 Route::post('pesquisaUsuario', ['as' => 'pesquisaUsuario', 'uses' => 'PesquisaPessoaController@pesquisaUsuario']);
 Route::post('pesquisaMotoristaFisico', ['as' => 'pesquisaMotoristaFisico', 'uses' => 'MotoristaController@pesquisaMotoristaFisico']);
 Route::post('pesquisaMotoristaJuridico', ['as' => 'pesquisaMotoristaJuridico', 'uses' => 'MotoristaController@pesquisaMotoristaJuridico']);
+Route::post('pesquisaClienteFisico', ['as' => 'pesquisaClienteFisico', 'uses' => 'ClientesController@pesquisaClienteFisico']);
+Route::post('pesquisaClienteJuridico', ['as' => 'pesquisaClienteJuridico', 'uses' => 'ClientesController@pesquisaClienteJuridico']);
 });
 
 // LOGIN
