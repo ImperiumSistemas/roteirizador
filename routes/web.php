@@ -192,6 +192,8 @@ Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'Pedid
 Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
 
 
+Route::get('listagem/parametro', ['as' => 'listagemParametro', 'uses' => 'ParametroController@listaParametro']);
+
 // Pesquisando PESSOA CLIENTE, PESSOA MOTORISTA, PESSOA USUARIO.
 
 Route::post('pesquisaUsuario', ['as' => 'pesquisaUsuario', 'uses' => 'PesquisaPessoaController@pesquisaUsuario']);

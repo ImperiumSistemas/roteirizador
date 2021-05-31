@@ -23,7 +23,8 @@ class ClientesController extends Controller
     public function listaCliente(){
 
       //$clientes = Clientes::all();
-      $clientes = DB::table('clientes')
+      $clientes = DB::table('filiais_clientes')
+      ->join('clientes', 'filiais_clientes.CLIENTE_id', '=', 'clientes.id')
       ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
       ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
       ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')

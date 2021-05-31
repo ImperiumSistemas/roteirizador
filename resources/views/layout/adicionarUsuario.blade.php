@@ -15,11 +15,7 @@
           </form>
         </div>
 
-        @if(isset($pessoa))
-          @foreach($pessoa as $pe)
-            <!--Apenas para  pegar as informações dentro de pessoas para passar para dentro do value no input-->
-          @endforeach
-        @endif
+        
 
         @if(isset($mensagem) ? $mensagem : '')
           <span>{{$mensagem}}</span>
