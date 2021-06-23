@@ -69,6 +69,7 @@ class geradorCargaController extends Controller
 
         $idFilial = $req->filial_id;
         $pracas = $req->idPracas;
+        //dd($pracas);
         $filialFaturamento = $req->filialFaturamento_id;
         //$rotas = $req->idRotas;
         //$regioes = $req->idRegioes;
@@ -88,6 +89,7 @@ class geradorCargaController extends Controller
         //dd($pedidos);
 
         $dadosFiliais = Filiais::where('id', '=', $idFilial)->first();
+
         foreach ($pedidos as $pedido) {
             $endereco = DB::table('clientes')
                 ->join('pessoas', 'pessoas.id', '=', 'clientes.PESSOA_id')
@@ -140,7 +142,9 @@ class geradorCargaController extends Controller
         }
         //echo $response->getBody();
         $resposta = $response->getBody();
-        //dd($response);
+
+        //vai ter que ser verificado o parametro de usa mapa S ou N para definir a view que será chamada
+        dd(json_decode($resposta));
         return view('layout.mapa', compact('resposta'));
     }
 
