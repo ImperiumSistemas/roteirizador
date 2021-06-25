@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Produtos;
+use App\produtospedidos;
 use Illuminate\Http\Request;
 use App\Pedidos;
 use App\Clientes;
@@ -75,5 +77,8 @@ class PedidosController extends Controller
       Pedidos::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagem.pedidos');
     }
+
+
+
 
 }

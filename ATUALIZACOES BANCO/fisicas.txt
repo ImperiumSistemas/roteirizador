@@ -18,3 +18,5 @@ ALTER TABLE `roteirizador`.`fisicas`
 ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `deleted_at`,
 ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
+ALTER TABLE `roteirizador`.`fisicas` 
+CHANGE COLUMN `rg` `rg` VARCHAR(15) NULL ;

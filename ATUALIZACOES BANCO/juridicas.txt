@@ -22,3 +22,5 @@ ADD COLUMN `dataInativacao` VARCHAR(15) NULL AFTER `ativoInativo`;
 ALTER TABLE `roteirizador`.`juridicas` 
 CHANGE COLUMN `cnpj` `cnpj` VARCHAR(25) NOT NULL ;
 
+ALTER TABLE `roteirizador`.`juridicas` 
+CHANGE COLUMN `razao_social` `razao_social` VARCHAR(45) NULL ;
