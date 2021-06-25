@@ -121,14 +121,30 @@
                     <h6 class="collapse-header">PESSOA:</h6>
                     <!--@can("PESSOAS")<a href="{{route('listagem.pessoas')}}" class="collapse-item">PESSOA</a>@endcan-->
                     @can("CLIENTES")<a href="{{route('listagemCliente')}}" class="collapse-item">CLIENTES</a>@endcan
-                    @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
+                    <a href="{{route('listagemVendedor')}}" class="collapse-item">VENDEDOR</a>
                     @can("MOTORISTAS")<a href="{{route('listagem.motorista')}}" class="collapse-item">MOTORISTA</a>@endcan
+                    @can("CONFIRMAR_ENDERECO")<a href="{{route('listagem.confirmaEndereco')}}" class="collapse-item">CONFIRMAR ENDEREÇO</a>@endcan
                     <h6 class="collapse-header">CARGAS:</h6>
                     @can("REGIAO")<a href="{{route('listagem.regiao')}}" class="collapse-item">REGIÃO</a>@endcan
                     @can("ROTA")<a href="{{route('listagem.rota')}}" class="collapse-item">ROTA</a>@endcan
                     @can("PRACA")<a href="{{route('listagem.praca')}}" class="collapse-item">PRAÇA</a>@endcan
                 </div>
             </div>
+        </li>
+
+        <li style="background-color: orange" class="nav-item">
+            <a style="background-color: orange" class="nav-link collapsed" href="#" data-toggle="collapse"
+               data-target="#collapsetwo"
+               aria-expanded="true" aria-controls="collapsOne">
+                <i style="background-color: orange" class="fas fa-fw fa-cog"></i>
+                <span style="background-color: orange">PARAMETROS</span>
+            </a>
+            <div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                  <a href="{{route('listagemParametro')}}" class="collapse-item">PARAMETROS</a>
+               </div>
+           </div>
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
@@ -143,6 +159,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">MONTAGEM CARGA:</h6>
+                    <a href="{{route('listagemCliente')}}" class="collapse-item">PARAMETROS</a>
                     <a href="{{route('listaCargas')}}" class="collapse-item">CARGAS</a>
                     @can("MONTAR_CARGA")<a href="{{route('filtros')}}" class="collapse-item">MONTAR CARGA</a>@endcan
                 </div>

@@ -160,11 +160,47 @@ class MotoristaController extends Controller
 
         public function editar($id){
 
-          $motorista = Motoristas::find($id);
-          $filiais = Filiais::all();
-          $pessoas = Pessoas::all();
+          $motoristaFisicoJuridico = Motoristas::find($id);
 
-          return view('layout.editarMotorista', compact('motorista', 'filiais', 'pessoas'));
+          if($motoristaFisicoJuridico->fisicaJuridica == 1){
+
+            $motorista = DB::table('motoristas')
+            ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+            ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+            ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+            ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero_telefone',
+                     'motoristas.codMotorista', 'motoristas.id as id', 'motoristas.data_admissao as data_admissao',
+                     'motoristas.numero_cnh as numero_cnh', 'motoristas.data_validade_cnh as data_validade_cnh',
+                     'motoristas.tipo_contrato as tipo_contrato', 'motoristas.fisicaJuridica as fisicaJuridica',
+                     'fisicas.cpf as cpf', 'fisicas.rg as rg',
+                     'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numero',
+                     'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                     'enderecos.pais as pais')->where('motoristas.id', '=', $id)->first();
+
+            $filiais = Filiais::all();
+
+            return view('layout.editarMotorista', compact('motorista', 'filiais'));
+          }
+
+          if($motoristaFisicoJuridico->fisicaJuridica == 2){
+            $filiais = Filiais::all();
+
+            $motorista = DB::table('motoristas')
+            ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+            ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+            ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+            ->select('pessoas.nome as nome', 'pessoas.numero_telefone as numero_telefone',
+                     'motoristas.codMotorista', 'motoristas.id as id', 'motoristas.data_admissao as data_admissao',
+                     'motoristas.numero_cnh as numero_cnh', 'motoristas.data_validade_cnh as data_validade_cnh',
+                     'motoristas.tipo_contrato as tipo_contrato', 'motoristas.fisicaJuridica as fisicaJuridica',
+                     'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social',
+                     'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numero',
+                     'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                     'enderecos.pais as pais')->where('motoristas.id', '=', $id)->first();
+
+            return view('layout.editarMotorista', compact('motorista', 'filiais'));
+          }
+
         }
 
         public function atualizar(Request $req, $id){
@@ -174,7 +210,7 @@ class MotoristaController extends Controller
           Motoristas::find($id)->update($dados);
           filiais_motoristas::where('MOTORISTA_id', '=', $id)->delete();
 
-          $idMotorista = (int)$dados['id'];
+          $idMotorista = $id;
 
           foreach ($dados['idFilial'] as $filial) {
 
@@ -205,8 +241,82 @@ class MotoristaController extends Controller
           return redirect()->route('listagem.motorista');
         }
 
+        public function pesquisaMotoristaJuridico(Request $req){
+          $cnpj = $req->cnpj;
 
-        public function pesquisaMotorista(){
-          dd('teste');
+          $motoristas = DB::table('motoristas')
+          ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+          ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+          ->select('pessoas.nome as nomeMotorista', 'pessoas.numero_telefone as telefoneMotorista',
+                   'motoristas.codMotorista',
+                   'juridicas.cnpj as cnpjMotorista', 'juridicas.razao_social as razao_social')->get();
+
+
+
+          foreach($motoristas as $motorista){
+
+            if($cnpj == $motorista->cnpjMotorista){
+
+              $motorista = DB::table('motoristas')
+              ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+              ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+              ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+              ->select('pessoas.nome as nome', 'pessoas.numero_telefone as numero_telefone',
+                       'motoristas.codMotorista', 'motoristas.id as id', 'motoristas.data_admissao as data_admissao',
+                       'motoristas.numero_cnh as numero_cnh', 'motoristas.data_validade_cnh as data_validade_cnh',
+                       'motoristas.tipo_contrato as tipo_contrato', 'motoristas.fisicaJuridica as fisicaJuridica',
+                       'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social',
+                       'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numero',
+                       'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                       'enderecos.pais as pais')->first();
+
+              $filiais = Filiais::all();
+
+              return view('layout.editarMotorista', compact('motorista', 'filiais'));
+
+            }else {
+              return redirect()->back();
+            }
+          }
+
+          return redirect()->back();
+        }
+
+        public function pesquisaMotoristaFisico(Request $req){
+          $cpfFormulario = $req->cpf;
+
+          $motoristas = DB::table('motoristas')
+          ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+          ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+          ->select('pessoas.nome as nomeMotorista', 'pessoas.numero_telefone as telefoneMotorista',
+                   'motoristas.codMotorista',
+                   'fisicas.cpf as cpfMotorista', 'fisicas.rg as rgMotorista')->get();
+
+          foreach($motoristas as $motorista){
+
+            if($cpfFormulario == $motorista->cpfMotorista){
+              $motorista = DB::table('motoristas')
+              ->join('pessoas', 'motoristas.PESSOAS_id', '=', 'pessoas.id')
+              ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+              ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+              ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero_telefone',
+                       'motoristas.codMotorista', 'motoristas.id as id', 'motoristas.data_admissao as data_admissao',
+                       'motoristas.numero_cnh as numero_cnh', 'motoristas.data_validade_cnh as data_validade_cnh',
+                       'motoristas.tipo_contrato as tipo_contrato', 'motoristas.fisicaJuridica as fisicaJuridica',
+                       'fisicas.cpf as cpf', 'fisicas.rg as rg',
+                       'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numero',
+                       'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                       'enderecos.pais as pais')->first();
+
+            $filiais = Filiais::all();
+
+            return view('layout.editarMotorista', compact('motorista', 'filiais'));
+
+            }else{
+              return redirect()->back();
+            }
+          }
+
+           return redirect()->back();
         }
 }

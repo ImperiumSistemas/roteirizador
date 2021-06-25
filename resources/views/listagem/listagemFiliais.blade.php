@@ -27,6 +27,7 @@
                         <th>CNPJ</th>
                         <th>DESCRIÇÃO</th>
                         <th>NOME EMPRESA</th>
+                        <th>DATA INATIVAÇÃO</th>
                         <th>EDITAR</th>
                         <th>DELETAR</th>
                         <th>SITUAÇÂO</th>
@@ -51,6 +52,7 @@
                                 <td>{{$filial->cnpj}}</td>
                                 <td>{{$filial->descricao}}</td>
                                 <td>{{$filial->nomeEmpresa}}</td>
+                                <td>{{$filial->dataInativacao}}</td>
                                 <td>
                                     <a class="btn deep-orange" href="{{route('layout.editar', $filial->id)}}">EDITAR</a>
                                 </td>
@@ -72,6 +74,7 @@
                                 <td>{{$filial->cnpj}}</td>
                                 <td>{{$filial->descricao}}</td>
                                 <td>{{$filial->nomeEmpresa}}</td>
+                                <td>{{$filial->dataInativacao}}</td>
                                 <td>
                                     <a class="btn deep-orange" href="{{route('layout.editar', $filial->id)}}">EDITAR</a>
                                 </td>

@@ -23,7 +23,8 @@ class ClientesController extends Controller
     public function listaCliente(){
 
       //$clientes = Clientes::all();
-      $clientes = DB::table('clientes')
+      $clientes = DB::table('filiais_clientes')
+      ->join('clientes', 'filiais_clientes.CLIENTE_id', '=', 'clientes.id')
       ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
       ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
       ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
@@ -133,23 +134,63 @@ class ClientesController extends Controller
 
     public function editar($id){
 
-      $cliente = Clientes::find($id);
-      $pracas = pracas::all();
-      $pessoas = Pessoas::all();
-      $filiais = Filiais::all();
+      $clientes = Clientes::find($id);
+      if($clientes->fisicoJuridico == 1){
+        $clientes = DB::table('clientes')
+                    ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                    ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+                    ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                    ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero',
+                             'clientes.codCliente as codCliente', 'clientes.fisicoJuridico as fisicoJuridico',
+                             'clientes.id as id', 'clientes.inscricaoEstadual as inscricaoEstadual',
+                             'clientes.dataCadastro as dataCadastro',
+                             'fisicas.cpf as cpf', 'fisicas.rg as rg',
+                             'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numeroEndereco',
+                             'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                             'enderecos.pais as pais')->where('clientes.id', '=', $id)->first();
+        $pracas = pracas::all();
+        $filiais = Filiais::all();
 
-      return view('layout.editarCliente', compact('cliente', 'pracas', 'pessoas', 'filiais'));
+        return view('layout.editarCliente', compact('clientes', 'pracas', 'filiais'));
+      }
+      if($clientes->fisicoJuridico == 2){
+        $clientes = DB::table('clientes')
+                    ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                    ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+                    ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                    ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero',
+                             'clientes.codCliente as codCliente', 'clientes.fisicoJuridico as fisicoJuridico',
+                             'clientes.id as id', 'clientes.inscricaoEstadual as inscricaoEstadual',
+                             'clientes.dataCadastro as dataCadastro',
+                             'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social',
+                             'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numeroEndereco',
+                             'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                             'enderecos.pais as pais')->where('clientes.id', '=', $id)->first();
+        $pracas = pracas::all();
+        $filiais = Filiais::all();
+
+        return view('layout.editarCliente', compact('clientes', 'pracas', 'filiais'));
+      }
+
+
+
 
     }
 
     public function atualizar(Request $req, $id){
 
+      $dados = $req->all();
 
-      $idPessoa = $req->idPessoa;
-      $idPraca = $req->idPraca;
+      Clientes::find($id)->update($dados);
+      filiais_clientes::where('CLIENTE_id', '=', $id)->delete();
 
-      Clientes::find($id)->update(['PRACA_id' => $idPraca, 'PESSOA_id' => $idPessoa]);
+      $idCliente = $id;
 
+      foreach ($dados['idFilial'] as $filial) {
+
+        filiais_clientes::create(['FILIAL_id' => (int)$filial, 'CLIENTE_id' => $idCliente]);
+
+      }
       return redirect()->route('listagemCliente');
     }
 
@@ -172,5 +213,79 @@ class ClientesController extends Controller
       $data = Carbon::now();
       Clientes::where('id', '=', $id)->update(['ativoInativo' => 0, 'dataInativacao' => $data]);
       return redirect()->route('listagemCliente');
+    }
+
+    public function pesquisaClienteJuridico(Request $req){
+      $cnpjFormularioPesquisa = $req->cnpj;
+
+      $clientes = DB::table('clientes')
+                  ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                  ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+                  ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                  ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
+                  ->select('pessoas.nome as nomeCliente', 'pessoas.numero_telefone as telefoneCliente',
+                           'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social')->get();
+
+      foreach($clientes as $cliente){
+        if($cnpjFormularioPesquisa == $cliente->cnpj){
+          $clientes = DB::table('clientes')
+                      ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                      ->join('juridicas', 'juridicas.PESSOAS_id', '=', 'pessoas.id')
+                      ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                      ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero',
+                               'clientes.codCliente as codCliente', 'clientes.fisicoJuridico as fisicoJuridico',
+                               'clientes.id as id', 'clientes.inscricaoEstadual as inscricaoEstadual',
+                               'clientes.dataCadastro as dataCadastro',
+                               'juridicas.cnpj as cnpj', 'juridicas.razao_social as razao_social',
+                               'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numeroEndereco',
+                               'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                               'enderecos.pais as pais')->first();
+
+          $filiais = Filiais::all();
+          $pracas = pracas::all();
+
+          return view('layout.editarCliente', compact('clientes', 'filiais', 'pracas'));
+        }else{
+          return redirect()->back();
+        }
+      }
+          return redirect()->back();
+    }
+
+    public function pesquisaClienteFisico(Request $req){
+      $cpfFormularioPesquisa = $req->cpf;
+
+      $clientes = DB::table('clientes')
+                  ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                  ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+                  ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                  ->join('pracas', 'clientes.PRACA_id', '=', 'pracas.id')
+                  ->select('pessoas.nome as nomeCliente', 'pessoas.numero_telefone as telefoneCliente',
+                           'fisicas.cpf as cpfCliente', 'fisicas.rg as rgCliente')->get();
+
+      foreach($clientes as $cliente){
+
+        if($cpfFormularioPesquisa == $cliente->cpfCliente){
+          $clientes = DB::table('clientes')
+                      ->join('pessoas', 'clientes.PESSOA_id', '=', 'pessoas.id')
+                      ->join('fisicas', 'fisicas.PESSOAS_id', '=', 'pessoas.id')
+                      ->join('enderecos', 'enderecos.PESSOAS_id', '=', 'pessoas.id')
+                      ->select('pessoas.nome as nomePessoa', 'pessoas.numero_telefone as numero',
+                               'clientes.codCliente as codCliente', 'clientes.fisicoJuridico as fisicoJuridico',
+                               'clientes.id as id', 'clientes.inscricaoEstadual as inscricaoEstadual',
+                               'clientes.dataCadastro as dataCadastro',
+                               'fisicas.cpf as cpf', 'fisicas.rg as rg',
+                               'enderecos.rua as rua', 'enderecos.bairro as bairro', 'enderecos.numero as numeroEndereco',
+                               'enderecos.cidade as cidade', 'enderecos.cep as cep', 'enderecos.estado as estado',
+                               'enderecos.pais as pais')->first();
+          $filiais = Filiais::all();
+          $pracas = pracas::all();
+
+          return view('layout.editarCliente', compact('clientes', 'filiais', 'pracas'));
+        }else{
+          return redirect()->back();
+        }
+      }
+          return redirect()->back();
     }
 }

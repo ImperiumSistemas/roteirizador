@@ -18,7 +18,7 @@
 
     <div class="container-fluid">
         <div class="input-field">
-          <form method="post" action="{{route('pesquisaMotorista')}}">
+          <form method="post" action="{{route('pesquisaMotoristaFisico')}}">
             {{ csrf_field() }}
             <input type="text" minlength="14" data-mask="000.000.000-00" placeholder="000.000.000-00"  name="cpf" required>
             <button>PESQUISAR MOTORISTA</button>

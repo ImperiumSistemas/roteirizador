@@ -1,0 +1,9 @@
+create table opcoes_parametros(
+	id int primary key auto_increment,
+    dfvalor varchar(50),
+    dftipo varchar(45),
+    dfparametros varchar(1000),
+    dfhabilitado varchar(1),
+    dfdescricao varchar(100),
+    dfgrupo varchar(100)
+);

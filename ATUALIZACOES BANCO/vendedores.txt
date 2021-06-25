@@ -1,0 +1,28 @@
+create table vendedor(
+	id int,
+    codVendedor varchar(45),
+    PESSOAS_id int
+);
+
+alter table vendedor 
+ add foreign key(PESSOAS_id) references pessoas(id);
+
+ALTER TABLE `roteirizador`.`vendedor` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ADD PRIMARY KEY (`id`);
+;
+
+ALTER TABLE `roteirizador`.`vendedor` 
+ADD COLUMN `ativoInativo` INT NULL AFTER `PESSOAS_id`,
+ADD COLUMN `dataInativacao` VARCHAR(45) NULL AFTER `ativoInativo`;
+
+
+ALTER TABLE `roteirizador`.`vendedor` 
+ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `dataInativacao`,
+ADD COLUMN `updated_at` VARCHAR(45) NULL AFTER `created_at`;
+
+ALTER TABLE `roteirizador`.`vendedor` 
+ADD COLUMN `fisicoJuridico` INT NULL AFTER `codVendedor`;
+
+ALTER TABLE `roteirizador`.`vendedor` 
+RENAME TO  `roteirizador`.`vendedores` ;

@@ -133,10 +133,17 @@ Route::get('/layout/adicionarClienteJuridico', ['as' => 'layout.adicionarCliente
 Route::post('/layout/salvarClienteFisico', ['as' => 'layout.salvarClienteFisico', 'uses' => 'ClientesController@salvarClienteFisico']);
 Route::post('/layout/salvarClienteJuridico', ['as' => 'layout.salvarClienteJuridico', 'uses' => 'ClientesController@salvarClienteJuridico']);
 Route::get('/layout/editarCliente/{id}', ['as' => 'layout.editarCliente', 'uses' => 'ClientesController@editar']);
-Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualiarCliente', 'uses' => 'ClientesController@atualizar']);
+Route::put('/layout/atualizarCliente/{id}', ['as' => 'layout.atualizarCliente', 'uses' => 'ClientesController@atualizar']);
 Route::get('/layout/excluirCliente/{id}', ['as' => 'layout.excluirCliente', 'uses' => 'ClientesController@excluir']);
 Route::get('layout/ativarCliente/{id}', ['as' => 'ativarCliente', 'uses' => 'ClientesController@ativar']);
 Route::get('layout/desativarCliente/{id}', ['as' => 'desativarCliente', 'uses' => 'ClientesController@desativar']);
+
+Route::get('listagemVendedor', ['as' => 'listagemVendedor', 'uses' => 'VendedorController@listaVendedor']);
+Route::get('/layout/adicionarVendedorFisico', ['as' => 'layout.adicionarVendedorFisico', 'uses' => 'VendedorController@adicionarVendedorFisico']);
+Route::get('/layout/adicionarVendedorJuridico', ['as' => 'layout.adicionarVendedorJuridico', 'uses' => 'VendedorController@adicionarVendedorJuridico']);
+Route::post('layout/salvarVendedorFisico', ['as' => 'layout.salvarVendedorFisico', 'uses' => 'VendedorController@salvarVendedorFisico']);
+Route::post('layout/salvarVendedorJuridico', ['as' => 'layout.salvarVendedorJuridico', 'uses' => 'VendedorController@salvarVendedorJuridico']);
+Route::get('layout/editarVedendor/{id}', ['as'=> 'layout.editarVendedor', 'uses' => 'VendedorController@editar']);
 
 Route::get('layout/listagemProdutos', ['as' => 'listagem.produtos', 'uses' => 'ProdutosController@listaProdutos']);
 Route::get('layout/adicionarProduto',['as' => 'layout.adicionarProduto', 'uses' => 'ProdutosController@adicionar']);
@@ -185,10 +192,15 @@ Route::get('layout/ativarPedido/{id}', ['as' => 'ativarPedido', 'uses' => 'Pedid
 Route::get('layout/desativarPedido/{id}', ['as' => 'desativarPedido', 'uses' => 'PedidosController@desativarPedido']);
 
 
+Route::get('listagem/parametro', ['as' => 'listagemParametro', 'uses' => 'ParametroController@listaParametro']);
+
 // Pesquisando PESSOA CLIENTE, PESSOA MOTORISTA, PESSOA USUARIO.
 
 Route::post('pesquisaUsuario', ['as' => 'pesquisaUsuario', 'uses' => 'PesquisaPessoaController@pesquisaUsuario']);
-Route::post('pesquisaMotorista', ['as' => 'pesquisaMotorista', 'uses' => 'MotoristaController@pesquisaMotorista']);
+Route::post('pesquisaMotoristaFisico', ['as' => 'pesquisaMotoristaFisico', 'uses' => 'MotoristaController@pesquisaMotoristaFisico']);
+Route::post('pesquisaMotoristaJuridico', ['as' => 'pesquisaMotoristaJuridico', 'uses' => 'MotoristaController@pesquisaMotoristaJuridico']);
+Route::post('pesquisaClienteFisico', ['as' => 'pesquisaClienteFisico', 'uses' => 'ClientesController@pesquisaClienteFisico']);
+Route::post('pesquisaClienteJuridico', ['as' => 'pesquisaClienteJuridico', 'uses' => 'ClientesController@pesquisaClienteJuridico']);
 });
 
 // LOGIN

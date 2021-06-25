@@ -17,6 +17,14 @@
     </div>
 
     <div class="container-fluid">
+        <form method="post" action="{{route('pesquisaClienteJuridico')}}">
+          {{ csrf_field() }}
+          <input type="text" minlength="14" data-mask="00.000.000/000-00" placeholder="00.000.000/000-00" name="cnpj" required>
+          <button>PESQUISAR CLIENTE</button>
+        </form>
+      </div>
+      <br/><br/>
+
         <form class="" method="post" action="{{route('layout.salvarClienteJuridico')}}" >
             {{ csrf_field() }}
 

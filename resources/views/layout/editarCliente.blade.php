@@ -17,12 +17,18 @@
     </div>
 
     <div class="container-fluid">
-        <form class="" method="post" action="{{route('layout.atualiarCliente', $cliente->id)}}" >
+        <form class="" method="post" action="{{route('layout.atualizarCliente', $clientes->id)}}" >
             {{ csrf_field() }}
 
             <input type="hidden" name="_method" value="put">
+            @if($clientes->fisicoJuridico == 1)
+              @include('formularios.formularioClienteFisico')
+            @endif
 
-            @include('formularios.formularioCliente')
+            @if($clientes->fisicoJuridico == 2)
+              @include('formularios.formularioClienteJuridico')
+            @endif
+
             <div align="middle">
                 <p class="mb-4"></p>
                 <p class="mb-4"></p>

@@ -13,18 +13,24 @@ class PesquisaPessoaController extends Controller
     //
 
     public function pesquisaUsuario(Request $req){
-      $dados = $req->all();
+
+      $pesquisaCpfFormulario = $req->cpf;
+
       $usuarios = User::all();
 
       $pessoa = DB::table('fisicas')
       ->join('pessoas', 'fisicas.PESSOAS_ID', '=', 'pessoas.id')
-      ->select('pessoas.id as id', 'pessoas.nome as nome', 'fisicas.cpf as cpf')
-      ->where('fisicas.cpf', '=', $dados['cpf'])->get();
+      ->join('users', 'users.PESSOAS_id', 'pessoas.id')
+      ->select('pessoas.id as id', 'pessoas.nome as nome',
+               'fisicas.cpf as cpf', 'fisicas.rg as rg',
+               'users.name as name', 'users.email as email')->where('fisicas.cpf', '=', $pesquisaCpfFormulario)->first();
 
       $encontraCpf = false;  // Iniciando a variavel como falso, atribuindo verdadeiro se ela entrar na condição abaixo.
 
       foreach($pessoa as $pe){
-        if($pe->cpf == $dados['cpf']){
+
+        if($pessoa->cpf == $pesquisaCpfFormulario){
+
             $encontraCpf = true;
         }
       }

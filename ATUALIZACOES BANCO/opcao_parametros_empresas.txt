@@ -1,0 +1,18 @@
+create table opcoes_parametro_empresas(
+	id int primary key auto_increment, 
+    id_empresa int,
+    id_parametro int
+);
+
+
+alter table opcoes_parametro_empresas
+add foreign key(id_empresa) references empresas(id);
+
+alter table opcoes_parametro_empresas
+add foreign key(id_parametro) references opcoes_parametro(id);
+
+ALTER TABLE `roteirizador`.`opcoes_parametro_empresas` 
+ADD COLUMN `dfvalor` VARCHAR(45) NULL AFTER `id_parametro`;
+
+ALTER TABLE `roteirizador`.`opcoes_parametro_empresas` 
+RENAME TO  `roteirizador`.`opcoes_parametros_empresas` ;

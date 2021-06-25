@@ -30,3 +30,9 @@ ADD COLUMN `CodFilial` INT NULL AFTER `descricao`;
 
 ALTER TABLE `roteirizador`.`filiais` 
 CHANGE COLUMN `cnpj` `cnpj` VARCHAR(20) NOT NULL ;
+
+ALTER TABLE `roteirizador`.`filiais` 
+ADD COLUMN `inscricao_estadual` VARCHAR(45) NULL AFTER `descricao`,
+ADD COLUMN `razao_social` VARCHAR(45) NULL AFTER `inscricao_estadual`,
+ADD COLUMN `fantasia` VARCHAR(45) NULL AFTER `razao_social`;
+
