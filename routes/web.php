@@ -218,4 +218,5 @@ Route::get('filtros', ['as' => 'filtros', 'uses' => 'geradorCargaController@filt
 Route::post('salvarCarga', ['as' => 'salvarCarga', 'uses' => 'geradorCargaController@salvarCargas']);
 Route::post('cancelarCarga', ['as' => 'cancelarCarga', 'uses' => 'geradorCargaController@cancelarCarga']);
 Route::get('listaCargas', ['as' => 'listaCargas', 'uses' => 'geradorCargaController@listaCargas']);
+Route::post('editarCarga', ['as' => 'editarCarga', 'uses' => 'geradorCargaController@editarCarga']);
 Route::post('addVeiculoCarga', ['as' => 'addVeiculoCarga', 'uses' => 'geradorCargaController@addVeiculoCarga']);

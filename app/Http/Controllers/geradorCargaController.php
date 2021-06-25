@@ -144,7 +144,7 @@ class geradorCargaController extends Controller
         $resposta = $response->getBody();
 
         //vai ter que ser verificado o parametro de usa mapa S ou N para definir a view que será chamada
-        dd(json_decode($resposta));
+        //dd(json_decode($resposta));
         return view('layout.mapa', compact('resposta'));
     }
 
@@ -267,6 +267,15 @@ class geradorCargaController extends Controller
         Cargas::where('id', '=', $req->idCargaVeiculo)->update(['veiculos_id' => $req->idVeiculo]);
 
         return redirect()->route('listaCargas');
+    }
+
+    public function editarCarga(Request $req)
+    {
+
+       $pedidosCarga = Cargas::join("pedidos", "pedidos.cargas_id", "=", "cargas.id")
+           ->orderBy("pedidos.sequenciaEntrega")->get();
+        //dd($pedidosCarga);
+       return view('listagem.listaPedidosCarga', compact('pedidosCarga'));
     }
 
 }

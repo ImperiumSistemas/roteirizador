@@ -19,6 +19,7 @@ class IntegracaoController extends Controller
     public function pedido(Request $req)
     {
         $pedidos = $req->pedidos;
+        //dd($pedidos);
         foreach ($pedidos as $pedido) {
             $pedido = (object)$pedido;
 
@@ -77,7 +78,7 @@ class IntegracaoController extends Controller
 
         }
 
-        return 'OK';
+        return true;
 
     }
 
