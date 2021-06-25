@@ -23,7 +23,6 @@ class IntegracaoController extends Controller
 
     public function pedido(Request $req)
     {
-
         //dd($req->input("codPedido"));
         $dados = $req->all();
         //dd($req->input('pedidos'));
@@ -275,6 +274,6 @@ class IntegracaoController extends Controller
 
     }
 
-}
+
 
 }
