@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class produtos_pedidos extends Model
+class produtospedidos extends Model
 {
     //
     protected $fillable = [
 
-      'id', 'idProduto', 'idPedido','qtde','cubagem','peso'
+      'id', 'codProduto', 'codPedido','qtde','cubagem','peso'
     ];
 }

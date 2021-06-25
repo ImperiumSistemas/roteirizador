@@ -117,10 +117,9 @@
     </div>
 </div>
 
-<form id='formEditar' action="{{route('editarPessoa')}}" method="post">
+<form id='formEditar' action="{{route('editarCarga')}}" method="post">
     {{ csrf_field() }}
-    <input type="hidden" id='idPessoa' name='idPessoa'/>
-    <input type="hidden" id='tipoPessoa' name='tipoPessoa'/>
+    <input type="hidden" id='idCarga' name='idCarga'/>
 </form>
 <form id='formCancelar' action="{{route('cancelarCarga')}}" method="post">
     {{ csrf_field() }}
@@ -172,8 +171,7 @@
         let id = selecionado[0].innerHTML;
         let tipo = selecionado[3].innerHTML;
 
-        document.getElementById('idPessoa').value = id;
-        document.getElementById('tipoPessoa').value = tipo;
+        document.getElementById('idCarga').value = id;
         document.getElementById('formEditar').submit();
     });
 
