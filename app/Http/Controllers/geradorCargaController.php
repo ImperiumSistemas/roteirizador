@@ -14,6 +14,8 @@ use App\Rotas;
 use App\Pracas;
 use App\Regioes;
 use App\Pedidos;
+use App\opcoes_parametros_empresas;
+
 //use App\permissao_niveis_acessos;
 //use App\permissao_acessos;
 use App\Cargas;
@@ -144,12 +146,24 @@ class geradorCargaController extends Controller
         $resposta = $response->getBody();
 
         //vai ter que ser verificado o parametro de usa mapa S ou N para definir a view que será chamada
-        //dd(json_decode($resposta));
-        return view('layout.mapa', compact('resposta'));
+        $usaMapa = opcoes_parametros_empresas::where("id_parametro", "=", "1")->first();
+        if ($usaMapa->dfvalor == "S") {
+            return view('layout.mapa', compact('resposta'));
+        } else {
+          $save = $this->salvaCargasLista($resposta) ;
+
+        }
+
+    }
+
+    public function salvaCargasLista($data)
+    {
+        dd(json_decode($data));
     }
 
     public function salvarCargas(Request $req)
     {
+        dd($req);
         $cargasRecebidas = json_decode($req->cargas);
         //dd($cargasRecebidas);
         foreach ($cargasRecebidas as $carga) {
@@ -271,11 +285,21 @@ class geradorCargaController extends Controller
 
     public function editarCarga(Request $req)
     {
-
-       $pedidosCarga = Cargas::join("pedidos", "pedidos.cargas_id", "=", "cargas.id")
-           ->orderBy("pedidos.sequenciaEntrega")->get();
+        //dd($req->idCarga);
+        $pedidosCarga = Cargas::join("pedidos", "pedidos.cargas_id", "=", "cargas.id")
+            ->leftjoin("clientes", "clientes.id", "=", "pedidos.codCliente")
+            ->leftjoin("pessoas", "clientes.PESSOA_id", "=", "pessoas.id")
+            ->leftjoin("pracas", "pracas.id", "=", "pedidos.codPraca")
+            ->where("pedidos.cargas_id", "=", $req->idCarga)
+            ->orderBy("pedidos.sequenciaEntrega")->get();
         //dd($pedidosCarga);
-       return view('listagem.listaPedidosCarga', compact('pedidosCarga'));
+        return view('listagem.listaPedidosCarga', compact('pedidosCarga'));
+    }
+
+    public function removerPedidoCarga($id)
+    {
+        dd($id);
+
     }
 
 }

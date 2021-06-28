@@ -3,61 +3,11 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">LISTAGEM PESSOAS</h1>
+    <h1 class="h3 mb-2 text-gray-800">LISTAGEM PEDIDOS CARGA</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <form class="" method="post" action="{{route('listagem.PessoaFiltro')}}">
-                {{ csrf_field() }}
 
-
-                <br>
-                <div align="middle">
-
-                    <button class="btn btn-success btn-icon-split-lg">FILTRAR</button>
-                </div>
-            </form>
-        </div>
-        <div class="card-header py-3">
-            <!--<h6 class="m-0 font-weight-bold text-primary">Filiais</h6>-->
-            <div class="row">
-
-
-                <!--<a class="btn green" >ADICIONAR FILIAL</a>-->
-                <a href="{{route('layout.adicionarPessoaFisica', 1)}}" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-fw fa-plus-square"></i>
-                    </span>
-                    <span class="text">ADICIONAR PESSOA FISICA</span>
-                </a>
-                <div><span class="text" style="color:whitesmoke">.....</span></div>
-                <a href="{{route('layout.adicionarPessoaFisica', 2)}}" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-fw fa-plus-square"></i>
-                    </span>
-                    <span class="text">ADICIONAR PESSOA JURIDICA</span>
-                </a>
-                <div><span class="text" style="color:whitesmoke">.....</span></div>
-                <div>
-                    <button class="btn btn-primary btn-primary" id="editar">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-fw fa-pencil-ruler"></i>
-                            <span class="text">EDITAR</span>
-                        </span>
-                    </button>
-                </div>
-                <div><span class="text" style="color:whitesmoke">.....</span></div>
-                <div>
-                    <button class="btn btn-danger" id="desativar">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-trash-alt "></i>
-                            <span class="text">DESATIVAR</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table" id="minhaTabela">
@@ -66,19 +16,29 @@
                         <th>ID CARGA</th>
                         <th onclick="sortTable(document.getElementById('minhaTabela'), 'asc', 1)">COD PEDIDO</th>
                         <th>ORDEM ENTREGA</th>
+                        <th>PESO</th>
+                        <th>CUBAGEM</th>
+                        <th>VALOR</th>
+                        <th>NOME CLIENTE</th>
+                        <th>PRAÇA</th>
+                        <th>AÇÃO</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($pedidosCarga as $pedido)
-
-                            <tr class="">
-                                <td>{{$pedido->cargas_id}}</td>
-                                <td>{{$pedido->codPedido}}</td>
-                                <td>{{$pedido->sequenciaEntrega}}</td>
-
-                            </tr>
-
-
+                        <tr class="">
+                            <td>{{$pedido->cargas_id}}</td>
+                            <td>{{$pedido->codPedido}}</td>
+                            <td>{{$pedido->sequenciaEntrega}}</td>
+                            <td>{{$pedido->peso}}</td>
+                            <td>{{$pedido->cubagem}}</td>
+                            <td>{{$pedido->valorPedido}}</td>
+                            <td>{{$pedido->nome}}</td>
+                            <td>{{$pedido->praca}}</td>
+                            <td>
+                                <a class="btn deep-orange" href="{{route('removerPedidoCarga', $pedido->codPedido)}}">Remover Pedido</a>
+                            </td>
+                        </tr>
                     @endForeach
                     </tbody>
                 </table>

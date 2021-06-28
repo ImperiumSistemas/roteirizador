@@ -232,3 +232,4 @@ Route::post('cancelarCarga', ['as' => 'cancelarCarga', 'uses' => 'geradorCargaCo
 Route::get('listaCargas', ['as' => 'listaCargas', 'uses' => 'geradorCargaController@listaCargas']);
 Route::post('editarCarga', ['as' => 'editarCarga', 'uses' => 'geradorCargaController@editarCarga']);
 Route::post('addVeiculoCarga', ['as' => 'addVeiculoCarga', 'uses' => 'geradorCargaController@addVeiculoCarga']);
+route::get('removerPedidoCarga/{id}',['as' => 'removerPedidoCarga', 'uses' => 'geradorCargaController@removerPedidoCarga']);

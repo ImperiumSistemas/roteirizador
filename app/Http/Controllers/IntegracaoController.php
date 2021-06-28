@@ -32,7 +32,7 @@ class IntegracaoController extends Controller
 
       foreach ($pedidos as $pedido){
             $pedido =(object)$pedido;
-            $retornoCliente = $this->salvarCliente($pedido);
+            //$retornoCliente = $this->salvarCliente($pedido);
             //$produtos=$pedido->produtos;
             $retornoPedidos = $this->salvarPedido($pedido);
             }
