@@ -34,7 +34,7 @@ class IntegracaoController extends Controller
             $pedido =(object)$pedido;
             $retornoCliente = $this->salvarCliente($pedido);
             //$produtos=$pedido->produtos;
-            $retornoPedidos = $this->salvarPedido($pedido);
+          //  $retornoPedidos = $this->salvarPedido($pedido);
             }
 
         return $pedidos;
@@ -42,9 +42,6 @@ class IntegracaoController extends Controller
 
 
     public function salvarCliente($pedido){
-      $enderecos = Enderecos::all();
-      $clientes = Clientes::all();
-      $pessoas = Pessoas::all();
 
       $cpfcnpj = $pedido->cpfcnpj;
       $tamanhoCpfCnpj = strlen($pedido->cpfcnpj);
@@ -58,6 +55,41 @@ class IntegracaoController extends Controller
       $rua = $pedido->rua;
       $numero = $pedido->numero;
 
+      if($tamanhoCpfCnpj == 14){
+
+        if(Fisicas::where('cpf', '=', $cpfcnpj)->count() == 0){
+          Pessoas::create(['nome' => $nomeCliente]);
+          $ultimoIdPessoa = Pessoas::all()->last();
+          Fisicas::create(['cpf' => $cpfcnpj, 'PESSOAS_id' => $ultimoIdPessoa->id]);
+
+          if(Clientes::where('codCliente', '=', $codCliente)->count() == 0){
+            Clientes::create(['codCliente' => $codCliente, 'PESSOA_id' => $ultimoIdPessoa->id]);
+          } // Fim if CLIENTE
+
+          if(Enderecos::where('cep', '=', $cep)->count() == 0){
+            Enderecos::create(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero, 'cidade' => $cidade, 'cep' => $cep,
+                               'estado' => $estado, 'pais' => $pais, 'PESSOAS_id'  => $ultimoIdPessoa->id]);
+          }// Fim if CEP
+        }// Fim if CPF
+      } // Fim tamanhoCpfCnpj == 14
+
+      else{
+        if(Juridicas::where('cnpj', '=', $cpfcnpj)->count() == 0){
+          Pessoas::create(['nome' => $nomeCliente]);
+          $ultimoIdPessoa = Pessoas::all()->last();
+          Juridicas::create(['cnpj' => $cpfcnpj, 'PESSOAS_id' => $ultimoIdPessoa->id]);
+
+          if(Clientes::where('codCliente', '=', $codCliente)->count() == 0){
+            Clientes::create(['codCliente' => $codCliente, 'PESSOA_id' => $ultimoIdPessoa->id]);
+          } // Fim if CLIENTE
+
+          if(Enderecos::where('cep', '=', $cep)->count() == 0){
+            Enderecos::create(['rua' => $rua, 'bairro' => $bairro, 'numero' => $numero, 'cidade' => $cidade, 'cep' => $cep,
+                               'estado' => $estado, 'pais' => $pais, 'PESSOAS_id'  => $ultimoIdPessoa->id]);
+          }// Fim if CEP
+        } // Fim if CNPJ
+      } // Fim else
+      /*
       if($tamanhoCpfCnpj == 14){
         $fisicas = Fisicas::all();
         $encontraCpf = false;
@@ -226,9 +258,13 @@ class IntegracaoController extends Controller
         } // end comparação CNPJ caso exista.
 
       } //end Else CNPJ
+      */
 
-    } // end function salvar
+    } // Fim função salvar cliente
 
+
+
+/*
     public function salvarPedido($pedido)
     {
 
@@ -272,7 +308,7 @@ class IntegracaoController extends Controller
 
         return true;
 
-    }
+    }*/
 
 
 
