@@ -1,9 +1,10 @@
 <div class="form-control">
     <label>STATUS</label>
     <select name="status">
-        <option value="2" selected >TODOS</option>
-        <option value="0">SOMENTE INATIVOS</option>
-        <option value="1" selected >SOMENTE ATIVOS</option>        
+        <option value="">TODOS</option>
+        <option value="Cancelado">CANCELADO</option>
+        <option value="Criado"  >CRIADO</option>
+        <option value="Integrado"  >INTEGRADO</option>
     </select>
     
     <label>ID ROMANEIO:</label>

@@ -8,7 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <form class="" method="post" action="{{route('listagem.PessoaFiltro')}}">
+            <form class="" method="post" action="{{route('listaCargasFiltro')}}">
                 {{ csrf_field() }}
 
                 @include('formularios.formularioFiltroCargas')
@@ -79,7 +79,6 @@
                     </tbody>
                 </table>
             </div>
-            {{$cargas->links()}}
         </div>
     </div>
 

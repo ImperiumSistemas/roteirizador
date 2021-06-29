@@ -82,7 +82,7 @@ class geradorCargaController extends Controller
         $this->qtdeVeiculos = $req->qtde;
         $this->qtdPedidos = 0;
         $this->deliveries = $req->deliveries;
-
+        $cubagemAcumuladaPedidos = 0.0;
         //$DbPraca = Pracas::wherein('id', $pracas)->get();  Como fazer o select com whereIN e fazer isso com pedidos para filtrar
         $pedidos = Pedidos::wherein('codFilial', $filialFaturamento)
             ->where('podeFormarCarga', '=', 'S')
@@ -103,23 +103,33 @@ class geradorCargaController extends Controller
             $coords = array("lat" => $endereco->lat, "lng" => $endereco->lng);
             $endCliente = $endereco->rua . ", " . $endereco->numero . ", " . $endereco->bairro . ", " . $endereco->cidade;
             $dimens = array("weight" => "100", "cubage" => "1000");
+            $cubagemAcumuladaPedidos = $cubagemAcumuladaPedidos + 1000;//Tem que pegar a cubagem do pedido no WMS ainda não esta desenvolvido
             $deliveres[] = array("id" => $pedido->id, "address" => $endCliente, "coords" => $coords, "dimens" => $dimens);
             $this->qtdPedidos = $this->qtdPedidos + 1;
         }
 
-        $retornoValidacoes = $this->validacaoFiltros();
-        if ($retornoValidacoes == false) {
 
-            return redirect(route('filtros'))->with('error', 'Não existe quantidade de veiculos para os pedidos');
-        } else {
-
-        }
+        //if ($retornoValidacoes == false) {
+        //  return redirect(route('filtros'))->with('error', 'Não existe quantidade de veiculos para os pedidos');
+        //} else {
+        //}
 
         $endFilial = $dadosFiliais->rua . ", " . $dadosFiliais->numero . ", " . $dadosFiliais->bairro . ", " . $dadosFiliais->cidade;
         $cd = array("address" => $endFilial, "lat" => $dadosFiliais->latitude, "lng" => $dadosFiliais->longitude);
         $vehicle = array("qtde" => $req->qtde, "weight" => $weight, "cubage" => $cubage, "deliveries" => $req->deliveries, "km" => $km, "time" => "100000000", "vehiclesRequired" => $this->vehiclesRequired);
         //$data = array("cd" => $cd, "vehicle" => $vehicle);
+        $cubagemTotalVeiculos = $req->qtde * $cubage;
 
+        $retornoValidacoes = $this->validacaoFiltros();
+        $validaCubagem = $this->validateCubagem($cubagemTotalVeiculos, $cubagemAcumuladaPedidos);
+
+        if ($validaCubagem == false && $retornoValidacoes == false) {
+            return redirect(route('filtros'))->with('error', 'Não existe quantidade de veiculos  e cubagem disponivel para os pedidos',);
+        } elseif ($validaCubagem == false) {
+            return redirect(route('filtros'))->with('error', 'Não existe cubagem nos veiculos para os pedidos');
+        } elseif ($retornoValidacoes == false) {
+            return redirect(route('filtros'))->with('error', 'Não existe quantidade de veiculos para os pedidos');
+        }
         //dd($data);
         $arr = [
             "data" => [
@@ -150,20 +160,47 @@ class geradorCargaController extends Controller
         if ($usaMapa->dfvalor == "S") {
             return view('layout.mapa', compact('resposta'));
         } else {
-          $save = $this->salvaCargasLista($resposta) ;
+            $save = $this->salvaCargasLista($resposta);
 
         }
 
     }
 
+    public function validateCubagem($cubagemTotalVeiculos, $cubagemAcumuladaPedidos)
+    {
+        //dd( $cubagemAcumuladaPedidos);
+        if ($cubagemTotalVeiculos < $cubagemAcumuladaPedidos) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function salvaCargasLista($data)
     {
-        dd(json_decode($data));
+        $cargasRecebidas = json_decode($data);
+        //dd($cargasRecebidas);
+        foreach ($cargasRecebidas as $carga) {
+            $entregas = $carga->deliveries;
+            Cargas::create(['status' => 'Criado']);
+            $idCarga = Cargas::all('id')->last();
+            $sequenciaEntrega = 0;
+            foreach ($entregas as $entrega) {
+                $idPedido = $entrega->id;
+                if ($idPedido != '0') {
+                    $sequenciaEntrega = $sequenciaEntrega + 1;
+                    Pedidos::find($idPedido)->update(['cargas_id' => $idCarga->id, 'sequenciaEntrega' => $sequenciaEntrega, 'podeFormarCarga' => 'N', 'statusPedido' => 'M']);
+                }
+            }
+
+        }
+
+        dd("FEITO");
     }
 
     public function salvarCargas(Request $req)
     {
-        dd($req);
+        //dd($req);
         $cargasRecebidas = json_decode($req->cargas);
         //dd($cargasRecebidas);
         foreach ($cargasRecebidas as $carga) {
@@ -269,9 +306,30 @@ class geradorCargaController extends Controller
 
     public function listaCargas()
     {
-        $cargas = Cargas::paginate(10);
+        $cargas = Cargas::where('status', '=', 'Criado')->get();
         $veiculos = Veiculos::all();
         //dd($cargas);
+        return view('listagem.listaCargas', compact('cargas', 'veiculos'));
+    }
+
+    public function listaCargasFiltro(Request $req)
+    {
+        $veiculos = Veiculos::all();
+        $query = DB::table("cargas");
+        if (isset($req->status)) {
+            $status = $req->status;
+            $query->where('status', '=', $status);
+        }
+        if (isset($req->idRomaneio)) {
+            $idRomaneio = $req->idRomaneio;
+            $query->where('id', '=', $idRomaneio);
+        }
+        if (isset($req->cargaERP)) {
+            $cargaERP = $req->cargaERP;
+            $query->where('cargaERP', '=', $cargaERP);
+        }
+
+        $cargas = $query->get();
         return view('listagem.listaCargas', compact('cargas', 'veiculos'));
     }
 
@@ -298,7 +356,18 @@ class geradorCargaController extends Controller
 
     public function removerPedidoCarga($id)
     {
-        dd($id);
+        $carga = Pedidos::where('codPedido', '=', $id)->first();
+        //dd($carga->cargas_id);
+        Pedidos::where('codPedido', '=', $id)->update(['podeFormarCarga' => 'S', 'statusPedido' => 'A', 'sequenciaEntrega' => '0', 'cargaErp' => '0', 'cargas_id' => '0']);
+
+        $pedidosCarga = Cargas::join("pedidos", "pedidos.cargas_id", "=", "cargas.id")
+            ->leftjoin("clientes", "clientes.id", "=", "pedidos.codCliente")
+            ->leftjoin("pessoas", "clientes.PESSOA_id", "=", "pessoas.id")
+            ->leftjoin("pracas", "pracas.id", "=", "pedidos.codPraca")
+            ->where("pedidos.cargas_id", "=", $carga->cargas_id)
+            ->orderBy("pedidos.sequenciaEntrega")->get();
+        //dd($pedidosCarga);
+        return view('listagem.listaPedidosCarga', compact('pedidosCarga'));
 
     }
 

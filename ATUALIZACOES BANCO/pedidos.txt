@@ -33,3 +33,6 @@ ADD COLUMN `created_at` VARCHAR(45) NULL AFTER `updated_at`;
 
 alter table pedidos
 	add filialFaturamento_id int null;
+
+alter table pedidos
+	add dataPrevisaoEntrega date null after dataPedido;

@@ -259,7 +259,7 @@ class IntegracaoController extends Controller
                 ]);
             }
 
-            if (produtospedidos::where('codProduto', '=', $produto->codProduto)->where('codPedido', '=', $ultimoPedido->id)->count() == 0){
+            if (produtospedidos::where('codPedido', '=', $ultimoPedido->id)->where('codProduto', '=', $produto->codProduto)->count() == 0){
                 produtospedidos::create([
                     'codProduto' => $produto->codProduto,
                     'codPedido' => $ultimoPedido->id,
