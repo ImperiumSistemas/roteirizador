@@ -13,6 +13,7 @@ use App\Enderecos;
 use App\Pessoas;
 use App\Fisicas;
 use App\Juridicas;
+use App\Tools\StringFormat;
 
 class IntegracaoController extends Controller
 {
@@ -28,11 +29,20 @@ class IntegracaoController extends Controller
         //dd($req->input('pedidos'));
         //dd($dados['pedidos']);
 
+
         $pedidos = $req->pedidos;
 
-      foreach ($pedidos as $pedido){
+      foreach($pedidos as $pedido){
             $pedido =(object)$pedido;
-            $retornoCliente = $this->salvarCliente($pedido);
+
+            $cpfcnpj = str_replace(['.','-','/'], '', $pedido->cpfcnpj);
+
+            if(strlen($cpfcnpj) == 14 || strlen($cpfcnpj) == 11){
+
+              $retornoCliente = $this->salvarCliente($pedido, $cpfcnpj);
+            }
+
+
             //$produtos=$pedido->produtos;
           //  $retornoPedidos = $this->salvarPedido($pedido);
             }
@@ -40,11 +50,8 @@ class IntegracaoController extends Controller
         return $pedidos;
     }
 
+    public function salvarCliente($pedido, $cpfcnpj){
 
-    public function salvarCliente($pedido){
-
-      $cpfcnpj = $pedido->cpfcnpj;
-      $tamanhoCpfCnpj = strlen($pedido->cpfcnpj);
       $codCliente = $pedido->codCliente;
       $nomeCliente = $pedido->nome;
       $pais = $pedido->pais;
@@ -55,8 +62,11 @@ class IntegracaoController extends Controller
       $rua = $pedido->rua;
       $numero = $pedido->numero;
 
-      if($tamanhoCpfCnpj == 14){
 
+      if(strlen($cpfcnpj) == 11){
+
+        $cpfcnpj = StringFormat::mask($cpfcnpj, '###.###.###-##');
+        
         if(Fisicas::where('cpf', '=', $cpfcnpj)->count() == 0){
           Pessoas::create(['nome' => $nomeCliente]);
           $ultimoIdPessoa = Pessoas::all()->last();
