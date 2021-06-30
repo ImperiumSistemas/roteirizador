@@ -84,6 +84,10 @@ class IntegracaoController extends Controller
       } // Fim tamanhoCpfCnpj == 14
 
       else{
+
+          $cpfcnpj = StringFormat::mask($cpfcnpj, '##.###.###/-####-##');
+
+
         if(Juridicas::where('cnpj', '=', $cpfcnpj)->count() == 0){
           Pessoas::create(['nome' => $nomeCliente]);
           $ultimoIdPessoa = Pessoas::all()->last();
